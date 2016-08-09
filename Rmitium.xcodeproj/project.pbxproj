@@ -14,6 +14,8 @@
 		508BB5191D5864CF00556CE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508BB5171D5864CF00556CE3 /* Main.storyboard */; };
 		508BB51B1D5864CF00556CE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 508BB51A1D5864CF00556CE3 /* Assets.xcassets */; };
 		508BB51E1D5864CF00556CE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508BB51C1D5864CF00556CE3 /* LaunchScreen.storyboard */; };
+		50D9C4611D58B11E00221ADD /* LevelOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4601D58B11E00221ADD /* LevelOneViewController.swift */; };
+		50D9C4631D58B2BD00221ADD /* LevelOneScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4621D58B2BD00221ADD /* LevelOneScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		508BB51A1D5864CF00556CE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		508BB51D1D5864CF00556CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		508BB51F1D5864CF00556CE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50D9C4601D58B11E00221ADD /* LevelOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneViewController.swift; sourceTree = "<group>"; };
+		50D9C4621D58B2BD00221ADD /* LevelOneScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 		508BB50E1D5864CF00556CE3 /* Rmitium */ = {
 			isa = PBXGroup;
 			children = (
+				50D9C45F1D58B0AC00221ADD /* LevelOne */,
 				508BB50F1D5864CF00556CE3 /* AppDelegate.swift */,
 				508BB5111D5864CF00556CE3 /* GameScene.sks */,
 				508BB5131D5864CF00556CE3 /* GameScene.swift */,
@@ -68,6 +73,15 @@
 				508BB51F1D5864CF00556CE3 /* Info.plist */,
 			);
 			path = Rmitium;
+			sourceTree = "<group>";
+		};
+		50D9C45F1D58B0AC00221ADD /* LevelOne */ = {
+			isa = PBXGroup;
+			children = (
+				50D9C4601D58B11E00221ADD /* LevelOneViewController.swift */,
+				50D9C4621D58B2BD00221ADD /* LevelOneScene.swift */,
+			);
+			name = LevelOne;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +157,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D9C4611D58B11E00221ADD /* LevelOneViewController.swift in Sources */,
+				50D9C4631D58B2BD00221ADD /* LevelOneScene.swift in Sources */,
 				508BB5141D5864CF00556CE3 /* GameScene.swift in Sources */,
 				508BB5161D5864CF00556CE3 /* GameViewController.swift in Sources */,
 				508BB5101D5864CF00556CE3 /* AppDelegate.swift in Sources */,
@@ -295,6 +311,7 @@
 				508BB5241D5864CF00556CE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
