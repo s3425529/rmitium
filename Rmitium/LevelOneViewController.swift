@@ -18,8 +18,8 @@ class LevelOneViewController: UIViewController {
         if let scene = GameScene(fileNamed:"LevelOneScene") {
             // Configure the view.
             let skView = self.view as! SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
+            //skView.showsFPS = true
+            //skView.showsNodeCount = true
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
@@ -30,7 +30,14 @@ class LevelOneViewController: UIViewController {
             skView.presentScene(scene)
         }
         
-        imgMolecular.image = UIImage(named: "S1-morphine")
+        loadQuestion()
+    }
+    
+    func loadQuestion() {
+        imgMolecular.image = UIImage(named: "test_ans")
+        let facts = ["Fact 1: aaaaaa", "Fact 2: bbbbbb"]
+        let fact = facts[0]
+        
     }
     
     override func shouldAutorotate() -> Bool {
