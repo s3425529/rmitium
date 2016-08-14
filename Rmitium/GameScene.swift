@@ -22,7 +22,7 @@ class GameScene: SKScene {
         levelOneLabel.name = UtilitiesPortal.levelOneLabelName
         levelOneLabel.text = UtilitiesPortal.levelOneLabelText
         levelOneLabel.fontSize = UtilitiesPortal.levelLabelSize
-        levelOneLabel.position = CGPointMake(50, UtilitiesPortal.screenWidth*0.7)
+        levelOneLabel.position = CGPointMake(UtilitiesPortal.borderSize, UtilitiesPortal.screenHeight*0.75)
         self.addChild(levelOneLabel)
         
         let levelTwoLabel = SKLabelNode(fontNamed:UtilitiesPortal.levelLabelFont)
@@ -30,7 +30,7 @@ class GameScene: SKScene {
         levelTwoLabel.name = UtilitiesPortal.levelTwoLabelName
         levelTwoLabel.text = UtilitiesPortal.levelTwoLabelText
         levelTwoLabel.fontSize = UtilitiesPortal.levelLabelSize
-        levelTwoLabel.position = CGPointMake(50, UtilitiesPortal.screenWidth*0.6)
+        levelTwoLabel.position = CGPointMake(UtilitiesPortal.borderSize, UtilitiesPortal.screenHeight*0.55)
         self.addChild(levelTwoLabel)
         
         let levelThreeLabel = SKLabelNode(fontNamed:UtilitiesPortal.levelLabelFont)
@@ -38,7 +38,7 @@ class GameScene: SKScene {
         levelThreeLabel.name = UtilitiesPortal.levelThreeLabelName
         levelThreeLabel.text = UtilitiesPortal.levelThreeLabelText
         levelThreeLabel.fontSize = UtilitiesPortal.levelLabelSize
-        levelThreeLabel.position = CGPointMake(50, UtilitiesPortal.screenWidth*0.5)
+        levelThreeLabel.position = CGPointMake(UtilitiesPortal.borderSize, UtilitiesPortal.screenHeight*0.35)
         self.addChild(levelThreeLabel)
         
         let setting = SKLabelNode(fontNamed:UtilitiesPortal.levelLabelFont)
@@ -47,7 +47,7 @@ class GameScene: SKScene {
         setting.text = UtilitiesPortal.settingLabelText
         setting.fontSize = UtilitiesPortal.levelLabelSize
         //setting.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame)-200)
-        setting.position = CGPointMake(50, UtilitiesPortal.screenWidth*0.4)
+        setting.position = CGPointMake(UtilitiesPortal.borderSize, UtilitiesPortal.screenHeight*0.15)
         self.addChild(setting)
     }
     

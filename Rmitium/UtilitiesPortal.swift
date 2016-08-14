@@ -21,10 +21,14 @@ class UtilitiesPortal {
     
     static let alphabet = ["A", "B", "C", "D", "E", "F", "G"] //HIJKLMNOPQRSTUVXYZ"
     
-    static let levelLabelFont = "Chalkduster"
-    static let levelLabelSize = CGFloat(30)
-    
     static let screenSize: CGRect = UIScreen.mainScreen().bounds
     static let screenWidth = screenSize.width
     static let screenHeight = screenSize.height
+    
+    static let levelLabelFont = "Chalkduster"
+    static let levelLabelSize = CGFloat(screenWidth/30)
+    static let borderSize = screenWidth/15
+    
+    static let imageWidth = screenWidth*0.7
+    static let imageHeight = screenHeight*0.6
 }

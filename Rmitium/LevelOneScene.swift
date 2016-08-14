@@ -11,14 +11,18 @@ import SpriteKit
 class LevelOneScene: SKScene {
     var answers: [SKLabelNode] = []
     var questions: [SKSpriteNode] = []
+    var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: SKLabelNode!
     let yellowBin = SKSpriteNode()
     
     override func didMoveToView(view: SKView) {
         let image = SKSpriteNode(imageNamed: "test_ans")
-        image.position = CGPoint(x:UtilitiesPortal.screenWidth*0.35, y:frame.midY)
-        image.size = CGSize(width: UtilitiesPortal.screenWidth*0.6, height: UtilitiesPortal.screenHeight*0.7)
+        //image.position = CGPoint(x:UtilitiesPortal.screenWidth*0.35, y:frame.midY)
+        //image.position = CGPoint(x:UtilitiesPortal.screenWidth, y:UtilitiesPortal.screenHeight)
+        image.zPosition = 0
+        image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2, y:UtilitiesPortal.screenHeight/2)
+        image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
         setupDragLabel()
         setupTargets()
@@ -28,37 +32,40 @@ class LevelOneScene: SKScene {
         for count in 1...5 {
             let answer = SKLabelNode()
             answer.fontName = "Chalkduster"
+            answer.fontColor = UIColor.redColor()
             answer.text = "Answer \(5-count+1)"
             answer.name = "answer\(5-count)"
-            answer.fontSize = 30
-            answer.position = CGPoint(x:UtilitiesPortal.screenWidth*1.2,
-                                      y:UtilitiesPortal.screenHeight*(0.3+0.2*CGFloat(count))-10)
+            answer.fontSize = UtilitiesPortal.levelLabelSize
+            answer.zPosition = 1
+            answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.9,
+                                      y:UtilitiesPortal.screenHeight*(0.2+0.1*CGFloat(count)))
             addChild(answer)
             answers.append(answer)
-            currentAnswerPostions.append(CGPointMake(UtilitiesPortal.screenWidth*1.2,
-                UtilitiesPortal.screenHeight*(0.3+0.2*CGFloat(count))))
+            currentAnswerPostions.append(CGPoint(x:UtilitiesPortal.screenWidth*0.9,
+                y:UtilitiesPortal.screenHeight*(0.2+0.1*CGFloat(count))))
         }
     }
     
     func setupTargets() {
+        positions.append(Position(x:0.38, y:0.75))
+        positions.append(Position(x:0.18, y:0.47))
+        positions.append(Position(x:0.68, y:0.42))
+        positions.append(Position(x:0.15, y:0.29))
+        positions.append(Position(x:0.59, y:0.25))
+        
         for count in 1...5 {
             let sprite = SKSpriteNode()
             //label.anchorPoint = CGPoint(x:0.5, y:1)
-            sprite.color = UIColor.blueColor()
+            sprite.alpha = 0.5
+            //sprite.color = UIColor.blueColor()
+            sprite.color = UIColor.whiteColor()
             sprite.name = "question\(5-count)"
-            sprite.size = CGSizeMake(200, 50)
-            sprite.position = CGPoint(x:UtilitiesPortal.screenWidth*0.9,
-                                      y:UtilitiesPortal.screenHeight*(0.3+0.2*CGFloat(count)))
+            sprite.size = CGSizeMake(100, UtilitiesPortal.levelLabelSize)
+            sprite.zPosition = 0.5
+            sprite.position = CGPoint(x:UtilitiesPortal.screenWidth * positions[count-1].x,
+                                      y:UtilitiesPortal.screenHeight * positions[count-1].y)
             addChild(sprite)
             questions.append(sprite)
-            
-            let label = SKLabelNode()
-            label.fontName = "Chalkduster"
-            label.text = UtilitiesPortal.alphabet[5-count]
-            label.fontSize = 30
-            label.position = CGPoint(x:UtilitiesPortal.screenWidth*0.7,
-                                     y:UtilitiesPortal.screenHeight*(0.3+0.2*CGFloat(count))-10)
-            addChild(label)
         }
     }
     
