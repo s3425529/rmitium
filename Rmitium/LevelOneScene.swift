@@ -26,7 +26,23 @@ class LevelOneScene: SKScene {
         addChild(image)
         setupDragLabel()
         setupTargets()
+        
+        
+        //Make add button
+        
+        let button: GGButton = GGButton(defaultButtonImage: "refresh", activeButtonImage: "confirm", buttonAction:buttonAction)
+        button.position = CGPointMake(self.frame.width * 0.05, self.frame.height * 0.9)
+        button.setScale(0.3)
+        addChild(button)
     }
+    
+    //Button action
+    func buttonAction() -> Void{
+       
+        print("hello!!!!!!!")
+      
+    }
+    
     
     func setupDragLabel() {
         for count in 1...5 {
