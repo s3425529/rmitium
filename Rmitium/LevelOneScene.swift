@@ -29,11 +29,13 @@ class LevelOneScene: SKScene {
         
         
         //Make add button
-        
+        /*
         let button: GGButton = GGButton(defaultButtonImage: "refresh", activeButtonImage: "confirm", buttonAction:buttonAction)
         button.position = CGPointMake(self.frame.width * 0.05, self.frame.height * 0.9)
         button.setScale(0.3)
         addChild(button)
+        */
+      
     }
     
     //Button action

@@ -7,7 +7,7 @@
 //
 
 import SpriteKit
-
+/*
 class noticificationView: SKScene , UITextViewDelegate{
     
     override func didMoveToView(view: SKView) {
@@ -15,12 +15,16 @@ class noticificationView: SKScene , UITextViewDelegate{
         let myView = UITextView(frame: CGRectMake(view.bounds.width * 0.1  , view.bounds.height * 0.15, view.bounds.width * 0.1, view.bounds.height * 0.1))
         view.addSubview(myView)
         
-        
+        myView.bringSubviewToFront(view)
         myView.textColor = UIColor.redColor()
         myView.text = "hello!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        myView.backgroundColor  = UIColor(red: 0.2, green: 0.5, blue: 0, alpha: 0.5)
-        myView.alpha = 0.5
+        myView.backgroundColor  = UIColor(red: 0.2, green: 0.5, blue: 0, alpha: 0.5))
     }
 
     
+}
+*/
+class notificationView: SKNode, UITextViewDelegate {
+    
+   
 }

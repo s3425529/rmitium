@@ -61,19 +61,19 @@ class GameScene: SKScene {
         
         let buttonLevel1: GGButton = GGButton(defaultButtonImage: "level1", activeButtonImage: "level2", buttonAction:buttonAction1)
         buttonLevel1.position = CGPointMake(self.frame.width * 0.5, self.frame.height * 0.6)
-        buttonLevel1.setScale(0.3)
+        buttonLevel1.setScale(0.28)
         buttonLevel1.alpha = 0.9
         addChild(buttonLevel1)
        
         let buttonLevel2: GGButton = GGButton(defaultButtonImage: "level1", activeButtonImage: "level2", buttonAction:buttonAction2)
         buttonLevel2.position = CGPointMake(self.frame.width * 0.5, self.frame.height * 0.4)
-        buttonLevel2.setScale(0.3)
+        buttonLevel2.setScale(0.28)
         buttonLevel2.alpha = 0.9
         addChild(buttonLevel2)
        
         let buttonLevel3: GGButton = GGButton(defaultButtonImage: "level1", activeButtonImage: "level2", buttonAction:buttonAction3)
         buttonLevel3.position = CGPointMake(self.frame.width * 0.5, self.frame.height * 0.2)
-        buttonLevel3.setScale(0.3)
+        buttonLevel3.setScale(0.28)
         buttonLevel3.alpha = 0.9
         addChild(buttonLevel3)
     }
