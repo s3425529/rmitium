@@ -10,10 +10,15 @@ import Foundation
 import UIKit
 
 class UtilitiesPortal {
+    //static let mainScene = GameScene(fileNamed:"GameScene")
+    
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
     static let levelLabelTexts = ["Level 1: Identifying Functional Groups",
                                   "Level 2: Building Molecules",
                                   "Level 3: Intermolecular Forces", "SETTINGS"]
+    
+    static let homeButtonName = "homeBtn"
+    static let helpButtonName = "helpBtn"
     
     static let buttonLevelWidth: CGFloat = 1153
     static let buttonLevelHeight: CGFloat  = 317
@@ -26,8 +31,13 @@ class UtilitiesPortal {
     
     static let hexImageSize = screenHeight*0.15
     
+    static let navLabelFont = "Helvatica-Bold"
+    static let navLabelSize = CGFloat(screenWidth/25)
+    static let navImgSize = screenHeight*0.10
+    
     static let levelLabelFont = "Chalkduster"
     static let levelLabelSize = CGFloat(screenWidth/30)
+    
     static let borderSize = CGFloat(screenWidth/15)
     
     static let imageWidth = screenWidth*0.7

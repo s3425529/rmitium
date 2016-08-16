@@ -14,7 +14,6 @@ class LevelOneScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: SKLabelNode!
-    let yellowBin = SKSpriteNode()
     
     override func didMoveToView(view: SKView) {
         let background: SKSpriteNode = SKSpriteNode(imageNamed: "background")
@@ -24,18 +23,45 @@ class LevelOneScene: SKScene {
         background.zPosition = 0
         addChild(background)
         
+        let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
+        levelLabel.zPosition = 0.1
+        levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
+        levelLabel.fontSize = UtilitiesPortal.navLabelSize
+        levelLabel.position = CGPointMake(frame.midX, UtilitiesPortal.screenHeight*0.92)
+        self.addChild(levelLabel)
+        
+        // Home button
+        let home = SKSpriteNode(imageNamed: "home_1")
+        home.name = UtilitiesPortal.homeButtonName
+        home.zPosition = 0.1
+        home.alpha = 0.9
+        home.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        home.position = CGPoint(x:UtilitiesPortal.borderSize/2,
+                                y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
+        addChild(home)
+        
+        // Help button
+        let help = SKSpriteNode(imageNamed: "help")
+        help.zPosition = 0.1
+        help.alpha = 0.9
+        help.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        help.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
+                                y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
+        addChild(help)
+        
+        // Image
         let image = SKSpriteNode(imageNamed: "test_ans")
         //image.position = CGPoint(x:UtilitiesPortal.screenWidth*0.35, y:frame.midY)
         //image.position = CGPoint(x:UtilitiesPortal.screenWidth, y:UtilitiesPortal.screenHeight)
         image.zPosition = 0.1
         image.alpha = 0.9
-        image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2, y:UtilitiesPortal.screenHeight/2)
+        image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+                                 y:UtilitiesPortal.screenHeight/2)
         image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
         
         setupDragLabel()
         setupTargets()
-        
         
         //Make add button
         /*
@@ -44,7 +70,6 @@ class LevelOneScene: SKScene {
         button.setScale(0.3)
         addChild(button)
         */
-      
     }
     
     //Button action
@@ -141,12 +166,26 @@ class LevelOneScene: SKScene {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         
+        // Labels selected
         for x in 0...answers.count-1 {
             if CGRectContainsPoint(answers[x].frame, point) {
                 chosenAnswer = answers[x]
+                return
             }
         }
         
+        
+        // Home button selected
+        let location = touch!.locationInNode(self)
+        let node = self.nodeAtPoint(location)
+        if node.name == UtilitiesPortal.homeButtonName {
+            print("Home selected")
+            let secondScene = GameScene(size: self.size)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+            //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+        }
     }
     
     override func update(currentTime: CFTimeInterval) {

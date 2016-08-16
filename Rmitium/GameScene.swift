@@ -17,13 +17,21 @@ class GameScene: SKScene {
         button.name = "nextButton"
         self.addChild(button)*/
         
-        let image: SKSpriteNode = SKSpriteNode(imageNamed: "background")
+        let image = SKSpriteNode(imageNamed: "background")
         image.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         image.position = CGPoint(x:frame.midX, y:frame.midY)
         image.zPosition = 0
         //image.setScale(1.5)
         //image.alpha = 0.8
         addChild(image)
+        
+        let logo = SKSpriteNode(imageNamed: "logo")
+        logo.setScale(UtilitiesPortal.screenHeight/88*0.30)
+        //logo.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        logo.position = CGPoint(x:frame.midX, y:UtilitiesPortal.screenHeight*0.85)
+        logo.zPosition = 0.1
+        //image.alpha = 0.8
+        addChild(logo)
         
         /*var scale: CGFloat = 0
         let scaleHeight = UtilitiesPortal.screenHeight/UtilitiesPortal.buttonLevelHeight*0.15
@@ -43,7 +51,7 @@ class GameScene: SKScene {
             levelLabel.text = UtilitiesPortal.levelLabelTexts[count]
             levelLabel.fontSize = UtilitiesPortal.levelLabelSize
             levelLabel.position = CGPointMake(frame.midX/*UtilitiesPortal.borderSize*/,
-                                              UtilitiesPortal.screenHeight*(0.75-CGFloat(count)*0.2))
+                                              UtilitiesPortal.screenHeight*(0.60-CGFloat(count)*0.15))
             self.addChild(levelLabel)
             
             /*let levelHexImage = SKSpriteNode(imageNamed: "hexagon")
@@ -57,7 +65,7 @@ class GameScene: SKScene {
             let levelButton = SKSpriteNode(imageNamed: "levelButton")
             levelButton.alpha = 0.9
             levelButton.zPosition = 0.5
-            levelButton.position = CGPointMake(frame.midX/*UtilitiesPortal.borderSize/4 + UtilitiesPortal.screenWidth*0.4*/, UtilitiesPortal.screenHeight*(0.75-CGFloat(count)*0.2))
+            levelButton.position = CGPointMake(frame.midX/*UtilitiesPortal.borderSize/4 + UtilitiesPortal.screenWidth*0.4*/, UtilitiesPortal.screenHeight*(0.60-CGFloat(count)*0.15))
             levelButton.size = CGSize(width: UtilitiesPortal.screenWidth*0.9,
                                          height: UtilitiesPortal.hexImageSize*1.2)
             self.addChild(levelButton)

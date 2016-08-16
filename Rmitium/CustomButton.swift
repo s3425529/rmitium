@@ -65,9 +65,9 @@ class CustomButton: SKNode {
             //action()
             var scene: SKScene!
             if(option == 1) {
-                scene = LevelOneScene()
+                scene = LevelOneScene(size:frame.size)
             }
-            scene = LevelOneScene()
+            scene = LevelOneScene(size:frame.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.5)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
             scene.scaleMode = SKSceneScaleMode.AspectFill
