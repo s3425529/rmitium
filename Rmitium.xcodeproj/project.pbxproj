@@ -15,12 +15,13 @@
 		508BB5191D5864CF00556CE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508BB5171D5864CF00556CE3 /* Main.storyboard */; };
 		508BB51B1D5864CF00556CE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 508BB51A1D5864CF00556CE3 /* Assets.xcassets */; };
 		508BB51E1D5864CF00556CE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508BB51C1D5864CF00556CE3 /* LaunchScreen.storyboard */; };
+		509691811D639EA300CFD453 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509691801D639EA300CFD453 /* Question.swift */; };
 		50D741041D60D38600EF36E4 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D741031D60D38600EF36E4 /* Position.swift */; };
 		50D9C4611D58B11E00221ADD /* LevelOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4601D58B11E00221ADD /* LevelOneViewController.swift */; };
 		50D9C4631D58B2BD00221ADD /* LevelOneScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4621D58B2BD00221ADD /* LevelOneScene.swift */; };
 		50D9C4661D5A3E7200221ADD /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4651D5A3E7200221ADD /* DataHandler.swift */; };
 		50D9C4681D5A3EF900221ADD /* QuestionLevelOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */; };
-		50FD70921D61617B0090CDAD /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70911D61617B0090CDAD /* Button.swift */; };
+		50FD70921D61617B0090CDAD /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70911D61617B0090CDAD /* CustomButton.swift */; };
 		50FD70941D6175360090CDAD /* textFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70931D6175360090CDAD /* textFiled.swift */; };
 		50FD70981D629D620090CDAD /* notificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70971D629D620090CDAD /* notificationView.swift */; };
 /* End PBXBuildFile section */
@@ -36,12 +37,13 @@
 		508BB51A1D5864CF00556CE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		508BB51D1D5864CF00556CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		508BB51F1D5864CF00556CE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		509691801D639EA300CFD453 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		50D741031D60D38600EF36E4 /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		50D9C4601D58B11E00221ADD /* LevelOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneViewController.swift; sourceTree = "<group>"; };
 		50D9C4621D58B2BD00221ADD /* LevelOneScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneScene.swift; sourceTree = "<group>"; };
 		50D9C4651D5A3E7200221ADD /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLevelOne.swift; sourceTree = "<group>"; };
-		50FD70911D61617B0090CDAD /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		50FD70911D61617B0090CDAD /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		50FD70931D6175360090CDAD /* textFiled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFiled.swift; sourceTree = "<group>"; };
 		50FD70971D629D620090CDAD /* notificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notificationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,7 +63,6 @@
 			isa = PBXGroup;
 			children = (
 				50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */,
-				50FD70911D61617B0090CDAD /* Button.swift */,
 				50FD70931D6175360090CDAD /* textFiled.swift */,
 				50FD70971D629D620090CDAD /* notificationView.swift */,
 			);
@@ -87,6 +88,7 @@
 		508BB50E1D5864CF00556CE3 /* Rmitium */ = {
 			isa = PBXGroup;
 			children = (
+				5096917F1D638BD500CFD453 /* CustomUI */,
 				50D741021D60D36F00EF36E4 /* Position */,
 				50593BEC1D5B214400DFE191 /* Utilities */,
 				50D9C4641D5A3E3D00221ADD /* DataPortal */,
@@ -101,6 +103,14 @@
 				508BB51F1D5864CF00556CE3 /* Info.plist */,
 			);
 			path = Rmitium;
+			sourceTree = "<group>";
+		};
+		5096917F1D638BD500CFD453 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				50FD70911D61617B0090CDAD /* CustomButton.swift */,
+			);
+			name = CustomUI;
 			sourceTree = "<group>";
 		};
 		50D741021D60D36F00EF36E4 /* Position */ = {
@@ -125,6 +135,7 @@
 			children = (
 				50D9C4651D5A3E7200221ADD /* DataHandler.swift */,
 				50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */,
+				509691801D639EA300CFD453 /* Question.swift */,
 			);
 			name = DataPortal;
 			sourceTree = "<group>";
@@ -208,8 +219,9 @@
 				508BB5141D5864CF00556CE3 /* GameScene.swift in Sources */,
 				508BB5161D5864CF00556CE3 /* GameViewController.swift in Sources */,
 				50FD70981D629D620090CDAD /* notificationView.swift in Sources */,
-				50FD70921D61617B0090CDAD /* Button.swift in Sources */,
+				50FD70921D61617B0090CDAD /* CustomButton.swift in Sources */,
 				50D9C4661D5A3E7200221ADD /* DataHandler.swift in Sources */,
+				509691811D639EA300CFD453 /* Question.swift in Sources */,
 				50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */,
 				508BB5101D5864CF00556CE3 /* AppDelegate.swift in Sources */,
 				50FD70941D6175360090CDAD /* textFiled.swift in Sources */,

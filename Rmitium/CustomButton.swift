@@ -8,16 +8,18 @@
 
 import SpriteKit
 
-class GGButton: SKNode {
+class CustomButton: SKNode {
     var defaultButton: SKSpriteNode
     var activeButton: SKSpriteNode
-    var action: () -> Void
+    //var action: () -> Void
+    var option: Int
     
-    init(defaultButtonImage: String, activeButtonImage: String, buttonAction:() -> Void) {
+    init(defaultButtonImage: String, activeButtonImage: String, /*buttonAction:() -> Void*/option: Int) {
         defaultButton = SKSpriteNode(imageNamed: defaultButtonImage)
         activeButton = SKSpriteNode(imageNamed: activeButtonImage)
         activeButton.hidden = true
-        action = buttonAction
+        //action = buttonAction
+        self.option = option
         
         super.init()
         
@@ -60,7 +62,17 @@ class GGButton: SKNode {
         let location: CGPoint = touch.locationInNode(self)
         
         if defaultButton.containsPoint(location) {
-            action()
+            //action()
+            var scene: SKScene!
+            if(option == 1) {
+                scene = LevelOneScene()
+            }
+            scene = LevelOneScene()
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.5)
+            //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+            scene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(scene, transition: transition)
+            
         }
         
         activeButton.hidden = true

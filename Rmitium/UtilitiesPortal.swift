@@ -10,14 +10,13 @@ import Foundation
 import UIKit
 
 class UtilitiesPortal {
-    static let levelOneLabelName = "lvl01"
-    static let levelOneLabelText = "LEVEL 1: Identifying Functional Groups"
-    static let levelTwoLabelName = "lvl02"
-    static let levelTwoLabelText = "LEVEL 2: Building Molecules"
-    static let levelThreeLabelName = "lvl03"
-    static let levelThreeLabelText = "LEVEL 3: Intermolecular Forces"
-    static let settingLabelName = "setting"
-    static let settingLabelText = "SETTINGS"
+    static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
+    static let levelLabelTexts = ["Level 1: Identifying Functional Groups",
+                                  "Level 2: Building Molecules",
+                                  "Level 3: Intermolecular Forces", "SETTINGS"]
+    
+    static let buttonLevelWidth: CGFloat = 1153
+    static let buttonLevelHeight: CGFloat  = 317
     
     static let alphabet = ["A", "B", "C", "D", "E", "F", "G"] //HIJKLMNOPQRSTUVXYZ"
     
@@ -25,9 +24,11 @@ class UtilitiesPortal {
     static let screenWidth = screenSize.width
     static let screenHeight = screenSize.height
     
+    static let hexImageSize = screenHeight*0.15
+    
     static let levelLabelFont = "Chalkduster"
     static let levelLabelSize = CGFloat(screenWidth/30)
-    static let borderSize = screenWidth/15
+    static let borderSize = CGFloat(screenWidth/15)
     
     static let imageWidth = screenWidth*0.7
     static let imageHeight = screenHeight*0.6

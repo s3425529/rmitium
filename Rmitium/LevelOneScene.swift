@@ -17,13 +17,22 @@ class LevelOneScene: SKScene {
     let yellowBin = SKSpriteNode()
     
     override func didMoveToView(view: SKView) {
+        let background: SKSpriteNode = SKSpriteNode(imageNamed: "background")
+        background.size = CGSize(width: UtilitiesPortal.screenWidth,
+                                 height: UtilitiesPortal.screenHeight)
+        background.position = CGPoint(x:frame.midX, y:frame.midY)
+        background.zPosition = 0
+        addChild(background)
+        
         let image = SKSpriteNode(imageNamed: "test_ans")
         //image.position = CGPoint(x:UtilitiesPortal.screenWidth*0.35, y:frame.midY)
         //image.position = CGPoint(x:UtilitiesPortal.screenWidth, y:UtilitiesPortal.screenHeight)
-        image.zPosition = 0
+        image.zPosition = 0.1
+        image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2, y:UtilitiesPortal.screenHeight/2)
         image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
+        
         setupDragLabel()
         setupTargets()
         
@@ -77,6 +86,7 @@ class LevelOneScene: SKScene {
             sprite.alpha = 0.5
             //sprite.color = UIColor.blueColor()
             sprite.color = UIColor.whiteColor()
+            sprite.alpha = 0
             sprite.name = "question\(5-count)"
             sprite.size = CGSizeMake(100, UtilitiesPortal.levelLabelSize)
             sprite.zPosition = 0.5
@@ -92,20 +102,11 @@ class LevelOneScene: SKScene {
         if chosenAnswer == nil {
             return
         }
-        if chosenAnswer == answers[0] {
-            answers[0].position = touch!.locationInNode(self)
-        }
-        if chosenAnswer == answers[1] {
-            answers[1].position = touch!.locationInNode(self)
-        }
-        if chosenAnswer == answers[2] {
-            answers[2].position = touch!.locationInNode(self)
-        }
-        if chosenAnswer == answers[3] {
-            answers[3].position = touch!.locationInNode(self)
-        }
-        if chosenAnswer == answers[4] {
-            answers[4].position = touch!.locationInNode(self)
+        
+        for x in 0...answers.count-1 {
+            if chosenAnswer == answers[x] {
+                answers[x].position = touch!.locationInNode(self)
+            }
         }
     }
     
@@ -113,104 +114,21 @@ class LevelOneScene: SKScene {
         if(chosenAnswer == nil) {
             return
         }
-        if(chosenAnswer == answers[0]) {
-            if CGRectContainsPoint(questions[0].frame, answers[0].position) {
-                answers[0].position = questions[0].position
-            }
-            else if CGRectContainsPoint(questions[1].frame, answers[0].position) {
-                answers[0].position = questions[1].position
-            }
-            else if CGRectContainsPoint(questions[2].frame, answers[0].position) {
-                answers[0].position = questions[2].position
-            }
-            else if CGRectContainsPoint(questions[3].frame, answers[0].position) {
-                answers[0].position = questions[3].position
-            }
-            else if CGRectContainsPoint(questions[4].frame, answers[0].position) {
-                answers[0].position = questions[4].position
-            }
-            else {
-                answers[0].position = currentAnswerPostions[0]
-            }
-        }
-        else if(chosenAnswer == answers[1]) {
-            if CGRectContainsPoint(questions[0].frame, answers[1].position) {
-                answers[1].position = questions[0].position
-            }
-            else if CGRectContainsPoint(questions[1].frame, answers[1].position) {
-                answers[1].position = questions[1].position
-            }
-            else if CGRectContainsPoint(questions[2].frame, answers[1].position) {
-                answers[1].position = questions[2].position
-            }
-            else if CGRectContainsPoint(questions[3].frame, answers[1].position) {
-                answers[1].position = questions[3].position
-            }
-            else if CGRectContainsPoint(questions[4].frame, answers[1].position) {
-                answers[1].position = questions[4].position
-            }
-            else {
-                answers[1].position = currentAnswerPostions[1]
-            }
-        }
-        else if(chosenAnswer == answers[2]) {
-            if CGRectContainsPoint(questions[0].frame, answers[2].position) {
-                answers[2].position = questions[0].position
-            }
-            else if CGRectContainsPoint(questions[1].frame, answers[2].position) {
-                answers[2].position = questions[1].position
-            }
-            else if CGRectContainsPoint(questions[2].frame, answers[2].position) {
-                answers[2].position = questions[2].position
-            }
-            else if CGRectContainsPoint(questions[3].frame, answers[2].position) {
-                answers[2].position = questions[3].position
-            }
-            else if CGRectContainsPoint(questions[4].frame, answers[2].position) {
-                answers[2].position = questions[4].position
-            }
-            else {
-                answers[2].position = currentAnswerPostions[2]
-            }
-        }
-        else if(chosenAnswer == answers[3]) {
-            if CGRectContainsPoint(questions[0].frame, answers[3].position) {
-                answers[3].position = questions[0].position
-            }
-            else if CGRectContainsPoint(questions[1].frame, answers[3].position) {
-                answers[3].position = questions[1].position
-            }
-            else if CGRectContainsPoint(questions[2].frame, answers[3].position) {
-                answers[3].position = questions[2].position
-            }
-            else if CGRectContainsPoint(questions[3].frame, answers[3].position) {
-                answers[3].position = questions[3].position
-            }
-            else if CGRectContainsPoint(questions[4].frame, answers[3].position) {
-                answers[3].position = questions[4].position
-            }
-            else {
-                answers[3].position = currentAnswerPostions[3]
-            }
-        }
-        else if(chosenAnswer == answers[4]) {
-            if CGRectContainsPoint(questions[0].frame, answers[4].position) {
-                answers[4].position = questions[0].position
-            }
-            else if CGRectContainsPoint(questions[1].frame, answers[4].position) {
-                answers[4].position = questions[1].position
-            }
-            else if CGRectContainsPoint(questions[2].frame, answers[4].position) {
-                answers[4].position = questions[2].position
-            }
-            else if CGRectContainsPoint(questions[3].frame, answers[4].position) {
-                answers[4].position = questions[3].position
-            }
-            else if CGRectContainsPoint(questions[4].frame, answers[4].position) {
-                answers[4].position = questions[4].position
-            }
-            else {
-                answers[4].position = currentAnswerPostions[4]
+        
+        var result = true
+        for x in 0...answers.count-1 {
+            if chosenAnswer == answers[x] {
+                for y in 0...questions.count-1 {
+                    if CGRectContainsPoint(questions[y].frame, answers[x].position) {
+                        answers[x].position = questions[y].position
+                        result = false
+                        break
+                    }
+                }
+                if result {
+                    answers[x].position = currentAnswerPostions[x]
+                }
+                break
             }
         }
         
@@ -221,21 +139,12 @@ class LevelOneScene: SKScene {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
+        let point = touch!.previousLocationInNode(self)
         
-        if CGRectContainsPoint(answers[0].frame, touch!.previousLocationInNode(self)) {
-            chosenAnswer = answers[0]
-        }
-        if CGRectContainsPoint(answers[1].frame, touch!.previousLocationInNode(self)) {
-            chosenAnswer = answers[1]
-        }
-        if CGRectContainsPoint(answers[2].frame, touch!.previousLocationInNode(self)) {
-            chosenAnswer = answers[2]
-        }
-        if CGRectContainsPoint(answers[3].frame, touch!.previousLocationInNode(self)) {
-            chosenAnswer = answers[3]
-        }
-        if CGRectContainsPoint(answers[4].frame, touch!.previousLocationInNode(self)) {
-            chosenAnswer = answers[4]
+        for x in 0...answers.count-1 {
+            if CGRectContainsPoint(answers[x].frame, point) {
+                chosenAnswer = answers[x]
+            }
         }
         
     }
