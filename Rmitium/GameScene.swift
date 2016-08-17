@@ -27,6 +27,7 @@ class GameScene: SKScene {
         
         let logo = SKSpriteNode(imageNamed: "logo")
         logo.setScale(UtilitiesPortal.screenHeight/88*0.30)
+ 
         //logo.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         logo.position = CGPoint(x:frame.midX, y:UtilitiesPortal.screenHeight*0.85)
         logo.zPosition = 0.1

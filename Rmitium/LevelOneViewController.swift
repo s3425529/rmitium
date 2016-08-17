@@ -45,7 +45,7 @@ class LevelOneViewController: UIViewController {
     }
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+        if UIDevice.currentDevice().userInterfaceIdiom == .Phone && UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             return .AllButUpsideDown
         } else {
             return .All

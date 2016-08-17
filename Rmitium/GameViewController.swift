@@ -15,6 +15,8 @@ class GameViewController: UIViewController {
         //super.viewDidLoad()
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
+           // scene.size = CGSize(width:UtilitiesPortal.screenWidth, height:UtilitiesPortal.screenHeight)
+            
             scene.size = CGSize(width:UtilitiesPortal.screenWidth, height:UtilitiesPortal.screenHeight)
             let skView = self.view as! SKView
             //skView.showsFPS = true
@@ -35,7 +37,7 @@ class GameViewController: UIViewController {
     }
 
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+        if UIDevice.currentDevice().userInterfaceIdiom == .Phone && UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             return .AllButUpsideDown
         } else {
             return .All
