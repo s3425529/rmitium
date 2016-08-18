@@ -27,8 +27,8 @@ class GameScene: SKScene {
         
         // Add new button
         
-        
-        let home = SKSpriteNode(imageNamed: "home_1")
+        // Setting button
+        let home = SKSpriteNode(imageNamed: "settings1-white")
         home.name = UtilitiesPortal.homeButtonName
         home.zPosition = 0.1
         home.alpha = 0.9
@@ -37,7 +37,8 @@ class GameScene: SKScene {
             y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(home)
         
-        let help1 = SKSpriteNode(imageNamed: "help")
+        // Help button
+        let help1 = SKSpriteNode(imageNamed: "help2-white")
         help1.zPosition = 0.1
         help1.alpha = 0.9
         help1.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
@@ -47,6 +48,7 @@ class GameScene: SKScene {
         
         addChild(help1)
         
+        // App name logo
         let logo = SKSpriteNode(imageNamed: "logo")
         logo.setScale(UtilitiesPortal.screenHeight/88*0.30)
  
@@ -66,6 +68,7 @@ class GameScene: SKScene {
             scale = scaleHeight
         }*/
 
+        // Generating level buttons
         for count in 0...2 {
             let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.levelLabelFont)
             //levelLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left

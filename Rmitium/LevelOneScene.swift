@@ -33,7 +33,7 @@ class LevelOneScene: SKScene {
         self.addChild(levelLabel)
         
         // Home button
-        let home = SKSpriteNode(imageNamed: "home_1")
+        let home = SKSpriteNode(imageNamed: "home-white")
         home.name = UtilitiesPortal.homeButtonName
         home.zPosition = 0.1
         home.alpha = 0.9
@@ -42,8 +42,8 @@ class LevelOneScene: SKScene {
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(home)
         
-        // Help button
-        let help = SKSpriteNode(imageNamed: "help")
+        // Tick button
+        let help = SKSpriteNode(imageNamed: "tick-white")
         help.zPosition = 0.1
         help.alpha = 0.9
         help.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
@@ -55,7 +55,7 @@ class LevelOneScene: SKScene {
         addChild(help)
         
         //Mark add new help
-        let help1 = SKSpriteNode(imageNamed: "help")
+        let help1 = SKSpriteNode(imageNamed: "help2-white")
         help1.zPosition = 0.1
         help1.alpha = 0.9
         help1.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
@@ -66,7 +66,7 @@ class LevelOneScene: SKScene {
         addChild(help1)
         
         // Image
-        let image = SKSpriteNode(imageNamed: "test_ans")
+        let image = SKSpriteNode(imageNamed: "S1-morphine-whitewglow2")
         //image.position = CGPoint(x:UtilitiesPortal.screenWidth*0.35, y:frame.midY)
         //image.position = CGPoint(x:UtilitiesPortal.screenWidth, y:UtilitiesPortal.screenHeight)
         image.zPosition = 0.1
