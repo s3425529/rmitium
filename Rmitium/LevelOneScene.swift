@@ -16,13 +16,15 @@ class LevelOneScene: SKScene {
     var chosenAnswer: SKLabelNode!
     
     override func didMoveToView(view: SKView) {
+        /*
         let background: SKSpriteNode = SKSpriteNode(imageNamed: "background")
+        background.alpha = 0.3
         background.size = CGSize(width: UtilitiesPortal.screenWidth,
                                  height: UtilitiesPortal.screenHeight)
         background.position = CGPoint(x:frame.midX, y:frame.midY)
         background.zPosition = 0
         addChild(background)
-        
+        */
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
@@ -70,6 +72,11 @@ class LevelOneScene: SKScene {
         button.setScale(0.3)
         addChild(button)
         */
+        /*
+        var pop:notificationView
+        pop = notificationView(sceneFrame: self.frame)
+        addChild(pop)
+*/
     }
     
     //Button action
