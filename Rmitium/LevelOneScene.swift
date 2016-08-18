@@ -47,9 +47,23 @@ class LevelOneScene: SKScene {
         help.zPosition = 0.1
         help.alpha = 0.9
         help.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        //help.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
+          //                      y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
+        
         help.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
-                                y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
+            y: UtilitiesPortal.navImgSize/2)
         addChild(help)
+        
+        //Mark add new help
+        let help1 = SKSpriteNode(imageNamed: "help")
+        help1.zPosition = 0.1
+        help1.alpha = 0.9
+        help1.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        help1.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
+                              y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
+        
+        
+        addChild(help1)
         
         // Image
         let image = SKSpriteNode(imageNamed: "test_ans")
@@ -58,7 +72,9 @@ class LevelOneScene: SKScene {
         image.zPosition = 0.1
         image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-                                 y:UtilitiesPortal.screenHeight/2)
+                                 y:UtilitiesPortal.screenHeight/2 )
+        image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+            y:UtilitiesPortal.screenHeight/2 )
         image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
         

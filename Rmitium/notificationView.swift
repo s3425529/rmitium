@@ -49,7 +49,8 @@ class notificationView: SKNode{
     
     func slideDown(){
     
-        
+       // let distance = -myView.frame.size.height
+        //let moveAction = (SKAction.moveTo(CGPoint(x: myView., y: <#T##CGFloat#>))), duration: <#T##NSTimeInterval#>))
     }
     func slideUP(){
     
