@@ -21,6 +21,7 @@
 		50D9C4631D58B2BD00221ADD /* LevelOneScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4621D58B2BD00221ADD /* LevelOneScene.swift */; };
 		50D9C4661D5A3E7200221ADD /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4651D5A3E7200221ADD /* DataHandler.swift */; };
 		50D9C4681D5A3EF900221ADD /* QuestionLevelOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */; };
+		50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */; };
 		50FD70921D61617B0090CDAD /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70911D61617B0090CDAD /* CustomButton.swift */; };
 		50FD70941D6175360090CDAD /* textFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70931D6175360090CDAD /* textFiled.swift */; };
 		50FD70981D629D620090CDAD /* notificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70971D629D620090CDAD /* notificationView.swift */; };
@@ -43,6 +44,7 @@
 		50D9C4621D58B2BD00221ADD /* LevelOneScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneScene.swift; sourceTree = "<group>"; };
 		50D9C4651D5A3E7200221ADD /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLevelOne.swift; sourceTree = "<group>"; };
+		50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneQuestions.swift; sourceTree = "<group>"; };
 		50FD70911D61617B0090CDAD /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		50FD70931D6175360090CDAD /* textFiled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFiled.swift; sourceTree = "<group>"; };
 		50FD70971D629D620090CDAD /* notificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notificationView.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			children = (
 				50D9C4601D58B11E00221ADD /* LevelOneViewController.swift */,
 				50D9C4621D58B2BD00221ADD /* LevelOneScene.swift */,
+				50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */,
 			);
 			name = LevelOne;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				509691811D639EA300CFD453 /* Question.swift in Sources */,
 				50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */,
 				508BB5101D5864CF00556CE3 /* AppDelegate.swift in Sources */,
+				50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */,
 				50FD70941D6175360090CDAD /* textFiled.swift in Sources */,
 				50D741041D60D38600EF36E4 /* Position.swift in Sources */,
 			);
