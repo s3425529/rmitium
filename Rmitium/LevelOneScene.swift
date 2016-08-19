@@ -16,13 +16,15 @@ class LevelOneScene: SKScene {
     var chosenAnswer: SKLabelNode!
     
     override func didMoveToView(view: SKView) {
+        /*
         let background: SKSpriteNode = SKSpriteNode(imageNamed: "background")
+        background.alpha = 0.3
         background.size = CGSize(width: UtilitiesPortal.screenWidth,
                                  height: UtilitiesPortal.screenHeight)
         background.position = CGPoint(x:frame.midX, y:frame.midY)
         background.zPosition = 0
         addChild(background)
-        
+        */
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
@@ -31,7 +33,7 @@ class LevelOneScene: SKScene {
         self.addChild(levelLabel)
         
         // Home button
-        let home = SKSpriteNode(imageNamed: "home_1")
+        let home = SKSpriteNode(imageNamed: "home-white")
         home.name = UtilitiesPortal.homeButtonName
         home.zPosition = 0.1
         home.alpha = 0.9
@@ -40,23 +42,39 @@ class LevelOneScene: SKScene {
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(home)
         
-        // Help button
-        let help = SKSpriteNode(imageNamed: "help")
+        // Tick button
+        let help = SKSpriteNode(imageNamed: "tick-white")
         help.zPosition = 0.1
         help.alpha = 0.9
         help.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        //help.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
+          //                      y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
+        
         help.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
-                                y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
+            y: UtilitiesPortal.navImgSize/2)
         addChild(help)
         
+        //Mark add new help
+        let help1 = SKSpriteNode(imageNamed: "help2-white")
+        help1.zPosition = 0.1
+        help1.alpha = 0.9
+        help1.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        help1.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
+                              y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
+        
+        
+        addChild(help1)
+        
         // Image
-        let image = SKSpriteNode(imageNamed: "test_ans")
+        let image = SKSpriteNode(imageNamed: "S1-morphine-whitewglow2")
         //image.position = CGPoint(x:UtilitiesPortal.screenWidth*0.35, y:frame.midY)
         //image.position = CGPoint(x:UtilitiesPortal.screenWidth, y:UtilitiesPortal.screenHeight)
         image.zPosition = 0.1
         image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-                                 y:UtilitiesPortal.screenHeight/2)
+                                 y:UtilitiesPortal.screenHeight/2 )
+        image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+            y:UtilitiesPortal.screenHeight/2 )
         image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
         
@@ -70,6 +88,11 @@ class LevelOneScene: SKScene {
         button.setScale(0.3)
         addChild(button)
         */
+        /*
+        var pop:notificationView
+        pop = notificationView(sceneFrame: self.frame)
+        addChild(pop)
+*/
     }
     
     //Button action
@@ -99,11 +122,11 @@ class LevelOneScene: SKScene {
     }
     
     func setupTargets() {
-        positions.append(Position(x:0.38, y:0.75))
-        positions.append(Position(x:0.18, y:0.47))
-        positions.append(Position(x:0.68, y:0.42))
-        positions.append(Position(x:0.15, y:0.29))
-        positions.append(Position(x:0.59, y:0.25))
+        positions.append(Position(x:0.35, y:0.77))
+        positions.append(Position(x:0.13, y:0.48))
+        positions.append(Position(x:0.66, y:0.39))
+        positions.append(Position(x:0.48, y:0.19))
+        positions.append(Position(x:0.11, y:0.19))
         
         for count in 1...5 {
             let sprite = SKSpriteNode()
@@ -113,7 +136,7 @@ class LevelOneScene: SKScene {
             sprite.color = UIColor.whiteColor()
             sprite.alpha = 0
             sprite.name = "question\(5-count)"
-            sprite.size = CGSizeMake(100, UtilitiesPortal.levelLabelSize)
+            sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.3, UtilitiesPortal.screenHeight*0.2)
             sprite.zPosition = 0.5
             sprite.position = CGPoint(x:UtilitiesPortal.screenWidth * positions[count-1].x,
                                       y:UtilitiesPortal.screenHeight * positions[count-1].y)
@@ -131,6 +154,17 @@ class LevelOneScene: SKScene {
         for x in 0...answers.count-1 {
             if chosenAnswer == answers[x] {
                 answers[x].position = touch!.locationInNode(self)
+                
+                //to find the correct position of the targets
+                print("+++++++++++++++++++++++++")
+                
+                let xPostion = answers[x].position.x
+                let yPostion = answers[x].position.y
+                let x = xPostion / UtilitiesPortal.screenWidth
+                let y = yPostion / UtilitiesPortal.screenHeight
+                print("x=\(x)")
+                
+                print("y=\(y)")
             }
         }
     }
