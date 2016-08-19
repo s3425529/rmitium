@@ -122,11 +122,11 @@ class LevelOneScene: SKScene {
     }
     
     func setupTargets() {
-        positions.append(Position(x:0.38, y:0.75))
-        positions.append(Position(x:0.18, y:0.47))
-        positions.append(Position(x:0.68, y:0.42))
-        positions.append(Position(x:0.15, y:0.29))
-        positions.append(Position(x:0.59, y:0.25))
+        positions.append(Position(x:0.35, y:0.77))
+        positions.append(Position(x:0.13, y:0.48))
+        positions.append(Position(x:0.66, y:0.39))
+        positions.append(Position(x:0.48, y:0.19))
+        positions.append(Position(x:0.11, y:0.19))
         
         for count in 1...5 {
             let sprite = SKSpriteNode()
@@ -136,7 +136,7 @@ class LevelOneScene: SKScene {
             sprite.color = UIColor.whiteColor()
             sprite.alpha = 0
             sprite.name = "question\(5-count)"
-            sprite.size = CGSizeMake(100, UtilitiesPortal.levelLabelSize)
+            sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.3, UtilitiesPortal.screenHeight*0.2)
             sprite.zPosition = 0.5
             sprite.position = CGPoint(x:UtilitiesPortal.screenWidth * positions[count-1].x,
                                       y:UtilitiesPortal.screenHeight * positions[count-1].y)
@@ -154,6 +154,17 @@ class LevelOneScene: SKScene {
         for x in 0...answers.count-1 {
             if chosenAnswer == answers[x] {
                 answers[x].position = touch!.locationInNode(self)
+                
+                //to find the correct position of the targets
+                print("+++++++++++++++++++++++++")
+                
+                let xPostion = answers[x].position.x
+                let yPostion = answers[x].position.y
+                let x = xPostion / UtilitiesPortal.screenWidth
+                let y = yPostion / UtilitiesPortal.screenHeight
+                print("x=\(x)")
+                
+                print("y=\(y)")
             }
         }
     }
