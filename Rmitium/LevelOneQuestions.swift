@@ -81,15 +81,17 @@ enum LevelOneQuestion:Int{
     var positions:[Position]{
         get {
             switch self {
-            case .QuestionOne: return []
-            case .QuestionTwo: return []
-            case .QuestionThree: return []
-            case .QuestionFour: return []
-            case .QuestionFive: return []
-            case .QuestionSix: return []
-            case .QuestionSeven: return []
-            case .QuestionEight: return []
-            case .QuestionNine: return []
+         
+            case .QuestionOne: return [Position(x:0.35,y: 0.78),Position(x:0.17,y: 0.49), Position(x:0.61,y: 0.37),Position(x:0.13 ,y: 0.25),Position(x:0.44,y: 0.22)]
+            case .QuestionTwo: return [Position(x:0.32,y: 0.77),Position(x:0.22,y: 0.70),Position(x:0.49,y: 0.62),Position(x:0.11,y: 0.43),Position(x:0.30,y: 0.42),Position(x:0.62,y: 0.45),Position(x:0.49,y: 0.21)]
+            case .QuestionThree: return [Position(x:0.16,y: 0.70),Position(x:0.58,y: 0.77),Position(x:0.17,y: 0.23),Position(x:0.56,y: 0.32)]
+            case .QuestionFour: return [Position(x:0.18,y: 0.77),Position(x:0.39,y: 0.66),Position(x:0.59,y: 0.23)]
+            case .QuestionFive: return [Position(x:0.56,y: 0.79),Position(x:0.28,y: 0.62),Position(x:0.58,y: 0.54),Position(x:0.36,y: 0.34),Position(x:0.27,y: 0.20)]
+            case .QuestionSix: return [Position(x:0.13,y: 0.78),Position(x:0.50,y: 0.75),Position(x:0.61,y: 0.66),Position(x:0.21,y: 0.52),Position(x:0.44,y: 0.20)]
+            case .QuestionSeven: return [Position(x:0.25,y: 0.72),Position(x:0.42,y: 0.69),Position(x:0.51,y: 0.52),Position(x:0.13,y: 0.32),Position(x:0.45,y: 0.29)]
+            case .QuestionEight: return [Position(x:0.28,y: 0.76),Position(x:0.17,y: 0.23),Position(x:0.58,y: 0.23)]
+            case .QuestionNine: return [Position(x:0.19,y: 0.75),Position(x:0.50,y: 0.79),Position(x:0.11,y: 0.50),Position(x:0.47,y: 0.36)]
+
 
             }
         }
