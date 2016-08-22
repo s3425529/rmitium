@@ -15,7 +15,6 @@ class LevelOneScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
-    var currentIndex = 0
     
     override func didMoveToView(view: SKView) {
         /*
@@ -209,7 +208,7 @@ class LevelOneScene: SKScene {
                 chosenAnswer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
                                            height: UtilitiesPortal.screenHeight*0.1)
                 chosenAnswer.zPosition = 1
-                chosenAnswer.position = answers[x].position
+                chosenAnswer.position = questions[x].position
                 addChild(chosenAnswer)
                 return
             }
