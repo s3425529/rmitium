@@ -16,19 +16,22 @@ class LevelOneScene: SKScene {
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
     var resultImage: SKSpriteNode!
-    var tick: SKSpriteNode!
+    var show, tick, next: SKSpriteNode!
+    
+    var lvlOneQuestion: LevelOneQuestion!
+    var state: Bool!
     
   
     override func didMoveToView(view: SKView) {
-        /*
-        let background: SKSpriteNode = SKSpriteNode(imageNamed: "background")
-        background.alpha = 0.3
-        background.size = CGSize(width: UtilitiesPortal.screenWidth,
-                                 height: UtilitiesPortal.screenHeight)
-        background.position = CGPoint(x:frame.midX, y:frame.midY)
-        background.zPosition = 0
-        addChild(background)
-        */
+        setupScene()
+    }
+    
+    func setupScene() {
+        self.removeAllChildren()
+        lvlOneQuestion = LevelOneModel.sharedInstance.currentQuestion
+        
+        state = UtilitiesPortal.stateAnswer
+        
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
@@ -52,17 +55,37 @@ class LevelOneScene: SKScene {
         tick.zPosition = 0.1
         tick.alpha = 0.9
         tick.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
-            y: UtilitiesPortal.navImgSize/2)
+        tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize,
+                                y: UtilitiesPortal.navImgSize/2)
         addChild(tick)
         
-        //Mark add new help
+        // Show button
+        show = SKSpriteNode(imageNamed: "show")
+        show.name = UtilitiesPortal.showButtonName
+        show.zPosition = 0.1
+        show.alpha = 0.9
+        show.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        show.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*2,
+                                y: UtilitiesPortal.navImgSize/2)
+        addChild(show)
+        
+        // Next button
+        next = SKSpriteNode(imageNamed: "next")
+        next.name = UtilitiesPortal.nextButtonName
+        next.zPosition = 0.1
+        next.alpha = 0.9
+        next.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
+                                y: UtilitiesPortal.navImgSize/2)
+        addChild(next)
+        
+        // Help button
         let help = SKSpriteNode(imageNamed: "help2")
         help.zPosition = 0.1
         help.alpha = 0.9
         help.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         help.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
-                              y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
+                                y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(help)
         
         // Image
@@ -72,7 +95,7 @@ class LevelOneScene: SKScene {
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
                                  y:UtilitiesPortal.screenHeight/2 )
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-            y:UtilitiesPortal.screenHeight/2 )
+                                 y:UtilitiesPortal.screenHeight/2 )
         image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
         setupDragLabel()
@@ -85,7 +108,7 @@ class LevelOneScene: SKScene {
             let answer = CustomSKSpriteNode(imageNamed: UtilitiesPortal.levelOneAnswers[count])
             answer.name = UtilitiesPortal.levelOneAnswers[count]
             answer.value = UtilitiesPortal.levelOneAnswers[count]
-            answer.zPosition = 1
+            answer.zPosition = 0.3
             answer.alpha = 0.9
             answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
                                  height: UtilitiesPortal.screenHeight*0.1)
@@ -110,27 +133,30 @@ class LevelOneScene: SKScene {
     }
     
     func setupTargets() {
-        positions.append(Position(x:0.35, y:0.77))
-        positions.append(Position(x:0.13, y:0.48))
-        positions.append(Position(x:0.10, y:0.22))
-        positions.append(Position(x:0.48, y:0.19))
-        positions.append(Position(x:0.60, y:0.40))
+        positions.removeAll()
+        questions.removeAll()
+        answeredQuestions.removeAll()
         
-        for count in 1...5 {
+        for x in 0...lvlOneQuestion.positions.count-1 {
+            positions.append(lvlOneQuestion.positions[x])
+        }
+        
+        for count in 0...positions.count-1 {
             let sprite = CustomSKSpriteNode()
             sprite.color = UIColor.blueColor()
-            sprite.alpha = 0.7
-            sprite.name = "question\(5-count)"
+            sprite.alpha = 0
+            sprite.name = "question\(count)"
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.3, UtilitiesPortal.screenHeight*0.2)
-            sprite.zPosition = 0.9
-            sprite.position = CGPoint(x:UtilitiesPortal.screenWidth * positions[count-1].x,
-                                      y:UtilitiesPortal.screenHeight * positions[count-1].y)
+            sprite.zPosition = 0.2
+            sprite.position = CGPoint(x:UtilitiesPortal.screenWidth * positions[count].x,
+                                      y:UtilitiesPortal.screenHeight * positions[count].y)
             addChild(sprite)
             questions.append(sprite)
             
             let answeredQuestion = CustomSKSpriteNode(imageNamed: UtilitiesPortal.levelOneAnswers[0])
             answeredQuestion.name = UtilitiesPortal.emptyString
-            answeredQuestion.zPosition = 1
+            answeredQuestion.value = UtilitiesPortal.emptyString
+            answeredQuestion.zPosition = 0.2
             answeredQuestion.alpha = 1
             answeredQuestion.hidden = true
             answeredQuestion.position = sprite.position
@@ -204,7 +230,7 @@ class LevelOneScene: SKScene {
         self.chosenAnswer = nil
         
         if checkResult() {
-            tick.texture = SKTexture(imageNamed: "tick-blue")
+            tick.texture = SKTexture(imageNamed: "tick-green")
         }
         else {
             tick.texture = SKTexture(imageNamed: "tick-grey")
@@ -220,7 +246,7 @@ class LevelOneScene: SKScene {
             if CGRectContainsPoint(answers[x].frame, point) {
                 chosenAnswer = CustomSKSpriteNode(imageNamed: answers[x].name!)
                 chosenAnswer.value = answers[x].name!
-                chosenAnswer.zPosition = 1
+                chosenAnswer.zPosition = 0.4
                 chosenAnswer.alpha = 0.9
                 chosenAnswer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
                                      height: UtilitiesPortal.screenHeight*0.1)
@@ -238,15 +264,18 @@ class LevelOneScene: SKScene {
                     return
                 }
                 answeredQuestions[x].hidden = true
+                
                 chosenAnswer = CustomSKSpriteNode(imageNamed: answeredQuestions[x].value)
                 chosenAnswer.value = answeredQuestions[x].value
-                chosenAnswer.zPosition = 1
+                chosenAnswer.zPosition = 0.4
                 chosenAnswer.alpha = 0.9
                 chosenAnswer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
                                            height: UtilitiesPortal.screenHeight*0.1)
                 chosenAnswer.zPosition = 1
                 chosenAnswer.position = questions[x].position
                 addChild(chosenAnswer)
+                
+                answeredQuestions[x].value = UtilitiesPortal.emptyString
                 return
             }
         }
@@ -255,30 +284,42 @@ class LevelOneScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-            print("Home selected")
-            let secondScene = GameScene(size: self.size)
-            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
-            secondScene.scaleMode = SKSceneScaleMode.AspectFill
-            self.scene!.view?.presentScene(secondScene, transition: transition)
+            backHomePage()
+            
         }
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
-            print("Tick selected")
             if checkResult() {
-                resultImage = SKSpriteNode(imageNamed: "S1-morphine-finalsolutionzz")
-                resultImage.zPosition = 1
-                resultImage.alpha = 1
-                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-                                               y:UtilitiesPortal.screenHeight/2 )
-                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-                                               y:UtilitiesPortal.screenHeight/2 )
-                resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
-                addChild(resultImage)
+                if resultImage == nil {
+                    displayResult()
+                }
             }
-            else {
-                //resultImage.removeFromParent()
-                //self.resultImage = nil
+            return
+             //displayShareSheet("heoooooo!")
+        }
+        
+        // Show button selected
+        if node.name == UtilitiesPortal.showButtonName {
+            if checkResult() {
+                if resultImage == nil {
+                    displayAnswers(true)
+                    resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
+                    resultImage.zPosition = 0.5
+                    resultImage.alpha = 1
+                    resultImage.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+                                                   y:UtilitiesPortal.screenHeight/2 )
+                    resultImage.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+                                                   y:UtilitiesPortal.screenHeight/2 )
+                    resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
+                    addChild(resultImage)
+                    return
+                }
+                else {
+                    displayAnswers(false)
+                    resultImage.removeFromParent()
+                    self.resultImage = nil
+                }
             }
         }
         //Fact label selected
@@ -295,12 +336,74 @@ class LevelOneScene: SKScene {
     
     func checkResult() -> Bool {
         for x in 0...questions.count-1 {
-            if answeredQuestions[x].hidden {
+            if answeredQuestions[x].value == UtilitiesPortal.emptyString {
                 return false
             }
         }
         return true
     }
+    
+    func displayResult() {
+        if state == UtilitiesPortal.stateAnswer {
+            for x in 0...lvlOneQuestion.solutions.count-1 {
+                if answeredQuestions[x].value != UtilitiesPortal.emptyString {
+                    if answeredQuestions[x].value == lvlOneQuestion.solutions[x] {
+                        answeredQuestions[x].texture = SKTexture(imageNamed: "tick-green")
+                    }
+                    else {
+                        answeredQuestions[x].texture = SKTexture(imageNamed: "tick-grey")
+                    }
+                }
+            }
+            state = UtilitiesPortal.stateResult
+        }
+        else if state == UtilitiesPortal.stateResult {
+            for x in 0...lvlOneQuestion.solutions.count-1 {
+                if answeredQuestions[x].value != UtilitiesPortal.emptyString {
+                    answeredQuestions[x].texture = SKTexture(imageNamed: answeredQuestions[x].value)
+                }
+                
+            }
+            state = UtilitiesPortal.stateAnswer
+        }
+    }
+    
+    func displayAnswers(value: Bool) {
+        if value {
+            for x in 0...questions.count-1 {
+                questions[x].hidden = true
+                answeredQuestions[x].hidden = true
+            }
+        }
+        else {
+            for x in 0...questions.count-1 {
+                questions[x].hidden = false
+                answeredQuestions[x].hidden = false
+            }
+        }
+    }
+    
+    // Share the score to any social media!
+    func displayShareSheet(shareContent:String) {
+        
+            let myShare = "My best is \(shareContent)"
+            let controller = self.view?.window?.rootViewController as! GameViewController
+            
+            let activityVC: UIActivityViewController = UIActivityViewController(activityItems: [myShare], applicationActivities: nil)
+            
+            controller.presentViewController(activityVC, animated: true, completion: nil)
+        
+    }
+    
+    //back to the home page,
+    func backHomePage(){
+    
+        let secondScene = GameScene(size: self.size)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        secondScene.scaleMode = SKSceneScaleMode.AspectFill
+        self.scene!.view?.presentScene(secondScene, transition: transition)
+    }
+    
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

@@ -9,6 +9,7 @@
 import Foundation
 class LevelOneModel {
     var listOfQuestions: LevelOneQuestionList
+    var index: Int
     
     private struct Static{
         static var instance: LevelOneModel?
@@ -25,6 +26,19 @@ class LevelOneModel {
     
     private init(){
         listOfQuestions = LevelOneQuestionList()
+        index = 0
     }
     
+    var currentQuestion:LevelOneQuestion {
+        get {
+            let current = index
+            if index == listOfQuestions.listOfQuestions.count-1 {
+                index = 0
+            }
+            else {
+                index = index + 1
+            }
+            return listOfQuestions.listOfQuestions[current]
+        }
+    }
 }
