@@ -235,7 +235,7 @@ class LevelOneScene: SKScene {
             tick.texture = SKTexture(imageNamed: "tick-grey")
         }
     }
-    
+
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
