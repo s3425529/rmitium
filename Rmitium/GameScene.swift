@@ -28,7 +28,7 @@ class GameScene: SKScene {
         // Add new button
         
         // Setting button
-        let home = SKSpriteNode(imageNamed: "settings1-white")
+        let home = SKSpriteNode(imageNamed: "settings")
         home.name = UtilitiesPortal.homeButtonName
         home.zPosition = 0.1
         home.alpha = 0.9
@@ -38,7 +38,7 @@ class GameScene: SKScene {
         addChild(home)
         
         // Help button
-        let help1 = SKSpriteNode(imageNamed: "help2-white")
+        let help1 = SKSpriteNode(imageNamed: "help2")
         help1.zPosition = 0.1
         help1.alpha = 0.9
         help1.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)

@@ -37,13 +37,13 @@ class UtilitiesPortal {
     
     static let hexImageSize = screenHeight*0.15
     
-    static let navLabelFont = "Helvatica-Bold"
+    static let navLabelFont = "ArialRoundedMTBold"
     static let navLabelSize = CGFloat(screenWidth/25)
     static let navImgSize = screenHeight*0.10
     
     static let levelLabelSize = CGFloat(screenWidth/30)
     
-    static let levelLabelFont = "Chalkduster"
+    static let levelLabelFont = "Avenir-Black"
     static let levelLabelAnswerSize = CGFloat(screenWidth/40)
     
     static let borderSize = CGFloat(screenWidth/15)
