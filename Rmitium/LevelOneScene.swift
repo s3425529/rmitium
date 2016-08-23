@@ -15,6 +15,8 @@ class LevelOneScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
+    var resultImage: SKSpriteNode!
+    var tick: SKSpriteNode!
     
     override func didMoveToView(view: SKView) {
         /*
@@ -44,7 +46,8 @@ class LevelOneScene: SKScene {
         addChild(home)
         
         // Tick button
-        let tick = SKSpriteNode(imageNamed: "tick-white")
+        tick = SKSpriteNode(imageNamed: "tick-white")
+        tick.name = UtilitiesPortal.tickButtonName
         tick.zPosition = 0.1
         tick.alpha = 0.9
         tick.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
@@ -62,7 +65,7 @@ class LevelOneScene: SKScene {
         addChild(help)
         
         // Image
-        let image = SKSpriteNode(imageNamed: "S1-morphine-whitewglow2")
+        let image = SKSpriteNode(imageNamed: "S1-morphine-final")
         image.zPosition = 0.1
         image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
@@ -115,7 +118,7 @@ class LevelOneScene: SKScene {
         for count in 1...5 {
             let sprite = CustomSKSpriteNode()
             sprite.color = UIColor.blueColor()
-            sprite.alpha = 0
+            sprite.alpha = 0.7
             sprite.name = "question\(5-count)"
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.3, UtilitiesPortal.screenHeight*0.2)
             sprite.zPosition = 0.9
@@ -172,6 +175,13 @@ class LevelOneScene: SKScene {
         
         chosenAnswer.removeFromParent()
         self.chosenAnswer = nil
+        
+        if checkResult() {
+            tick.texture = SKTexture(imageNamed: "tick-blue")
+        }
+        else {
+            tick.texture = SKTexture(imageNamed: "tick-white")
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -224,6 +234,35 @@ class LevelOneScene: SKScene {
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
         }
+        
+        // Tick button selected
+        if node.name == UtilitiesPortal.tickButtonName {
+            print("Tick selected")
+            if checkResult() {
+                resultImage = SKSpriteNode(imageNamed: "S1-morphine-finalsolutionzz")
+                resultImage.zPosition = 1
+                resultImage.alpha = 1
+                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+                                               y:UtilitiesPortal.screenHeight/2 )
+                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+                                               y:UtilitiesPortal.screenHeight/2 )
+                resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
+                addChild(resultImage)
+            }
+            else {
+                //resultImage.removeFromParent()
+                //self.resultImage = nil
+            }
+        }
+    }
+    
+    func checkResult() -> Bool {
+        for x in 0...questions.count-1 {
+            if answeredQuestions[x].hidden {
+                return false
+            }
+        }
+        return true
     }
     
     override func update(currentTime: CFTimeInterval) {
