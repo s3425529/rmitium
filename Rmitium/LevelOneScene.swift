@@ -177,10 +177,10 @@ class LevelOneScene: SKScene {
         self.chosenAnswer = nil
         
         if checkResult() {
-            tick.texture = SKTexture(imageNamed: "tick-blue")
+            tick.texture = SKTexture(imageNamed: "tick-green")
         }
         else {
-            tick.texture = SKTexture(imageNamed: "tick-white")
+            tick.texture = SKTexture(imageNamed: "tick-grey")
         }
     }
     
