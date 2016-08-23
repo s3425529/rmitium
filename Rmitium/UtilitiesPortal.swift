@@ -12,8 +12,9 @@ import SpriteKit
 
 class UtilitiesPortal {
     //static let mainScene = GameScene(fileNamed:"GameScene")
-    static let stateAnswer = true
-    static let stateResult = false
+    static let stateAnswer = 0
+    static let stateResult = 1
+    static let stateFact = 2
     
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
     static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene",
@@ -29,8 +30,10 @@ class UtilitiesPortal {
     static let tickButtonName = "tickBtn"
     static let factLabelName = "factLbl"
     static let factOverlayName = "factOvl"
+    static let factMultiLine = "factMultiLine"
     static let showButtonName = "showBtn"
     static let nextButtonName = "nextBtn"
+    
     static let buttonLevelWidth: CGFloat = 1153
     static let buttonLevelHeight: CGFloat  = 317
     

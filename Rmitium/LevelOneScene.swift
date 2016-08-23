@@ -15,19 +15,24 @@ class LevelOneScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
-    var resultImage: SKSpriteNode!
+    var resultImage, factOverlay: SKSpriteNode!
+    var factOverlayText: SKMultilineLabel!
     var show, tick, next: SKSpriteNode!
+    var factLabel: SKLabelNode!
     
     var lvlOneQuestion: LevelOneQuestion!
-    var state: Bool!
+    var state: Int!
     
-  
     override func didMoveToView(view: SKView) {
         setupScene()
     }
     
     func setupScene() {
         self.removeAllChildren()
+        positions.removeAll()
+        questions.removeAll()
+        answeredQuestions.removeAll()
+        
         lvlOneQuestion = LevelOneModel.sharedInstance.currentQuestion
         
         state = UtilitiesPortal.stateAnswer
@@ -131,10 +136,6 @@ class LevelOneScene: SKScene {
     }
     
     func setupTargets() {
-        positions.removeAll()
-        questions.removeAll()
-        answeredQuestions.removeAll()
-        
         for x in 0...lvlOneQuestion.positions.count-1 {
             positions.append(lvlOneQuestion.positions[x])
         }
@@ -144,7 +145,7 @@ class LevelOneScene: SKScene {
             sprite.color = UIColor.blueColor()
             sprite.alpha = 0
             sprite.name = "question\(count)"
-            sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.3, UtilitiesPortal.screenHeight*0.2)
+            sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
             sprite.zPosition = 0.2
             sprite.position = CGPoint(x:UtilitiesPortal.screenWidth * positions[count].x,
                                       y:UtilitiesPortal.screenHeight * positions[count].y)
@@ -164,31 +165,41 @@ class LevelOneScene: SKScene {
             answeredQuestions.append(answeredQuestion)
         }
     }
+    
     // Adding Fact label
     func setupFactLabel(fact: String){
+        //let randomIndex = Int(arc4random_uniform(UInt32(array.)))
+        //print(array[randomIndex])
         let fact = fact
-        let index = fact.startIndex.advancedBy(20)
+        let index = fact.startIndex.advancedBy(10)
         let shortenFact = fact.substringToIndex(index)
         
-        let factLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
+        factLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
         factLabel.name = UtilitiesPortal.factLabelName
-        factLabel.fontSize = 25
+        factLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        factLabel.fontSize = UtilitiesPortal.navLabelSize
         factLabel.text = "Did you know: " + shortenFact + "...(see more)"
-        factLabel.zPosition = 0.9
-        factLabel.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.navImgSize/2)
+        factLabel.hidden = true
+        factLabel.zPosition = 0.3
+        factLabel.position = CGPoint(x: UtilitiesPortal.borderSize/2, y: UtilitiesPortal.navImgSize/2)
+        addChild(factLabel)
         
-        let factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth, pos: CGPoint(x: 0, y: 0),fontName: UtilitiesPortal.navLabelFont ,fontSize: 40, leading: 40 )
+        factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth,
+                                           pos: CGPoint(x: 0, y: 0),fontName: UtilitiesPortal.navLabelFont,
+                                           fontSize: UtilitiesPortal.navLabelSize,
+                                           leading: Int(UtilitiesPortal.navLabelSize))
+        factOverlayText.name = UtilitiesPortal.factMultiLine
+        factOverlayText.zPosition = 1
         
-        let factOverlay = SKSpriteNode()
+        factOverlay = SKSpriteNode()
         factOverlay.name = UtilitiesPortal.factOverlayName
         factOverlay.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         factOverlay.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
         factOverlay.color = SKColor.blackColor()
         factOverlay.alpha = 0.7
-        factOverlay.zPosition = 1
+        factOverlay.zPosition = 0.9
         factOverlay.hidden = true
         factOverlay.addChild(factOverlayText)
-        addChild(factLabel)
         addChild(factOverlay)
     }
     
@@ -240,42 +251,50 @@ class LevelOneScene: SKScene {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         
-        // Labels selected
-        for x in 0...answers.count-1 {
-            if CGRectContainsPoint(answers[x].frame, point) {
-                chosenAnswer = CustomSKSpriteNode(imageNamed: answers[x].name!)
-                chosenAnswer.value = answers[x].name!
-                chosenAnswer.zPosition = 0.4
-                chosenAnswer.alpha = 0.9
-                chosenAnswer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
-                                     height: UtilitiesPortal.screenHeight*0.1)
-                chosenAnswer.zPosition = 1
-                chosenAnswer.position = answers[x].position
-                addChild(chosenAnswer)
-                return
-            }
+        if state == UtilitiesPortal.stateFact {
+            factOverlay.hidden = true
+            state = UtilitiesPortal.stateResult
+            return
         }
         
-        // Targets node selected
-        for x in 0...questions.count-1 {
-            if CGRectContainsPoint(questions[x].frame, point) {
-                if answeredQuestions[x].hidden {
+        if state == UtilitiesPortal.stateAnswer {
+            // Labels selected
+            for x in 0...answers.count-1 {
+                if CGRectContainsPoint(answers[x].frame, point) {
+                    chosenAnswer = CustomSKSpriteNode(imageNamed: answers[x].name!)
+                    chosenAnswer.value = answers[x].name!
+                    chosenAnswer.zPosition = 0.4
+                    chosenAnswer.alpha = 0.9
+                    chosenAnswer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
+                                               height: UtilitiesPortal.screenHeight*0.1)
+                    chosenAnswer.zPosition = 1
+                    chosenAnswer.position = answers[x].position
+                    addChild(chosenAnswer)
                     return
                 }
-                answeredQuestions[x].hidden = true
-                
-                chosenAnswer = CustomSKSpriteNode(imageNamed: answeredQuestions[x].value)
-                chosenAnswer.value = answeredQuestions[x].value
-                chosenAnswer.zPosition = 0.4
-                chosenAnswer.alpha = 0.9
-                chosenAnswer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
-                                           height: UtilitiesPortal.screenHeight*0.1)
-                chosenAnswer.zPosition = 1
-                chosenAnswer.position = questions[x].position
-                addChild(chosenAnswer)
-                
-                answeredQuestions[x].value = UtilitiesPortal.emptyString
-                return
+            }
+            
+            // Targets node selected
+            for x in 0...questions.count-1 {
+                if CGRectContainsPoint(questions[x].frame, point) {
+                    if answeredQuestions[x].hidden {
+                        return
+                    }
+                    answeredQuestions[x].hidden = true
+                    
+                    chosenAnswer = CustomSKSpriteNode(imageNamed: answeredQuestions[x].value)
+                    chosenAnswer.value = answeredQuestions[x].value
+                    chosenAnswer.zPosition = 0.4
+                    chosenAnswer.alpha = 0.9
+                    chosenAnswer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
+                                               height: UtilitiesPortal.screenHeight*0.1)
+                    chosenAnswer.zPosition = 1
+                    chosenAnswer.position = questions[x].position
+                    addChild(chosenAnswer)
+                    
+                    answeredQuestions[x].value = UtilitiesPortal.emptyString
+                    return
+                }
             }
         }
         
@@ -300,7 +319,7 @@ class LevelOneScene: SKScene {
         
         // Show button selected
         if node.name == UtilitiesPortal.showButtonName {
-            if checkResult() {
+            if state == UtilitiesPortal.stateResult {
                 if resultImage == nil {
                     displayAnswers(true)
                     resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
@@ -312,7 +331,6 @@ class LevelOneScene: SKScene {
                                                    y:UtilitiesPortal.screenHeight/2 )
                     resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
                     addChild(resultImage)
-                    return
                 }
                 else {
                     displayAnswers(false)
@@ -320,27 +338,33 @@ class LevelOneScene: SKScene {
                     self.resultImage = nil
                 }
             }
+            return
+        }
+        
+        // Next button selected
+        if node.name == UtilitiesPortal.nextButtonName {
+            setupScene()
+            return
         }
         
         //Fact label selected
         if node.name == UtilitiesPortal.factLabelName {
-            let factOvl = self.childNodeWithName(UtilitiesPortal.factOverlayName)
-            factOvl?.hidden = false
+            state = UtilitiesPortal.stateFact
+            factOverlay.hidden = false
+            return
         }
-        
-        if node.name == UtilitiesPortal.factOverlayName {
-            node.hidden = true
-        }
-        
     }
     
     func checkResult() -> Bool {
-        for x in 0...questions.count-1 {
-            if answeredQuestions[x].value == UtilitiesPortal.emptyString {
-                return false
+        if questions.count != 0 {
+            for x in 0...questions.count-1 {
+                if answeredQuestions[x].value == UtilitiesPortal.emptyString {
+                    return false
+                }
             }
+            return true
         }
-        return true
+        return false
     }
     
     func displayResult() {
@@ -348,24 +372,18 @@ class LevelOneScene: SKScene {
             for x in 0...lvlOneQuestion.solutions.count-1 {
                 if answeredQuestions[x].value != UtilitiesPortal.emptyString {
                     if answeredQuestions[x].value == lvlOneQuestion.solutions[x] {
-                        answeredQuestions[x].texture = SKTexture(imageNamed: "tick-green")
+                        answeredQuestions[x].texture = SKTexture(imageNamed:
+                            "\(answeredQuestions[x].value)-green")
                     }
                     else {
-                        answeredQuestions[x].texture = SKTexture(imageNamed: "tick-grey")
+                        answeredQuestions[x].texture = SKTexture(imageNamed:
+                            "\(answeredQuestions[x].value)-red")
                     }
                 }
             }
-            state = UtilitiesPortal.stateResult
         }
-        else if state == UtilitiesPortal.stateResult {
-            for x in 0...lvlOneQuestion.solutions.count-1 {
-                if answeredQuestions[x].value != UtilitiesPortal.emptyString {
-                    answeredQuestions[x].texture = SKTexture(imageNamed: answeredQuestions[x].value)
-                }
-                
-            }
-            state = UtilitiesPortal.stateAnswer
-        }
+        factLabel.hidden = false
+        state = UtilitiesPortal.stateResult
     }
     
     func displayAnswers(value: Bool) {
@@ -392,12 +410,10 @@ class LevelOneScene: SKScene {
             let activityVC: UIActivityViewController = UIActivityViewController(activityItems: [myShare], applicationActivities: nil)
             
             controller.presentViewController(activityVC, animated: true, completion: nil)
-        
     }
     
     //back to the home page,
     func backHomePage(){
-    
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
