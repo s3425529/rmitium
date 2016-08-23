@@ -12,6 +12,8 @@ import SpriteKit
 
 class UtilitiesPortal {
     //static let mainScene = GameScene(fileNamed:"GameScene")
+    static let stateAnswer = true
+    static let stateResult = false
     
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
     static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene",
@@ -20,7 +22,7 @@ class UtilitiesPortal {
                                   "Level 2: Building Molecules",
                                   "Level 3: Intermolecular Forces", "SETTINGS"]
     
-    static let emptyString = "nil"
+    static let emptyString = ""
     
     static let homeButtonName = "homeBtn"
     static let helpButtonName = "helpBtn"
