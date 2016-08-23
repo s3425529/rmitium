@@ -8,14 +8,15 @@
 
 import SpriteKit
 
-class SKMultilineLabel: SKLabelNode {
-    var labelWidth:Int {didSet {update()}}
-    var labelHeight:Int = 0
-    //var text:String {didSet {update()}}
-    //var fontName:String {didSet {update()}}
-    //var fontSize:CGFloat {didSet {update()}}
+class SKMultilineLabel: SKNode {
+    //props
+    var labelWidth:CGFloat {didSet {update()}}
+    var labelHeight:CGFloat = 0
+    var text:String {didSet {update()}}
+    var fontName:String {didSet {update()}}
+    var fontSize:CGFloat {didSet {update()}}
     var pos:CGPoint {didSet {update()}}
-    //var fontColor:SKColor {didSet {update()}}
+    var fontColor:SKColor {didSet {update()}}
     var leading:Int {didSet {update()}}
     var alignment:SKLabelHorizontalAlignmentMode {didSet {update()}}
     var dontUpdate = false
@@ -24,20 +25,19 @@ class SKMultilineLabel: SKLabelNode {
     var rect:SKShapeNode?
     var labels:[SKLabelNode] = []
     
-    init(text:String, labelWidth:Int, pos:CGPoint, fontName:String,fontSize:CGFloat,fontColor:SKColor,leading:Int, alignment:SKLabelHorizontalAlignmentMode, shouldShowBorder:Bool)
+    init(text:String, labelWidth:CGFloat, pos:CGPoint, fontName:String="ChalkboardSE-Regular",fontSize:CGFloat=10,fontColor:SKColor=SKColor.blackColor(),leading:Int=10, alignment:SKLabelHorizontalAlignmentMode = .Center, shouldShowBorder:Bool = false)
     {
+        self.text = text
         self.labelWidth = labelWidth
         self.pos = pos
-        self.leading = leading
-        self.shouldShowBorder = shouldShowBorder
-        self.alignment = SKLabelHorizontalAlignmentMode.Left
-        
-        super.init()
-        
-        self.text = text
         self.fontName = fontName
         self.fontSize = fontSize
         self.fontColor = fontColor
+        self.leading = leading
+        self.shouldShowBorder = shouldShowBorder
+        self.alignment = alignment
+        
+        super.init()
         
         self.update()
     }
@@ -57,13 +57,13 @@ class SKMultilineLabel: SKLabelNode {
             labels = []
         }
         let separators = NSCharacterSet.whitespaceAndNewlineCharacterSet()
-        let words = self.text!.componentsSeparatedByCharactersInSet(separators)
+        let words = text.componentsSeparatedByCharactersInSet(separators)
         
         var finalLine = false
         var wordCount = -1
         var lineCount = 0
         while (!finalLine) {
-            lineCount += 1
+            lineCount++
             var lineLength = CGFloat(0)
             var lineString = ""
             var lineStringBeforeAddingWord = ""
@@ -78,7 +78,7 @@ class SKMultilineLabel: SKLabelNode {
             
             while lineLength < CGFloat(labelWidth)
             {
-                wordCount += 1
+                wordCount++
                 if wordCount > words.count-1
                 {
                     //label.text = "\(lineString) \(words[wordCount])"
@@ -94,12 +94,8 @@ class SKMultilineLabel: SKLabelNode {
                 }
             }
             if lineLength > 0 {
-                wordCount -= 1
+                wordCount--
                 if (!finalLine) {
-                    if lineStringBeforeAddingWord == "" {
-                        print("Words don't fit! Decrease the font size of increase the labelWidth (\"\(lineString)\")")
-                        break
-                    }
                     lineString = lineStringBeforeAddingWord
                 }
                 label.text = lineString
@@ -113,11 +109,11 @@ class SKMultilineLabel: SKLabelNode {
                 label.position = CGPointMake( linePos.x , linePos.y )
                 self.addChild(label)
                 labels.append(label)
-                print("was \(lineLength), now \(label.frame.size.width)")
+                //println("was \(lineLength), now \(label.width)")
             }
             
         }
-        labelHeight = lineCount * leading
+        labelHeight = CGFloat(lineCount * leading)
         showBorder()
     }
     
