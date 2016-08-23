@@ -21,6 +21,7 @@ class LevelOneScene: SKScene {
     var lvlOneQuestion: LevelOneQuestion!
     var state: Bool!
     
+  
     override func didMoveToView(view: SKView) {
         setupScene()
     }
@@ -93,13 +94,11 @@ class LevelOneScene: SKScene {
         image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
                                  y:UtilitiesPortal.screenHeight/2 )
-        image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-                                 y:UtilitiesPortal.screenHeight/2 )
         image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
-        
         setupDragLabel()
         setupTargets()
+        setupFactLabel("Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine.")
     }
     
     func setupDragLabel() {
@@ -165,6 +164,33 @@ class LevelOneScene: SKScene {
             answeredQuestions.append(answeredQuestion)
         }
     }
+    // Adding Fact label
+    func setupFactLabel(fact: String){
+        let fact = fact
+        let index = fact.startIndex.advancedBy(20)
+        let shortenFact = fact.substringToIndex(index)
+        
+        let factLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
+        factLabel.name = UtilitiesPortal.factLabelName
+        factLabel.fontSize = 25
+        factLabel.text = "Did you know: " + shortenFact + "...(see more)"
+        factLabel.zPosition = 0.9
+        factLabel.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.navImgSize/2)
+        
+        let factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth, pos: CGPoint(x: 0, y: 0),fontName: UtilitiesPortal.navLabelFont ,fontSize: 40, leading: 40 )
+        
+        let factOverlay = SKSpriteNode()
+        factOverlay.name = UtilitiesPortal.factOverlayName
+        factOverlay.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        factOverlay.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        factOverlay.color = SKColor.blackColor()
+        factOverlay.alpha = 0.7
+        factOverlay.zPosition = 1
+        factOverlay.hidden = true
+        factOverlay.addChild(factOverlayText)
+        addChild(factLabel)
+        addChild(factOverlay)
+    }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
@@ -207,10 +233,6 @@ class LevelOneScene: SKScene {
         }
         else {
             tick.texture = SKTexture(imageNamed: "tick-grey")
-            if resultImage != nil {
-                resultImage.removeFromParent()
-                self.resultImage = nil
-            }
         }
     }
 
@@ -299,13 +321,16 @@ class LevelOneScene: SKScene {
                 }
             }
         }
-        
-        // Next button selected
-        if node.name == UtilitiesPortal.nextButtonName {
-            setupScene()
-            return
+        //Fact label selected
+        if node.name == UtilitiesPortal.factLabelName {
+            let factOvl = self.childNodeWithName(UtilitiesPortal.factOverlayName)
+            factOvl?.hidden = false
         }
-
+        
+        if node.name == UtilitiesPortal.factOverlayName {
+            node.hidden = true
+        }
+        
     }
     
     func checkResult() -> Bool {

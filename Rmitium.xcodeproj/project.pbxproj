@@ -25,6 +25,8 @@
 		50D9C4631D58B2BD00221ADD /* LevelOneScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4621D58B2BD00221ADD /* LevelOneScene.swift */; };
 		50D9C4661D5A3E7200221ADD /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4651D5A3E7200221ADD /* DataHandler.swift */; };
 		50D9C4681D5A3EF900221ADD /* QuestionLevelOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */; };
+		50E31D151D6BEE3D002F10E0 /* LevelOneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E31D131D66EA9C002F10E0 /* LevelOneModel.swift */; };
+		50E31D161D6BEE5B002F10E0 /* LevelOneQuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E31D111D66DAF5002F10E0 /* LevelOneQuestionList.swift */; };
 		50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */; };
 		50FD70921D61617B0090CDAD /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70911D61617B0090CDAD /* CustomButton.swift */; };
 		50FD70941D6175360090CDAD /* textFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70931D6175360090CDAD /* textFiled.swift */; };
@@ -229,7 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50D9C4611D58B11E00221ADD /* LevelOneViewController.swift in Sources */,
-				501079BB1D6BEE7100BB8803 /* LevelOneModel.swift in Sources */,
+				50E31D151D6BEE3D002F10E0 /* LevelOneModel.swift in Sources */,
 				50D9C4681D5A3EF900221ADD /* QuestionLevelOne.swift in Sources */,
 				5000EABD1D66C6E000F3A21F /* SKMultilineLabel.swift in Sources */,
 				50D9C4631D58B2BD00221ADD /* LevelOneScene.swift in Sources */,
@@ -245,7 +247,7 @@
 				50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */,
 				50FD70941D6175360090CDAD /* textFiled.swift in Sources */,
 				50D741041D60D38600EF36E4 /* Position.swift in Sources */,
-				501079BC1D6BEE7F00BB8803 /* LevelOneQuestionList.swift in Sources */,
+				50E31D161D6BEE5B002F10E0 /* LevelOneQuestionList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
