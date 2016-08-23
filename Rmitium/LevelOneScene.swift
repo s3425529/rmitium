@@ -16,18 +16,13 @@ class LevelOneScene: SKScene {
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
     var resultImage: SKSpriteNode!
-    var tick: SKSpriteNode!
+    var show, tick: SKSpriteNode!
+    
+    var lvlOneQuestion: LevelOneQuestion!
     
     override func didMoveToView(view: SKView) {
-        /*
-        let background: SKSpriteNode = SKSpriteNode(imageNamed: "background")
-        background.alpha = 0.3
-        background.size = CGSize(width: UtilitiesPortal.screenWidth,
-                                 height: UtilitiesPortal.screenHeight)
-        background.position = CGPoint(x:frame.midX, y:frame.midY)
-        background.zPosition = 0
-        addChild(background)
-        */
+        lvlOneQuestion = LevelOneModel.sharedInstance.listOfQuestions.listOfQuestions[0]
+        
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
@@ -55,6 +50,16 @@ class LevelOneScene: SKScene {
             y: UtilitiesPortal.navImgSize/2)
         addChild(tick)
         
+        // Show button
+        show = SKSpriteNode(imageNamed: "show")
+        show.name = UtilitiesPortal.showButtonName
+        show.zPosition = 0.1
+        show.alpha = 0.9
+        show.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        show.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize,
+                                y: UtilitiesPortal.navImgSize/2)
+        addChild(show)
+        
         //Mark add new help
         let help = SKSpriteNode(imageNamed: "help2")
         help.zPosition = 0.1
@@ -65,7 +70,7 @@ class LevelOneScene: SKScene {
         addChild(help)
         
         // Image
-        let image = SKSpriteNode(imageNamed: "S1-morphine-final")
+        let image = SKSpriteNode(imageNamed: lvlOneQuestion.imageName)
         image.zPosition = 0.1
         image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
@@ -109,13 +114,16 @@ class LevelOneScene: SKScene {
     }
     
     func setupTargets() {
-        positions.append(Position(x:0.35, y:0.77))
-        positions.append(Position(x:0.13, y:0.48))
-        positions.append(Position(x:0.10, y:0.22))
-        positions.append(Position(x:0.48, y:0.19))
-        positions.append(Position(x:0.60, y:0.40))
+        for x in 0...lvlOneQuestion.positions.count-1 {
+            positions.append(lvlOneQuestion.positions[x])
+        }
+        //positions.append(Position(x:0.35, y:0.77))
+        //positions.append(Position(x:0.13, y:0.48))
+        //positions.append(Position(x:0.10, y:0.22))
+        //positions.append(Position(x:0.48, y:0.19))
+        //positions.append(Position(x:0.60, y:0.40))
         
-        for count in 1...5 {
+        for count in 1...positions.count {
             let sprite = CustomSKSpriteNode()
             sprite.color = UIColor.blueColor()
             sprite.alpha = 0.7
@@ -181,6 +189,10 @@ class LevelOneScene: SKScene {
         }
         else {
             tick.texture = SKTexture(imageNamed: "tick-grey")
+            if resultImage != nil {
+                resultImage.removeFromParent()
+                self.resultImage = nil
+            }
         }
     }
     
@@ -238,8 +250,8 @@ class LevelOneScene: SKScene {
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
             print("Tick selected")
-            if checkResult() {
-                resultImage = SKSpriteNode(imageNamed: "S1-morphine-finalsolution")
+            if checkResult() && resultImage == nil {
+                resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
                 resultImage.zPosition = 1
                 resultImage.alpha = 1
                 resultImage.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
@@ -249,11 +261,14 @@ class LevelOneScene: SKScene {
                 resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
                 addChild(resultImage)
             }
-            else {
-                //resultImage.removeFromParent()
-                //self.resultImage = nil
-            }
         }
+        
+        // Show button selected
+        if node.name == UtilitiesPortal.showButtonName {
+            print("Show selected")
+            displayResult()
+        }
+
     }
     
     func checkResult() -> Bool {
@@ -263,6 +278,20 @@ class LevelOneScene: SKScene {
             }
         }
         return true
+    }
+    
+    func displayResult() {
+        for x in 0...lvlOneQuestion.solutions.count-1 {
+            if answeredQuestions[x].hidden == false {
+                if answeredQuestions[x].value == lvlOneQuestion.solutions[x] {
+                    answeredQuestions[x].texture = SKTexture(imageNamed: "tick-green")
+                }
+                else {
+                    answeredQuestions[x].texture = SKTexture(imageNamed: "tick-grey")
+                }
+            }
+            
+        }
     }
     
     override func update(currentTime: CFTimeInterval) {

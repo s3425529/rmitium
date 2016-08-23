@@ -25,6 +25,7 @@ class UtilitiesPortal {
     static let homeButtonName = "homeBtn"
     static let helpButtonName = "helpBtn"
     static let tickButtonName = "tickBtn"
+    static let showButtonName = "showBtn"
     
     static let buttonLevelWidth: CGFloat = 1153
     static let buttonLevelHeight: CGFloat  = 317

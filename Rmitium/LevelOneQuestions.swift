@@ -40,15 +40,15 @@ enum LevelOneQuestion:Int{
             
            switch self
            {
-           case .QuestionOne: return "questionOne"
-           case .QuestionTwo: return "questionTwo"
-           case .QuestionThree: return "questionThree"
-           case .QuestionFour: return "questionFour"
-           case .QuestionFive: return "questionFive"
-           case .QuestionSix: return "questionSix"
-           case .QuestionSeven: return "questionSeven"
-           case .QuestionEight: return "questionEight"
-           case .QuestionNine: return "questionNine"
+           case .QuestionOne: return "S1-morphine-final"
+           case .QuestionTwo: return "S2-meropenem-final"
+           case .QuestionThree: return "S3-theobromine-final"
+           case .QuestionFour: return "S4-muscarine-final"
+           case .QuestionFive: return "S5-diltazem-final"
+           case .QuestionSix: return "S6-quinine-final"
+           case .QuestionSeven: return "S7-Tamiflu-final"
+           case .QuestionEight: return "S8-Vanillin-final"
+           case .QuestionNine: return "S9-capsaicin-final"
             }
         }
     }
@@ -57,7 +57,7 @@ enum LevelOneQuestion:Int{
         {
         get
         {
-            return self.imageName.stringByAppendingString("Sol")
+            return self.imageName.stringByAppendingString("solution")
         }
         
     }

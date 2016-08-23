@@ -12,8 +12,8 @@ struct LevelOneQuestionList {
     
     init(){
         listOfQuestions = LevelOneQuestion.getQuestions()
-        shuffle()
-        select(9)
+        //shuffle()
+        select(1)
     }
     
     mutating func shuffle() {
