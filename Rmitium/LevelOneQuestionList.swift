@@ -9,11 +9,12 @@
 import Foundation
 struct LevelOneQuestionList {
     var listOfQuestions:[LevelOneQuestion]
+    var index = 0
     
     init(){
         listOfQuestions = LevelOneQuestion.getQuestions()
         //shuffle()
-        select(1)
+        select(9)
     }
     
     mutating func shuffle() {
