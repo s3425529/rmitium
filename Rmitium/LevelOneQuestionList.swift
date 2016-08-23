@@ -13,7 +13,7 @@ struct LevelOneQuestionList {
     
     init(){
         listOfQuestions = LevelOneQuestion.getQuestions()
-        //shuffle()
+        shuffle()
         select(9)
     }
     

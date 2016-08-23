@@ -306,9 +306,9 @@ class LevelOneScene: SKScene {
                     resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
                     resultImage.zPosition = 0.5
                     resultImage.alpha = 1
-                    resultImage.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+                    resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
                                                    y:UtilitiesPortal.screenHeight/2 )
-                    resultImage.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+                    resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
                                                    y:UtilitiesPortal.screenHeight/2 )
                     resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
                     addChild(resultImage)
@@ -321,6 +321,7 @@ class LevelOneScene: SKScene {
                 }
             }
         }
+        
         //Fact label selected
         if node.name == UtilitiesPortal.factLabelName {
             let factOvl = self.childNodeWithName(UtilitiesPortal.factOverlayName)
