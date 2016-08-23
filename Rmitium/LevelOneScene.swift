@@ -46,7 +46,7 @@ class LevelOneScene: SKScene {
         addChild(home)
         
         // Tick button
-        tick = SKSpriteNode(imageNamed: "tick-white")
+        tick = SKSpriteNode(imageNamed: "tick-grey")
         tick.name = UtilitiesPortal.tickButtonName
         tick.zPosition = 0.1
         tick.alpha = 0.9
@@ -239,7 +239,7 @@ class LevelOneScene: SKScene {
         if node.name == UtilitiesPortal.tickButtonName {
             print("Tick selected")
             if checkResult() {
-                resultImage = SKSpriteNode(imageNamed: "S1-morphine-finalsolutionzz")
+                resultImage = SKSpriteNode(imageNamed: "S1-morphine-finalsolution")
                 resultImage.zPosition = 1
                 resultImage.alpha = 1
                 resultImage.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
