@@ -20,6 +20,9 @@ class LevelOneScene: SKScene {
     
     var lvlOneQuestion: LevelOneQuestion!
     
+    
+   
+    
     override func didMoveToView(view: SKView) {
         setupScene()
     }
@@ -34,6 +37,8 @@ class LevelOneScene: SKScene {
         levelLabel.fontSize = UtilitiesPortal.navLabelSize
         levelLabel.position = CGPointMake(frame.midX, UtilitiesPortal.screenHeight*0.92)
         self.addChild(levelLabel)
+        
+        
         
         // Home button
         let home = SKSpriteNode(imageNamed: "home")
@@ -265,6 +270,7 @@ class LevelOneScene: SKScene {
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
             print("Tick selected")
+            
             if checkResult() && resultImage == nil {
                 resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
                 resultImage.zPosition = 1
@@ -277,6 +283,8 @@ class LevelOneScene: SKScene {
                 addChild(resultImage)
                 return
             }
+
+             //displayShareSheet("heoooooo!")
         }
         
         // Show button selected
@@ -317,6 +325,27 @@ class LevelOneScene: SKScene {
             
         }
     }
+    // Share the score to any social media!
+    func displayShareSheet(shareContent:String) {
+        
+            let myShare = "My best is \(shareContent)"
+            let controller = self.view?.window?.rootViewController as! GameViewController
+            
+            let activityVC: UIActivityViewController = UIActivityViewController(activityItems: [myShare], applicationActivities: nil)
+            
+            controller.presentViewController(activityVC, animated: true, completion: nil)
+        
+    }
+    
+    //back to the home page,
+    func backHomePage(){
+    
+        let secondScene = GameScene(size: self.size)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        secondScene.scaleMode = SKSceneScaleMode.AspectFill
+        self.scene!.view?.presentScene(secondScene, transition: transition)
+    }
+    
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
