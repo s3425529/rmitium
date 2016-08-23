@@ -213,7 +213,7 @@ class LevelOneScene: SKScene {
             }
         }
     }
-    
+
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
