@@ -89,11 +89,9 @@ class LevelOneScene: SKScene {
         addChild(help)
         
         // Image
-        let image = SKSpriteNode(imageNamed: "QuestionOne")
+        let image = SKSpriteNode(imageNamed: lvlOneQuestion.imageName)
         image.zPosition = 0.1
         image.alpha = 0.9
-        image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-                                 y:UtilitiesPortal.screenHeight/2 )
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
                                  y:UtilitiesPortal.screenHeight/2 )
         image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
@@ -174,6 +172,7 @@ class LevelOneScene: SKScene {
         
         let factLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
         factLabel.name = UtilitiesPortal.factLabelName
+        factLabel.fontSize = 25
         factLabel.text = "Did you know: " + shortenFact + "...(see more)"
         factLabel.zPosition = 0.9
         factLabel.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.navImgSize/2)

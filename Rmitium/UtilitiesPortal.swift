@@ -29,6 +29,8 @@ class UtilitiesPortal {
     static let tickButtonName = "tickBtn"
     static let factLabelName = "factLbl"
     static let factOverlayName = "factOvl"
+    static let showButtonName = "showBtn"
+    static let nextButtonName = "nextBtn"
     static let buttonLevelWidth: CGFloat = 1153
     static let buttonLevelHeight: CGFloat  = 317
     
