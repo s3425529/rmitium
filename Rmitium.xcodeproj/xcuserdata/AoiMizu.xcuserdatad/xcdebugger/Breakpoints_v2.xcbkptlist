@@ -221,7 +221,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "308"
             endingLineNumber = "308"
-            landmarkName = "displayResult()"
+            landmarkName = "checkResult()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -237,7 +237,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "309"
             endingLineNumber = "309"
-            landmarkName = "displayResult()"
+            landmarkName = "checkResult()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -260,11 +260,8 @@ class LevelOneScene: SKScene {
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home selected")
-            let secondScene = GameScene(size: self.size)
-            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
-            secondScene.scaleMode = SKSceneScaleMode.AspectFill
-            self.scene!.view?.presentScene(secondScene, transition: transition)
-            return
+            backHomePage()
+            
         }
         
         // Tick button selected
