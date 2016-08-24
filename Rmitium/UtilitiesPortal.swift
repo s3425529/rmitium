@@ -33,6 +33,9 @@ class UtilitiesPortal {
     static let factMultiLine = "factMultiLine"
     static let showButtonName = "showBtn"
     static let nextButtonName = "nextBtn"
+    static let redoButtonName = "redo"
+    static let shareButtonName = "share"
+    static let backButtonName = "back"
     
     static let buttonLevelWidth: CGFloat = 1153
     static let buttonLevelHeight: CGFloat  = 317

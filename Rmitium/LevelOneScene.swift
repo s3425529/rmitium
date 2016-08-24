@@ -17,7 +17,7 @@ class LevelOneScene: SKScene {
     var chosenAnswer: CustomSKSpriteNode!
     var resultImage, factOverlay: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
-    var show, tick, next: SKSpriteNode!
+    var show, tick, next, redo, share, back: SKSpriteNode!
     var factLabel: SKLabelNode!
     
     var lvlOneQuestion: LevelOneQuestion!
@@ -25,9 +25,11 @@ class LevelOneScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         setupScene()
+       
     }
     
     func setupScene() {
+       
         self.removeAllChildren()
         positions.removeAll()
         questions.removeAll()
@@ -36,6 +38,17 @@ class LevelOneScene: SKScene {
         lvlOneQuestion = LevelOneModel.sharedInstance.currentQuestion
         
         state = UtilitiesPortal.stateAnswer
+        setupImage()
+
+        setupItems()
+        
+        setupDragLabel()
+        setupTargets()
+        setupFactLabel("Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine.")
+
+    }
+    func setupItems() {
+      
         
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
@@ -93,17 +106,18 @@ class LevelOneScene: SKScene {
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(help)
         
+        
+    }
+    func setupImage(){
         // Image
         let image = SKSpriteNode(imageNamed: lvlOneQuestion.imageName)
         image.zPosition = 0.1
         image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-                                 y:UtilitiesPortal.screenHeight/2 )
+            y:UtilitiesPortal.screenHeight/2 )
         image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
-        setupDragLabel()
-        setupTargets()
-        setupFactLabel("Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine.")
+
     }
     
     func setupDragLabel() {
@@ -273,7 +287,7 @@ class LevelOneScene: SKScene {
                     return
                 }
             }
-            
+          
             // Targets node selected
             for x in 0...questions.count-1 {
                 if CGRectContainsPoint(questions[x].frame, point) {
@@ -296,13 +310,19 @@ class LevelOneScene: SKScene {
                     return
                 }
             }
+  
         }
         
         // Home button selected
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
+           
+            
             backHomePage()
+            
+            //test last page here
+            //lastPage()
             
         }
         
@@ -314,7 +334,27 @@ class LevelOneScene: SKScene {
                 }
             }
             return
-             //displayShareSheet("heoooooo!")
+        }
+        
+        //share button selected
+        if node.name == UtilitiesPortal.shareButtonName {
+            print("share")
+            let shareContent = "hello"
+            displayShareSheet(shareContent)
+            return
+        }
+        
+        //redo button selected
+        if node.name == UtilitiesPortal.redoButtonName {
+            print("redo")
+           setupScene()
+            return
+        }
+        //back button selected
+        if node.name == UtilitiesPortal.backButtonName {
+            print("back")
+            backHomePage()
+            return
         }
         
         // Show button selected
@@ -343,6 +383,7 @@ class LevelOneScene: SKScene {
         
         // Next button selected
         if node.name == UtilitiesPortal.nextButtonName {
+            print("next")
             setupScene()
             return
         }
@@ -400,7 +441,57 @@ class LevelOneScene: SKScene {
             }
         }
     }
-    
+    func lastPage(){
+        
+        self.removeAllChildren()
+        setupItems()
+        tick.removeFromParent()
+        tick = nil
+        show.removeFromParent()
+        show = nil
+        next.removeFromParent()
+        next = nil
+        // back button
+        back = SKSpriteNode(imageNamed: "next ")
+        back.name = UtilitiesPortal.backButtonName
+        back.zPosition = 0.1
+        back.alpha = 0.9
+        back.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        back.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize,
+            y: UtilitiesPortal.navImgSize/2)
+        addChild(back)
+        
+        // redo button
+        redo = SKSpriteNode(imageNamed: "replay")
+        redo.name = UtilitiesPortal.redoButtonName
+        redo.zPosition = 0.1
+        redo.alpha = 0.9
+        redo.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        redo.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*2,
+            y: UtilitiesPortal.navImgSize/2)
+        addChild(redo)
+        
+        // share button
+        share = SKSpriteNode(imageNamed: "share")
+        share.name = UtilitiesPortal.shareButtonName
+        share.zPosition = 0.1
+        share.alpha = 0.9
+        share.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        share.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
+            y: UtilitiesPortal.navImgSize/2)
+        addChild(share)
+        
+        
+        let award = SKSpriteNode(imageNamed: "gold")
+        award.name = "award"
+        award.zPosition = 10
+        award.position = CGPoint(x:UtilitiesPortal.screenWidth/2,
+            y: UtilitiesPortal.screenHeight/2)
+        award.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
+        addChild(award)
+        
+        
+    }
     // Share the score to any social media!
     func displayShareSheet(shareContent:String) {
         
