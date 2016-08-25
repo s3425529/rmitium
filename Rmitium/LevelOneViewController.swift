@@ -37,7 +37,6 @@ class LevelOneViewController: UIViewController {
         imgMolecular.image = UIImage(named: "test_ans")
         let facts = ["Fact 1: aaaaaa", "Fact 2: bbbbbb"]
         let fact = facts[0]
-        
     }
     
     override func shouldAutorotate() -> Bool {
