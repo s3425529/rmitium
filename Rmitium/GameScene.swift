@@ -174,6 +174,15 @@ class GameScene: SKScene {
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
         }
+        if (node.name == UtilitiesPortal.levelLabelNames[1]) {
+            let secondScene = Result(size: self.size)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+            //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+        }
+        
+
 
     }
    
