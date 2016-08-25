@@ -322,15 +322,18 @@ class LevelOneScene: SKScene {
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
+            print("Tick")
             if state == UtilitiesPortal.stateAnswer && checkResult() {
-                if resultImage == nil {
+                print("tick and state answer")
+                //if resultImage == nil {
+                    print("tick display result")
                     displayResult()
-                }
+                //}
                 return
             }
             
             if state == UtilitiesPortal.stateResult {
-                print("next")
+                print("tick state result")
                 setupScene()
                 return
             }
