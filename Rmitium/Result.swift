@@ -71,7 +71,7 @@ class Result: SKScene{
         addChild(share)
         
         
-        let award = SKSpriteNode(imageNamed: "gold")
+        let award = SKSpriteNode(imageNamed: "medal")
         award.name = "award"
         award.zPosition = 10
         award.position = CGPoint(x:UtilitiesPortal.screenWidth/2,
