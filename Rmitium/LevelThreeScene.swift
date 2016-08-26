@@ -1,4 +1,13 @@
 //
+//  LevelThreeScene.swift
+//  Rmitium
+//
+//  Created by Aoi Mizu on 8/26/16.
+//  Copyright © 2016 RMIT. All rights reserved.
+//
+
+import Foundation
+//
 //  LevelOneScene.swift
 //  Rmitium
 //
@@ -8,7 +17,7 @@
 
 import SpriteKit
 
-class LevelOneScene: SKScene {
+class LevelThreeScene: SKScene {
     var answers: [CustomSKSpriteNode] = []
     var questions: [CustomSKSpriteNode] = []
     var answeredQuestions: [CustomSKSpriteNode] = []
@@ -329,8 +338,8 @@ class LevelOneScene: SKScene {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 print("tick and state answer")
                 //if resultImage == nil {
-                    print("tick display result")
-                    displayResult()
+                print("tick display result")
+                displayResult()
                 //}
                 return
             }
@@ -343,7 +352,7 @@ class LevelOneScene: SKScene {
                     let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
                     secondScene.scaleMode = SKSceneScaleMode.AspectFill
                     self.scene!.view?.presentScene(secondScene, transition: transition)
-
+                    
                     return
                 }else{
                     questionId += 1
@@ -354,7 +363,7 @@ class LevelOneScene: SKScene {
             return
         }
         
-  
+        
         
         // Show button selected
         if node.name == UtilitiesPortal.showButtonName {
