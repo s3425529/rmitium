@@ -10,6 +10,7 @@
 		5000EABD1D66C6E000F3A21F /* SKMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000EABC1D66C6E000F3A21F /* SKMultilineLabel.swift */; };
 		50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */; };
 		506E77671D670135004EE1D4 /* CustomSKSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E77661D670135004EE1D4 /* CustomSKSpriteNode.swift */; };
+		506FF3301D6E9D3500901A52 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506FF32F1D6E9D3500901A52 /* Result.swift */; };
 		508BB5101D5864CF00556CE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508BB50F1D5864CF00556CE3 /* AppDelegate.swift */; };
 		508BB5121D5864CF00556CE3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 508BB5111D5864CF00556CE3 /* GameScene.sks */; };
 		508BB5141D5864CF00556CE3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508BB5131D5864CF00556CE3 /* GameScene.swift */; };
@@ -36,6 +37,7 @@
 		5000EABC1D66C6E000F3A21F /* SKMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKMultilineLabel.swift; sourceTree = "<group>"; };
 		50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesPortal.swift; sourceTree = "<group>"; };
 		506E77661D670135004EE1D4 /* CustomSKSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSKSpriteNode.swift; sourceTree = "<group>"; };
+		506FF32F1D6E9D3500901A52 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		508BB50C1D5864CF00556CE3 /* Rmitium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rmitium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		508BB50F1D5864CF00556CE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		508BB5111D5864CF00556CE3 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */,
 				50E31D111D66DAF5002F10E0 /* LevelOneQuestionList.swift */,
 				50E31D131D66EA9C002F10E0 /* LevelOneModel.swift */,
+				506FF32F1D6E9D3500901A52 /* Result.swift */,
 			);
 			name = LevelOne;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 			files = (
 				50D9C4611D58B11E00221ADD /* LevelOneViewController.swift in Sources */,
 				50E31D151D6BEE3D002F10E0 /* LevelOneModel.swift in Sources */,
+				506FF3301D6E9D3500901A52 /* Result.swift in Sources */,
 				50D9C4681D5A3EF900221ADD /* QuestionLevelOne.swift in Sources */,
 				5000EABD1D66C6E000F3A21F /* SKMultilineLabel.swift in Sources */,
 				50D9C4631D58B2BD00221ADD /* LevelOneScene.swift in Sources */,

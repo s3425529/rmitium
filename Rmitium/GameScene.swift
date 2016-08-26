@@ -17,6 +17,8 @@ class GameScene: SKScene {
         button.name = "nextButton"
         self.addChild(button)*/
         
+        UtilitiesPortal.score = 0
+        
         let image = SKSpriteNode(imageNamed: "background")
         image.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         image.position = CGPoint(x:frame.midX, y:frame.midY)
@@ -174,6 +176,15 @@ class GameScene: SKScene {
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
         }
+        if (node.name == UtilitiesPortal.levelLabelNames[1]) {
+            let secondScene = Result(size: self.size)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+            //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+        }
+        
+
 
     }
    

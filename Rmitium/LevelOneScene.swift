@@ -17,29 +17,28 @@ class LevelOneScene: SKScene {
     var chosenAnswer: CustomSKSpriteNode!
     var resultImage, factOverlay, homeDialogue: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
-    var show, tick, next, redo, share, back: SKSpriteNode!
-    var factLabel: SKLabelNode!
-    
+    var show, tick, redo, share, back: SKSpriteNode!
+    var score, factLabel: SKLabelNode!
+    var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
-    var state: Int!
+    var state, previousState: Int!
     
     override func didMoveToView(view: SKView) {
         setupScene()
-       
     }
     
     func setupScene() {
-       
+        
         self.removeAllChildren()
         positions.removeAll()
         questions.removeAll()
         answeredQuestions.removeAll()
         
         lvlOneQuestion = LevelOneModel.sharedInstance.currentQuestion
-        
         state = UtilitiesPortal.stateAnswer
+        
         setupImage()
-
+        
         setupItems()
         
         setupDragLabel()
@@ -49,8 +48,6 @@ class LevelOneScene: SKScene {
 
     }
     func setupItems() {
-      
-        
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
@@ -62,7 +59,7 @@ class LevelOneScene: SKScene {
         let home = SKSpriteNode(imageNamed: "home")
         home.name = UtilitiesPortal.homeButtonName
         home.zPosition = 0.1
-        home.alpha = 0.9
+        home.alpha = 1
         home.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         home.position = CGPoint(x:UtilitiesPortal.borderSize/2,
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
@@ -83,20 +80,11 @@ class LevelOneScene: SKScene {
         show.name = UtilitiesPortal.showButtonName
         show.zPosition = 0.1
         show.alpha = 0.9
+        show.hidden = true
         show.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         show.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*2,
                                 y: UtilitiesPortal.navImgSize/2)
         addChild(show)
-        
-        // Next button
-        next = SKSpriteNode(imageNamed: "next")
-        next.name = UtilitiesPortal.nextButtonName
-        next.zPosition = 0.1
-        next.alpha = 0.9
-        next.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-                                y: UtilitiesPortal.navImgSize/2)
-        addChild(next)
         
         // Help button
         let help = SKSpriteNode(imageNamed: "help2")
@@ -107,7 +95,15 @@ class LevelOneScene: SKScene {
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(help)
         
+        // Score label
         
+        score = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
+        score.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        score.zPosition = 0.1
+        score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
+        score.fontSize = UtilitiesPortal.factSize
+        score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
+        self.addChild(score)
     }
     func setupImage(){
         // Image
@@ -115,10 +111,10 @@ class LevelOneScene: SKScene {
         image.zPosition = 0.1
         image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-            y:UtilitiesPortal.screenHeight/2 )
+                                 y:UtilitiesPortal.screenHeight/2 )
         image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
-
+        
     }
     
     func setupDragLabel() {
@@ -175,7 +171,7 @@ class LevelOneScene: SKScene {
             answeredQuestion.hidden = true
             answeredQuestion.position = sprite.position
             answeredQuestion.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
-                                 height: UtilitiesPortal.screenHeight*0.1)
+                                           height: UtilitiesPortal.screenHeight*0.1)
             addChild(answeredQuestion)
             answeredQuestions.append(answeredQuestion)
         }
@@ -186,17 +182,17 @@ class LevelOneScene: SKScene {
         //let randomIndex = Int(arc4random_uniform(UInt32(array.)))
         //print(array[randomIndex])
         let fact = fact
-        let index = fact.startIndex.advancedBy(10)
+        let index = fact.startIndex.advancedBy(8)
         let shortenFact = fact.substringToIndex(index)
         
         factLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
         factLabel.name = UtilitiesPortal.factLabelName
         factLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-        factLabel.fontSize = UtilitiesPortal.navLabelSize
+        factLabel.fontSize = UtilitiesPortal.factSize
         factLabel.text = "Did you know: " + shortenFact + "...(see more)"
         factLabel.hidden = true
         factLabel.zPosition = 0.3
-        factLabel.position = CGPoint(x: UtilitiesPortal.borderSize/2, y: UtilitiesPortal.navImgSize/2)
+        factLabel.position = CGPoint(x: UtilitiesPortal.screenWidth*0.20, y: UtilitiesPortal.borderSize/4)
         addChild(factLabel)
         
         factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth,
@@ -280,14 +276,15 @@ class LevelOneScene: SKScene {
             tick.texture = SKTexture(imageNamed: "tick-grey")
         }
     }
-
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         
         if state == UtilitiesPortal.stateFact {
             factOverlay.hidden = true
-            state = UtilitiesPortal.stateResult
+            state = previousState
+            previousState = UtilitiesPortal.stateFact
             return
         }
         
@@ -307,7 +304,7 @@ class LevelOneScene: SKScene {
                     return
                 }
             }
-          
+            
             // Targets node selected
             for x in 0...questions.count-1 {
                 if CGRectContainsPoint(questions[x].frame, point) {
@@ -330,7 +327,7 @@ class LevelOneScene: SKScene {
                     return
                 }
             }
-  
+            
         }
         
         // Home button selected
@@ -348,68 +345,68 @@ class LevelOneScene: SKScene {
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
-            if checkResult() {
-                if resultImage == nil {
+            print("Tick")
+            if state == UtilitiesPortal.stateAnswer && checkResult() {
+                print("tick and state answer")
+                //if resultImage == nil {
+                    print("tick display result")
                     displayResult()
+                //}
+                return
+            }
+            
+            if state == UtilitiesPortal.stateResult {
+                print("tick state result")
+                if( questionId == 9){
+                    print("display result")
+                    let secondScene = Result(size: self.size)
+                    let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+                    secondScene.scaleMode = SKSceneScaleMode.AspectFill
+                    self.scene!.view?.presentScene(secondScene, transition: transition)
+
+                    return
+                }else{
+                    questionId++
+                    setupScene()
+                    return
                 }
+                
             }
             return
         }
         
-        //share button selected
-        if node.name == UtilitiesPortal.shareButtonName {
-            print("share")
-            let shareContent = "hello"
-            displayShareSheet(shareContent)
-            return
-        }
-        
-        //redo button selected
-        if node.name == UtilitiesPortal.redoButtonName {
-            print("redo")
-           setupScene()
-            return
-        }
-        //back button selected
-        if node.name == UtilitiesPortal.backButtonName {
-            print("back")
-            backHomePage()
-            return
-        }
+  
         
         // Show button selected
         if node.name == UtilitiesPortal.showButtonName {
             if state == UtilitiesPortal.stateResult {
-                if resultImage == nil {
-                    displayAnswers(true)
-                    resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
-                    resultImage.zPosition = 0.5
-                    resultImage.alpha = 1
-                    resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
-                                                   y:UtilitiesPortal.screenHeight/2 )
-                    resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
-                                                   y:UtilitiesPortal.screenHeight/2 )
-                    resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
-                    addChild(resultImage)
-                }
-                else {
-                    displayAnswers(false)
-                    resultImage.removeFromParent()
-                    self.resultImage = nil
-                }
+                displayAnswers(true)
+                resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
+                resultImage.zPosition = 0.5
+                resultImage.alpha = 1
+                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
+                                               y:UtilitiesPortal.screenHeight/2 )
+                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
+                                               y:UtilitiesPortal.screenHeight/2 )
+                resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
+                addChild(resultImage)
+                state = UtilitiesPortal.stateReview
+                return
             }
-            return
-        }
-        
-        // Next button selected
-        if node.name == UtilitiesPortal.nextButtonName {
-            print("next")
-            setupScene()
+                
+            else if state == UtilitiesPortal.stateReview {
+                displayAnswers(false)
+                resultImage.removeFromParent()
+                self.resultImage = nil
+                state = UtilitiesPortal.stateResult
+                return
+            }
             return
         }
         
         //Fact label selected
         if node.name == UtilitiesPortal.factLabelName {
+            previousState = state
             state = UtilitiesPortal.stateFact
             factOverlay.hidden = false
             return
@@ -435,6 +432,7 @@ class LevelOneScene: SKScene {
                     if answeredQuestions[x].value == lvlOneQuestion.solutions[x] {
                         answeredQuestions[x].texture = SKTexture(imageNamed:
                             "\(answeredQuestions[x].value)-green")
+                        UtilitiesPortal.score = UtilitiesPortal.score + 1
                     }
                     else {
                         answeredQuestions[x].texture = SKTexture(imageNamed:
@@ -444,6 +442,12 @@ class LevelOneScene: SKScene {
             }
         }
         factLabel.hidden = false
+        score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
+        
+        tick.texture = SKTexture(imageNamed: "next")
+        
+        show.hidden = false
+        
         state = UtilitiesPortal.stateResult
     }
     
@@ -460,67 +464,6 @@ class LevelOneScene: SKScene {
                 answeredQuestions[x].hidden = false
             }
         }
-    }
-    func lastPage(){
-        
-        self.removeAllChildren()
-        setupItems()
-        tick.removeFromParent()
-        tick = nil
-        show.removeFromParent()
-        show = nil
-        next.removeFromParent()
-        next = nil
-        // back button
-        back = SKSpriteNode(imageNamed: "next ")
-        back.name = UtilitiesPortal.backButtonName
-        back.zPosition = 0.1
-        back.alpha = 0.9
-        back.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        back.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize,
-            y: UtilitiesPortal.navImgSize/2)
-        addChild(back)
-        
-        // redo button
-        redo = SKSpriteNode(imageNamed: "replay")
-        redo.name = UtilitiesPortal.redoButtonName
-        redo.zPosition = 0.1
-        redo.alpha = 0.9
-        redo.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        redo.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*2,
-            y: UtilitiesPortal.navImgSize/2)
-        addChild(redo)
-        
-        // share button
-        share = SKSpriteNode(imageNamed: "share")
-        share.name = UtilitiesPortal.shareButtonName
-        share.zPosition = 0.1
-        share.alpha = 0.9
-        share.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        share.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.navImgSize/2)
-        addChild(share)
-        
-        
-        let award = SKSpriteNode(imageNamed: "gold")
-        award.name = "award"
-        award.zPosition = 10
-        award.position = CGPoint(x:UtilitiesPortal.screenWidth/2,
-            y: UtilitiesPortal.screenHeight/2)
-        award.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
-        addChild(award)
-        
-        
-    }
-    // Share the score to any social media!
-    func displayShareSheet(shareContent:String) {
-        
-            let myShare = "My best is \(shareContent)"
-            let controller = self.view?.window?.rootViewController as! GameViewController
-            
-            let activityVC: UIActivityViewController = UIActivityViewController(activityItems: [myShare], applicationActivities: nil)
-            
-            controller.presentViewController(activityVC, animated: true, completion: nil)
     }
     
     //back to the home page,

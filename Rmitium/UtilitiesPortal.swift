@@ -14,11 +14,12 @@ class UtilitiesPortal {
     //static let mainScene = GameScene(fileNamed:"GameScene")
     static let stateAnswer = 0
     static let stateResult = 1
-    static let stateFact = 2
+    static let stateReview = 2
+    static let stateFact = 3
     
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
     static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene",
-                                  "aldehyde", "ester", "ether", "thioether", "heterocyclicaromatic"]
+                                  "aldehyde", "ester", "ether", "thioether", "heterocyclic aromatic"]
     static let levelLabelTexts = ["Level 1: Identifying Functional Groups",
                                   "Level 2: Building Molecules",
                                   "Level 3: Intermolecular Forces", "SETTINGS"]
@@ -52,8 +53,11 @@ class UtilitiesPortal {
     static let navLabelSize = CGFloat(screenWidth/25)
     static let navImgSize = screenHeight*0.10
     
-    static let levelLabelSize = CGFloat(screenWidth/30)
+    static let factFont = "ArialRoundedMTBold"
+    static let factSize = CGFloat(screenWidth/35)
+    static let scoreText = "Score:"
     
+    static let levelLabelSize = CGFloat(screenWidth/30)
     static let levelLabelFont = "Avenir-Black"
     static let levelLabelAnswerSize = CGFloat(screenWidth/40)
     
@@ -61,4 +65,6 @@ class UtilitiesPortal {
     
     static let imageWidth = screenWidth*0.6
     static let imageHeight = screenHeight*0.6
+    
+    static var score = 0
 }
