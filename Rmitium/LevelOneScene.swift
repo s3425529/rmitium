@@ -22,8 +22,11 @@ class LevelOneScene: SKScene {
     var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
     var state, previousState: Int!
+    var listOfQuestions:[LevelOneQuestion] = []
+
     
     override func didMoveToView(view: SKView) {
+        initRecord()
         setupScene()
     }
     
@@ -337,7 +340,7 @@ class LevelOneScene: SKScene {
             
             if state == UtilitiesPortal.stateResult {
                 print("tick state result")
-                if( questionId == 9){
+                if( questionId == 8){
                     print("display result")
                     let secondScene = Result(size: self.size)
                     let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
@@ -453,7 +456,13 @@ class LevelOneScene: SKScene {
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
+    func initRecord(){
+        listOfQuestions = LevelOneQuestion.getQuestions()
+        for item in 0..<listOfQuestions.count{
+            UtilitiesPortal.record.append(item)
+        }
     
+    }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

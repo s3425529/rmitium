@@ -37,6 +37,7 @@ class UtilitiesPortal {
     static let redoButtonName = "redo"
     static let shareButtonName = "share"
     static let backButtonName = "back"
+   
     
     static let buttonLevelWidth: CGFloat = 1153
     static let buttonLevelHeight: CGFloat  = 317
@@ -67,4 +68,5 @@ class UtilitiesPortal {
     static let imageHeight = screenHeight*0.6
     
     static var score = 0
+    static var record = [Int]()
 }
