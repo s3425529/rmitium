@@ -26,7 +26,7 @@ class LevelOneModel {
     
     private init(){
         listOfQuestions = LevelOneQuestionList()
-        index = 1
+        index = 0
     }
     
     var currentQuestion:LevelOneQuestion {

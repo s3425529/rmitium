@@ -38,6 +38,15 @@ class LevelOneScene: SKScene {
         answeredQuestions.removeAll()
         
         lvlOneQuestion = LevelOneModel.sharedInstance.currentQuestion
+        // Result page
+        if lvlOneQuestion.positions.count == 0 {
+            let secondScene = Result(size: self.size)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+            return
+        }
+        
         state = UtilitiesPortal.stateAnswer
         
         setupImage()
@@ -358,21 +367,9 @@ class LevelOneScene: SKScene {
                 return
             }
             
-            if state == UtilitiesPortal.stateResult {
+            if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
                 print("tick state result")
-                if lvlOneQuestion.positions.count == 0 {
-                    print("display result")
-                    let secondScene = Result(size: self.size)
-                    let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
-                    secondScene.scaleMode = SKSceneScaleMode.AspectFill
-                    self.scene!.view?.presentScene(secondScene, transition: transition)
-
-                    return
-                }
-                else{
-                    setupScene()
-                    return
-                }
+                setupScene()
             }
             return
         }

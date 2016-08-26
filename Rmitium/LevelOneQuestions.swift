@@ -34,7 +34,7 @@ enum LevelOneQuestion:Int{
         }
     }
     
-    case NilQuestion=0, QuestionOne, QuestionTwo, QuestionThree, QuestionFour, QuestionFive, QuestionSix, QuestionSeven,QuestionEight, QuestionNine
+    case NilQuestion=0, QuestionOne=1, QuestionTwo, QuestionThree, QuestionFour, QuestionFive, QuestionSix, QuestionSeven,QuestionEight, QuestionNine
     
     var imageName:String{
         get{
@@ -118,7 +118,7 @@ enum LevelOneQuestion:Int{
     
     static func getQuestions() ->[LevelOneQuestion]{
         return [QuestionOne,QuestionTwo,QuestionThree,QuestionFour,QuestionFive,QuestionSix,
-        QuestionSeven,QuestionEight,QuestionNine]
+        QuestionSeven,QuestionEight,QuestionNine,NilQuestion]
     }
     
 }
