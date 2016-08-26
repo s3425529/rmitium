@@ -15,15 +15,18 @@ class LevelOneScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
-    var resultImage, factOverlay: SKSpriteNode!
+    var resultImage, factOverlay, homeDialogue: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel: SKLabelNode!
     var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
     var state, previousState: Int!
+    var listOfQuestions:[LevelOneQuestion] = []
+
     
     override func didMoveToView(view: SKView) {
+        initRecord()
         setupScene()
     }
     
@@ -44,7 +47,8 @@ class LevelOneScene: SKScene {
         setupDragLabel()
         setupTargets()
         setupFactLabel("Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine.")
-        
+        createHomeDialogue()
+
     }
     func setupItems() {
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
@@ -213,6 +217,25 @@ class LevelOneScene: SKScene {
         addChild(factOverlay)
     }
     
+    //Show Home Button Dialogue box
+    func createHomeDialogue() {
+        let yesBtn = SKSpriteNode()
+        let noBtn = SKSpriteNode()
+        homeDialogue = SKSpriteNode()
+        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2, height: UtilitiesPortal.screenHeight/2)
+        homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        homeDialogue.color = SKColor.blackColor()
+        homeDialogue.alpha = 0.9
+        homeDialogue.zPosition = 0.9
+        homeDialogue.hidden = true
+        yesBtn.size = CGSize(width: UtilitiesPortal.screenWidth/4, height: UtilitiesPortal.screenHeight/8)
+        yesBtn.color = SKColor.grayColor()
+        yesBtn.position = CGPoint(x: UtilitiesPortal.screenWidth/4, y: UtilitiesPortal.screenHeight/4)
+        yesBtn.zPosition = 0.9
+        homeDialogue.addChild(yesBtn)
+        addChild(homeDialogue)
+    }
+    
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         if chosenAnswer == nil {
@@ -314,9 +337,9 @@ class LevelOneScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-            
-            
-            backHomePage()
+           
+            homeDialogue.hidden = false
+            //backHomePage()
             
             //test last page here
             //lastPage()
@@ -337,7 +360,7 @@ class LevelOneScene: SKScene {
             
             if state == UtilitiesPortal.stateResult {
                 print("tick state result")
-                if( questionId == 9){
+                if( questionId == 8){
                     print("display result")
                     let secondScene = Result(size: self.size)
                     let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
@@ -452,7 +475,13 @@ class LevelOneScene: SKScene {
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
+    func initRecord(){
+        listOfQuestions = LevelOneQuestion.getQuestions()
+        for item in 0..<listOfQuestions.count{
+            UtilitiesPortal.record.append(item)
+        }
     
+    }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
