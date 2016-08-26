@@ -1,13 +1,4 @@
 //
-//  LevelThreeScene.swift
-//  Rmitium
-//
-//  Created by Aoi Mizu on 8/26/16.
-//  Copyright © 2016 RMIT. All rights reserved.
-//
-
-import Foundation
-//
 //  LevelOneScene.swift
 //  Rmitium
 //
@@ -24,15 +15,18 @@ class LevelThreeScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
-    var resultImage, factOverlay: SKSpriteNode!
+    var resultImage, factOverlay, homeDialogue: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
-    var show, tick: SKSpriteNode!
+    var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel: SKLabelNode!
-    var questionId = 0
-    var lvlOneQuestion: LevelOneQuestion!
+    //var questionId = 0
+    var lvlThreeQuestion: LevelThreeQuestion!
     var state, previousState: Int!
+    var listOfQuestions:[LevelThreeQuestion] = []
+    
     
     override func didMoveToView(view: SKView) {
+        initRecord()
         setupScene()
     }
     
@@ -43,7 +37,16 @@ class LevelThreeScene: SKScene {
         questions.removeAll()
         answeredQuestions.removeAll()
         
-        lvlOneQuestion = LevelOneModel.sharedInstance.currentQuestion
+        lvlThreeQuestion = LevelThreeModel.sharedInstance.currentQuestion
+        // Result page
+        if lvlThreeQuestion.positions.count == 0 {
+            let secondScene = Result(size: self.size)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+            return
+        }
+        
         state = UtilitiesPortal.stateAnswer
         
         setupImage()
@@ -53,6 +56,7 @@ class LevelThreeScene: SKScene {
         setupDragLabel()
         setupTargets()
         setupFactLabel("Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine.")
+        createHomeDialogue()
         
     }
     func setupItems() {
@@ -115,7 +119,7 @@ class LevelThreeScene: SKScene {
     }
     func setupImage(){
         // Image
-        let image = SKSpriteNode(imageNamed: lvlOneQuestion.imageName)
+        let image = SKSpriteNode(imageNamed: lvlThreeQuestion.imageName)
         image.zPosition = 0.1
         image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
@@ -133,25 +137,10 @@ class LevelThreeScene: SKScene {
             answer.value = UtilitiesPortal.levelThreeAnswers[count]
             answer.zPosition = 0.3
             answer.alpha = 0.9
-            /*answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
-                                 height: UtilitiesPortal.screenHeight*0.1)
-            
-            if count < 5 {
-                answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.75,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count)))
-            }
-            else if count < 10 {
-                answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.90,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count-5)))
-            }
-            else {
-                answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count-5)))
-             }*/
-            answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+            answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.20,
                                  height: UtilitiesPortal.screenHeight*0.15)
             answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
-                                      y:UtilitiesPortal.screenHeight*(0.8-0.2*CGFloat(count)))
+                                      y:UtilitiesPortal.screenHeight*(0.8-0.20*CGFloat(count)))
             
             addChild(answer)
             answers.append(answer)
@@ -160,16 +149,19 @@ class LevelThreeScene: SKScene {
     }
     
     func setupTargets() {
-        for x in 0...lvlOneQuestion.positions.count-1 {
-            positions.append(lvlOneQuestion.positions[x])
+        print("\(lvlThreeQuestion.positions.count)")
+        for x in 0...lvlThreeQuestion.positions.count-1 {
+            positions.append(lvlThreeQuestion.positions[x])
         }
         
         for count in 0...positions.count-1 {
             let sprite = CustomSKSpriteNode()
             sprite.color = UIColor.blueColor()
-            sprite.alpha = 0
+            sprite.alpha = 1
+            sprite.texture = SKTexture(imageNamed: "\(count+1)")
             sprite.name = "question\(count)"
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
+            //sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.6, UtilitiesPortal.screenHeight*0.6)
             sprite.zPosition = 0.2
             sprite.position = CGPoint(x:UtilitiesPortal.screenWidth * positions[count].x,
                                       y:UtilitiesPortal.screenHeight * positions[count].y)
@@ -225,6 +217,25 @@ class LevelThreeScene: SKScene {
         factOverlay.hidden = true
         factOverlay.addChild(factOverlayText)
         addChild(factOverlay)
+    }
+    
+    //Show Home Button Dialogue box
+    func createHomeDialogue() {
+        let yesBtn = SKSpriteNode()
+        let noBtn = SKSpriteNode()
+        homeDialogue = SKSpriteNode()
+        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2, height: UtilitiesPortal.screenHeight/2)
+        homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        homeDialogue.color = SKColor.blackColor()
+        homeDialogue.alpha = 0.9
+        homeDialogue.zPosition = 0.9
+        homeDialogue.hidden = true
+        yesBtn.size = CGSize(width: UtilitiesPortal.screenWidth/4, height: UtilitiesPortal.screenHeight/8)
+        yesBtn.color = SKColor.grayColor()
+        yesBtn.position = CGPoint(x: UtilitiesPortal.screenWidth/4, y: UtilitiesPortal.screenHeight/4)
+        yesBtn.zPosition = 0.9
+        homeDialogue.addChild(yesBtn)
+        addChild(homeDialogue)
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -329,8 +340,8 @@ class LevelThreeScene: SKScene {
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
             
-            
-            backHomePage()
+            homeDialogue.hidden = false
+            //backHomePage()
             
             //test last page here
             //lastPage()
@@ -340,30 +351,17 @@ class LevelThreeScene: SKScene {
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
             print("Tick")
+            //setupScene()
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 print("tick and state answer")
-                //if resultImage == nil {
                 print("tick display result")
                 displayResult()
-                //}
                 return
             }
-            
-            if state == UtilitiesPortal.stateResult {
+             
+            if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
                 print("tick state result")
-                if( questionId == 9){
-                    print("display result")
-                    let secondScene = Result(size: self.size)
-                    let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
-                    secondScene.scaleMode = SKSceneScaleMode.AspectFill
-                    self.scene!.view?.presentScene(secondScene, transition: transition)
-                    
-                    return
-                }else{
-                    questionId += 1
-                    setupScene()
-                    return
-                }
+                setupScene()
             }
             return
         }
@@ -374,7 +372,7 @@ class LevelThreeScene: SKScene {
         if node.name == UtilitiesPortal.showButtonName {
             if state == UtilitiesPortal.stateResult {
                 displayAnswers(true)
-                resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
+                resultImage = SKSpriteNode(imageNamed: lvlThreeQuestion.imageSol)
                 resultImage.zPosition = 0.5
                 resultImage.alpha = 1
                 resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
@@ -420,9 +418,9 @@ class LevelThreeScene: SKScene {
     
     func displayResult() {
         if state == UtilitiesPortal.stateAnswer {
-            for x in 0...lvlOneQuestion.solutions.count-1 {
+            for x in 0...lvlThreeQuestion.solutions.count-1 {
                 if answeredQuestions[x].value != UtilitiesPortal.emptyString {
-                    if answeredQuestions[x].value == lvlOneQuestion.solutions[x] {
+                    if answeredQuestions[x].value == lvlThreeQuestion.solutions[x] {
                         answeredQuestions[x].texture = SKTexture(imageNamed:
                             "\(answeredQuestions[x].value)-green")
                         UtilitiesPortal.score = UtilitiesPortal.score + 1
@@ -466,7 +464,13 @@ class LevelThreeScene: SKScene {
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
-    
+    func initRecord(){
+        listOfQuestions = LevelThreeQuestion.getQuestions()
+        for item in 0..<listOfQuestions.count{
+            UtilitiesPortal.record.append(item)
+        }
+        
+    }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

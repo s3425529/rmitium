@@ -10,6 +10,9 @@
 		5000EABD1D66C6E000F3A21F /* SKMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000EABC1D66C6E000F3A21F /* SKMultilineLabel.swift */; };
 		50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */; };
 		50667EE11D70096400C8EBF6 /* LevelThreeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE01D70096400C8EBF6 /* LevelThreeScene.swift */; };
+		50667EE51D7058E600C8EBF6 /* LevelThreeQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE41D7058E600C8EBF6 /* LevelThreeQuestions.swift */; };
+		50667EE71D70593F00C8EBF6 /* LevelThreeQuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE61D70593F00C8EBF6 /* LevelThreeQuestionList.swift */; };
+		50667EE91D705ABF00C8EBF6 /* LevelThreeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE81D705ABF00C8EBF6 /* LevelThreeModel.swift */; };
 		506E77671D670135004EE1D4 /* CustomSKSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E77661D670135004EE1D4 /* CustomSKSpriteNode.swift */; };
 		506FF3301D6E9D3500901A52 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506FF32F1D6E9D3500901A52 /* Result.swift */; };
 		508BB5101D5864CF00556CE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508BB50F1D5864CF00556CE3 /* AppDelegate.swift */; };
@@ -27,7 +30,6 @@
 		50D9C4681D5A3EF900221ADD /* QuestionLevelOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */; };
 		50E31D151D6BEE3D002F10E0 /* LevelOneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E31D131D66EA9C002F10E0 /* LevelOneModel.swift */; };
 		50E31D161D6BEE5B002F10E0 /* LevelOneQuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E31D111D66DAF5002F10E0 /* LevelOneQuestionList.swift */; };
-		50E31D1A1D700C19002F10E0 /* LevelThreeQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E31D191D700C19002F10E0 /* LevelThreeQuestions.swift */; };
 		50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */; };
 		50FD70921D61617B0090CDAD /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70911D61617B0090CDAD /* CustomButton.swift */; };
 		50FD70941D6175360090CDAD /* textFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70931D6175360090CDAD /* textFiled.swift */; };
@@ -38,6 +40,9 @@
 		5000EABC1D66C6E000F3A21F /* SKMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKMultilineLabel.swift; sourceTree = "<group>"; };
 		50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesPortal.swift; sourceTree = "<group>"; };
 		50667EE01D70096400C8EBF6 /* LevelThreeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeScene.swift; sourceTree = "<group>"; };
+		50667EE41D7058E600C8EBF6 /* LevelThreeQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeQuestions.swift; sourceTree = "<group>"; };
+		50667EE61D70593F00C8EBF6 /* LevelThreeQuestionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeQuestionList.swift; sourceTree = "<group>"; };
+		50667EE81D705ABF00C8EBF6 /* LevelThreeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeModel.swift; sourceTree = "<group>"; };
 		506E77661D670135004EE1D4 /* CustomSKSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSKSpriteNode.swift; sourceTree = "<group>"; };
 		506FF32F1D6E9D3500901A52 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		508BB50C1D5864CF00556CE3 /* Rmitium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rmitium.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				50667EE01D70096400C8EBF6 /* LevelThreeScene.swift */,
+				50667EE41D7058E600C8EBF6 /* LevelThreeQuestions.swift */,
+				50667EE61D70593F00C8EBF6 /* LevelThreeQuestionList.swift */,
+				50667EE81D705ABF00C8EBF6 /* LevelThreeModel.swift */,
 			);
 			name = LevelThree;
 			sourceTree = "<group>";
@@ -256,9 +264,11 @@
 				50D9C4611D58B11E00221ADD /* LevelOneViewController.swift in Sources */,
 				50E31D151D6BEE3D002F10E0 /* LevelOneModel.swift in Sources */,
 				506FF3301D6E9D3500901A52 /* Result.swift in Sources */,
+				50667EE91D705ABF00C8EBF6 /* LevelThreeModel.swift in Sources */,
 				50D9C4681D5A3EF900221ADD /* QuestionLevelOne.swift in Sources */,
 				5000EABD1D66C6E000F3A21F /* SKMultilineLabel.swift in Sources */,
 				50D9C4631D58B2BD00221ADD /* LevelOneScene.swift in Sources */,
+				50667EE51D7058E600C8EBF6 /* LevelThreeQuestions.swift in Sources */,
 				508BB5141D5864CF00556CE3 /* GameScene.swift in Sources */,
 				508BB5161D5864CF00556CE3 /* GameViewController.swift in Sources */,
 				50FD70981D629D620090CDAD /* notificationView.swift in Sources */,
@@ -269,6 +279,7 @@
 				50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */,
 				50667EE11D70096400C8EBF6 /* LevelThreeScene.swift in Sources */,
 				508BB5101D5864CF00556CE3 /* AppDelegate.swift in Sources */,
+				50667EE71D70593F00C8EBF6 /* LevelThreeQuestionList.swift in Sources */,
 				50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */,
 				50FD70941D6175360090CDAD /* textFiled.swift in Sources */,
 				50D741041D60D38600EF36E4 /* Position.swift in Sources */,

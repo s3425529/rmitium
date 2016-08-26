@@ -167,6 +167,7 @@ class LevelOneScene: SKScene {
             let sprite = CustomSKSpriteNode()
             sprite.color = UIColor.blueColor()
             sprite.alpha = 0
+            sprite.texture = SKTexture(imageNamed: "\(count)")
             sprite.name = "question\(count)"
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
             sprite.zPosition = 0.2
@@ -358,7 +359,8 @@ class LevelOneScene: SKScene {
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
             print("Tick")
-            if state == UtilitiesPortal.stateAnswer && checkResult() {
+            setupScene()
+            /*if state == UtilitiesPortal.stateAnswer && checkResult() {
                 print("tick and state answer")
                 //if resultImage == nil {
                     print("tick display result")
@@ -370,7 +372,7 @@ class LevelOneScene: SKScene {
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
                 print("tick state result")
                 setupScene()
-            }
+            }*/
             return
         }
         

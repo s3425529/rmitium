@@ -1,35 +1,35 @@
 //
-//  LevelOneModel.swift
+//  LevelThreeModel.swift
 //  Rmitium
 //
-//  Created by Thinh Tran on 19/08/2016.
+//  Created by Aoi Mizu on 8/26/16.
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
 import Foundation
-class LevelOneModel {
-    var listOfQuestions: LevelOneQuestionList
+class LevelThreeModel {
+    var listOfQuestions: LevelThreeQuestionList
     var index: Int
     
     private struct Static{
-        static var instance: LevelOneModel?
+        static var instance: LevelThreeModel?
     }
     
-    class var sharedInstance: LevelOneModel
+    class var sharedInstance: LevelThreeModel
     {
         if !(Static.instance != nil)
         {
-            Static.instance = LevelOneModel()
+            Static.instance = LevelThreeModel()
         }
         return Static.instance!
     }
     
     private init(){
-        listOfQuestions = LevelOneQuestionList()
+        listOfQuestions = LevelThreeQuestionList()
         index = 0
     }
     
-    var currentQuestion:LevelOneQuestion {
+    var currentQuestion:LevelThreeQuestion {
         get {
             var current = index
             if index == listOfQuestions.listOfQuestions.count-1 {
