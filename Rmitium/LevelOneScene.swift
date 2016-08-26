@@ -341,10 +341,7 @@ class LevelOneScene: SKScene {
             homeDialogue.hidden = false
             //backHomePage()
             
-            //test last page here
-            //lastPage()
-            
-        }
+                    }
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
