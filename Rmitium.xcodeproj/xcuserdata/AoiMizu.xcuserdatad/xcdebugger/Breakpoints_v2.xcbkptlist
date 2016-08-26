@@ -30,9 +30,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "LevelOneScene"
-            landmarkType = "3">
+            endingLineNumber = "15">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -109,8 +107,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
             endingLineNumber = "21"
-            landmarkName = "levelOneAnswers"
-            landmarkType = "19">
+            landmarkName = "UtilitiesPortal"
+            landmarkType = "3">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
