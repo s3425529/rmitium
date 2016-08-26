@@ -17,6 +17,8 @@ class GameScene: SKScene {
         button.name = "nextButton"
         self.addChild(button)*/
         
+        UtilitiesPortal.score = 0
+        
         let image = SKSpriteNode(imageNamed: "background")
         image.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         image.position = CGPoint(x:frame.midX, y:frame.midY)

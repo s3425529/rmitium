@@ -21,7 +21,7 @@ class LevelOneScene: SKScene {
     var score, factLabel: SKLabelNode!
     
     var lvlOneQuestion: LevelOneQuestion!
-    var state: Int!
+    var state, previousState: Int!
     
     override func didMoveToView(view: SKView) {
         setupScene()
@@ -79,6 +79,7 @@ class LevelOneScene: SKScene {
         show.name = UtilitiesPortal.showButtonName
         show.zPosition = 0.1
         show.alpha = 0.9
+        show.hidden = true
         show.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         show.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*2,
                                 y: UtilitiesPortal.navImgSize/2)
@@ -261,7 +262,8 @@ class LevelOneScene: SKScene {
         
         if state == UtilitiesPortal.stateFact {
             factOverlay.hidden = true
-            state = UtilitiesPortal.stateResult
+            state = previousState
+            previousState = UtilitiesPortal.stateFact
             return
         }
         
@@ -364,29 +366,33 @@ class LevelOneScene: SKScene {
         // Show button selected
         if node.name == UtilitiesPortal.showButtonName {
             if state == UtilitiesPortal.stateResult {
-                if resultImage == nil {
-                    displayAnswers(true)
-                    resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
-                    resultImage.zPosition = 0.5
-                    resultImage.alpha = 1
-                    resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
-                                                   y:UtilitiesPortal.screenHeight/2 )
-                    resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
-                                                   y:UtilitiesPortal.screenHeight/2 )
-                    resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
-                    addChild(resultImage)
-                }
-                else {
-                    displayAnswers(false)
-                    resultImage.removeFromParent()
-                    self.resultImage = nil
-                }
+                displayAnswers(true)
+                resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
+                resultImage.zPosition = 0.5
+                resultImage.alpha = 1
+                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
+                                               y:UtilitiesPortal.screenHeight/2 )
+                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
+                                               y:UtilitiesPortal.screenHeight/2 )
+                resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
+                addChild(resultImage)
+                state = UtilitiesPortal.stateReview
+                return
+            }
+                
+            else if state == UtilitiesPortal.stateReview {
+                displayAnswers(false)
+                resultImage.removeFromParent()
+                self.resultImage = nil
+                state = UtilitiesPortal.stateResult
+                return
             }
             return
         }
         
         //Fact label selected
         if node.name == UtilitiesPortal.factLabelName {
+            previousState = state
             state = UtilitiesPortal.stateFact
             factOverlay.hidden = false
             return
@@ -425,6 +431,8 @@ class LevelOneScene: SKScene {
         score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
         
         tick.texture = SKTexture(imageNamed: "next")
+        
+        show.hidden = false
         
         state = UtilitiesPortal.stateResult
     }
