@@ -15,7 +15,7 @@ class LevelOneScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
-    var resultImage, factOverlay, homeDialogue: SKSpriteNode!
+    var resultImage, infoOverlay, factOverlay, homeDialogue: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel: SKLabelNode!
@@ -56,6 +56,7 @@ class LevelOneScene: SKScene {
         setupDragLabel()
         setupTargets()
         setupFactLabel("Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine.")
+        setupInfo()
         createHomeDialogue()
 
     }
@@ -98,14 +99,15 @@ class LevelOneScene: SKScene {
                                 y: UtilitiesPortal.navImgSize/2)
         addChild(show)
         
-        // Help button
-        let help = SKSpriteNode(imageNamed: "help2")
-        help.zPosition = 0.1
-        help.alpha = 0.9
-        help.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        help.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
+        // Info button
+        let info = SKSpriteNode(imageNamed: "help2")
+        info.name = UtilitiesPortal.infoButonName
+        info.zPosition = 0.1
+        info.alpha = 0.9
+        info.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        info.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
-        addChild(help)
+        addChild(info)
         
         // Score label
         
@@ -227,6 +229,27 @@ class LevelOneScene: SKScene {
         addChild(factOverlay)
     }
     
+    // Info layout
+    func setupInfo(){
+        let infoOverlayText = SKMultilineLabel(text: "Info layout", labelWidth: UtilitiesPortal.screenWidth,
+                                               pos: CGPoint(x: 0, y: 0),fontName: UtilitiesPortal.navLabelFont,
+                                               fontSize: UtilitiesPortal.navLabelSize,
+                                               leading: Int(UtilitiesPortal.navLabelSize))
+        infoOverlayText.name = UtilitiesPortal.factMultiLine
+        infoOverlayText.zPosition = 1
+        
+        infoOverlay = SKSpriteNode()
+        infoOverlay.name = UtilitiesPortal.factOverlayName
+        infoOverlay.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        infoOverlay.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        infoOverlay.color = SKColor.blackColor()
+        infoOverlay.alpha = 0.7
+        infoOverlay.zPosition = 0.9
+        infoOverlay.hidden = true
+        infoOverlay.addChild(infoOverlayText)
+        addChild(infoOverlay)
+    }
+    
     //Show Home Button Dialogue box
     func createHomeDialogue() {
         let yesBtn = SKSpriteNode()
@@ -298,6 +321,12 @@ class LevelOneScene: SKScene {
             factOverlay.hidden = true
             state = previousState
             previousState = UtilitiesPortal.stateFact
+            return
+        }
+        if state == UtilitiesPortal.stateInfo {
+            infoOverlay.hidden = true
+            state = previousState
+            previousState = UtilitiesPortal.stateInfo
             return
         }
         
@@ -399,6 +428,14 @@ class LevelOneScene: SKScene {
                 state = UtilitiesPortal.stateResult
                 return
             }
+            return
+        }
+        
+        // Info selected
+        if node.name == UtilitiesPortal.infoButonName {
+            previousState = state
+            state = UtilitiesPortal.stateInfo
+            infoOverlay.hidden = false
             return
         }
         

@@ -15,9 +15,11 @@ class UtilitiesPortal {
     static let stateAnswer = 0
     static let stateResult = 1
     static let stateReview = 2
-    static let stateFact = 3
+    static let stateInfo = 3
+    static let stateFact = 4
     
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
+    static let levelButtonNames = ["lvl01Btn", "lvl02Btn", "lvl03Btn", "settingBtn"]
     
     static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene",
                                   "aldehyde", "ester", "ether", "thioether", "heterocyclic aromatic"]
@@ -33,14 +35,16 @@ class UtilitiesPortal {
     static let homeButtonName = "homeBtn"
     static let helpButtonName = "helpBtn"
     static let tickButtonName = "tickBtn"
-    static let factLabelName = "factLbl"
-    static let factOverlayName = "factOvl"
-    static let factMultiLine = "factMultiLine"
     static let showButtonName = "showBtn"
     static let nextButtonName = "nextBtn"
+    static let infoButonName = "infoBtn"
     static let redoButtonName = "redo"
     static let shareButtonName = "share"
     static let backButtonName = "back"
+    
+    static let factLabelName = "factLbl"
+    static let factOverlayName = "factOvl"
+    static let factMultiLine = "factMultiLine"
    
     
     static let buttonLevelWidth: CGFloat = 1153
