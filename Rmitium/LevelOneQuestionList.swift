@@ -43,7 +43,6 @@ struct LevelOneQuestionList {
         for i in 0..<UtilitiesPortal.record.count-1 {
             
             if randomQuestionIndex == UtilitiesPortal.record[i]{
-                
                 UtilitiesPortal.record.removeAtIndex(i)
                 return randomQuestionIndex
             }
