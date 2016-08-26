@@ -26,6 +26,7 @@
 		50D9C4681D5A3EF900221ADD /* QuestionLevelOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */; };
 		50E31D151D6BEE3D002F10E0 /* LevelOneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E31D131D66EA9C002F10E0 /* LevelOneModel.swift */; };
 		50E31D161D6BEE5B002F10E0 /* LevelOneQuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E31D111D66DAF5002F10E0 /* LevelOneQuestionList.swift */; };
+		50E31D1A1D700C19002F10E0 /* LevelThreeQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E31D191D700C19002F10E0 /* LevelThreeQuestions.swift */; };
 		50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */; };
 		50FD70921D61617B0090CDAD /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70911D61617B0090CDAD /* CustomButton.swift */; };
 		50FD70941D6175360090CDAD /* textFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70931D6175360090CDAD /* textFiled.swift */; };
@@ -54,6 +55,7 @@
 		50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLevelOne.swift; sourceTree = "<group>"; };
 		50E31D111D66DAF5002F10E0 /* LevelOneQuestionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneQuestionList.swift; sourceTree = "<group>"; };
 		50E31D131D66EA9C002F10E0 /* LevelOneModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneModel.swift; sourceTree = "<group>"; };
+		50E31D191D700C19002F10E0 /* LevelThreeQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeQuestions.swift; sourceTree = "<group>"; };
 		50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneQuestions.swift; sourceTree = "<group>"; };
 		50FD70911D61617B0090CDAD /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		50FD70931D6175360090CDAD /* textFiled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFiled.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		508BB50E1D5864CF00556CE3 /* Rmitium */ = {
 			isa = PBXGroup;
 			children = (
+				50E31D181D700BFD002F10E0 /* LevelThree */,
 				5096917F1D638BD500CFD453 /* CustomUI */,
 				50D741021D60D36F00EF36E4 /* Position */,
 				50593BEC1D5B214400DFE191 /* Utilities */,
@@ -156,6 +159,14 @@
 				509691801D639EA300CFD453 /* Question.swift */,
 			);
 			name = DataPortal;
+			sourceTree = "<group>";
+		};
+		50E31D181D700BFD002F10E0 /* LevelThree */ = {
+			isa = PBXGroup;
+			children = (
+				50E31D191D700C19002F10E0 /* LevelThreeQuestions.swift */,
+			);
+			name = LevelThree;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +256,7 @@
 				506E77671D670135004EE1D4 /* CustomSKSpriteNode.swift in Sources */,
 				509691811D639EA300CFD453 /* Question.swift in Sources */,
 				50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */,
+				50E31D1A1D700C19002F10E0 /* LevelThreeQuestions.swift in Sources */,
 				508BB5101D5864CF00556CE3 /* AppDelegate.swift in Sources */,
 				50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */,
 				50FD70941D6175360090CDAD /* textFiled.swift in Sources */,
