@@ -10,7 +10,7 @@ import SpriteKit
 
 class Result: SKScene{
     var redo, share, back: SKSpriteNode!
-    
+    var awardText:String!
     override func didMoveToView(view: SKView) {
         
         
@@ -76,8 +76,19 @@ class Result: SKScene{
         award.zPosition = 10
         award.position = CGPoint(x:UtilitiesPortal.screenWidth/2,
             y: UtilitiesPortal.screenHeight/2)
+        award.zPosition = 0.5
         award.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(award)
+        
+        let score = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
+     
+
+        awardText = String(UtilitiesPortal.score)
+        score.text = awardText
+        score.position = CGPoint(x:UtilitiesPortal.screenWidth/2,
+            y: UtilitiesPortal.screenHeight/2)
+        score.zPosition = 1
+        addChild(score)
         
         
         
@@ -98,25 +109,29 @@ class Result: SKScene{
         //share button selected
         if node.name == UtilitiesPortal.shareButtonName {
             print("share")
-            let shareContent = "hello"
+            let shareContent = awardText
             displayShareSheet(shareContent)
+            UtilitiesPortal.score = 0
             return
         }
         
         //redo button selected
         if node.name == UtilitiesPortal.redoButtonName {
             print("redo")
+            UtilitiesPortal.score = 0
             backLevel1()
             return
         }
         //back button selected
         if node.name == UtilitiesPortal.backButtonName {
             print("back")
+            UtilitiesPortal.score = 0
             backHomePage()
             return
         }
         if node.name == UtilitiesPortal.homeButtonName {
             backHomePage()
+          
             return
         }
         
@@ -140,6 +155,7 @@ class Result: SKScene{
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
+        UtilitiesPortal.score = 0
     }
     
     func backLevel1(){
@@ -148,6 +164,7 @@ class Result: SKScene{
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
+        UtilitiesPortal.score = 0
         
     }
     

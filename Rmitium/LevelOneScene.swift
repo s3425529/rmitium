@@ -19,7 +19,7 @@ class LevelOneScene: SKScene {
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel: SKLabelNode!
-    
+    var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
     var state: Int!
     
@@ -94,6 +94,7 @@ class LevelOneScene: SKScene {
         addChild(help)
         
         // Score label
+        
         score = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         score.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         score.zPosition = 0.1
@@ -334,32 +335,25 @@ class LevelOneScene: SKScene {
             
             if state == UtilitiesPortal.stateResult {
                 print("tick state result")
-                setupScene()
-                return
+                if( questionId == 9){
+                    print("display result")
+                    let secondScene = Result(size: self.size)
+                    let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+                    secondScene.scaleMode = SKSceneScaleMode.AspectFill
+                    self.scene!.view?.presentScene(secondScene, transition: transition)
+
+                    return
+                }else{
+                    questionId++
+                    setupScene()
+                    return
+                }
+                
             }
             return
         }
         
-        //share button selected
-        if node.name == UtilitiesPortal.shareButtonName {
-            print("share")
-            let shareContent = "hello"
-            displayShareSheet(shareContent)
-            return
-        }
-        
-        //redo button selected
-        if node.name == UtilitiesPortal.redoButtonName {
-            print("redo")
-            setupScene()
-            return
-        }
-        //back button selected
-        if node.name == UtilitiesPortal.backButtonName {
-            print("back")
-            backHomePage()
-            return
-        }
+  
         
         // Show button selected
         if node.name == UtilitiesPortal.showButtonName {
@@ -442,66 +436,6 @@ class LevelOneScene: SKScene {
                 answeredQuestions[x].hidden = false
             }
         }
-    }
-    func lastPage(){
-        
-        self.removeAllChildren()
-        setupItems()
-        tick.removeFromParent()
-        tick = nil
-        show.removeFromParent()
-        show = nil
-        
-        // back button
-        back = SKSpriteNode(imageNamed: "next ")
-        back.name = UtilitiesPortal.backButtonName
-        back.zPosition = 0.1
-        back.alpha = 0.9
-        back.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        back.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize,
-                                y: UtilitiesPortal.navImgSize/2)
-        addChild(back)
-        
-        // redo button
-        redo = SKSpriteNode(imageNamed: "replay")
-        redo.name = UtilitiesPortal.redoButtonName
-        redo.zPosition = 0.1
-        redo.alpha = 0.9
-        redo.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        redo.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*2,
-                                y: UtilitiesPortal.navImgSize/2)
-        addChild(redo)
-        
-        // share button
-        share = SKSpriteNode(imageNamed: "share")
-        share.name = UtilitiesPortal.shareButtonName
-        share.zPosition = 0.1
-        share.alpha = 0.9
-        share.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        share.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-                                 y: UtilitiesPortal.navImgSize/2)
-        addChild(share)
-        
-        
-        let award = SKSpriteNode(imageNamed: "gold")
-        award.name = "award"
-        award.zPosition = 10
-        award.position = CGPoint(x:UtilitiesPortal.screenWidth/2,
-                                 y: UtilitiesPortal.screenHeight/2)
-        award.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
-        addChild(award)
-        
-        
-    }
-    // Share the score to any social media!
-    func displayShareSheet(shareContent:String) {
-        
-        let myShare = "My best is \(shareContent)"
-        let controller = self.view?.window?.rootViewController as! GameViewController
-        
-        let activityVC: UIActivityViewController = UIActivityViewController(activityItems: [myShare], applicationActivities: nil)
-        
-        controller.presentViewController(activityVC, animated: true, completion: nil)
     }
     
     //back to the home page,
