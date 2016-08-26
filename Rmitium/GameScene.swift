@@ -184,6 +184,15 @@ class GameScene: SKScene {
             self.scene!.view?.presentScene(secondScene, transition: transition)
         }
         
+        // If next button is touched, start transition to second scene
+        if (node.name == UtilitiesPortal.levelLabelNames[2]) {
+            let secondScene = LevelThreeScene(size: self.size)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+            //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+        }
+        
 
 
     }

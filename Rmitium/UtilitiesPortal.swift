@@ -18,10 +18,12 @@ class UtilitiesPortal {
     static let stateFact = 3
     
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
+    
     static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene",
                                   "aldehyde", "ester", "ether", "thioether", "heterocyclic aromatic"]
     
-    static let levelThreeAnswers = ["dipole-dipole", "h-ponding", "ionic", "vanderwaals"]
+    static let levelThreeAnswers = ["dipole-dipole", "h-bonding", "ionic", "vanderwaals"]
+    
     static let levelLabelTexts = ["Level 1: Identifying Functional Groups",
                                   "Level 2: Building Molecules",
                                   "Level 3: Intermolecular Forces", "SETTINGS"]

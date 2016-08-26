@@ -26,7 +26,7 @@ class LevelThreeScene: SKScene {
     var chosenAnswer: CustomSKSpriteNode!
     var resultImage, factOverlay: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
-    var show, tick, redo, share, back: SKSpriteNode!
+    var show, tick: SKSpriteNode!
     var score, factLabel: SKLabelNode!
     var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
@@ -126,13 +126,14 @@ class LevelThreeScene: SKScene {
     }
     
     func setupDragLabel() {
-        for count in 0...UtilitiesPortal.levelOneAnswers.count-1 {
-            let answer = CustomSKSpriteNode(imageNamed: UtilitiesPortal.levelOneAnswers[count])
-            answer.name = UtilitiesPortal.levelOneAnswers[count]
-            answer.value = UtilitiesPortal.levelOneAnswers[count]
+        for count in 0...UtilitiesPortal.levelThreeAnswers.count-1 {
+            let answer = CustomSKSpriteNode(imageNamed:
+                "\(UtilitiesPortal.levelThreeAnswers[count])-border")
+            answer.name = UtilitiesPortal.levelThreeAnswers[count]
+            answer.value = UtilitiesPortal.levelThreeAnswers[count]
             answer.zPosition = 0.3
             answer.alpha = 0.9
-            answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
+            /*answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
                                  height: UtilitiesPortal.screenHeight*0.1)
             
             if count < 5 {
@@ -146,7 +147,11 @@ class LevelThreeScene: SKScene {
             else {
                 answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
                                           y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count-5)))
-            }
+             }*/
+            answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+                                 height: UtilitiesPortal.screenHeight*0.15)
+            answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
+                                      y:UtilitiesPortal.screenHeight*(0.8-0.2*CGFloat(count)))
             
             addChild(answer)
             answers.append(answer)

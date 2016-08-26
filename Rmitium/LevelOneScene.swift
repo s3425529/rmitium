@@ -19,7 +19,7 @@ class LevelOneScene: SKScene {
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel: SKLabelNode!
-    var questionId = 0
+    //var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
     var state, previousState: Int!
     var listOfQuestions:[LevelOneQuestion] = []
@@ -360,7 +360,7 @@ class LevelOneScene: SKScene {
             
             if state == UtilitiesPortal.stateResult {
                 print("tick state result")
-                if( questionId == 8){
+                if lvlOneQuestion.positions.count == 0 {
                     print("display result")
                     let secondScene = Result(size: self.size)
                     let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
@@ -368,8 +368,8 @@ class LevelOneScene: SKScene {
                     self.scene!.view?.presentScene(secondScene, transition: transition)
 
                     return
-                }else{
-                    questionId += 1
+                }
+                else{
                     setupScene()
                     return
                 }
