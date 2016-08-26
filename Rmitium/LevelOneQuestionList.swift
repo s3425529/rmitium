@@ -21,7 +21,7 @@ struct LevelOneQuestionList {
     mutating func shuffle() {
         
         // Perform the swap operation equal to the number of Questions in the list
-        for currentQuestionIndex in 1..<listOfQuestions.count {
+        for currentQuestionIndex in 0..<listOfQuestions.count-1 {
             
             // Random number between 0 and the number of Questions in list
             //let randomQuestionIndex = Int(arc4random_uniform(UInt32(listOfQuestions.count)))
@@ -40,7 +40,7 @@ struct LevelOneQuestionList {
         let randomQuestionIndex = Int(arc4random_uniform(UInt32(listOfQuestions.count)))
        
         
-        for i in 1..<UtilitiesPortal.record.count{
+        for i in 0..<UtilitiesPortal.record.count-1 {
             
             if randomQuestionIndex == UtilitiesPortal.record[i]{
                 
@@ -56,11 +56,12 @@ struct LevelOneQuestionList {
         if numberOfQuestion > listOfQuestions.count {
             return listOfQuestions
         }
-            var selectedQuestions:[LevelOneQuestion] = []
+        var selectedQuestions:[LevelOneQuestion] = []
         for count in 0...numberOfQuestion-1{
             selectedQuestions.append(listOfQuestions[count])
             
         }
+        selectedQuestions.append(listOfQuestions[listOfQuestions.count-1])
         
         listOfQuestions = selectedQuestions
         return listOfQuestions
