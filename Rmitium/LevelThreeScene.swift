@@ -26,7 +26,7 @@ class LevelThreeScene: SKScene {
     
     
     override func didMoveToView(view: SKView) {
-        initRecord()
+        //initRecord()
         setupScene()
     }
     
@@ -37,7 +37,7 @@ class LevelThreeScene: SKScene {
         questions.removeAll()
         answeredQuestions.removeAll()
         
-        lvlThreeQuestion = LevelThreeModel.sharedInstance.currentQuestion
+        lvlThreeQuestion = LevelThreeModel.currentQuestion
         // Result page
         if lvlThreeQuestion.positions.count == 0 {
             let secondScene = Result(size: self.size)
@@ -55,7 +55,7 @@ class LevelThreeScene: SKScene {
         
         setupDragLabel()
         setupTargets()
-        setupFactLabel("Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine.")
+        setupFactLabel()
         setupInfo()
         createHomeDialogue()
         
@@ -186,10 +186,11 @@ class LevelThreeScene: SKScene {
     }
     
     // Adding Fact label
-    func setupFactLabel(fact: String){
-        //let randomIndex = Int(arc4random_uniform(UInt32(array.)))
-        //print(array[randomIndex])
-        let index = fact.startIndex.advancedBy(8)
+    func setupFactLabel(){
+        //let randomIndex = Int(arc4random_uniform(UInt32(lvlThreeQuestion.facts.count)))
+        //let fact = lvlThreeQuestion.facts[randomIndex]
+        let fact = "Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine."
+        let index = fact.startIndex.advancedBy(15)
         let shortenFact = fact.substringToIndex(index)
         
         factLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
@@ -270,12 +271,12 @@ class LevelThreeScene: SKScene {
         chosenAnswer.position = touch!.locationInNode(self)
         //print("+++++++++++++++++++++++++")
         
-        let xPostion = chosenAnswer.position.x
+        /*let xPostion = chosenAnswer.position.x
         let yPostion = chosenAnswer.position.y
         let x = xPostion / UtilitiesPortal.screenWidth
         let y = yPostion / UtilitiesPortal.screenHeight
         print("x=\(x)")
-        print("y=\(y)")
+        print("y=\(y)")*/
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -382,8 +383,6 @@ class LevelThreeScene: SKScene {
             print("Tick")
             //setupScene()
             if state == UtilitiesPortal.stateAnswer && checkResult() {
-                print("tick and state answer")
-                print("tick display result")
                 displayResult()
                 return
             }
@@ -501,13 +500,14 @@ class LevelThreeScene: SKScene {
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
-    func initRecord(){
+    
+    /*func initRecord(){
         listOfQuestions = LevelThreeQuestion.getQuestions()
         for item in 0..<listOfQuestions.count{
             UtilitiesPortal.record.append(item)
         }
         
-    }
+    }*/
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

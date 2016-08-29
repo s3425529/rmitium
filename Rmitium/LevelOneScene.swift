@@ -37,7 +37,7 @@ class LevelOneScene: SKScene {
         questions.removeAll()
         answeredQuestions.removeAll()
         
-        lvlOneQuestion = LevelOneModel.sharedInstance.currentQuestion
+        lvlOneQuestion = LevelOneModel.currentQuestion
         // Result page
         if lvlOneQuestion.positions.count == 0 {
             let secondScene = Result(size: self.size)
@@ -55,7 +55,7 @@ class LevelOneScene: SKScene {
         
         setupDragLabel()
         setupTargets()
-        setupFactLabel("Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine.")
+        setupFactLabel()
         setupInfo()
         createHomeDialogue()
 
@@ -193,11 +193,11 @@ class LevelOneScene: SKScene {
     }
     
     // Adding Fact label
-    func setupFactLabel(fact: String){
-        //let randomIndex = Int(arc4random_uniform(UInt32(array.)))
+    func setupFactLabel(){
+        let randomIndex = Int(arc4random_uniform(UInt32(lvlOneQuestion.facts.count)))
         //print(array[randomIndex])
-        let fact = fact
-        let index = fact.startIndex.advancedBy(8)
+        let fact = lvlOneQuestion.facts[randomIndex]
+        let index = fact.startIndex.advancedBy(15)
         let shortenFact = fact.substringToIndex(index)
         
         factLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
@@ -278,12 +278,12 @@ class LevelOneScene: SKScene {
         chosenAnswer.position = touch!.locationInNode(self)
         //print("+++++++++++++++++++++++++")
         
-        let xPostion = chosenAnswer.position.x
+        /*let xPostion = chosenAnswer.position.x
         let yPostion = chosenAnswer.position.y
         let x = xPostion / UtilitiesPortal.screenWidth
         let y = yPostion / UtilitiesPortal.screenHeight
         print("x=\(x)")
-        print("y=\(y)")
+        print("y=\(y)")*/
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -384,21 +384,15 @@ class LevelOneScene: SKScene {
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
-            print("Tick")
-            setupScene()
-            /*if state == UtilitiesPortal.stateAnswer && checkResult() {
-                print("tick and state answer")
-                //if resultImage == nil {
-                    print("tick display result")
-                    displayResult()
-                //}
+            if state == UtilitiesPortal.stateAnswer && checkResult() {
+                displayResult()
                 return
             }
             
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
                 print("tick state result")
                 setupScene()
-            }*/
+            }
             return
         }
         

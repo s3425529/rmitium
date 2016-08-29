@@ -8,10 +8,10 @@
 
 import Foundation
 class LevelThreeModel {
-    var listOfQuestions: LevelThreeQuestionList
-    var index: Int
+    static var listOfQuestions: [LevelThreeQuestion] = []
+    static var index: Int = 0
     
-    private struct Static{
+    /*private struct Static{
         static var instance: LevelThreeModel?
     }
     
@@ -22,24 +22,23 @@ class LevelThreeModel {
             Static.instance = LevelThreeModel()
         }
         return Static.instance!
-    }
+    }*/
     
-    private init(){
-        listOfQuestions = LevelThreeQuestionList()
+    static func reset() {
+        listOfQuestions = LevelThreeQuestionList.getQuestionsList()
         index = 0
     }
     
-    var currentQuestion:LevelThreeQuestion {
+    static var currentQuestion:LevelThreeQuestion {
         get {
-            var current = index
-            if index == listOfQuestions.listOfQuestions.count-1 {
-                index = 1
-                current = 0
+            let current = index
+            if index == listOfQuestions.count {
+                reset()
             }
             else {
                 index = index + 1
             }
-            return listOfQuestions.listOfQuestions[current]
+            return listOfQuestions[current]
         }
     }
 }

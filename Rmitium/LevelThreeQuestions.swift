@@ -34,7 +34,7 @@ enum LevelThreeQuestion:Int{
         }
     }
     
-    case NilQuestion=0, QuestionOne=1, QuestionTwo, QuestionThree, QuestionFour, QuestionFive, QuestionSix, QuestionSeven,QuestionEight, QuestionNine, QuestionTen
+    case NilQuestion=0, QuestionOne, QuestionTwo, QuestionThree, QuestionFour, QuestionFive, QuestionSix, QuestionSeven, QuestionEight, QuestionNine, QuestionTen
     
     var imageName:String{
         get{
@@ -71,14 +71,14 @@ enum LevelThreeQuestion:Int{
                 case .NilQuestion: return []
                 case .QuestionOne: return ["h-bonding", "vanderwaals", "ionic"]
                 case .QuestionTwo: return ["dipole-dipole"]
-                case .QuestionThree: return ["H-bonding"]
-                case .QuestionFour: return ["ionic", "H-bonding"]
-                case .QuestionFive: return ["H-bonding", "H-bonding"]
-                case .QuestionSix: return ["van der Waal's", "van der Waal's"]
+                case .QuestionThree: return ["h-bonding"]
+                case .QuestionFour: return ["ionic", "h-bonding"]
+                case .QuestionFive: return ["h-bonding", "h-bonding"]
+                case .QuestionSix: return ["vanderwaals", "vanderwaals"]
                 case .QuestionSeven: return ["dipole-dipole"]
-                case .QuestionEight: return ["H-bonging", "van ser Waal's", "dipole-dipole"]
-                case .QuestionNine: return ["H-bonging", "dipole-dipole", "H-bonding", "van der Waal's","van ser Waal's"]
-                case .QuestionTen: return ["H-bonging"]
+                case .QuestionEight: return ["h-bonding", "van ser Waal's", "dipole-dipole"]
+                case .QuestionNine: return ["h-bonding", "dipole-dipole", "h-bonding", "vanderwaals", "vanderwaals"]
+                case .QuestionTen: return ["h-bonding"]
             }
         }
     }
@@ -121,8 +121,8 @@ enum LevelThreeQuestion:Int{
     }
     
     static func getQuestions() ->[LevelThreeQuestion]{
-        return [QuestionOne/*,QuestionTwo,QuestionThree,QuestionFour,QuestionFive,QuestionSix,
-                QuestionSeven,QuestionEight,QuestionNine,QuestionTen*/,NilQuestion]
+        return [QuestionOne, QuestionTwo, QuestionThree, QuestionFour, QuestionFive, QuestionSix,
+                QuestionSeven, QuestionEight, QuestionNine, QuestionTen, NilQuestion]
     }
     
 }

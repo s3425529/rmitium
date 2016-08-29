@@ -7,18 +7,23 @@
 //
 
 import Foundation
-struct LevelThreeQuestionList {
-    var listOfQuestions:[LevelThreeQuestion]
-    var index = 0
+class LevelThreeQuestionList {
+    static var listOfQuestions:[LevelThreeQuestion] = []
     
-    
-    init(){
-        listOfQuestions = LevelThreeQuestion.getQuestions()
+    /*init() {
+        listOfQuestions = getQuestionsList()
         //shuffle()
-        select(1)
+        select(10)
+    }*/
+    
+    static func getQuestionsList() ->[LevelThreeQuestion] {
+        listOfQuestions = LevelThreeQuestion.getQuestions()
+        shuffle()
+        select(10)
+        return listOfQuestions
     }
     
-    mutating func shuffle() {
+    static func shuffle() {
         
         // Perform the swap operation equal to the number of Questions in the list
         for currentQuestionIndex in 0..<listOfQuestions.count-1 {
@@ -35,29 +40,28 @@ struct LevelThreeQuestionList {
         }
     }
     
-    mutating func random() -> Int{
+    static func random() -> Int{
         
-        let randomQuestionIndex = Int(arc4random_uniform(UInt32(listOfQuestions.count)))
+        let randomQuestionIndex = Int(arc4random_uniform(UInt32(listOfQuestions.count-1)))
+        return randomQuestionIndex
         
-        
-        for i in 0..<UtilitiesPortal.record.count-1 {
+        /*for i in 0..<listOfQuestions.count-1 {
             
             if randomQuestionIndex == UtilitiesPortal.record[i]{
-                
                 UtilitiesPortal.record.removeAtIndex(i)
                 return randomQuestionIndex
             }
         }
-        return 0
+        return 0*/
     }
     
-    mutating func select(numberOfQuestion: Int) ->[LevelThreeQuestion]
+    static func select(numberOfQuestion: Int) ->[LevelThreeQuestion]
     {
-        if numberOfQuestion > listOfQuestions.count {
+        if numberOfQuestion >= listOfQuestions.count {
             return listOfQuestions
         }
         var selectedQuestions:[LevelThreeQuestion] = []
-        for count in 0...numberOfQuestion{
+        for count in 0...numberOfQuestion-1 {
             selectedQuestions.append(listOfQuestions[count])
             
         }

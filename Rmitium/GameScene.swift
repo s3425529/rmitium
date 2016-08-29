@@ -120,7 +120,7 @@ class GameScene: SKScene {
         settingView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         settingView.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
         settingView.color = SKColor.blackColor()
-        settingView.alpha = 0.5
+        settingView.alpha = 0.7
         settingView.zPosition = 0.9
         settingView.hidden = true
         addChild(settingView)
@@ -161,6 +161,7 @@ class GameScene: SKScene {
             infoOverlay.hidden = false
             return
         }
+        
         // Setting selected
         if node.name == UtilitiesPortal.settingButtonName {
             print("settting")
@@ -173,12 +174,15 @@ class GameScene: SKScene {
         // If next button is touched, start transition to second scene
         if (node.name == UtilitiesPortal.levelLabelNames[0]
                                 || node.name == UtilitiesPortal.levelButtonNames[0]) {
+            LevelOneModel.reset()
+            
             let secondScene = LevelOneScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
         }
+        
         if (node.name == UtilitiesPortal.levelLabelNames[1]
                                 || node.name == UtilitiesPortal.levelButtonNames[1]) {
             let secondScene = Result(size: self.size)
@@ -191,6 +195,8 @@ class GameScene: SKScene {
         // If next button is touched, start transition to second scene
         if (node.name == UtilitiesPortal.levelLabelNames[2]
                                 || node.name == UtilitiesPortal.levelButtonNames[2]) {
+            LevelThreeModel.reset()
+            
             let secondScene = LevelThreeScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
