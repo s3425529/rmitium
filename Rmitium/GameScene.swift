@@ -9,7 +9,7 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    var infoOverlay: SKSpriteNode!
+    var infoOverlay, settingView: SKSpriteNode!
     var state: Int!
     
     override func didMoveToView(view: SKView) {
@@ -34,14 +34,16 @@ class GameScene: SKScene {
         // Add new button
         
         // Setting button
-        let home = SKSpriteNode(imageNamed: "settings")
-        home.name = UtilitiesPortal.homeButtonName
-        home.zPosition = 0.1
-        home.alpha = 0.2
-        home.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        home.position = CGPoint(x:UtilitiesPortal.borderSize/2,
+        let setting = SKSpriteNode(imageNamed: "settings")
+        setting.name = UtilitiesPortal.settingButtonName
+        setting.zPosition = 0.1
+        //setting.alpha = 0.2
+        setting.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        setting.position = CGPoint(x:UtilitiesPortal.borderSize/2,
             y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
-        addChild(home)
+        addChild(setting)
+        
+        settingItem()
         
         // Help button
         let info = SKSpriteNode(imageNamed: "help2")
@@ -87,6 +89,7 @@ class GameScene: SKScene {
             self.addChild(levelButton)
             
             setupInfo()
+            
         }
     }
     
@@ -111,6 +114,18 @@ class GameScene: SKScene {
         addChild(infoOverlay)
     }
     
+    func settingItem(){
+        settingView = SKSpriteNode()
+        settingView.name = UtilitiesPortal.settingViewButtonName
+        settingView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        settingView.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        settingView.color = SKColor.blackColor()
+        settingView.alpha = 0.5
+        settingView.zPosition = 0.9
+        settingView.hidden = true
+        addChild(settingView)
+    }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
         /*for touch in touches {
@@ -130,6 +145,8 @@ class GameScene: SKScene {
          }*/
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
+            settingView.hidden = true
+            
             state = UtilitiesPortal.stateAnswer
             return
         }
@@ -144,6 +161,14 @@ class GameScene: SKScene {
             infoOverlay.hidden = false
             return
         }
+        // Setting selected
+        if node.name == UtilitiesPortal.settingButtonName {
+            print("settting")
+            state = UtilitiesPortal.stateInfo
+            settingView.hidden = false
+            return
+        }
+
         
         // If next button is touched, start transition to second scene
         if (node.name == UtilitiesPortal.levelLabelNames[0]

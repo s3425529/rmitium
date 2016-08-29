@@ -122,6 +122,7 @@ class LevelThreeScene: SKScene {
     func setupImage(){
         // Image
         let image = SKSpriteNode(imageNamed: lvlThreeQuestion.imageName)
+        
         image.zPosition = 0.1
         image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
