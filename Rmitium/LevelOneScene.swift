@@ -19,6 +19,7 @@ class LevelOneScene: SKScene {
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel: SKLabelNode!
+    var arrow1, arrow2, arrow3, arrow4: SKLabelNode!
     //var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
     var state, previousState: Int!
@@ -82,7 +83,7 @@ class LevelOneScene: SKScene {
         tick = SKSpriteNode(imageNamed: "tick-grey")
         tick.name = UtilitiesPortal.tickButtonName
         tick.zPosition = 0.1
-        tick.alpha = 0.9
+        tick.alpha = 1
         tick.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize,
                                 y: UtilitiesPortal.navImgSize/2)
@@ -92,7 +93,7 @@ class LevelOneScene: SKScene {
         show = SKSpriteNode(imageNamed: "show")
         show.name = UtilitiesPortal.showButtonName
         show.zPosition = 0.1
-        show.alpha = 0.9
+        show.alpha = 1
         show.hidden = true
         show.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         show.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*2,
@@ -103,7 +104,7 @@ class LevelOneScene: SKScene {
         let info = SKSpriteNode(imageNamed: "help2")
         info.name = UtilitiesPortal.infoButonName
         info.zPosition = 0.1
-        info.alpha = 0.9
+        info.alpha = 1
         info.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         info.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
@@ -231,12 +232,44 @@ class LevelOneScene: SKScene {
     
     // Info layout
     func setupInfo(){
-        let infoOverlayText = SKMultilineLabel(text: "Info layout", labelWidth: UtilitiesPortal.screenWidth,
+        /*let infoOverlayText = SKMultilineLabel(text: "Info layout", labelWidth: UtilitiesPortal.screenWidth,
                                                pos: CGPoint(x: 0, y: 0),fontName: UtilitiesPortal.navLabelFont,
                                                fontSize: UtilitiesPortal.navLabelSize,
                                                leading: Int(UtilitiesPortal.navLabelSize))
         infoOverlayText.name = UtilitiesPortal.factMultiLine
-        infoOverlayText.zPosition = 1
+        infoOverlayText.zPosition = 1*/
+        
+        let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowOneName)
+        arrow01.name = UtilitiesPortal.infoArrowOneName
+        arrow01.zPosition = 1
+        arrow01.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.4,
+                                   y: UtilitiesPortal.screenHeight * -0.3)
+        
+        let arrow02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowTwoName)
+        arrow02.name = UtilitiesPortal.infoArrowTwoName
+        arrow02.zPosition = 1
+        arrow02.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow02.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.4,
+                                   y: UtilitiesPortal.screenHeight * 0.3)
+        
+        let arrow03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowThreeName)
+        arrow03.name = UtilitiesPortal.infoArrowThreeName
+        arrow03.zPosition = 1
+        arrow03.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.2,
+                                   y: UtilitiesPortal.screenHeight * -0.1)
+
+        let arrow04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowFourName)
+        arrow04.name = UtilitiesPortal.infoArrowFourName
+        arrow04.zPosition = 1
+        arrow04.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow04.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.15,
+                                   y: UtilitiesPortal.screenHeight * -0.1)
         
         infoOverlay = SKSpriteNode()
         infoOverlay.name = UtilitiesPortal.factOverlayName
@@ -246,7 +279,13 @@ class LevelOneScene: SKScene {
         infoOverlay.alpha = 0.7
         infoOverlay.zPosition = 0.9
         infoOverlay.hidden = true
-        infoOverlay.addChild(infoOverlayText)
+        
+        //infoOverlay.addChild(infoOverlayText)
+        infoOverlay.addChild(arrow01)
+        infoOverlay.addChild(arrow02)
+        infoOverlay.addChild(arrow03)
+        infoOverlay.addChild(arrow04)
+        
         addChild(infoOverlay)
     }
     
@@ -404,8 +443,6 @@ class LevelOneScene: SKScene {
                 resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
                 resultImage.zPosition = 0.5
                 resultImage.alpha = 1
-                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
-                                               y:UtilitiesPortal.screenHeight/2 )
                 resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
                                                y:UtilitiesPortal.screenHeight/2 )
                 resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)

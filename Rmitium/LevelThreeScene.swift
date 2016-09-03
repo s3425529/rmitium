@@ -82,7 +82,7 @@ class LevelThreeScene: SKScene {
         tick = SKSpriteNode(imageNamed: "tick-grey")
         tick.name = UtilitiesPortal.tickButtonName
         tick.zPosition = 0.1
-        tick.alpha = 0.9
+        tick.alpha = 1
         tick.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize,
                                 y: UtilitiesPortal.navImgSize/2)
@@ -92,7 +92,7 @@ class LevelThreeScene: SKScene {
         show = SKSpriteNode(imageNamed: "show")
         show.name = UtilitiesPortal.showButtonName
         show.zPosition = 0.1
-        show.alpha = 0.9
+        show.alpha = 1
         show.hidden = true
         show.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         show.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*2,
@@ -103,7 +103,7 @@ class LevelThreeScene: SKScene {
         let info = SKSpriteNode(imageNamed: "help2")
         info.name = UtilitiesPortal.infoButonName
         info.zPosition = 0.1
-        info.alpha = 0.9
+        info.alpha = 1
         info.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         info.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)

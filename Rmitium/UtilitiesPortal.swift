@@ -58,6 +58,11 @@ class UtilitiesPortal {
     
     static let alphabet = ["A", "B", "C", "D", "E", "F", "G"] //HIJKLMNOPQRSTUVXYZ"
     
+    static let infoArrowOneName = "arrow1"
+    static let infoArrowTwoName = "arrow2"
+    static let infoArrowThreeName = "arrow3"
+    static let infoArrowFourName = "arrow4"
+    
     static let screenSize: CGRect = UIScreen.mainScreen().bounds
     static let screenWidth = screenSize.width
     static let screenHeight = screenSize.height
