@@ -112,7 +112,7 @@ enum LevelOneQuestion:Int{
         }
     }
     
-    static func getQuestions() ->[LevelOneQuestion]{
+    static func getLvl1Questions() ->[LevelOneQuestion]{
         return [QuestionOne,QuestionTwo,QuestionThree,QuestionFour,QuestionFive,QuestionSix,
         QuestionSeven,QuestionEight,QuestionNine]
     }

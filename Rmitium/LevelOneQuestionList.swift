@@ -12,7 +12,7 @@ struct LevelOneQuestionList {
     var index = 0
     
     init(){
-        listOfQuestions = LevelOneQuestion.getQuestions()
+        listOfQuestions = LevelOneQuestion.getLvl1Questions()
         shuffle()
         select(9)
     }

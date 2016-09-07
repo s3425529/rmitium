@@ -37,6 +37,8 @@ class UtilitiesPortal {
     static let redoButtonName = "redo"
     static let shareButtonName = "share"
     static let backButtonName = "back"
+    static let yesButtonName = "yesBtn"
+    static let noButtonName = "noBtn"
     
     static let buttonLevelWidth: CGFloat = 1153
     static let buttonLevelHeight: CGFloat  = 317

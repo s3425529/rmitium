@@ -15,7 +15,7 @@ class LevelOneScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
-    var resultImage, factOverlay, homeDialogue: SKSpriteNode!
+    var resultImage, factOverlay, homeDialogue, yesBtn, noBtn: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel: SKLabelNode!
@@ -40,12 +40,11 @@ class LevelOneScene: SKScene {
         setupImage()
         
         setupItems()
-        
         setupDragLabel()
         setupTargets()
-        setupFactLabel("Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine.")
+        setupFactLabel(lvlOneQuestion.facts[Int(arc4random_uniform(10))])
         createHomeDialogue()
-
+        
     }
     func setupItems() {
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
@@ -216,8 +215,11 @@ class LevelOneScene: SKScene {
     
     //Show Home Button Dialogue box
     func createHomeDialogue() {
-        let yesBtn = SKSpriteNode()
-        let noBtn = SKSpriteNode()
+        yesBtn = SKSpriteNode()
+        noBtn = SKSpriteNode()
+        
+        //let alertMessage = SKMultilineLabel(text: "Your progress will not be saved! Are you sure you want to return to Menu?", labelWidth: UtilitiesPortal.screenWidth/3, pos: CGPoint(x: 0, y: UtilitiesPortal.screenHeight/8), fontName: UtilitiesPortal.navLabelFont, fontSize: 30, leading: 30)
+        //alertMessage.zPosition = 0.9
         homeDialogue = SKSpriteNode()
         homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2, height: UtilitiesPortal.screenHeight/2)
         homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
@@ -225,11 +227,24 @@ class LevelOneScene: SKScene {
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
         homeDialogue.hidden = true
+        
         yesBtn.size = CGSize(width: UtilitiesPortal.screenWidth/4, height: UtilitiesPortal.screenHeight/8)
         yesBtn.color = SKColor.grayColor()
-        yesBtn.position = CGPoint(x: UtilitiesPortal.screenWidth/4, y: UtilitiesPortal.screenHeight/4)
+        yesBtn.name = UtilitiesPortal.yesButtonName
+        yesBtn.texture = SKTexture(imageNamed: "tick-grey")
+        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width)/2, y: (0 - yesBtn.size.height)*0.75*2)
         yesBtn.zPosition = 0.9
+        
+        noBtn.size = yesBtn.size
+        noBtn.color = yesBtn.color
+        noBtn.name = UtilitiesPortal.noButtonName
+        noBtn.texture = SKTexture(imageNamed: "cross-white")
+        noBtn.position = CGPoint(x: yesBtn.size.width/2, y: (0 - yesBtn.size.height)*0.75*2)
+        noBtn.zPosition = 0.9
+        
         homeDialogue.addChild(yesBtn)
+        homeDialogue.addChild(noBtn)
+        //homeDialogue.addChild(alertMessage)
         addChild(homeDialogue)
     }
     
@@ -337,10 +352,20 @@ class LevelOneScene: SKScene {
            
             homeDialogue.hidden = false
             //backHomePage()
-            
+
             //test last page here
             //lastPage()
             
+        }
+        
+        //Yes button selected
+        if node.name == UtilitiesPortal.yesButtonName {
+            backHomePage()
+        }
+        
+        //No button selected
+        if node.name == UtilitiesPortal.noButtonName {
+            homeDialogue.hidden = true
         }
         
         // Tick button selected
