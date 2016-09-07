@@ -10,8 +10,8 @@ import Foundation
 class LevelOneQuestionList {
     static var listOfQuestions:[LevelOneQuestion] = []
     
-    init(){
-        listOfQuestions = LevelOneQuestion.getLvl1Questions()
+    /*init(){
+        listOfQuestions = LevelOneQuestion.getQuestions()
         shuffle()
         select(9)
     }*/
