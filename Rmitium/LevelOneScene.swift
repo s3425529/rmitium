@@ -15,7 +15,7 @@ class LevelOneScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
-    var resultImage, factOverlay, homeDialogue, yesBtn, noBtn: SKSpriteNode!
+    var resultImage, infoOverlay, factOverlay, homeDialogue, yesBtn, noBtn: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel: SKLabelNode!
@@ -55,7 +55,7 @@ class LevelOneScene: SKScene {
         setupItems()
         setupDragLabel()
         setupTargets()
-        setupFactLabel(lvlOneQuestion.facts[Int(arc4random_uniform(10))])
+        setupFactLabel()
         createHomeDialogue()
         
     }
@@ -305,8 +305,11 @@ class LevelOneScene: SKScene {
         yesBtn = SKSpriteNode()
         noBtn = SKSpriteNode()
         
-        //let alertMessage = SKMultilineLabel(text: "Your progress will not be saved! Are you sure you want to return to Menu?", labelWidth: UtilitiesPortal.screenWidth/3, pos: CGPoint(x: 0, y: UtilitiesPortal.screenHeight/8), fontName: UtilitiesPortal.navLabelFont, fontSize: 30, leading: 30)
-        //alertMessage.zPosition = 0.9
+        let alertMessage = SKLabelNode(text: "Your progress won't be save. Go back Home?")
+        alertMessage.position = CGPoint(x: 0, y: 0)
+        alertMessage.zPosition = 0.9
+        alertMessage.fontName = UtilitiesPortal.navLabelFont
+        alertMessage.fontSize = 15
         homeDialogue = SKSpriteNode()
         homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2, height: UtilitiesPortal.screenHeight/2)
         homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
@@ -331,7 +334,7 @@ class LevelOneScene: SKScene {
         
         homeDialogue.addChild(yesBtn)
         homeDialogue.addChild(noBtn)
-        //homeDialogue.addChild(alertMessage)
+        homeDialogue.addChild(alertMessage)
         addChild(homeDialogue)
     }
     

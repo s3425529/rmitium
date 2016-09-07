@@ -299,6 +299,12 @@ class LevelThreeScene: SKScene {
     func createHomeDialogue() {
         let yesBtn = SKSpriteNode()
         let noBtn = SKSpriteNode()
+        
+        let alertMessage = SKLabelNode(text: "Your progress won't be save. Go back Home?")
+        alertMessage.position = CGPoint(x: 0, y: 0)
+        alertMessage.zPosition = 0.9
+        alertMessage.fontName = UtilitiesPortal.navLabelFont
+        alertMessage.fontSize = 15
         homeDialogue = SKSpriteNode()
         homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2, height: UtilitiesPortal.screenHeight/2)
         homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
@@ -306,13 +312,27 @@ class LevelThreeScene: SKScene {
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
         homeDialogue.hidden = true
+        
         yesBtn.size = CGSize(width: UtilitiesPortal.screenWidth/4, height: UtilitiesPortal.screenHeight/8)
         yesBtn.color = SKColor.grayColor()
-        yesBtn.position = CGPoint(x: UtilitiesPortal.screenWidth/4, y: UtilitiesPortal.screenHeight/4)
+        yesBtn.name = UtilitiesPortal.yesButtonName
+        yesBtn.texture = SKTexture(imageNamed: "tick-grey")
+        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width)/2, y: (0 - yesBtn.size.height)*0.75*2)
         yesBtn.zPosition = 0.9
+        
+        noBtn.size = yesBtn.size
+        noBtn.color = yesBtn.color
+        noBtn.name = UtilitiesPortal.noButtonName
+        noBtn.texture = SKTexture(imageNamed: "cross-white")
+        noBtn.position = CGPoint(x: yesBtn.size.width/2, y: (0 - yesBtn.size.height)*0.75*2)
+        noBtn.zPosition = 0.9
+        
         homeDialogue.addChild(yesBtn)
+        homeDialogue.addChild(noBtn)
+        homeDialogue.addChild(alertMessage)
         addChild(homeDialogue)
     }
+
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
@@ -428,6 +448,16 @@ class LevelThreeScene: SKScene {
             //test last page here
             //lastPage()
             
+        }
+        
+        //Yes button selected
+        if node.name == UtilitiesPortal.yesButtonName {
+            backHomePage()
+        }
+        
+        //No button selected
+        if node.name == UtilitiesPortal.noButtonName {
+            homeDialogue.hidden = true
         }
         
         // Tick button selected
