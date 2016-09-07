@@ -19,6 +19,7 @@ enum LevelOneQuestion:Int{
     {
         switch number
         {
+        case 0: self = .NilQuestion
         case 1: self = .QuestionOne
         case 2: self = .QuestionTwo
         case 3: self = .QuestionThree
@@ -33,13 +34,14 @@ enum LevelOneQuestion:Int{
         }
     }
     
-    case QuestionOne=1, QuestionTwo, QuestionThree, QuestionFour, QuestionFive, QuestionSix, QuestionSeven,QuestionEight, QuestionNine
+    case NilQuestion=0, QuestionOne=1, QuestionTwo, QuestionThree, QuestionFour, QuestionFive, QuestionSix, QuestionSeven,QuestionEight, QuestionNine
     
     var imageName:String{
         get{
             
            switch self
            {
+           case .NilQuestion: return "nil"
            case .QuestionOne: return "S1-morphine-final"
            case .QuestionTwo: return "S2-meropenem-final"
            case .QuestionThree: return "S3-theobromine-final"
@@ -65,6 +67,7 @@ enum LevelOneQuestion:Int{
     var solutions:[String]{
         get {
             switch self {
+            case .NilQuestion: return ["nil"]
             case .QuestionOne: return ["phenol","ether","amine","alcohol","alkene"]
             case .QuestionTwo: return ["acid","amide","thioether","alcohol","alkene","amine","amide"]
             case .QuestionThree: return ["amide","amine","amide","amine"]
@@ -81,16 +84,16 @@ enum LevelOneQuestion:Int{
     var positions:[Position]{
         get {
             switch self {
-         
+            case .NilQuestion: return []
             case .QuestionOne: return [Position(x:0.33,y: 0.80),Position(x:0.15,y: 0.47), Position(x:0.61,y: 0.39),Position(x:0.10 ,y: 0.25),Position(x:0.46,y: 0.16)]
-            case .QuestionTwo: return [Position(x:0.36,y: 0.82),Position(x:0.23,y: 0.71),Position(x:0.50,y: 0.64),Position(x:0.11,y: 0.41),Position(x:0.31,y: 0.38),Position(x:0.64,y: 0.44),Position(x:0.48,y: 0.14)]
+            case .QuestionTwo: return [Position(x:0.36,y: 0.81),Position(x:0.21,y: 0.73),Position(x:0.50,y: 0.64),Position(x:0.10,y: 0.44),Position(x:0.31,y: 0.38),Position(x:0.65,y: 0.45),Position(x:0.50,y: 0.18)]
             case .QuestionThree: return [Position(x:0.16,y: 0.73),Position(x:0.59,y: 0.79),Position(x:0.18,y: 0.19),Position(x:0.60,y: 0.29)]
             case .QuestionFour: return [Position(x:0.18,y: 0.78),Position(x:0.41,y: 0.67),Position(x:0.59,y: 0.20)]
             case .QuestionFive: return [Position(x:0.58,y: 0.81),Position(x:0.28,y: 0.64),Position(x:0.61,y: 0.56),Position(x:0.39,y: 0.33),Position(x:0.29,y: 0.17)]
             case .QuestionSix: return [Position(x:0.14,y: 0.80),Position(x:0.51,y: 0.78),Position(x:0.63,y: 0.69),Position(x:0.21,y: 0.54),Position(x:0.45,y: 0.19)]
             case .QuestionSeven: return [Position(x:0.25,y: 0.74),Position(x:0.43,y: 0.71),Position(x:0.52,y: 0.49),Position(x:0.10,y: 0.31),Position(x:0.49,y: 0.27)]
-            case .QuestionEight: return [Position(x:0.30,y: 0.76),Position(x:0.18,y: 0.22),Position(x:0.58,y: 0.23)]
-            case .QuestionNine: return [Position(x:0.21,y: 0.77),Position(x:0.51,y: 0.80),Position(x:0.09,y: 0.49),Position(x:0.43,y: 0.34)]
+            case .QuestionEight: return [Position(x:0.30,y: 0.77),Position(x:0.18,y: 0.22),Position(x:0.58,y: 0.23)]
+            case .QuestionNine: return [Position(x:0.21,y: 0.77),Position(x:0.51,y: 0.81),Position(x:0.09,y: 0.49),Position(x:0.43,y: 0.34)]
             }
         }
     }
@@ -98,6 +101,7 @@ enum LevelOneQuestion:Int{
     var facts:[String]{
         get {
             switch self{
+            case .NilQuestion: return []
             case .QuestionOne: return["Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine.","Morphine is primarily used to treat both acute and chronic pain.","Morphine comes from the opium poppy (which is also a valuable ornamental plant) but is also produced synthetically.","Morphine is the most abundant of opium’s 24 alkaloids, accounting for 9 to 14% of opium-extract by mass.","Morphine is named after Morpheus, the Roman god of dreams (who also later became the god of slumber).","Less popular and less mentioned effects of Morphine use include nausea, vomiting and decreased gastrointestinal motility.","Only 1g of Morphine hydrate will dissolve In 5L of water so pharmaceutical companies produce sulphate and hydrochloride salts of the drug that are over 300 times more water-soluble.","The three dimensional structure of morphine consists of five rings, three of which are approximately in the same plane; the other two are each at right angles to this trio.","If you substitute morphine’s methyl group with a propenyl group, you create nalorphine, an antagonist which counters morphine’s effects.","Morphine is a precursor for producing heroin, which can be produced by adding two acetyl groups to the molecule morphine."]
             case .QuestionTwo: return ["Meropenum (hydrate) is an ultra-broad spectrum injectable antibiotic.","Meropenum is used to treat a wide variety of infections, including meningitis and pneumonia.","Meropenem is a beta-lactam and hence is related to the penicillins.","A remarkable feature of MEROPEN® agent is that it is much less toxic than other carbapenem antibiotics.","In contrast to other beta-lactam antibiotics, Meropenum is highly resistant to degradation by bacterial enzymes such as β-lactamases or cephalosporinases.","Meropenem exerts its antibacterial activity by penetrating bacterial cells readily and interfering with the synthesis of vital cell wall components.","Meropenem is a carbapenem antibiotic; other compounds in this class include imipenem and ertapenem.","Meropenem must be administered intravenously.","Meropenem has a complex chemical structure with 6 asymmetric carbons and a total of 64 stereo- and optical- isomers despite being a comparatively small molecule (molecular weight: 437.51 amu).","Meropenem was originally developed by Dainippon Sumitomo Pharma of Japan."]
             case .QuestionThree: return ["Theobromine is sometimes known as xantheose.","Theobromine belongs to a class of alkaloid molecules known as methylxanthines.","Theobromine affects humans similarly to caffeine, but on a much smaller scale.","If you N-methylate theobromine (via SN2 substitution) you get caffeine.","Different types of chocolate contain different amounts of theobromine. In general, theobromine levels are higher in dark chocolates (approximately 10 g/kg) than in milk chocolates (1-5 g/kg).","Theobromine containing chocolate products may be toxic or lethal to dogs and other domestic animals such as horses because these animals metabolize theobromine more slowly than humans.","Despite its name, theobromine contains no bromine—the name comes from Theobroma, the name of the genus of the cacao tree.","Although usually found in chocolate, pure theobromine is white or colourless.","Theobromine was formerly used as a diuretic and in the treatment of angina and hypertension.","Theobromine has also been shown to improve the microhardness of tooth enamel, which could potentiality increase resistance to tooth decay."]

@@ -19,11 +19,15 @@ class LevelOneScene: SKScene {
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel: SKLabelNode!
-    var questionId = 0
+    var arrow1, arrow2, arrow3, arrow4: SKLabelNode!
+    //var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
     var state, previousState: Int!
+    var listOfQuestions:[LevelOneQuestion] = []
+
     
     override func didMoveToView(view: SKView) {
+        initRecord()
         setupScene()
     }
     
@@ -34,7 +38,16 @@ class LevelOneScene: SKScene {
         questions.removeAll()
         answeredQuestions.removeAll()
         
-        lvlOneQuestion = LevelOneModel.sharedInstance.currentQuestion
+        lvlOneQuestion = LevelOneModel.currentQuestion
+        // Result page
+        if lvlOneQuestion.positions.count == 0 {
+            let secondScene = Result(size: self.size)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+            return
+        }
+        
         state = UtilitiesPortal.stateAnswer
         
         setupImage()
@@ -68,7 +81,7 @@ class LevelOneScene: SKScene {
         tick = SKSpriteNode(imageNamed: "tick-grey")
         tick.name = UtilitiesPortal.tickButtonName
         tick.zPosition = 0.1
-        tick.alpha = 0.9
+        tick.alpha = 1
         tick.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize,
                                 y: UtilitiesPortal.navImgSize/2)
@@ -78,21 +91,22 @@ class LevelOneScene: SKScene {
         show = SKSpriteNode(imageNamed: "show")
         show.name = UtilitiesPortal.showButtonName
         show.zPosition = 0.1
-        show.alpha = 0.9
+        show.alpha = 1
         show.hidden = true
         show.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         show.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*2,
                                 y: UtilitiesPortal.navImgSize/2)
         addChild(show)
         
-        // Help button
-        let help = SKSpriteNode(imageNamed: "help2")
-        help.zPosition = 0.1
-        help.alpha = 0.9
-        help.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        help.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
+        // Info button
+        let info = SKSpriteNode(imageNamed: "help2")
+        info.name = UtilitiesPortal.infoButonName
+        info.zPosition = 0.1
+        info.alpha = 1
+        info.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        info.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
-        addChild(help)
+        addChild(info)
         
         // Score label
         
@@ -154,6 +168,7 @@ class LevelOneScene: SKScene {
             let sprite = CustomSKSpriteNode()
             sprite.color = UIColor.blueColor()
             sprite.alpha = 0
+            sprite.texture = SKTexture(imageNamed: "\(count)")
             sprite.name = "question\(count)"
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
             sprite.zPosition = 0.2
@@ -177,11 +192,11 @@ class LevelOneScene: SKScene {
     }
     
     // Adding Fact label
-    func setupFactLabel(fact: String){
-        //let randomIndex = Int(arc4random_uniform(UInt32(array.)))
+    func setupFactLabel(){
+        let randomIndex = Int(arc4random_uniform(UInt32(lvlOneQuestion.facts.count)))
         //print(array[randomIndex])
-        let fact = fact
-        let index = fact.startIndex.advancedBy(8)
+        let fact = lvlOneQuestion.facts[randomIndex]
+        let index = fact.startIndex.advancedBy(15)
         let shortenFact = fact.substringToIndex(index)
         
         factLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
@@ -211,6 +226,78 @@ class LevelOneScene: SKScene {
         factOverlay.hidden = true
         factOverlay.addChild(factOverlayText)
         addChild(factOverlay)
+    }
+    
+    // Info layout
+    func setupInfo(){
+        let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
+        arrow01.zPosition = 0.9
+        arrow01.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.4,
+                                   y: UtilitiesPortal.screenHeight * -0.3)
+        
+        let arrow02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[1])
+        arrow02.zPosition = 0.9
+        arrow02.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow02.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.4,
+                                   y: UtilitiesPortal.screenHeight * 0.3)
+        
+        let arrow03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[2])
+        arrow03.zPosition = 0.9
+        arrow03.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.22,
+                                   y: UtilitiesPortal.screenHeight * -0.1)
+
+        let arrow04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[3])
+        arrow04.zPosition = 0.9
+        arrow04.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow04.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.15,
+                                   y: UtilitiesPortal.screenHeight * -0.1)
+        
+        let info01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[0])
+        info01.zPosition = 1
+        info01.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+                             height: UtilitiesPortal.screenHeight*0.15)
+        info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.27,
+                                   y: UtilitiesPortal.screenHeight * 0.15)
+        
+        let info02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[1])
+        info02.zPosition = 1
+        info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+                             height: UtilitiesPortal.screenHeight*0.15)
+        info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.05,
+                                   y: UtilitiesPortal.screenHeight * -0.2)
+        
+        let info03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[2])
+        info03.zPosition = 1
+        info03.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+                             height: UtilitiesPortal.screenHeight*0.15)
+        info03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.3,
+                                   y: UtilitiesPortal.screenHeight * -0.3)
+        
+        infoOverlay = SKSpriteNode()
+        infoOverlay.name = UtilitiesPortal.factOverlayName
+        infoOverlay.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        infoOverlay.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        infoOverlay.color = SKColor.blackColor()
+        infoOverlay.alpha = 0.7
+        infoOverlay.zPosition = 0.8
+        infoOverlay.hidden = true
+        
+        infoOverlay.addChild(arrow01)
+        infoOverlay.addChild(arrow02)
+        infoOverlay.addChild(arrow03)
+        infoOverlay.addChild(arrow04)
+        
+        infoOverlay.addChild(info01)
+        infoOverlay.addChild(info02)
+        infoOverlay.addChild(info03)
+        
+        addChild(infoOverlay)
     }
     
     //Show Home Button Dialogue box
@@ -257,12 +344,12 @@ class LevelOneScene: SKScene {
         chosenAnswer.position = touch!.locationInNode(self)
         //print("+++++++++++++++++++++++++")
         
-        let xPostion = chosenAnswer.position.x
+        /*let xPostion = chosenAnswer.position.x
         let yPostion = chosenAnswer.position.y
         let x = xPostion / UtilitiesPortal.screenWidth
         let y = yPostion / UtilitiesPortal.screenHeight
         print("x=\(x)")
-        print("y=\(y)")
+        print("y=\(y)")*/
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -300,6 +387,12 @@ class LevelOneScene: SKScene {
             factOverlay.hidden = true
             state = previousState
             previousState = UtilitiesPortal.stateFact
+            return
+        }
+        if state == UtilitiesPortal.stateInfo {
+            infoOverlay.hidden = true
+            state = previousState
+            previousState = UtilitiesPortal.stateInfo
             return
         }
         
@@ -370,32 +463,14 @@ class LevelOneScene: SKScene {
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
-            print("Tick")
             if state == UtilitiesPortal.stateAnswer && checkResult() {
-                print("tick and state answer")
-                //if resultImage == nil {
-                    print("tick display result")
-                    displayResult()
-                //}
+                displayResult()
                 return
             }
             
-            if state == UtilitiesPortal.stateResult {
+            if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
                 print("tick state result")
-                if( questionId == 9){
-                    print("display result")
-                    let secondScene = Result(size: self.size)
-                    let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
-                    secondScene.scaleMode = SKSceneScaleMode.AspectFill
-                    self.scene!.view?.presentScene(secondScene, transition: transition)
-
-                    return
-                }else{
-                    questionId++
-                    setupScene()
-                    return
-                }
-                
+                setupScene()
             }
             return
         }
@@ -411,8 +486,6 @@ class LevelOneScene: SKScene {
                 resultImage.alpha = 1
                 resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
                                                y:UtilitiesPortal.screenHeight/2 )
-                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
-                                               y:UtilitiesPortal.screenHeight/2 )
                 resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
                 addChild(resultImage)
                 state = UtilitiesPortal.stateReview
@@ -426,6 +499,14 @@ class LevelOneScene: SKScene {
                 state = UtilitiesPortal.stateResult
                 return
             }
+            return
+        }
+        
+        // Info selected
+        if node.name == UtilitiesPortal.infoButonName {
+            previousState = state
+            state = UtilitiesPortal.stateInfo
+            infoOverlay.hidden = false
             return
         }
         
@@ -498,7 +579,13 @@ class LevelOneScene: SKScene {
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
+    func initRecord(){
+        listOfQuestions = LevelOneQuestion.getQuestions()
+        for item in 0..<listOfQuestions.count{
+            UtilitiesPortal.record.append(item)
+        }
     
+    }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

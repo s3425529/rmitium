@@ -8,37 +8,37 @@
 
 import Foundation
 class LevelOneModel {
-    var listOfQuestions: LevelOneQuestionList
-    var index: Int
+    static var listOfQuestions: [LevelOneQuestion] = []
+    static var index: Int = 0
     
-    private struct Static{
-        static var instance: LevelOneModel?
-    }
+    /*private struct Static{
+     static var instance: LevelThreeModel?
+     }
+     
+     class var sharedInstance: LevelThreeModel
+     {
+     if !(Static.instance != nil)
+     {
+     Static.instance = LevelThreeModel()
+     }
+     return Static.instance!
+     }*/
     
-    class var sharedInstance: LevelOneModel
-    {
-        if !(Static.instance != nil)
-        {
-            Static.instance = LevelOneModel()
-        }
-        return Static.instance!
-    }
-    
-    private init(){
-        listOfQuestions = LevelOneQuestionList()
+    static func reset() {
+        listOfQuestions = LevelOneQuestionList.getQuestionsList()
         index = 0
     }
     
-    var currentQuestion:LevelOneQuestion {
+    static var currentQuestion:LevelOneQuestion {
         get {
             let current = index
-            if index == listOfQuestions.listOfQuestions.count-1 {
-                index = 0
+            if index == listOfQuestions.count {
+                reset()
             }
             else {
                 index = index + 1
             }
-            return listOfQuestions.listOfQuestions[current]
+            return listOfQuestions[current]
         }
     }
 }

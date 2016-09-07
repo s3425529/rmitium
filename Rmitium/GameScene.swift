@@ -9,15 +9,12 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    var infoOverlay, settingView: SKSpriteNode!
+    var state: Int!
+    
     override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-        /*self.backgroundColor = SKColor(red: 0.15, green:0.15, blue:0.3, alpha: 1.0)
-        let button = SKSpriteNode(imageNamed: "Spaceship")
-        button.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
-        button.name = "nextButton"
-        self.addChild(button)*/
-        
         UtilitiesPortal.score = 0
+        state = UtilitiesPortal.stateAnswer
         
         let image = SKSpriteNode(imageNamed: "background")
         image.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
@@ -27,54 +24,39 @@ class GameScene: SKScene {
         //image.alpha = 0.8
         addChild(image)
         
-        // Add new button
-        
         // Setting button
-        let home = SKSpriteNode(imageNamed: "settings")
-        home.name = UtilitiesPortal.homeButtonName
-        home.zPosition = 0.1
-        home.alpha = 0.9
-        home.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        home.position = CGPoint(x:UtilitiesPortal.borderSize/2,
+        let setting = SKSpriteNode(imageNamed: "settings")
+        setting.name = UtilitiesPortal.settingButtonName
+        setting.zPosition = 0.1
+        //setting.alpha = 0.2
+        setting.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        setting.position = CGPoint(x:UtilitiesPortal.borderSize/2,
             y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
-        addChild(home)
+        addChild(setting)
         
         // Help button
-        let help1 = SKSpriteNode(imageNamed: "help2")
-        help1.zPosition = 0.1
-        help1.alpha = 0.9
-        help1.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        help1.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
+        let info = SKSpriteNode(imageNamed: "help2")
+        info.name = UtilitiesPortal.infoButonName
+        info.zPosition = 0.1
+        info.alpha = 0.9
+        info.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        info.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
             y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
-        
-        
-        addChild(help1)
+        addChild(info)
         
         // App name logo
         let logo = SKSpriteNode(imageNamed: "logo")
         logo.setScale(UtilitiesPortal.screenHeight/88*0.30)
- 
-        //logo.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         logo.position = CGPoint(x:frame.midX, y:UtilitiesPortal.screenHeight*0.85)
         logo.zPosition = 0.1
         //image.alpha = 0.8
         addChild(logo)
-        
-        /*var scale: CGFloat = 0
-        let scaleHeight = UtilitiesPortal.screenHeight/UtilitiesPortal.buttonLevelHeight*0.15
-        let scaleWidth = UtilitiesPortal.screenWidth/UtilitiesPortal.buttonLevelWidth*0.6
-        if(scaleHeight > scaleWidth) {
-            scale = scaleWidth
-        }
-        else {
-            scale = scaleHeight
-        }*/
 
         // Generating level buttons
         for count in 0...2 {
             let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.levelLabelFont)
             //levelLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-            levelLabel.zPosition = 1
+            levelLabel.zPosition = 0.2
             levelLabel.name = UtilitiesPortal.levelLabelNames[count]
             levelLabel.text = UtilitiesPortal.levelLabelTexts[count]
             levelLabel.fontSize = UtilitiesPortal.levelLabelSize
@@ -82,101 +64,85 @@ class GameScene: SKScene {
                                               UtilitiesPortal.screenHeight*(0.60-CGFloat(count)*0.15))
             self.addChild(levelLabel)
             
-            /*let levelHexImage = SKSpriteNode(imageNamed: "hexagon")
-            levelHexImage.alpha = 0.9
-            levelHexImage.zPosition = 0.6
-            levelHexImage.size = CGSize(width: UtilitiesPortal.hexImageSize*2,
-                                      height: UtilitiesPortal.hexImageSize*2)
-            levelHexImage.position = CGPointMake(UtilitiesPortal.borderSize+UtilitiesPortal.hexImageSize/4, UtilitiesPortal.screenHeight*(0.75-CGFloat(count)*0.2)+UtilitiesPortal.hexImageSize/4)
-            self.addChild(levelHexImage)*/
-            
             let levelButton = SKSpriteNode(imageNamed: "levelButton")
+            levelButton.name = UtilitiesPortal.levelButtonNames[count]
             levelButton.alpha = 0.9
-            levelButton.zPosition = 0.5
-            levelButton.position = CGPointMake(frame.midX/*UtilitiesPortal.borderSize/4 + UtilitiesPortal.screenWidth*0.4*/, UtilitiesPortal.screenHeight*(0.60-CGFloat(count)*0.15))
+            levelButton.zPosition = 0.1
+            levelButton.position = CGPointMake(frame.midX, UtilitiesPortal.screenHeight*(0.60-CGFloat(count)*0.15))
             levelButton.size = CGSize(width: UtilitiesPortal.screenWidth*0.9,
                                          height: UtilitiesPortal.hexImageSize*1.2)
             self.addChild(levelButton)
             
-            /*let button = CustomButton(defaultButtonImage: "level1", activeButtonImage: "level2",
-                                      option: count)
-            button.setScale(0.4)
-            print("Scale: \(scale)")
-            button.alpha = 0.9
-            button.zPosition = 1
-            button.position = CGPointMake(100,100 + CGFloat(count)*20)
-            self.addChild(button)*/
+            setupInfo()
+            
         }
-        
-        /*backgroundColor = SKColor(red: 0.2, green: 0.7, blue: 0.3, alpha: 0.3)
-        let image:SKSpriteNode = SKSpriteNode(imageNamed: "background")
-        image.setScale(1.5)
-        //image.alpha = 0.8
-        addChild(image)
-        
-        let buttonLevel1: GGButton = GGButton(defaultButtonImage: "level1", activeButtonImage: "level2", /*buttonAction:buttonAction2*/option: 1)
-        buttonLevel1.position = CGPointMake(self.frame.width * 0.5, self.frame.height * 0.6)
-        buttonLevel1.setScale(0.28)
-        buttonLevel1.alpha = 0.9
-        addChild(buttonLevel1)
-       
-        let buttonLevel2: GGButton = GGButton(defaultButtonImage: "level1", activeButtonImage: "level2", /*buttonAction:buttonAction2*/option: 2)
-        buttonLevel2.position = CGPointMake(self.frame.width * 0.5, self.frame.height * 0.4)
-        buttonLevel2.setScale(0.28)
-        buttonLevel2.alpha = 0.9
-        addChild(buttonLevel2)
-       
-        let buttonLevel3: GGButton = GGButton(defaultButtonImage: "level1", activeButtonImage: "level2", /*buttonAction:buttonAction2*/option: 3)
-        buttonLevel3.position = CGPointMake(self.frame.width * 0.5, self.frame.height * 0.2)
-        buttonLevel3.setScale(0.28)
-        buttonLevel3.alpha = 0.9
-        addChild(buttonLevel3)*/
     }
     
-    /*func buttonAction1(){
-    
-        let level1Scene = LevelOneScene(size: self.size)
-        let transition = SKTransition.fadeWithColor(UIColor.blueColor(), duration: 0.5)
-        //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
-        level1Scene.scaleMode = SKSceneScaleMode.AspectFill
-        self.scene!.view?.presentScene(level1Scene, transition: transition)
-    }
-    func buttonAction2(){
-    
-    }
-    func buttonAction3(){
+    // Info layout
+    func setupInfo(){
+        let infoOverlayText = SKMultilineLabel(text: "Info layout", labelWidth: UtilitiesPortal.screenWidth,
+                                               pos: CGPoint(x: 0, y: 0),fontName: UtilitiesPortal.navLabelFont,
+                                               fontSize: UtilitiesPortal.navLabelSize,
+                                               leading: Int(UtilitiesPortal.navLabelSize))
+        infoOverlayText.name = UtilitiesPortal.factMultiLine
+        infoOverlayText.zPosition = 1
         
-    }*/
+        infoOverlay = SKSpriteNode()
+        infoOverlay.name = UtilitiesPortal.factOverlayName
+        infoOverlay.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        infoOverlay.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        infoOverlay.color = SKColor.blackColor()
+        infoOverlay.alpha = 0.7
+        infoOverlay.zPosition = 0.9
+        infoOverlay.hidden = true
+        infoOverlay.addChild(infoOverlayText)
+        addChild(infoOverlay)
+    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        /* Called when a touch begins */
-        /*for touch in touches {
-            let location = touch.locationInNode(self)
+        if state == UtilitiesPortal.stateInfo {
+            infoOverlay.hidden = true
+            settingView.hidden = true
             
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
-        }*/
+            state = UtilitiesPortal.stateAnswer
+            return
+        }
+        
         let location = touches.first!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         
+        
+        // Info selected
+        if node.name == UtilitiesPortal.infoButonName {
+            state = UtilitiesPortal.stateInfo
+            infoOverlay.hidden = false
+            return
+        }
+        
+        // Setting selected
+        if node.name == UtilitiesPortal.settingButtonName {
+            let secondScene = SettingScene(size: self.size)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+            //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+        }
+
+        
         // If next button is touched, start transition to second scene
-        if (node.name == UtilitiesPortal.levelLabelNames[0]) {
+        if (node.name == UtilitiesPortal.levelLabelNames[0]
+                                || node.name == UtilitiesPortal.levelButtonNames[0]) {
+            LevelOneModel.reset()
+            
             let secondScene = LevelOneScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
         }
-        if (node.name == UtilitiesPortal.levelLabelNames[1]) {
+        
+        if (node.name == UtilitiesPortal.levelLabelNames[1]
+                                || node.name == UtilitiesPortal.levelButtonNames[1]) {
             let secondScene = Result(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
@@ -184,8 +150,17 @@ class GameScene: SKScene {
             self.scene!.view?.presentScene(secondScene, transition: transition)
         }
         
-
-
+        // If next button is touched, start transition to second scene
+        if (node.name == UtilitiesPortal.levelLabelNames[2]
+                                || node.name == UtilitiesPortal.levelButtonNames[2]) {
+            LevelThreeModel.reset()
+            
+            let secondScene = LevelThreeScene(size: self.size)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+            //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+        }
     }
    
     override func update(currentTime: CFTimeInterval) {
