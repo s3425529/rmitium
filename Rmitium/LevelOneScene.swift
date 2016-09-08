@@ -84,7 +84,7 @@ class LevelOneScene: SKScene {
         tick.zPosition = 0.1
         tick.alpha = 1
         tick.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize,
+        tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y: UtilitiesPortal.navImgSize/2)
         addChild(tick)
         
@@ -133,7 +133,7 @@ class LevelOneScene: SKScene {
     
     func setupDragLabel() {
         for count in 0...UtilitiesPortal.levelOneAnswers.count-1 {
-            let answer = CustomSKSpriteNode(imageNamed: UtilitiesPortal.levelOneAnswers[count])
+            let answer = CustomSKSpriteNode(imageNamed: "\(UtilitiesPortal.levelOneAnswers[count])-border")
             answer.name = UtilitiesPortal.levelOneAnswers[count]
             answer.value = UtilitiesPortal.levelOneAnswers[count]
             answer.zPosition = 0.3

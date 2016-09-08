@@ -63,7 +63,7 @@ class LevelThreeScene: SKScene {
     func setupItems() {
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
-        levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
+        levelLabel.text = UtilitiesPortal.levelLabelTexts[2]
         levelLabel.fontSize = UtilitiesPortal.navLabelSize
         levelLabel.position = CGPointMake(frame.midX, UtilitiesPortal.screenHeight*0.92)
         self.addChild(levelLabel)
@@ -160,8 +160,8 @@ class LevelThreeScene: SKScene {
         for count in 0...positions.count-1 {
             let sprite = CustomSKSpriteNode()
             sprite.color = UIColor.blueColor()
-            sprite.alpha = 1
-            sprite.texture = SKTexture(imageNamed: "\(count+1)")
+            sprite.alpha = 0
+            //sprite.texture = SKTexture(imageNamed: "\(count+1)")
             sprite.name = "question\(count)"
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
             //sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.6, UtilitiesPortal.screenHeight*0.6)
