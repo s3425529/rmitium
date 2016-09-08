@@ -56,6 +56,7 @@ class LevelOneScene: SKScene {
         setupDragLabel()
         setupTargets()
         setupFactLabel()
+        setupInfo()
         createHomeDialogue()
         
     }
