@@ -579,10 +579,11 @@ class LevelOneScene: SKScene {
     //back to the home page,
     func backHomePage(){
         let secondScene = GameScene(size: self.size)
-        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
+    
     func initRecord(){
         listOfQuestions = LevelOneQuestion.getQuestions()
         for item in 0..<listOfQuestions.count{
