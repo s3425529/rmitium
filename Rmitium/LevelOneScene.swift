@@ -150,7 +150,7 @@ class LevelOneScene: SKScene {
                                           y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count-5)))
             }
             else {
-                answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
+                answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.83    ,
                                           y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count-5)))
             }
             

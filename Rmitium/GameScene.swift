@@ -16,7 +16,7 @@ class GameScene: SKScene {
         UtilitiesPortal.score = 0
         state = UtilitiesPortal.stateAnswer
         
-        let image = SKSpriteNode(imageNamed: "chem-bg")
+        let image = SKSpriteNode(imageNamed: "chem-bg2")
         image.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         image.position = CGPoint(x:frame.midX, y:frame.midY)
         image.zPosition = 0
@@ -64,7 +64,7 @@ class GameScene: SKScene {
                                               UtilitiesPortal.screenHeight*(0.58-CGFloat(count)*0.18))
             self.addChild(levelLabel)
             
-            let levelButton = SKSpriteNode(imageNamed: "menubar")
+            let levelButton = SKSpriteNode(imageNamed: "menubar2")
             levelButton.name = UtilitiesPortal.levelButtonNames[count]
             levelButton.alpha = 0.9
             levelButton.zPosition = 0.1
