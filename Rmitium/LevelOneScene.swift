@@ -322,7 +322,7 @@ class LevelOneScene: SKScene {
         yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
-        yesBtn.texture = SKTexture(imageNamed: "tick-grey")
+        yesBtn.texture = SKTexture(imageNamed: "tick-white")
         yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.5)
         yesBtn.zPosition = 0.9
         
