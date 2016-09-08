@@ -21,8 +21,8 @@ class UtilitiesPortal {
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
     static let levelButtonNames = ["lvl01Btn", "lvl02Btn", "lvl03Btn", "settingBtn"]
     
-    static let levelOneAnswers = ["phenol-border", "acid-border", "alcohol-border", "amine-border", "amide-border", "alkene-border",
-                                  "aldehyde-border", "ester-border", "ether-border", "thioether-border", "heterocyclicaromatic-border"]
+    static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene", "aldehyde", "ester",
+                                  "ether", "thioether", "heterocyclicaromatic"]
     
     static let levelThreeAnswers = ["dipole-dipole", "h-bonding", "ionic", "vanderwaals"]
     
