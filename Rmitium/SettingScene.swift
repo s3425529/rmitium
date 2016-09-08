@@ -44,18 +44,17 @@ class SettingScene: SKScene {
             levelLabel.name = UtilitiesPortal.settingLabelNames[count]
             levelLabel.text = UtilitiesPortal.settingLabelTexts[count]
             levelLabel.fontSize = UtilitiesPortal.levelLabelSize
-            levelLabel.position = CGPointMake(UtilitiesPortal.screenWidth*0.4,
+            levelLabel.position = CGPointMake(UtilitiesPortal.screenWidth*0.38,
                 UtilitiesPortal.screenHeight*(0.60-CGFloat(count)*0.15))
             self.addChild(levelLabel)
             
-            let levelButton = SKSpriteNode(imageNamed: "sound-on")
+            let levelButton = SKSpriteNode(imageNamed: "offbutton")
             levelButton.name = UtilitiesPortal.settingLabelButtons[count]
             levelButton.alpha = 0.9
             levelButton.zPosition = 0.1
-            levelButton.position = CGPointMake(UtilitiesPortal.screenWidth*0.6,
+            levelButton.position = CGPointMake(UtilitiesPortal.screenWidth*0.62,
                                                UtilitiesPortal.screenHeight*(0.62-CGFloat(count)*0.15))
-            levelButton.size = CGSize(width: UtilitiesPortal.navImgSize,
-                                      height: UtilitiesPortal.navImgSize)
+            levelButton.size = CGSize(width: 305/3,height: 143/3)
             self.addChild(levelButton)
             settings.append(levelButton)
         }
@@ -72,16 +71,19 @@ class SettingScene: SKScene {
             self.scene!.view?.presentScene(secondScene, transition: transition)
         }
         
+        print("width: \(UtilitiesPortal.screenWidth)")
+        print("height: \(UtilitiesPortal.screenHeight)")
+        
         // Sound
         if (node.name == UtilitiesPortal.settingLabelNames[0] ||
             node.name == UtilitiesPortal.settingLabelButtons[0]) {
             if values[0] {
                 values[0] = false
-                settings[0].texture = SKTexture(imageNamed: "sound-off")
+                settings[0].texture = SKTexture(imageNamed: "offbutton")
             }
             else {
                 values[0] = true
-                settings[0].texture = SKTexture(imageNamed: "sound-on")
+                settings[0].texture = SKTexture(imageNamed: "onbutton")
             }
         }
         
@@ -89,11 +91,11 @@ class SettingScene: SKScene {
             node.name == UtilitiesPortal.settingLabelButtons[1]) {
             if values[1] {
                 values[1] = false
-                settings[1].texture = SKTexture(imageNamed: "sound-off")
+                settings[1].texture = SKTexture(imageNamed: "offbutton")
             }
             else {
                 values[1] = true
-                settings[1].texture = SKTexture(imageNamed: "sound-on")
+                settings[1].texture = SKTexture(imageNamed: "onbutton")
             }
         }
         
@@ -101,11 +103,11 @@ class SettingScene: SKScene {
             node.name == UtilitiesPortal.settingLabelButtons[2]) {
             if values[2] {
                 values[2] = false
-                settings[2].texture = SKTexture(imageNamed: "sound-off")
+                settings[2].texture = SKTexture(imageNamed: "offbutton")
             }
             else {
                 values[2] = true
-                settings[2].texture = SKTexture(imageNamed: "sound-on")
+                settings[2].texture = SKTexture(imageNamed: "onbutton")
             }
         }
     }
