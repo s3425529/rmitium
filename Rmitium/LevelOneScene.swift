@@ -87,7 +87,7 @@ class LevelOneScene: SKScene {
         tick.zPosition = 0.1
         tick.alpha = 1
         tick.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize,
+        tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y: UtilitiesPortal.navImgSize/2)
         addChild(tick)
         
@@ -149,7 +149,7 @@ class LevelOneScene: SKScene {
     
     func setupDragLabel() {
         for count in 0...UtilitiesPortal.levelOneAnswers.count-1 {
-            let answer = CustomSKSpriteNode(imageNamed: UtilitiesPortal.levelOneAnswers[count])
+            let answer = CustomSKSpriteNode(imageNamed: "\(UtilitiesPortal.levelOneAnswers[count])-border")
             answer.name = UtilitiesPortal.levelOneAnswers[count]
             answer.value = UtilitiesPortal.levelOneAnswers[count]
             answer.zPosition = 0.3
@@ -166,7 +166,7 @@ class LevelOneScene: SKScene {
                                           y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count-5)))
             }
             else {
-                answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
+                answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.83    ,
                                           y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count-5)))
             }
             
@@ -322,31 +322,31 @@ class LevelOneScene: SKScene {
         yesBtn = SKSpriteNode()
         noBtn = SKSpriteNode()
         
-        let alertMessage = SKLabelNode(text: "Your progress won't be save. Go back Home?")
+        let alertMessage = SKLabelNode(text: "Are you sure you want to quit?")
         alertMessage.position = CGPoint(x: 0, y: 0)
         alertMessage.zPosition = 0.9
         alertMessage.fontName = UtilitiesPortal.navLabelFont
         alertMessage.fontSize = 15
         homeDialogue = SKSpriteNode()
-        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2, height: UtilitiesPortal.screenHeight/2)
+        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5)
         homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
         homeDialogue.color = SKColor.blackColor()
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
         homeDialogue.hidden = true
         
-        yesBtn.size = CGSize(width: UtilitiesPortal.screenWidth/4, height: UtilitiesPortal.screenHeight/8)
+        yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
-        yesBtn.texture = SKTexture(imageNamed: "tick-grey")
-        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width)/2, y: (0 - yesBtn.size.height)*0.75*2)
+        yesBtn.texture = SKTexture(imageNamed: "tick-white")
+        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.5)
         yesBtn.zPosition = 0.9
         
         noBtn.size = yesBtn.size
         noBtn.color = yesBtn.color
         noBtn.name = UtilitiesPortal.noButtonName
         noBtn.texture = SKTexture(imageNamed: "cross-white")
-        noBtn.position = CGPoint(x: yesBtn.size.width/2, y: (0 - yesBtn.size.height)*0.75*2)
+        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.5)
         noBtn.zPosition = 0.9
         
         homeDialogue.addChild(yesBtn)
@@ -595,10 +595,11 @@ class LevelOneScene: SKScene {
     //back to the home page,
     func backHomePage(){
         let secondScene = GameScene(size: self.size)
-        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
+    
     func initRecord(){
         listOfQuestions = LevelOneQuestion.getQuestions()
         for item in 0..<listOfQuestions.count{

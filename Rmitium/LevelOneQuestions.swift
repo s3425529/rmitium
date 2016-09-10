@@ -73,7 +73,7 @@ enum LevelOneQuestion:Int{
             case .QuestionThree: return ["amide","amine","amide","amine"]
             case .QuestionFour: return ["amine","ether","alcohol"]
             case .QuestionFive: return ["ether","thioether","ester","amide","amine"]
-            case .QuestionSix: return ["alkene","amine","alcohol","ether","heterocyclic aromatic"]
+            case .QuestionSix: return ["alkene","amine","alcohol","ether","heterocyclicaromatic"]
             case .QuestionSeven: return ["ether","alkene","acid","amide","amine"]
             case .QuestionEight: return ["phenol","ether","aldehyde"]
             case .QuestionNine: return ["phenol","amide","ether","alkene"]

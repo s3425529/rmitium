@@ -63,7 +63,7 @@ class LevelThreeScene: SKScene {
     func setupItems() {
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
-        levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
+        levelLabel.text = UtilitiesPortal.levelLabelTexts[2]
         levelLabel.fontSize = UtilitiesPortal.navLabelSize
         levelLabel.position = CGPointMake(frame.midX, UtilitiesPortal.screenHeight*0.92)
         self.addChild(levelLabel)
@@ -160,8 +160,8 @@ class LevelThreeScene: SKScene {
         for count in 0...positions.count-1 {
             let sprite = CustomSKSpriteNode()
             sprite.color = UIColor.blueColor()
-            sprite.alpha = 1
-            sprite.texture = SKTexture(imageNamed: "\(count+1)")
+            sprite.alpha = 0
+            //sprite.texture = SKTexture(imageNamed: "\(count+1)")
             sprite.name = "question\(count)"
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
             //sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.6, UtilitiesPortal.screenHeight*0.6)
@@ -187,9 +187,8 @@ class LevelThreeScene: SKScene {
     
     // Adding Fact label
     func setupFactLabel(){
-        //let randomIndex = Int(arc4random_uniform(UInt32(lvlThreeQuestion.facts.count)))
-        //let fact = lvlThreeQuestion.facts[randomIndex]
-        let fact = "Morphine has a high potential for addiction; during the American Civil War, around 400 000 soldiers became addicted to morphine."
+        let randomIndex = Int(arc4random_uniform(UInt32(lvlThreeQuestion.facts.count)))
+        let fact = lvlThreeQuestion.facts[randomIndex]
         let index = fact.startIndex.advancedBy(15)
         let shortenFact = fact.substringToIndex(index)
         
@@ -300,37 +299,38 @@ class LevelThreeScene: SKScene {
         let yesBtn = SKSpriteNode()
         let noBtn = SKSpriteNode()
         
-        let alertMessage = SKLabelNode(text: "Your progress won't be save. Go back Home?")
+        let alertMessage = SKLabelNode(text: "Are you sure you want to quit?")
         alertMessage.position = CGPoint(x: 0, y: 0)
         alertMessage.zPosition = 0.9
         alertMessage.fontName = UtilitiesPortal.navLabelFont
         alertMessage.fontSize = 15
         homeDialogue = SKSpriteNode()
-        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2, height: UtilitiesPortal.screenHeight/2)
+        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5)
         homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
         homeDialogue.color = SKColor.blackColor()
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
         homeDialogue.hidden = true
         
-        yesBtn.size = CGSize(width: UtilitiesPortal.screenWidth/4, height: UtilitiesPortal.screenHeight/8)
+        yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
-        yesBtn.texture = SKTexture(imageNamed: "tick-grey")
-        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width)/2, y: (0 - yesBtn.size.height)*0.75*2)
+        yesBtn.texture = SKTexture(imageNamed: "tick-white")
+        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.5)
         yesBtn.zPosition = 0.9
         
         noBtn.size = yesBtn.size
         noBtn.color = yesBtn.color
         noBtn.name = UtilitiesPortal.noButtonName
         noBtn.texture = SKTexture(imageNamed: "cross-white")
-        noBtn.position = CGPoint(x: yesBtn.size.width/2, y: (0 - yesBtn.size.height)*0.75*2)
+        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.5)
         noBtn.zPosition = 0.9
         
         homeDialogue.addChild(yesBtn)
         homeDialogue.addChild(noBtn)
         homeDialogue.addChild(alertMessage)
         addChild(homeDialogue)
+
     }
 
     

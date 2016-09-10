@@ -79,11 +79,11 @@ class SettingScene: SKScene {
             node.name == UtilitiesPortal.settingLabelButtons[0]) {
             if values[0] {
                 values[0] = false
-                settings[0].texture = SKTexture(imageNamed: "offbutton")
+                settings[0].texture = SKTexture(imageNamed: "onbutton")
             }
             else {
                 values[0] = true
-                settings[0].texture = SKTexture(imageNamed: "onbutton")
+                settings[0].texture = SKTexture(imageNamed: "offbutton")
             }
         }
         
@@ -91,11 +91,11 @@ class SettingScene: SKScene {
             node.name == UtilitiesPortal.settingLabelButtons[1]) {
             if values[1] {
                 values[1] = false
-                settings[1].texture = SKTexture(imageNamed: "offbutton")
+                settings[1].texture = SKTexture(imageNamed: "onbutton")
             }
             else {
                 values[1] = true
-                settings[1].texture = SKTexture(imageNamed: "onbutton")
+                settings[1].texture = SKTexture(imageNamed: "offbutton")
             }
         }
         
@@ -103,11 +103,11 @@ class SettingScene: SKScene {
             node.name == UtilitiesPortal.settingLabelButtons[2]) {
             if values[2] {
                 values[2] = false
-                settings[2].texture = SKTexture(imageNamed: "offbutton")
+                settings[2].texture = SKTexture(imageNamed: "onbutton")
             }
             else {
                 values[2] = true
-                settings[2].texture = SKTexture(imageNamed: "onbutton")
+                settings[2].texture = SKTexture(imageNamed: "offbutton")
             }
         }
     }
