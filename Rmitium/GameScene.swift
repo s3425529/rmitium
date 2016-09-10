@@ -74,7 +74,6 @@ class GameScene: SKScene {
             self.addChild(levelButton)
             
             setupInfo()
-            
         }
     }
     
@@ -103,14 +102,12 @@ class GameScene: SKScene {
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
             settingView.hidden = true
-            
             state = UtilitiesPortal.stateAnswer
             return
         }
         
         let location = touches.first!.locationInNode(self)
         let node = self.nodeAtPoint(location)
-        
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
@@ -126,10 +123,9 @@ class GameScene: SKScene {
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
+            return
         }
 
-        
-        // If next button is touched, start transition to second scene
         if (node.name == UtilitiesPortal.levelLabelNames[0]
                                 || node.name == UtilitiesPortal.levelButtonNames[0]) {
             LevelOneModel.reset()
@@ -139,6 +135,7 @@ class GameScene: SKScene {
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
+            return
         }
         
         if (node.name == UtilitiesPortal.levelLabelNames[1]
@@ -148,9 +145,9 @@ class GameScene: SKScene {
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
+            return
         }
         
-        // If next button is touched, start transition to second scene
         if (node.name == UtilitiesPortal.levelLabelNames[2]
                                 || node.name == UtilitiesPortal.levelButtonNames[2]) {
             LevelThreeModel.reset()
@@ -160,6 +157,7 @@ class GameScene: SKScene {
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
+            return
         }
     }
    

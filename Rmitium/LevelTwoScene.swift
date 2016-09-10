@@ -214,7 +214,6 @@ class LevelTwoScene: SKScene {
         
     }
     
-    
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /*let touch = touches.first
         if chosenAnswer == nil {
@@ -242,6 +241,22 @@ class LevelTwoScene: SKScene {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         
+        if state == UtilitiesPortal.stateHome {
+            let location = touch!.locationInNode(self)
+            let nodes = self.nodesAtPoint(location)
+            for node in nodes {
+                if node.name == UtilitiesPortal.yesButtonName {
+                    backHomePage()
+                }
+                else if node.name == UtilitiesPortal.noButtonName {
+                    homeDialogue.hidden = true
+                    state = previousState
+                    previousState = UtilitiesPortal.stateHome
+                }
+            }
+            return
+        }
+        
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
             state = previousState
@@ -253,23 +268,9 @@ class LevelTwoScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-            
             homeDialogue.hidden = false
-            //backHomePage()
-            
-            //test last page here
-            //lastPage()
-            
-        }
-        
-        //Yes button selected
-        if node.name == UtilitiesPortal.yesButtonName {
-            backHomePage()
-        }
-        
-        //No button selected
-        if node.name == UtilitiesPortal.noButtonName {
-            homeDialogue.hidden = true
+            previousState = state
+            state = UtilitiesPortal.stateHome
         }
         
         // Tick button selected
