@@ -19,26 +19,30 @@ class LevelOneScene: SKScene {
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel: SKLabelNode!
-    var arrow1, arrow2, arrow3, arrow4: SKLabelNode!
+    var arrow1, arrow2, arrow3, arrow4,timeNode: SKLabelNode!
     //var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
     var state, previousState: Int!
     var listOfQuestions:[LevelOneQuestion] = []
-
-    
+    var timerClass:timeControl!
+    var timeNsNode:NSTimer!
+    var isStopTimer = false
     override func didMoveToView(view: SKView) {
         initRecord()
+        setupTimer()
         setupScene()
+       
     }
     
     func setupScene() {
         
         self.removeAllChildren()
+        
         positions.removeAll()
         questions.removeAll()
         answeredQuestions.removeAll()
-        
         lvlOneQuestion = LevelOneModel.currentQuestion
+        
         // Result page
         if lvlOneQuestion.positions.count == 0 {
             let secondScene = Result(size: self.size)
@@ -49,16 +53,14 @@ class LevelOneScene: SKScene {
         }
         
         state = UtilitiesPortal.stateAnswer
-        
-        setupImage()
-        
         setupItems()
+        setupImage()
         setupDragLabel()
         setupTargets()
         setupFactLabel()
         setupInfo()
         createHomeDialogue()
-        
+       
     }
     func setupItems() {
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
@@ -66,6 +68,7 @@ class LevelOneScene: SKScene {
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
         levelLabel.fontSize = UtilitiesPortal.navLabelSize
         levelLabel.position = CGPointMake(frame.midX, UtilitiesPortal.screenHeight*0.92)
+        
         self.addChild(levelLabel)
         
         // Home button
@@ -114,10 +117,23 @@ class LevelOneScene: SKScene {
         score = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         score.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         score.zPosition = 0.1
+        score.hidden = true
         score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
+     
         score.fontSize = UtilitiesPortal.factSize
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(score)
+
+        // Time label
+       
+        timeNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
+        timeNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        timeNode.zPosition = 0.1
+        timeNode.text = "Time:\(timerClass.timeLabel)"
+        timeNode.fontSize = UtilitiesPortal.factSize
+        timeNode.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
+        self.addChild(timeNode)
+
     }
     func setupImage(){
         // Image
@@ -589,6 +605,44 @@ class LevelOneScene: SKScene {
             UtilitiesPortal.record.append(item)
         }
     
+    }
+    //MARK------- Timer
+    func setupTimer(){
+    
+        timerClass = timeControl(limitTime: 20)
+        timerClass.startTimer()
+        if isStopTimer == false {
+            timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime:", userInfo: nil, repeats: true)
+        
+        }else{
+            timerClass.stopTimer()
+            timeNsNode.invalidate()
+            timeNsNode = nil
+        }
+        
+    }
+    
+    @objc func getTime(timer:NSTimer){
+       
+        timeNode.text = "Time:\(timerClass.timeLabel)"
+        if timerClass.timeLabel <= 5 && timerClass.timeLabel > 0{
+            timeNode.fontColor = SKColor.redColor()
+            let zoom = SKAction.scaleTo(2, duration: 0.5)
+            let fade = SKAction.fadeAlphaTo(0.1, duration: 0.5)
+            let zoom1 = SKAction.scaleTo(1, duration: 0.1)
+            let fade1 = SKAction.fadeAlphaTo(1, duration: 0.1)
+            let action = SKAction.sequence([zoom,fade,fade1,zoom1])
+            timeNode.runAction(action)
+        }
+        
+        if timerClass.timeLabel <= 0{
+        
+            timeNode.text = "Time Out!"
+        }
+        
+        //print("hello")
+        
+       
     }
     
     override func update(currentTime: CFTimeInterval) {

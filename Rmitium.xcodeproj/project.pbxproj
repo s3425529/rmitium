@@ -31,6 +31,8 @@
 		50D9C4681D5A3EF900221ADD /* QuestionLevelOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */; };
 		50E31D151D6BEE3D002F10E0 /* LevelOneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E31D131D66EA9C002F10E0 /* LevelOneModel.swift */; };
 		50E31D161D6BEE5B002F10E0 /* LevelOneQuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E31D111D66DAF5002F10E0 /* LevelOneQuestionList.swift */; };
+		50E94AAD1D811C7D00C01945 /* setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E94AAC1D811C7D00C01945 /* setting.swift */; };
+		50E94AAF1D82405600C01945 /* timeContorl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E94AAE1D82405500C01945 /* timeContorl.swift */; };
 		50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */; };
 		50FD70921D61617B0090CDAD /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70911D61617B0090CDAD /* CustomButton.swift */; };
 		50FD70941D6175360090CDAD /* textFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70931D6175360090CDAD /* textFiled.swift */; };
@@ -64,6 +66,8 @@
 		50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionLevelOne.swift; sourceTree = "<group>"; };
 		50E31D111D66DAF5002F10E0 /* LevelOneQuestionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneQuestionList.swift; sourceTree = "<group>"; };
 		50E31D131D66EA9C002F10E0 /* LevelOneModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneModel.swift; sourceTree = "<group>"; };
+		50E94AAC1D811C7D00C01945 /* setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = setting.swift; sourceTree = "<group>"; };
+		50E94AAE1D82405500C01945 /* timeContorl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = timeContorl.swift; sourceTree = "<group>"; };
 		50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneQuestions.swift; sourceTree = "<group>"; };
 		50FD70911D61617B0090CDAD /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		50FD70931D6175360090CDAD /* textFiled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFiled.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 				508BB50F1D5864CF00556CE3 /* AppDelegate.swift */,
 				508BB5111D5864CF00556CE3 /* GameScene.sks */,
 				508BB5131D5864CF00556CE3 /* GameScene.swift */,
+				50E94AAC1D811C7D00C01945 /* setting.swift */,
 				508BB5151D5864CF00556CE3 /* GameViewController.swift */,
 				500198DA1D75B3640005FCA7 /* SettingScene.swift */,
 				508BB5171D5864CF00556CE3 /* Main.storyboard */,
@@ -146,6 +151,7 @@
 				50FD70911D61617B0090CDAD /* CustomButton.swift */,
 				5000EABC1D66C6E000F3A21F /* SKMultilineLabel.swift */,
 				506E77661D670135004EE1D4 /* CustomSKSpriteNode.swift */,
+				50E94AAE1D82405500C01945 /* timeContorl.swift */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -255,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50D9C4611D58B11E00221ADD /* LevelOneViewController.swift in Sources */,
+				50E94AAD1D811C7D00C01945 /* setting.swift in Sources */,
 				50E31D151D6BEE3D002F10E0 /* LevelOneModel.swift in Sources */,
 				506FF3301D6E9D3500901A52 /* Result.swift in Sources */,
 				50667EE91D705ABF00C8EBF6 /* LevelThreeModel.swift in Sources */,
@@ -269,6 +276,7 @@
 				50D9C4661D5A3E7200221ADD /* DataHandler.swift in Sources */,
 				506E77671D670135004EE1D4 /* CustomSKSpriteNode.swift in Sources */,
 				509691811D639EA300CFD453 /* Question.swift in Sources */,
+				50E94AAF1D82405600C01945 /* timeContorl.swift in Sources */,
 				50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */,
 				50667EE11D70096400C8EBF6 /* LevelThreeScene.swift in Sources */,
 				500198DB1D75B3640005FCA7 /* SettingScene.swift in Sources */,
