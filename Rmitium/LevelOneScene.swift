@@ -29,7 +29,10 @@ class LevelOneScene: SKScene {
     var isStopTimer = false
     override func didMoveToView(view: SKView) {
         initRecord()
+        
+        
         setupTimer()
+    
         setupScene()
        
     }
@@ -465,7 +468,7 @@ class LevelOneScene: SKScene {
            
             homeDialogue.hidden = false
             //backHomePage()
-
+            
             //test last page here
             //lastPage()
             
@@ -610,7 +613,7 @@ class LevelOneScene: SKScene {
     //MARK------- Timer
     func setupTimer(){
     
-        timerClass = timeControl(limitTime: 20)
+        timerClass = timeControl(limitTime: 7)
         timerClass.startTimer()
         if isStopTimer == false {
             timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime:", userInfo: nil, repeats: true)
@@ -639,11 +642,26 @@ class LevelOneScene: SKScene {
         if timerClass.timeLabel <= 0{
         
             timeNode.text = "Time Out!"
+            alertMessage()
         }
         
-        //print("hello")
+    }
+    func alertMessage(){
+    
+        let controller = self.view?.window?.rootViewController as! GameViewController
+        let alert = UIAlertController(title: "Time Out!", message: "Continue or Back home?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Continue", style: .Destructive, handler: {action in
+            self.didMoveToView(self.view!)
+           self.isStopTimer = false
         
-       
+        }))
+        alert.addAction(UIAlertAction(title: "Home", style: .Destructive, handler: {action in
+        
+             self.backHomePage()
+            self.isStopTimer = false
+        }))
+     
+        controller.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func update(currentTime: CFTimeInterval) {
