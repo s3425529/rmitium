@@ -37,7 +37,6 @@
 		50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */; };
 		50FD70921D61617B0090CDAD /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70911D61617B0090CDAD /* CustomButton.swift */; };
 		50FD70941D6175360090CDAD /* textFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70931D6175360090CDAD /* textFiled.swift */; };
-		50FD70981D629D620090CDAD /* notificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70971D629D620090CDAD /* notificationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +72,6 @@
 		50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneQuestions.swift; sourceTree = "<group>"; };
 		50FD70911D61617B0090CDAD /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		50FD70931D6175360090CDAD /* textFiled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFiled.swift; sourceTree = "<group>"; };
-		50FD70971D629D620090CDAD /* notificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notificationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +90,6 @@
 			children = (
 				50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */,
 				50FD70931D6175360090CDAD /* textFiled.swift */,
-				50FD70971D629D620090CDAD /* notificationView.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -283,7 +280,6 @@
 				508BB5141D5864CF00556CE3 /* GameScene.swift in Sources */,
 				50CCBC821D846A1400D78681 /* LevelTwoScene.swift in Sources */,
 				508BB5161D5864CF00556CE3 /* GameViewController.swift in Sources */,
-				50FD70981D629D620090CDAD /* notificationView.swift in Sources */,
 				50FD70921D61617B0090CDAD /* CustomButton.swift in Sources */,
 				50D9C4661D5A3E7200221ADD /* DataHandler.swift in Sources */,
 				506E77671D670135004EE1D4 /* CustomSKSpriteNode.swift in Sources */,

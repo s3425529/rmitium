@@ -128,8 +128,9 @@ class GameScene: SKScene {
 
         if (node.name == UtilitiesPortal.levelLabelNames[0]
                                 || node.name == UtilitiesPortal.levelButtonNames[0]) {
+                                    
             LevelOneModel.reset()
-            
+            removeAllChildren()
             let secondScene = LevelOneScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
@@ -140,6 +141,7 @@ class GameScene: SKScene {
         
         if (node.name == UtilitiesPortal.levelLabelNames[1]
                                 || node.name == UtilitiesPortal.levelButtonNames[1]) {
+            removeAllChildren()
             let secondScene = LevelTwoScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
@@ -150,6 +152,8 @@ class GameScene: SKScene {
         
         if (node.name == UtilitiesPortal.levelLabelNames[2]
                                 || node.name == UtilitiesPortal.levelButtonNames[2]) {
+            
+            removeAllChildren()
             LevelThreeModel.reset()
             
             let secondScene = LevelThreeScene(size: self.size)

@@ -93,5 +93,5 @@ class UtilitiesPortal {
     static let imageHeight = screenHeight*0.6
     
     static var score = 0
-    static var record = [Int]()
+    //static var record = [Int]()
 }
