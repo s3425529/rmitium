@@ -17,12 +17,18 @@ class UtilitiesPortal {
     static let stateReview = 2
     static let stateInfo = 3
     static let stateFact = 4
+    static let stateHome = 5
     
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
     static let levelButtonNames = ["lvl01Btn", "lvl02Btn", "lvl03Btn", "settingBtn"]
     
     static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene", "aldehyde", "ester",
                                   "ether", "thioether", "heterocyclicaromatic"]
+    static let levelTwoWidth = 4
+    static let levelTwoHeight = 3
+    static let levelTwoImageWidth: CGFloat = 0.20
+    static let levelTwoImageHeight: CGFloat = 0.20
+    static let levelTwoNil = -1
     
     static let levelThreeAnswers = ["dipole-dipole", "h-bonding", "ionic", "vanderwaals"]
     

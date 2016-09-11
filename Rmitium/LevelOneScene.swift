@@ -19,7 +19,7 @@ class LevelOneScene: SKScene {
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel: SKLabelNode!
-    var arrow1, arrow2, arrow3, arrow4,timeNode: SKLabelNode!
+    var timeNode: SKLabelNode!
     //var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
     var state, previousState: Int!
@@ -27,6 +27,7 @@ class LevelOneScene: SKScene {
     var timerClass:timeControl!
     var timeNsNode:NSTimer!
     var isStopTimer = false
+    
     override func didMoveToView(view: SKView) {
         initRecord()
         
@@ -34,11 +35,9 @@ class LevelOneScene: SKScene {
         setupTimer()
     
         setupScene()
-       
     }
     
     func setupScene() {
-        
         self.removeAllChildren()
         
         positions.removeAll()
@@ -71,7 +70,6 @@ class LevelOneScene: SKScene {
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
         levelLabel.fontSize = UtilitiesPortal.navLabelSize
         levelLabel.position = CGPointMake(frame.midX, UtilitiesPortal.screenHeight*0.92)
-        
         self.addChild(levelLabel)
         
         // Home button
@@ -116,19 +114,16 @@ class LevelOneScene: SKScene {
         addChild(info)
         
         // Score label
-        
         score = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         score.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         score.zPosition = 0.1
         score.hidden = true
         score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
-     
         score.fontSize = UtilitiesPortal.factSize
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(score)
 
         // Time label
-       
         timeNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         timeNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         timeNode.zPosition = 0.1
@@ -214,7 +209,6 @@ class LevelOneScene: SKScene {
     // Adding Fact label
     func setupFactLabel(){
         let randomIndex = Int(arc4random_uniform(UInt32(lvlOneQuestion.facts.count)))
-        //print(array[randomIndex])
         let fact = lvlOneQuestion.facts[randomIndex]
         let index = fact.startIndex.advancedBy(15)
         let shortenFact = fact.substringToIndex(index)
@@ -379,14 +373,12 @@ class LevelOneScene: SKScene {
         if(chosenAnswer == nil) {
             return
         }
-        print(chosenAnswer.value)
         
         for x in 0...questions.count-1 {
             if CGRectContainsPoint(questions[x].frame, chosenAnswer.position) {
                 answeredQuestions[x].hidden = false
                 answeredQuestions[x].texture = SKTexture(imageNamed: chosenAnswer.value)
                 answeredQuestions[x].value = chosenAnswer.value
-                print(answeredQuestions[x].value)
                 break
             }
         }
@@ -405,6 +397,22 @@ class LevelOneScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
+        
+        if state == UtilitiesPortal.stateHome {
+            let location = touch!.locationInNode(self)
+            let nodes = self.nodesAtPoint(location)
+            for node in nodes {
+                if node.name == UtilitiesPortal.yesButtonName {
+                    backHomePage()
+                }
+                else if node.name == UtilitiesPortal.noButtonName {
+                    homeDialogue.hidden = true
+                    state = previousState
+                    previousState = UtilitiesPortal.stateHome
+                }
+            }
+            return
+        }
         
         if state == UtilitiesPortal.stateFact {
             factOverlay.hidden = true
@@ -465,7 +473,6 @@ class LevelOneScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-           
             homeDialogue.hidden = false
             //backHomePage()
             
@@ -492,7 +499,6 @@ class LevelOneScene: SKScene {
             }
             
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
-                print("tick state result")
                 setupScene()
             }
             return
@@ -572,11 +578,8 @@ class LevelOneScene: SKScene {
         }
         factLabel.hidden = false
         score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
-        
         tick.texture = SKTexture(imageNamed: "next")
-        
         show.hidden = false
-        
         state = UtilitiesPortal.stateResult
     }
     
@@ -627,7 +630,6 @@ class LevelOneScene: SKScene {
     }
     
     @objc func getTime(timer:NSTimer){
-       
         timeNode.text = "Time:\(timerClass.timeLabel)"
         if timerClass.timeLabel <= 5 && timerClass.timeLabel > 0{
             timeNode.fontColor = SKColor.redColor()
@@ -640,7 +642,6 @@ class LevelOneScene: SKScene {
         }
         
         if timerClass.timeLabel <= 0{
-        
             timeNode.text = "Time Out!"
             alertMessage()
         }

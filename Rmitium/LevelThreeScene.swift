@@ -152,7 +152,6 @@ class LevelThreeScene: SKScene {
     }
     
     func setupTargets() {
-        print("\(lvlThreeQuestion.positions.count)")
         for x in 0...lvlThreeQuestion.positions.count-1 {
             positions.append(lvlThreeQuestion.positions[x])
         }
@@ -355,14 +354,12 @@ class LevelThreeScene: SKScene {
         if(chosenAnswer == nil) {
             return
         }
-        print(chosenAnswer.value)
         
         for x in 0...questions.count-1 {
             if CGRectContainsPoint(questions[x].frame, chosenAnswer.position) {
                 answeredQuestions[x].hidden = false
                 answeredQuestions[x].texture = SKTexture(imageNamed: chosenAnswer.value)
                 answeredQuestions[x].value = chosenAnswer.value
-                print(answeredQuestions[x].value)
                 break
             }
         }
@@ -382,12 +379,29 @@ class LevelThreeScene: SKScene {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         
+        if state == UtilitiesPortal.stateHome {
+            let location = touch!.locationInNode(self)
+            let nodes = self.nodesAtPoint(location)
+            for node in nodes {
+                if node.name == UtilitiesPortal.yesButtonName {
+                    backHomePage()
+                }
+                else if node.name == UtilitiesPortal.noButtonName {
+                    homeDialogue.hidden = true
+                    state = previousState
+                    previousState = UtilitiesPortal.stateHome
+                }
+            }
+            return
+        }
+        
         if state == UtilitiesPortal.stateFact {
             factOverlay.hidden = true
             state = previousState
             previousState = UtilitiesPortal.stateFact
             return
         }
+        
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
             state = previousState
@@ -441,13 +455,9 @@ class LevelThreeScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-            
             homeDialogue.hidden = false
-            //backHomePage()
-            
-            //test last page here
-            //lastPage()
-            
+            previousState = state
+            state = UtilitiesPortal.stateHome
         }
         
         //Yes button selected
@@ -462,15 +472,12 @@ class LevelThreeScene: SKScene {
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
-            print("Tick")
-            //setupScene()
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
                 return
             }
              
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
-                print("tick state result")
                 setupScene()
             }
             return
