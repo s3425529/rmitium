@@ -385,11 +385,13 @@ class LevelThreeScene: SKScene {
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
                     backHomePage()
+                    return
                 }
                 else if node.name == UtilitiesPortal.noButtonName {
                     homeDialogue.hidden = true
                     state = previousState
                     previousState = UtilitiesPortal.stateHome
+                    return
                 }
             }
             return
@@ -458,16 +460,6 @@ class LevelThreeScene: SKScene {
             homeDialogue.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
-        }
-        
-        //Yes button selected
-        if node.name == UtilitiesPortal.yesButtonName {
-            backHomePage()
-        }
-        
-        //No button selected
-        if node.name == UtilitiesPortal.noButtonName {
-            homeDialogue.hidden = true
         }
         
         // Tick button selected

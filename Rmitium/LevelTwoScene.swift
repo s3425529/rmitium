@@ -247,11 +247,13 @@ class LevelTwoScene: SKScene {
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
                     backHomePage()
+                    return
                 }
                 else if node.name == UtilitiesPortal.noButtonName {
                     homeDialogue.hidden = true
                     state = previousState
                     previousState = UtilitiesPortal.stateHome
+                    return
                 }
             }
             return
