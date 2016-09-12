@@ -64,7 +64,7 @@ class GameScene: SKScene {
                                               UtilitiesPortal.screenHeight*(0.58-CGFloat(count)*0.18))
             self.addChild(levelLabel)
             
-            let levelButton = SKSpriteNode(imageNamed: "menubar2")
+            let levelButton = SKSpriteNode(imageNamed: "menubar3")
             levelButton.name = UtilitiesPortal.levelButtonNames[count]
             levelButton.alpha = 0.9
             levelButton.zPosition = 0.1
