@@ -26,11 +26,11 @@ class LevelOneScene: SKScene {
     var listOfQuestions:[LevelOneQuestion] = []
     var timerClass:timeControl!
     var timeNsNode:NSTimer!
-    var isStopTimer = false
+  
     
     override func didMoveToView(view: SKView) {
-        initRecord()
-        setupTimer()
+       // initRecord()
+        //setupTimer()
         setupScene()
     }
     
@@ -44,6 +44,10 @@ class LevelOneScene: SKScene {
         
         // Result page
         if lvlOneQuestion.positions.count == 0 {
+            timerClass.stopTimer()
+            timeNsNode.invalidate()
+            timeNsNode = nil
+        
             let secondScene = Result(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -114,21 +118,23 @@ class LevelOneScene: SKScene {
         score = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         score.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         score.zPosition = 0.1
-        score.hidden = true
+        //score.hidden = true
         score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
         score.fontSize = UtilitiesPortal.factSize
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(score)
 
         // Time label
+        /*
         timeNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         timeNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         timeNode.zPosition = 0.1
+        
         timeNode.text = "Time:\(timerClass.timeLabel)"
         timeNode.fontSize = UtilitiesPortal.factSize
         timeNode.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(timeNode)
-
+        */
     }
     func setupImage(){
         // Image
@@ -473,8 +479,11 @@ class LevelOneScene: SKScene {
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
             homeDialogue.hidden = false
-            previousState = state
-            state = UtilitiesPortal.stateHome
+            //backHomePage()
+            
+            //test last page here
+            //lastPage()
+            
         }
         
         //Yes button selected
@@ -490,6 +499,7 @@ class LevelOneScene: SKScene {
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
+                
                 displayResult()
                 return
             }
@@ -596,12 +606,13 @@ class LevelOneScene: SKScene {
     
     //back to the home page,
     func backHomePage(){
+        removeAllChildren()
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
-    
+    /*
     func initRecord(){
         listOfQuestions = LevelOneQuestion.getQuestions()
         for item in 0..<listOfQuestions.count{
@@ -609,19 +620,14 @@ class LevelOneScene: SKScene {
         }
     
     }
+*/
     //MARK------- Timer
     func setupTimer(){
     
-        timerClass = timeControl(limitTime: 20)
+        timerClass = timeControl(limitTime: 180)
         timerClass.startTimer()
-        if isStopTimer == false {
-            timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime:", userInfo: nil, repeats: true)
         
-        }else{
-            timerClass.stopTimer()
-            timeNsNode.invalidate()
-            timeNsNode = nil
-        }
+            timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime:", userInfo: nil, repeats: true)
         
     }
     
@@ -639,7 +645,36 @@ class LevelOneScene: SKScene {
         
         if timerClass.timeLabel <= 0{
             timeNode.text = "Time Out!"
+            timeOut()
         }
+        
+    }
+    func alertMessage(){
+    
+        let controller = self.view?.window?.rootViewController as! GameViewController
+        let alert = UIAlertController(title: "Time Out!", message: "Try Again or Back Home?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Try again", style: .Destructive, handler: {action in
+            self.didMoveToView(self.view!)
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Home", style: .Destructive, handler: {action in
+        
+             self.backHomePage()
+            
+        }))
+       
+
+     
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func timeOut(){
+        
+        timeNsNode.invalidate()
+        timeNsNode = nil
+        LevelOneModel.index = 0
+        alertMessage()
+        
     }
     
     override func update(currentTime: CFTimeInterval) {

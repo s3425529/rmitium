@@ -13,11 +13,14 @@ class LevelTwoScene: SKScene {
     var map: [Int] = []
     var chosenAnswer: Int!
     var tick, infoOverlay, homeDialogue: SKSpriteNode!
-    var score, factLabel: SKLabelNode!
+    var score, factLabel, timeNode: SKLabelNode!
     var state, previousState: Int!
+    var timerClass:timeControl!
+    var timeNsNode:NSTimer!
     
     override func didMoveToView(view: SKView) {
         //initRecord()
+        setupTimer()
         setupScene()
     }
     
@@ -76,10 +79,21 @@ class LevelTwoScene: SKScene {
         score = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         score.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         score.zPosition = 0.1
+        score.hidden = true
         score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
         score.fontSize = UtilitiesPortal.factSize
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(score)
+        
+        
+        // Time label
+        timeNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
+        timeNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        timeNode.zPosition = 0.1
+        timeNode.text = "Time:\(timerClass.timeLabel)"
+        timeNode.fontSize = UtilitiesPortal.factSize
+        timeNode.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
+        self.addChild(timeNode)
     }
     
     func setupDragLabel() {
@@ -241,6 +255,8 @@ class LevelTwoScene: SKScene {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         
+      
+        
         if state == UtilitiesPortal.stateHome {
             let location = touch!.locationInNode(self)
             let nodes = self.nodesAtPoint(location)
@@ -353,4 +369,74 @@ class LevelTwoScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
+    
+    //MARK------- Timer
+    func setupTimer(){
+        
+        timerClass = timeControl(limitTime: 60)
+        timerClass.startTimer()
+        
+        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime:", userInfo: nil, repeats: true)
+        
+    }
+    
+    @objc func getTime(timer:NSTimer){
+        timeNode.text = "Time:\(timerClass.timeLabel)"
+        if timerClass.timeLabel <= 5 && timerClass.timeLabel > 0{
+            timeNode.fontColor = SKColor.redColor()
+            let zoom = SKAction.scaleTo(2, duration: 0.5)
+            let fade = SKAction.fadeAlphaTo(0.1, duration: 0.5)
+            let zoom1 = SKAction.scaleTo(1, duration: 0.1)
+            let fade1 = SKAction.fadeAlphaTo(1, duration: 0.1)
+            let action = SKAction.sequence([zoom,fade,fade1,zoom1])
+            timeNode.runAction(action)
+        }
+        
+        if timerClass.timeLabel <= 0{
+            timeNode.text = "Time Out!"
+            timeOut()
+            alertMessage()
+        }
+        if checkResult(){
+        
+            timeOut()
+            toResultSence()
+
+        }
+        
+    }
+    func alertMessage(){
+        
+        let controller = self.view?.window?.rootViewController as! GameViewController
+        let alert = UIAlertController(title: "Time Out!", message: "Try Again or Back Home?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Try again", style: .Destructive, handler: {action in
+            self.didMoveToView(self.view!)
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Home", style: .Destructive, handler: {action in
+            
+            self.backHomePage()
+            
+        }))
+        
+        
+        
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func timeOut(){
+        timerClass.stopTimer()
+        timeNsNode.invalidate()
+        timeNsNode = nil
+    }
+    
+    func toResultSence(){
+        
+        let secondScene = Result(size: self.size)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        secondScene.scaleMode = SKSceneScaleMode.AspectFill
+        self.scene!.view?.presentScene(secondScene, transition: transition)
+
+    }
+
 }
