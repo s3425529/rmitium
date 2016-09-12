@@ -24,7 +24,7 @@ class LevelOneScene: SKScene {
     var lvlOneQuestion: LevelOneQuestion!
     var state, previousState: Int!
     var listOfQuestions:[LevelOneQuestion] = []
-    var timerClass:timeControl!
+    //var timerClass:TimeControl!
     var timeNsNode:NSTimer!
   
     
@@ -264,7 +264,7 @@ class LevelOneScene: SKScene {
                               height: UtilitiesPortal.navImgSize*2)
         arrow03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.22,
                                    y: UtilitiesPortal.screenHeight * -0.1)
-
+        
         let arrow04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[3])
         arrow04.zPosition = 0.9
         arrow04.size = CGSize(width: UtilitiesPortal.navImgSize*2,
@@ -272,26 +272,54 @@ class LevelOneScene: SKScene {
         arrow04.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.15,
                                    y: UtilitiesPortal.screenHeight * -0.1)
         
+        let arrow05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[4])
+        arrow05.zPosition = 0.9
+        arrow05.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow05.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.4,
+                                   y: UtilitiesPortal.screenHeight * 0.30)
+        
+        let arrow06 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[5])
+        arrow06.zPosition = 0.9
+        arrow06.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow06.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.4,
+                                   y: UtilitiesPortal.screenHeight * -0.30)
+        
         let info01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[0])
         info01.zPosition = 1
         info01.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
                              height: UtilitiesPortal.screenHeight*0.15)
         info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.27,
-                                   y: UtilitiesPortal.screenHeight * 0.15)
+                                  y: UtilitiesPortal.screenHeight * 0.15)
         
         let info02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[1])
         info02.zPosition = 1
         info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
                              height: UtilitiesPortal.screenHeight*0.15)
         info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.05,
-                                   y: UtilitiesPortal.screenHeight * -0.2)
+                                  y: UtilitiesPortal.screenHeight * -0.2)
         
         let info03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[2])
         info03.zPosition = 1
         info03.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
                              height: UtilitiesPortal.screenHeight*0.15)
         info03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.3,
-                                   y: UtilitiesPortal.screenHeight * -0.3)
+                                  y: UtilitiesPortal.screenHeight * -0.3)
+        
+        let info04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[3])
+        info04.zPosition = 1
+        info04.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+                             height: UtilitiesPortal.screenHeight*0.15)
+        info04.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.35,
+                                  y: UtilitiesPortal.screenHeight * 0.15)
+        
+        let info05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[4])
+        info05.zPosition = 1
+        info05.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+                             height: UtilitiesPortal.screenHeight*0.15)
+        info05.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.35,
+                                  y: UtilitiesPortal.screenHeight * -0.10)
         
         infoOverlay = SKSpriteNode()
         infoOverlay.name = UtilitiesPortal.factOverlayName
@@ -306,10 +334,14 @@ class LevelOneScene: SKScene {
         infoOverlay.addChild(arrow02)
         infoOverlay.addChild(arrow03)
         infoOverlay.addChild(arrow04)
+        infoOverlay.addChild(arrow05)
+        infoOverlay.addChild(arrow06)
         
         infoOverlay.addChild(info01)
         infoOverlay.addChild(info02)
         infoOverlay.addChild(info03)
+        infoOverlay.addChild(info04)
+        infoOverlay.addChild(info05)
         
         addChild(infoOverlay)
     }
@@ -476,31 +508,16 @@ class LevelOneScene: SKScene {
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
             homeDialogue.hidden = false
-            //backHomePage()
-            
-            //test last page here
-            //lastPage()
-            
-        }
-        
-        //Yes button selected
-        if node.name == UtilitiesPortal.yesButtonName {
-            backHomePage()
-        }
-        
-        //No button selected
-        if node.name == UtilitiesPortal.noButtonName {
-            homeDialogue.hidden = true
+            previousState = state
+            state = UtilitiesPortal.stateHome
         }
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
-                
                 displayResult()
                 return
             }
-            
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
                 setupScene()
             }
@@ -619,9 +636,9 @@ class LevelOneScene: SKScene {
     }
 */
     //MARK------- Timer
-    func setupTimer(){
+    /*func setupTimer(){
     
-        timerClass = timeControl(limitTime: 180)
+        timerClass = TimeControl(limitTime: 180)
         timerClass.startTimer()
         
             timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime:", userInfo: nil, repeats: true)
@@ -644,8 +661,8 @@ class LevelOneScene: SKScene {
             timeNode.text = "Time Out!"
             timeOut()
         }
-        
-    }
+    }*/
+    
     func alertMessage(){
     
         let controller = self.view?.window?.rootViewController as! GameViewController

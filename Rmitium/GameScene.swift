@@ -9,7 +9,7 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    var infoOverlay, settingView: SKSpriteNode!
+    var infoOverlay: SKSpriteNode!
     var state: Int!
     
     override func didMoveToView(view: SKView) {
@@ -101,7 +101,6 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
-            settingView.hidden = true
             state = UtilitiesPortal.stateAnswer
             return
         }
