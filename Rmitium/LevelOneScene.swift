@@ -44,9 +44,6 @@ class LevelOneScene: SKScene {
         
         // Result page
         if lvlOneQuestion.positions.count == 0 {
-            timerClass.stopTimer()
-            timeNsNode.invalidate()
-            timeNsNode = nil
         
             let secondScene = Result(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
