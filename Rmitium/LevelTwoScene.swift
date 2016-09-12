@@ -286,6 +286,7 @@ class LevelTwoScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
+            timeOut()
             homeDialogue.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
@@ -360,6 +361,7 @@ class LevelTwoScene: SKScene {
     
     //back to the home page,
     func backHomePage(){
+        
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -391,18 +393,18 @@ class LevelTwoScene: SKScene {
             let action = SKAction.sequence([zoom,fade,fade1,zoom1])
             timeNode.runAction(action)
         }
-        
+        if checkResult(){
+            
+            timeOut()
+            toResultSence()
+            
+        }
         if timerClass.timeLabel <= 0{
             timeNode.text = "Time Out!"
             timeOut()
             alertMessage()
         }
-        if checkResult(){
         
-            timeOut()
-            toResultSence()
-
-        }
         
     }
     func alertMessage(){
