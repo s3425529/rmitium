@@ -30,7 +30,7 @@ class LevelOneScene: SKScene {
     
     override func didMoveToView(view: SKView) {
        // initRecord()
-        setupTimer()
+        //setupTimer()
         setupScene()
     }
     
@@ -118,21 +118,23 @@ class LevelOneScene: SKScene {
         score = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         score.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         score.zPosition = 0.1
-        score.hidden = true
+        //score.hidden = true
         score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
         score.fontSize = UtilitiesPortal.factSize
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(score)
 
         // Time label
+        /*
         timeNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         timeNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         timeNode.zPosition = 0.1
+        
         timeNode.text = "Time:\(timerClass.timeLabel)"
         timeNode.fontSize = UtilitiesPortal.factSize
         timeNode.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(timeNode)
-
+        */
     }
     func setupImage(){
         // Image
