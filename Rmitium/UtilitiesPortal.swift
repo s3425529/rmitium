@@ -6,9 +6,11 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
+import AudioToolbox
 import Foundation
 import UIKit
 import SpriteKit
+
 
 class UtilitiesPortal {
     //static let mainScene = GameScene(fileNamed:"GameScene")
@@ -94,4 +96,14 @@ class UtilitiesPortal {
     
     static var score = 0
     //static var record = [Int]()
+}
+
+extension SystemSoundID {
+    static func playFileNamed(fileName: String, withExtenstion fileExtension: String? = "aif") {
+        var sound: SystemSoundID = 0
+        if let soundURL = NSBundle.mainBundle().URLForResource(fileName, withExtension: fileExtension) {
+            AudioServicesCreateSystemSoundID(soundURL, &sound)
+            AudioServicesPlaySystemSound(sound)
+        }
+    }
 }

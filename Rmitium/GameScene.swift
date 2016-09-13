@@ -6,7 +6,9 @@
 //  Copyright (c) 2016 RMIT. All rights reserved.
 //
 
+import AudioToolbox
 import SpriteKit
+import AVFoundation
 
 class GameScene: SKScene {
     var infoOverlay: SKSpriteNode!
@@ -75,11 +77,12 @@ class GameScene: SKScene {
             
             setupInfo()
         }
+        setupSound()
     }
     
     // Info layout
     func setupInfo(){
-        let infoOverlayText = SKMultilineLabel(text: "Info layout", labelWidth: UtilitiesPortal.screenWidth,
+        let infoOverlayText = SKMultilineLabel(text: "Info layout", labelWidth:UtilitiesPortal.screenWidth,
                                                pos: CGPoint(x: 0, y: 0),fontName: UtilitiesPortal.navLabelFont,
                                                fontSize: UtilitiesPortal.navLabelSize,
                                                leading: Int(UtilitiesPortal.navLabelSize))
@@ -98,7 +101,14 @@ class GameScene: SKScene {
         addChild(infoOverlay)
     }
     
+    func setupSound() {
+        let backgroundMusic = SKAudioNode(fileNamed: "bgSound.wav")
+        backgroundMusic.autoplayLooped = true
+        self.addChild(backgroundMusic)
+    }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        runAction(SKAction.playSoundFileNamed("clickSound.wav", waitForCompletion: true))
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
             state = UtilitiesPortal.stateAnswer
