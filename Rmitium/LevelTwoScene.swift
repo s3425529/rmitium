@@ -292,6 +292,7 @@ class LevelTwoScene: SKScene {
             let nodes = self.nodesAtPoint(location)
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
+                    timeOut()
                     backHomePage()
                     return
                 }
@@ -316,7 +317,7 @@ class LevelTwoScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-            timeOut()
+            
             homeDialogue.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
@@ -405,10 +406,10 @@ class LevelTwoScene: SKScene {
     //MARK------- Timer
     func setupTimer() {
         
-        timerClass = TimeControl(limitTime: 10)
+        timerClass = TimeControl(limitTime: 15)
         timerClass.startTimer()
         
-        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
+        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime:", userInfo: nil, repeats: true)
         
     }
     
@@ -467,7 +468,7 @@ class LevelTwoScene: SKScene {
     
     func toResultSence(){
         
-        let secondScene = Result(size: self.size)
+        let secondScene = ResultPage2(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
