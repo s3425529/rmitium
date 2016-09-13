@@ -17,29 +17,22 @@ class ResultPage2: SKScene{
     
     var facebook, twitter, redo, next: CustomButton!
     
-    
-    
     override func didMoveToView(view: SKView) {
-        
-        
         facebook = CustomButton(defaultButtonImage: "facebookbutton", activeButtonImage: "facebookbutton1", buttonAction: facebookAction,scale: 0.2)
         facebook.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
             y: UtilitiesPortal.screenHeight * 0.8)
         facebook.name = "facebook"
         facebook.frame.width
         
-        
         twitter = CustomButton(defaultButtonImage: "twitterbutton", activeButtonImage: "twitterbutton1", buttonAction: twitterAction,scale: 0.2)
         twitter.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
             y: UtilitiesPortal.screenHeight * 0.6)
         twitter.name = "twitter"
         
-        
         redo = CustomButton(defaultButtonImage: "retrybutton", activeButtonImage: "retrybutton1", buttonAction: redoAction,scale: 0.2)
         redo.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
             y: UtilitiesPortal.screenHeight * 0.4)
         redo.name = "redo"
-        
         
         next = CustomButton(defaultButtonImage: "nextbutton", activeButtonImage: "nextbutton1", buttonAction: nextAction, scale: 0.2)
         next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
@@ -101,9 +94,6 @@ class ResultPage2: SKScene{
         backHomePage()
     }
     
-    
-    
-    
     // Share the score to any social media!
     func displayShareSheet(shareContent:String) {
         
@@ -116,7 +106,7 @@ class ResultPage2: SKScene{
     }
     
     //back to the home page,
-    func backHomePage(){
+    func backHomePage() {
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -124,22 +114,16 @@ class ResultPage2: SKScene{
         UtilitiesPortal.score = 0
     }
     
-    func backLevel2(){
-        
+    func backLevel2() {
         let secondScene = LevelTwoScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
         UtilitiesPortal.score = 0
-        
     }
-    
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
-    
-    
-    
 }

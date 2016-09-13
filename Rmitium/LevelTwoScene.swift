@@ -391,8 +391,7 @@ class LevelTwoScene: SKScene {
     }
     
     //back to the home page,
-    func backHomePage(){
-        
+    func backHomePage() {
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -405,12 +404,10 @@ class LevelTwoScene: SKScene {
     
     //MARK------- Timer
     func setupTimer() {
-        
         timerClass = TimeControl(limitTime: 15)
         timerClass.startTimer()
         
-        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime:", userInfo: nil, repeats: true)
-        
+        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
     }
     
     @objc func getTime(timer:NSTimer) {
@@ -437,7 +434,6 @@ class LevelTwoScene: SKScene {
     }
     
     func alertMessage(){
-        
         let controller = self.view?.window?.rootViewController as! GameViewController
         let alert = UIAlertController(title: "Time Out!", message: "Try Again or Back Home?", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Try again", style: .Destructive, handler: {action in
@@ -450,13 +446,9 @@ class LevelTwoScene: SKScene {
             
         }))
         alert.addAction(UIAlertAction(title: "Home", style: .Destructive, handler: {action in
-            
             self.backHomePage()
             
         }))
-        
-        
-        
         controller.presentViewController(alert, animated: true, completion: nil)
     }
     
@@ -467,7 +459,6 @@ class LevelTwoScene: SKScene {
     }
     
     func toResultSence(){
-        
         let secondScene = ResultPage2(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill

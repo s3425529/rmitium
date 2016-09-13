@@ -6,14 +6,6 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
-//
-//  resultPage.swift
-//  Rmitium
-//
-//  Created by Max on 12/09/2016.
-//  Copyright © 2016 RMIT. All rights reserved.
-//
-
 /*
 
 w/h=x/y = 2.483
@@ -29,21 +21,15 @@ import SpriteKit
 import Social
 
 class ResultPage3: SKScene{
-    
     var facebook, twitter, redo, next: CustomButton!
     
-    
-    
     override func didMoveToView(view: SKView) {
-        
-        
         facebook = CustomButton(defaultButtonImage: "facebookbutton", activeButtonImage: "facebookbutton1", buttonAction: facebookAction,scale: 0.2)
         facebook.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
             y: UtilitiesPortal.screenHeight * 0.8)
         facebook.name = "facebook"
         facebook.frame.width
        
-        
         twitter = CustomButton(defaultButtonImage: "twitterbutton", activeButtonImage: "twitterbutton1", buttonAction: twitterAction,scale: 0.2)
         twitter.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
             y: UtilitiesPortal.screenHeight * 0.6)
@@ -75,7 +61,7 @@ class ResultPage3: SKScene{
         addChild(scoreNode)
         
     }
-    func facebookAction(){
+    func facebookAction() {
         print("facebook")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
@@ -91,7 +77,7 @@ class ResultPage3: SKScene{
         
         
     }
-    func twitterAction(){
+    func twitterAction() {
         print("twitter")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
@@ -105,19 +91,16 @@ class ResultPage3: SKScene{
             controller.presentViewController(alert, animated: true, completion: nil)
         }
     }
-    func redoAction(){
+    func redoAction() {
         print("redo")
         UtilitiesPortal.score = 0
         backLevel3()
         return
     }
-    func nextAction(){
+    func nextAction() {
         print("next")
         backHomePage()
     }
-    
-    
-    
     
     // Share the score to any social media!
     func displayShareSheet(shareContent:String) {
@@ -147,14 +130,9 @@ class ResultPage3: SKScene{
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
         UtilitiesPortal.score = 0
-        
     }
-    
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
-    
-    
-    
 }
