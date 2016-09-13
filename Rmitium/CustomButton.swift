@@ -11,15 +11,17 @@ import SpriteKit
 class CustomButton: SKNode {
     var defaultButton: SKSpriteNode
     var activeButton: SKSpriteNode
-    //var action: () -> Void
-    var option: Int
+    var action: () -> Void
     
-    init(defaultButtonImage: String, activeButtonImage: String, /*buttonAction:() -> Void*/option: Int) {
-        defaultButton = SKSpriteNode(imageNamed: defaultButtonImage)
-        activeButton = SKSpriteNode(imageNamed: activeButtonImage)
-        activeButton.hidden = true
-        //action = buttonAction
-        self.option = option
+    
+    init(defaultButtonImage: String, activeButtonImage: String, buttonAction:() -> Void, scale:CGFloat) {
+        self.defaultButton = SKSpriteNode(imageNamed: defaultButtonImage)
+        self.defaultButton.size = CGSize(width: UtilitiesPortal.screenWidth*scale, height: UtilitiesPortal.screenWidth*scale/2.48)
+        self.activeButton = SKSpriteNode(imageNamed: activeButtonImage)
+        self.activeButton.size = CGSize(width: UtilitiesPortal.screenWidth*scale, height: UtilitiesPortal.screenWidth*scale/2.48)
+        self.activeButton.hidden = true
+        action = buttonAction
+        
         
         super.init()
         
@@ -62,16 +64,7 @@ class CustomButton: SKNode {
         let location: CGPoint = touch.locationInNode(self)
         
         if defaultButton.containsPoint(location) {
-            //action()
-            var scene: SKScene!
-            if(option == 1) {
-                scene = LevelOneScene(size:frame.size)
-            }
-            scene = LevelOneScene(size:frame.size)
-            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.5)
-            //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
-            scene.scaleMode = SKSceneScaleMode.AspectFill
-            self.scene!.view?.presentScene(scene, transition: transition)
+            action()
             
         }
         

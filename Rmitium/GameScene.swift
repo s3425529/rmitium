@@ -166,7 +166,7 @@ class GameScene: SKScene {
             
             removeAllChildren()
             LevelThreeModel.reset()
-            
+            //let secondScene = ResultPage(size: self.size)
             let secondScene = LevelThreeScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)

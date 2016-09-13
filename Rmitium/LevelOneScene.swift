@@ -45,7 +45,7 @@ class LevelOneScene: SKScene {
         // Result page
         if lvlOneQuestion.positions.count == 0 {
         
-            let secondScene = Result(size: self.size)
+            let secondScene = ResultPage(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)

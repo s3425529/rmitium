@@ -40,7 +40,7 @@ class LevelThreeScene: SKScene {
         lvlThreeQuestion = LevelThreeModel.currentQuestion
         // Result page
         if lvlThreeQuestion.positions.count == 0 {
-            let secondScene = Result(size: self.size)
+            let secondScene = ResultPage3(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)

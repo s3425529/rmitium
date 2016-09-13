@@ -1,4 +1,12 @@
 //
+//  ReslutPage3.swift
+//  Rmitium
+//
+//  Created by Max on 13/09/2016.
+//  Copyright © 2016 RMIT. All rights reserved.
+//
+
+//
 //  resultPage.swift
 //  Rmitium
 //
@@ -20,7 +28,7 @@ w/355=
 import SpriteKit
 import Social
 
-class ResultPage: SKScene{
+class ResultPage3: SKScene{
     
     var facebook, twitter, redo, next: CustomButton!
     
@@ -34,19 +42,19 @@ class ResultPage: SKScene{
             y: UtilitiesPortal.screenHeight * 0.8)
         facebook.name = "facebook"
         facebook.frame.width
-        // facebook.setScale(scale1)
+       
         
         twitter = CustomButton(defaultButtonImage: "twitterbutton", activeButtonImage: "twitterbutton1", buttonAction: twitterAction,scale: 0.2)
         twitter.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
             y: UtilitiesPortal.screenHeight * 0.6)
         twitter.name = "twitter"
-        //twitter.setScale(scale1)
+       
         
         redo = CustomButton(defaultButtonImage: "retrybutton", activeButtonImage: "retrybutton1", buttonAction: redoAction,scale: 0.2)
         redo.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
             y: UtilitiesPortal.screenHeight * 0.4)
         redo.name = "redo"
-        //redo.setScale(scale1)
+     
         
         next = CustomButton(defaultButtonImage: "nextbutton", activeButtonImage: "nextbutton1", buttonAction: nextAction, scale: 0.2)
         next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
@@ -73,7 +81,7 @@ class ResultPage: SKScene{
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
             let facebookController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
             facebookController.setInitialText("My score is\(UtilitiesPortal.score)")
-           // facebookController.addImage(UIImage(named: "next"))
+            // facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(facebookController, animated: true, completion: nil)
         }else{
             let alert = UIAlertController(title: "Facebook Unavailable", message: "Be sure to go to Settings > Facebook to set up your account", preferredStyle: UIAlertControllerStyle.Alert)
@@ -99,8 +107,8 @@ class ResultPage: SKScene{
     }
     func redoAction(){
         print("redo")
-        //UtilitiesPortal.score = 0
-        backLevel1()
+        UtilitiesPortal.score = 0
+        backLevel3()
         return
     }
     func nextAction(){
@@ -131,9 +139,9 @@ class ResultPage: SKScene{
         UtilitiesPortal.score = 0
     }
     
-    func backLevel1(){
-        LevelOneModel.reset()
-        let secondScene = LevelOneScene(size: self.size)
+    func backLevel3(){
+        LevelThreeModel.reset()
+        let secondScene = LevelThreeScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
