@@ -10,13 +10,14 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController {
-
+    
     override func viewWillLayoutSubviews() {
         //super.viewDidLoad()
+        DataHandler.getSettings()
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
            // scene.size = CGSize(width:UtilitiesPortal.screenWidth, height:UtilitiesPortal.screenHeight)
-            
+            print("Game View Controller")
             scene.size = CGSize(width:UtilitiesPortal.screenWidth, height:UtilitiesPortal.screenHeight)
             let skView = self.view as! SKView
             //skView.showsFPS = true

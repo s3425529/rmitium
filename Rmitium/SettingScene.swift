@@ -11,12 +11,18 @@ import SpriteKit
 
 class SettingScene: SKScene {
     var settings: [SKSpriteNode] = []
-    var values: [Bool] = [true, true, true]
+    var values: [Bool] = []
     var state: Int!
+    var model: Settings!
     
     override func didMoveToView(view: SKView) {
         UtilitiesPortal.score = 0
         state = UtilitiesPortal.stateAnswer
+        
+        model = DataHandler.getSettings()
+        values.append(model.getSound)
+        values.append(model.getSound)
+        values.append(model.getSound)
         
         // Home button
         let home = SKSpriteNode(imageNamed: "home")
@@ -49,6 +55,9 @@ class SettingScene: SKScene {
             self.addChild(levelLabel)
             
             let levelButton = SKSpriteNode(imageNamed: "offbutton")
+            if model.getSound {
+                levelButton.texture = SKTexture(imageNamed: "onbutton")
+            }
             levelButton.name = UtilitiesPortal.settingLabelButtons[count]
             levelButton.alpha = 0.9
             levelButton.zPosition = 0.1
@@ -64,6 +73,9 @@ class SettingScene: SKScene {
         let location = touches.first!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
+            // Save settings
+            DataHandler.updateSound(values[0])
+            
             let secondScene = GameScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
@@ -79,11 +91,11 @@ class SettingScene: SKScene {
             node.name == UtilitiesPortal.settingLabelButtons[0]) {
             if values[0] {
                 values[0] = false
-                settings[0].texture = SKTexture(imageNamed: "onbutton")
+                settings[0].texture = SKTexture(imageNamed: "offbutton")
             }
             else {
                 values[0] = true
-                settings[0].texture = SKTexture(imageNamed: "offbutton")
+                settings[0].texture = SKTexture(imageNamed: "onbutton")
             }
         }
         
@@ -91,11 +103,11 @@ class SettingScene: SKScene {
             node.name == UtilitiesPortal.settingLabelButtons[1]) {
             if values[1] {
                 values[1] = false
-                settings[1].texture = SKTexture(imageNamed: "onbutton")
+                settings[1].texture = SKTexture(imageNamed: "offbutton")
             }
             else {
                 values[1] = true
-                settings[1].texture = SKTexture(imageNamed: "offbutton")
+                settings[1].texture = SKTexture(imageNamed: "onbutton")
             }
         }
         
@@ -103,11 +115,11 @@ class SettingScene: SKScene {
             node.name == UtilitiesPortal.settingLabelButtons[2]) {
             if values[2] {
                 values[2] = false
-                settings[2].texture = SKTexture(imageNamed: "onbutton")
+                settings[2].texture = SKTexture(imageNamed: "offbutton")
             }
             else {
                 values[2] = true
-                settings[2].texture = SKTexture(imageNamed: "offbutton")
+                settings[2].texture = SKTexture(imageNamed: "onbutton")
             }
         }
     }

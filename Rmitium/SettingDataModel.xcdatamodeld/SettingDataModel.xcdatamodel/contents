@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+    <entity name="Settings" representedClassName=".Settings" syncable="YES">
+        <attribute name="levelOne" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="levelThree" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="levelTwo" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="rightHand" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="sound" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Settings" positionX="-63" positionY="-18" width="128" height="120"/>
+    </elements>
+</model>

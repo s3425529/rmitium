@@ -6,27 +6,51 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
+import CoreData
 import Foundation
 
 class DataHandler {
-    let totalQuestions = 1;
-    var questions: [Question]
+    static var settings = DataController().managedObjectContext
     
-    init() {
-        questions = []
+    static func initSettings() {
+        let entity = NSEntityDescription.insertNewObjectForEntityForName("Settings", inManagedObjectContext: settings) as! Settings
+        entity.setValue(true, forKey: "sound")
+        entity.setValue(true, forKey: "rightHand")
+        entity.setValue(0, forKey: "levelOne")
+        entity.setValue(0, forKey: "levelTwo")
+        entity.setValue(0, forKey: "levelThree")
         
-        let q01 = Question(imgQuestion: "test_ans", imgAnswer: "test_sol")
-        
-        q01.addFact("Fact 1 aaaaaaaaaaaa")
-        q01.addFact("Fact 2 bbbbbbbbbbbb")
-        q01.addFact("Fact 3 cccccccccccc")
-        
-        q01.addPosition(Position(x:0.38, y:0.75))
-        q01.addPosition(Position(x:0.18, y:0.47))
-        q01.addPosition(Position(x:0.68, y:0.42))
-        q01.addPosition(Position(x:0.15, y:0.29))
-        q01.addPosition(Position(x:0.59, y:0.25))
-        
-        questions.append(q01)
+        do {
+            try settings.save()
+        }
+        catch {
+            fatalError("Failure to save Settings: \(error)")
+        }
+    }
+    
+    static func getSettings() -> Settings {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            print("Data: \(result.first!.getSound)")
+            return result.first!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func updateSound(sound: Bool) {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            print("Data: \(result.first!.getSound)")
+            let object = result.first!
+            object.setValue(sound, forKey: "sound")
+            try settings.save()
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
     }
 }

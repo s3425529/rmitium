@@ -26,6 +26,10 @@
 		509691811D639EA300CFD453 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509691801D639EA300CFD453 /* Question.swift */; };
 		509CEA091D86EFC1002360E1 /* bgSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 509CEA081D86EFC1002360E1 /* bgSound.wav */; };
 		509CEA0B1D86F44F002360E1 /* clickSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 509CEA0A1D86F44E002360E1 /* clickSound.wav */; };
+		509CEA0E1D884A91002360E1 /* SettingDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 509CEA0C1D884A91002360E1 /* SettingDataModel.xcdatamodeld */; };
+		509CEA111D884C3D002360E1 /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CEA0F1D884C3D002360E1 /* Settings+CoreDataProperties.swift */; };
+		509CEA121D884C3D002360E1 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CEA101D884C3D002360E1 /* Settings.swift */; };
+		509CEA141D884CEB002360E1 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509CEA131D884CEB002360E1 /* DataController.swift */; };
 		50CCBC821D846A1400D78681 /* LevelTwoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CCBC811D846A1400D78681 /* LevelTwoScene.swift */; };
 		50D741041D60D38600EF36E4 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D741031D60D38600EF36E4 /* Position.swift */; };
 		50D9C4611D58B11E00221ADD /* LevelOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D9C4601D58B11E00221ADD /* LevelOneViewController.swift */; };
@@ -64,6 +68,10 @@
 		509691801D639EA300CFD453 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		509CEA081D86EFC1002360E1 /* bgSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bgSound.wav; sourceTree = "<group>"; };
 		509CEA0A1D86F44E002360E1 /* clickSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clickSound.wav; sourceTree = "<group>"; };
+		509CEA0D1D884A91002360E1 /* SettingDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SettingDataModel.xcdatamodel; sourceTree = "<group>"; };
+		509CEA0F1D884C3D002360E1 /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Settings+CoreDataProperties.swift"; path = "../Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		509CEA101D884C3D002360E1 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Settings.swift; path = ../Settings.swift; sourceTree = "<group>"; };
+		509CEA131D884CEB002360E1 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		50CCBC811D846A1400D78681 /* LevelTwoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTwoScene.swift; sourceTree = "<group>"; };
 		50D741031D60D38600EF36E4 /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		50D9C4601D58B11E00221ADD /* LevelOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneViewController.swift; sourceTree = "<group>"; };
@@ -205,9 +213,13 @@
 		50D9C4641D5A3E3D00221ADD /* DataPortal */ = {
 			isa = PBXGroup;
 			children = (
+				509CEA0F1D884C3D002360E1 /* Settings+CoreDataProperties.swift */,
+				509CEA101D884C3D002360E1 /* Settings.swift */,
 				50D9C4651D5A3E7200221ADD /* DataHandler.swift */,
 				50D9C4671D5A3EF900221ADD /* QuestionLevelOne.swift */,
 				509691801D639EA300CFD453 /* Question.swift */,
+				509CEA0C1D884A91002360E1 /* SettingDataModel.xcdatamodeld */,
+				509CEA131D884CEB002360E1 /* DataController.swift */,
 			);
 			name = DataPortal;
 			sourceTree = "<group>";
@@ -289,6 +301,7 @@
 			files = (
 				50D9C4611D58B11E00221ADD /* LevelOneViewController.swift in Sources */,
 				50E94AAD1D811C7D00C01945 /* setting.swift in Sources */,
+				509CEA0E1D884A91002360E1 /* SettingDataModel.xcdatamodeld in Sources */,
 				50E31D151D6BEE3D002F10E0 /* LevelOneModel.swift in Sources */,
 				506FF3301D6E9D3500901A52 /* Result.swift in Sources */,
 				50667EE91D705ABF00C8EBF6 /* LevelThreeModel.swift in Sources */,
@@ -299,6 +312,7 @@
 				508BB5141D5864CF00556CE3 /* GameScene.swift in Sources */,
 				50CCBC821D846A1400D78681 /* LevelTwoScene.swift in Sources */,
 				508BB5161D5864CF00556CE3 /* GameViewController.swift in Sources */,
+				509CEA111D884C3D002360E1 /* Settings+CoreDataProperties.swift in Sources */,
 				50FD70921D61617B0090CDAD /* CustomButton.swift in Sources */,
 				50D9C4661D5A3E7200221ADD /* DataHandler.swift in Sources */,
 				506E77671D670135004EE1D4 /* CustomSKSpriteNode.swift in Sources */,
@@ -309,6 +323,8 @@
 				500198DB1D75B3640005FCA7 /* SettingScene.swift in Sources */,
 				508BB5101D5864CF00556CE3 /* AppDelegate.swift in Sources */,
 				50667EE71D70593F00C8EBF6 /* LevelThreeQuestionList.swift in Sources */,
+				509CEA121D884C3D002360E1 /* Settings.swift in Sources */,
+				509CEA141D884CEB002360E1 /* DataController.swift in Sources */,
 				50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */,
 				50FD70941D6175360090CDAD /* textFiled.swift in Sources */,
 				50D741041D60D38600EF36E4 /* Position.swift in Sources */,
@@ -474,6 +490,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		509CEA0C1D884A91002360E1 /* SettingDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				509CEA0D1D884A91002360E1 /* SettingDataModel.xcdatamodel */,
+			);
+			currentVersion = 509CEA0D1D884A91002360E1 /* SettingDataModel.xcdatamodel */;
+			path = SettingDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 508BB5041D5864CF00556CE3 /* Project object */;
 }
