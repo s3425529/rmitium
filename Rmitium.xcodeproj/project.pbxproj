@@ -455,7 +455,7 @@
 				INFOPLIST_FILE = Rmitium/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.student.s3527531.rmit;
+				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.s3425529.Rmitium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -471,7 +471,7 @@
 				INFOPLIST_FILE = Rmitium/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.student.s3527531.rmit;
+				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.s3425529.Rmitium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
