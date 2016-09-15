@@ -432,8 +432,9 @@ class LevelTwoScene: SKScene {
         }
         if timerClass.timeLabel <= 0 {
             timeNode.text = "Time Out!"
-            timeOut()
-            alertMessage()
+            //timeOut()
+            //alertMessage()
+          
         }
     }
     
