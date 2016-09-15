@@ -154,15 +154,15 @@ class LevelOneScene: SKScene {
             
             if count < 5 {
                 answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.75,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count)))
+                                          y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count)))
             }
             else if count < 10 {
                 answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.90,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count-5)))
+                                          y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
             }
             else {
                 answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.83    ,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count-5)))
+                                          y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
             }
             
             addChild(answer)
