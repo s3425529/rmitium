@@ -61,15 +61,17 @@ class ResultPage3: SKScene{
         addChild(scoreNode)
         
     }
+    
     func facebookAction() {
         print("facebook")
         let controller = self.view?.window?.rootViewController as! GameViewController
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
             let facebookController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
             facebookController.setInitialText("My score is\(UtilitiesPortal.score)")
             // facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(facebookController, animated: true, completion: nil)
-        }else{
+        }
+        else {
             let alert = UIAlertController(title: "Facebook Unavailable", message: "Be sure to go to Settings > Facebook to set up your account", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             controller.presentViewController(alert, animated: true, completion: nil)
@@ -77,28 +79,27 @@ class ResultPage3: SKScene{
         
         
     }
+    
     func twitterAction() {
         print("twitter")
         let controller = self.view?.window?.rootViewController as! GameViewController
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
             let facebookController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
             facebookController.setInitialText("My score is\(UtilitiesPortal.score)")
             //facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(facebookController, animated: true, completion: nil)
-        }else{
+        }
+        else {
             let alert = UIAlertController(title: "Twitter Unavailable", message: "Be sure to go to Settings > Twitter to set up your account", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             controller.presentViewController(alert, animated: true, completion: nil)
         }
     }
     func redoAction() {
-        print("redo")
         UtilitiesPortal.score = 0
         backLevel3()
-        return
     }
     func nextAction() {
-        print("next")
         backHomePage()
     }
     
@@ -114,25 +115,50 @@ class ResultPage3: SKScene{
     }
     
     //back to the home page,
-    func backHomePage(){
+    func backHomePage() {
+        UtilitiesPortal.score = 0
+        cleanScene()
+        
         let secondScene = GameScene(size: self.size)
-        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        UtilitiesPortal.score = 0
     }
     
     func backLevel3(){
+        UtilitiesPortal.score = 0
         LevelThreeModel.reset()
+        cleanScene()
+        
         let secondScene = LevelThreeScene(size: self.size)
-        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        UtilitiesPortal.score = 0
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    
+    override func willMoveFromView(view: SKView) {
+        self.removeAllActions()
+        self.removeAllChildren()
+        print("Remove all nodes Lvl 3 Scene")
+    }
+    
+    func cleanScene() {
+        if let s = self.view?.scene {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+            self.enumerateChildNodesWithName("//") { node, _ in
+                node.removeAllActions()
+                node.removeAllChildren()
+                node.removeFromParent()
+            }
+            s.removeAllActions()
+            s.removeAllChildren()
+            s.removeFromParent()
+        }
+        print("Clean Lvl 3 Scene")
     }
 }

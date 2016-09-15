@@ -392,8 +392,9 @@ class LevelTwoScene: SKScene {
     
     //back to the home page,
     func backHomePage() {
+        cleanScene()
         let secondScene = GameScene(size: self.size)
-        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
@@ -458,12 +459,32 @@ class LevelTwoScene: SKScene {
         timeNsNode = nil
     }
     
-    func toResultSence(){
+    func toResultSence() {
+        cleanScene()
         let secondScene = ResultPage2(size: self.size)
-        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-
     }
-
+    
+    override func willMoveFromView(view: SKView) {
+        self.removeAllActions()
+        self.removeAllChildren()
+        print("Remove all nodes Lvl 2 Scene")
+    }
+    
+    func cleanScene() {
+        if let s = self.view?.scene {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+            self.enumerateChildNodesWithName("//") { node, _ in
+                node.removeAllActions()
+                node.removeAllChildren()
+                node.removeFromParent()
+            }
+            s.removeAllActions()
+            s.removeAllChildren()
+            s.removeFromParent()
+        }
+        print("Clean Lvl 2 Scene")
+    }
 }
