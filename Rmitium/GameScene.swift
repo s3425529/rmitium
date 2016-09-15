@@ -91,14 +91,16 @@ class GameScene: SKScene {
         
         infoOverlay = SKSpriteNode()
         infoOverlay.name = UtilitiesPortal.factOverlayName
-        infoOverlay.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
-        infoOverlay.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        infoOverlay.size = CGSize(width: UtilitiesPortal.screenWidth,
+                                   height: UtilitiesPortal.screenHeight)
+        infoOverlay.position = CGPoint(x: UtilitiesPortal.screenWidth/2,
+                                        y: UtilitiesPortal.screenHeight/2)
         infoOverlay.color = SKColor.blackColor()
         infoOverlay.alpha = 0.7
         infoOverlay.zPosition = 0.9
         infoOverlay.hidden = true
         infoOverlay.addChild(infoOverlayText)
-        addChild(infoOverlay)
+        addChild(infoOverlay!)
     }
     
     func setupSound() {
@@ -110,7 +112,7 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         runAction(SKAction.playSoundFileNamed("clickSound.wav", waitForCompletion: true))
         if state == UtilitiesPortal.stateInfo {
-            infoOverlay.hidden = true
+            infoOverlay!.hidden = true
             state = UtilitiesPortal.stateAnswer
             return
         }
@@ -121,12 +123,14 @@ class GameScene: SKScene {
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
             state = UtilitiesPortal.stateInfo
-            infoOverlay.hidden = false
+            infoOverlay!.hidden = false
             return
         }
         
         // Setting selected
         if node.name == UtilitiesPortal.settingButtonName {
+            cleanScene()
+            
             let secondScene = SettingScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
@@ -137,9 +141,10 @@ class GameScene: SKScene {
 
         if (node.name == UtilitiesPortal.levelLabelNames[0]
                                 || node.name == UtilitiesPortal.levelButtonNames[0]) {
-                                    
+            
+            cleanScene()
             LevelOneModel.reset()
-            removeAllChildren()
+            
             let secondScene = LevelOneScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
@@ -150,7 +155,7 @@ class GameScene: SKScene {
         
         if (node.name == UtilitiesPortal.levelLabelNames[1]
                                 || node.name == UtilitiesPortal.levelButtonNames[1]) {
-            removeAllChildren()
+            cleanScene()
             let secondScene = LevelTwoScene(size: self.size)
                                     
             //let secondScene = ResultPage(size: self.size)
@@ -164,8 +169,9 @@ class GameScene: SKScene {
         if (node.name == UtilitiesPortal.levelLabelNames[2]
                                 || node.name == UtilitiesPortal.levelButtonNames[2]) {
             
-            removeAllChildren()
+            cleanScene()
             LevelThreeModel.reset()
+            
             //let secondScene = ResultPage(size: self.size)
             let secondScene = LevelThreeScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
@@ -178,5 +184,26 @@ class GameScene: SKScene {
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    
+    override func willMoveFromView(view: SKView) {
+        self.removeAllActions()
+        self.removeAllChildren()
+        print("Remove all nodes Game Scene")
+    }
+    
+    func cleanScene() {
+        if let s = self.view?.scene {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+            self.enumerateChildNodesWithName("//") { node, _ in
+                node.removeAllActions()
+                node.removeAllChildren()
+                node.removeFromParent()
+            }
+            s.removeAllActions()
+            s.removeAllChildren()
+            s.removeFromParent()
+        }
+        print("Clean Game Scene")
     }
 }
