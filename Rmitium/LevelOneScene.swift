@@ -29,8 +29,6 @@ class LevelOneScene: SKScene {
   
     
     override func didMoveToView(view: SKView) {
-       // initRecord()
-        //setupTimer()
         setupScene()
     }
     
@@ -44,9 +42,9 @@ class LevelOneScene: SKScene {
         
         // Result page
         if lvlOneQuestion.positions.count == 0 {
-        
+            cleanScene()
             let secondScene = ResultPage(size: self.size)
-            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
             return
@@ -60,8 +58,8 @@ class LevelOneScene: SKScene {
         setupFactLabel()
         setupInfo()
         createHomeDialogue()
-       
     }
+    
     func setupItems() {
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
@@ -133,7 +131,7 @@ class LevelOneScene: SKScene {
         self.addChild(timeNode)
         */
     }
-    func setupImage(){
+    func setupImage() {
         // Image
         let image = SKSpriteNode(imageNamed: lvlOneQuestion.imageName)
         image.zPosition = 0.1
@@ -142,7 +140,6 @@ class LevelOneScene: SKScene {
                                  y:UtilitiesPortal.screenHeight/2 )
         image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
-        
     }
     
     func setupDragLabel() {
@@ -157,15 +154,15 @@ class LevelOneScene: SKScene {
             
             if count < 5 {
                 answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.75,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count)))
+                                          y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count)))
             }
             else if count < 10 {
                 answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.90,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count-5)))
+                                          y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
             }
             else {
                 answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.83    ,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.1*CGFloat(count-5)))
+                                          y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
             }
             
             addChild(answer)
@@ -207,7 +204,7 @@ class LevelOneScene: SKScene {
     }
     
     // Adding Fact label
-    func setupFactLabel(){
+    func setupFactLabel() {
         let randomIndex = Int(arc4random_uniform(UInt32(lvlOneQuestion.facts.count)))
         let fact = lvlOneQuestion.facts[randomIndex]
         let index = fact.startIndex.advancedBy(15)
@@ -243,7 +240,7 @@ class LevelOneScene: SKScene {
     }
     
     // Info layout
-    func setupInfo(){
+    func setupInfo() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9
         arrow01.size = CGSize(width: UtilitiesPortal.navImgSize*2,
@@ -619,8 +616,8 @@ class LevelOneScene: SKScene {
     }
     
     //back to the home page,
-    func backHomePage(){
-        removeAllChildren()
+    func backHomePage() {
+        cleanScene()
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -663,7 +660,7 @@ class LevelOneScene: SKScene {
         }
     }*/
     
-    func alertMessage(){
+    func alertMessage() {
     
         let controller = self.view?.window?.rootViewController as! GameViewController
         let alert = UIAlertController(title: "Time Out!", message: "Try Again or Back Home?", preferredStyle: UIAlertControllerStyle.Alert)
@@ -672,26 +669,40 @@ class LevelOneScene: SKScene {
             
         }))
         alert.addAction(UIAlertAction(title: "Home", style: .Destructive, handler: {action in
-        
              self.backHomePage()
-            
         }))
-       
-
-     
         controller.presentViewController(alert, animated: true, completion: nil)
     }
     
     func timeOut(){
-        
         timeNsNode.invalidate()
         timeNsNode = nil
         LevelOneModel.index = 0
         alertMessage()
-        
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    
+    override func willMoveFromView(view: SKView) {
+        self.removeAllActions()
+        self.removeAllChildren()
+        print("Remove all nodes Lvl 1 Scene")
+    }
+    
+    func cleanScene() {
+        if let s = self.view?.scene {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+            self.enumerateChildNodesWithName("//") { node, _ in
+                node.removeAllActions()
+                node.removeAllChildren()
+                node.removeFromParent()
+            }
+            s.removeAllActions()
+            s.removeAllChildren()
+            s.removeFromParent()
+        }
+        print("Clean Lvl 1 Scene")
     }
 }

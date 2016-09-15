@@ -8,12 +8,10 @@
 
 import SpriteKit
 
-class Result: SKScene{
+class Result: SKScene {
     var redo, share, back: SKSpriteNode!
     var awardText:String!
     override func didMoveToView(view: SKView) {
-        
-        
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
@@ -70,7 +68,6 @@ class Result: SKScene{
             y: UtilitiesPortal.navImgSize/2)
         addChild(share)
         
-        
         let award = SKSpriteNode(imageNamed: "medal")
         award.name = "award"
         award.zPosition = 10
@@ -89,9 +86,6 @@ class Result: SKScene{
             y: UtilitiesPortal.screenHeight/2)
         score.zPosition = 1
         addChild(score)
-        
-        
-        
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -104,7 +98,6 @@ class Result: SKScene{
         let touch = touches.first
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
-        
         
         //share button selected
         if node.name == UtilitiesPortal.shareButtonName {
@@ -131,11 +124,8 @@ class Result: SKScene{
         }
         if node.name == UtilitiesPortal.homeButtonName {
             backHomePage()
-          
             return
         }
-        
-        
     }
     
     // Share the score to any social media!
@@ -150,17 +140,19 @@ class Result: SKScene{
     }
     
     //back to the home page,
-    func backHomePage(){
+    func backHomePage() {
+        cleanScene()
         let secondScene = GameScene(size: self.size)
-        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
         UtilitiesPortal.score = 0
     }
     
-    func backLevel1(){
+    func backLevel1() {
+        cleanScene()
         let secondScene = LevelOneScene(size: self.size)
-        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
@@ -173,6 +165,24 @@ class Result: SKScene{
         /* Called before each frame is rendered */
     }
     
+    override func willMoveFromView(view: SKView) {
+        self.removeAllActions()
+        self.removeAllChildren()
+        print("Remove all nodes Lvl 1 Result Scene")
+    }
     
-    
+    func cleanScene() {
+        if let s = self.view?.scene {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+            self.enumerateChildNodesWithName("//") { node, _ in
+                node.removeAllActions()
+                node.removeAllChildren()
+                node.removeFromParent()
+            }
+            s.removeAllActions()
+            s.removeAllChildren()
+            s.removeFromParent()
+        }
+        print("Clean Lvl 1 Result Scene")
+    }
 }
