@@ -84,7 +84,7 @@ class LevelThreeScene: SKScene {
         tick.zPosition = 0.1
         tick.alpha = 1
         tick.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize,
+        tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y: UtilitiesPortal.navImgSize/2)
         addChild(tick)
         
