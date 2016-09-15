@@ -297,6 +297,7 @@ class LevelTwoScene: SKScene {
                     return
                 }
                 else if node.name == UtilitiesPortal.noButtonName {
+                    timerClass.pause(false)
                     homeDialogue.hidden = true
                     state = previousState
                     previousState = UtilitiesPortal.stateHome
@@ -308,6 +309,7 @@ class LevelTwoScene: SKScene {
         
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
+            timerClass.pause(false)
             state = previousState
             previousState = UtilitiesPortal.stateInfo
             return
@@ -317,7 +319,7 @@ class LevelTwoScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-            
+            timerClass.pause(true)
             homeDialogue.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
@@ -331,6 +333,7 @@ class LevelTwoScene: SKScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
+            timerClass.pause(true)
             previousState = state
             state = UtilitiesPortal.stateInfo
             infoOverlay.hidden = false
@@ -409,6 +412,7 @@ class LevelTwoScene: SKScene {
         timerClass.startTimer()
         
         timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
+        //timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime:", userInfo: nil, repeats: true)
     }
     
     @objc func getTime(timer:NSTimer) {
@@ -429,8 +433,9 @@ class LevelTwoScene: SKScene {
         }
         if timerClass.timeLabel <= 0 {
             timeNode.text = "Time Out!"
-            timeOut()
-            alertMessage()
+            //timeOut()
+            //alertMessage()
+          
         }
     }
     

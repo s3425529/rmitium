@@ -30,6 +30,7 @@ class TimeControl {
         willSet {
             if newValue {
                 countDownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(TimeControl.updateTime(_:)), userInfo: nil, repeats: true)
+                //countDownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "updateTime:", userInfo: nil, repeats: true)
                 remainSecond = limitTime
               
             }
@@ -52,5 +53,16 @@ class TimeControl {
     @objc func updateTime(timer: NSTimer) {
          remainSecond -= 1
     }
+    func pause(isTrue: Bool ){
+        
+        if isTrue{
+            limitTime = remainSecond
+            stopTimer()
+        }else{
+            remainSecond = limitTime
+            startTimer()
+        }
+    }
+
     
 }
