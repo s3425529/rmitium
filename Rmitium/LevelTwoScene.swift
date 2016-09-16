@@ -17,6 +17,7 @@ class LevelTwoScene: SKScene {
     var state, previousState: Int!
     var timerClass:TimeControl!
     var timeNsNode:NSTimer!
+    var LIMITTIME = 15
     
     override func didMoveToView(view: SKView) {
         //initRecord()
@@ -292,7 +293,10 @@ class LevelTwoScene: SKScene {
             let nodes = self.nodesAtPoint(location)
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
-                    timeOut()
+                    if timerClass.timeLabel < LIMITTIME{
+                         timeOut()
+                    }
+                   
                     backHomePage()
                     return
                 }
@@ -309,7 +313,10 @@ class LevelTwoScene: SKScene {
         
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
-            timerClass.pause(false)
+            if timerClass.timeLabel <= LIMITTIME{
+                timerClass.pause(false)
+            }
+            
             state = previousState
             previousState = UtilitiesPortal.stateInfo
             return
@@ -319,7 +326,11 @@ class LevelTwoScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-            timerClass.pause(true)
+            
+            if timerClass.timeLabel <= LIMITTIME{
+                timerClass.pause(true)
+            }
+            
             homeDialogue.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
@@ -408,7 +419,7 @@ class LevelTwoScene: SKScene {
     
     //MARK------- Timer
     func setupTimer() {
-        timerClass = TimeControl(limitTime: 15)
+        timerClass = TimeControl(limitTime: LIMITTIME)
         timerClass.startTimer()
         
         timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
@@ -417,7 +428,8 @@ class LevelTwoScene: SKScene {
     
     @objc func getTime(timer:NSTimer) {
         timeNode.text = "Time:\(timerClass.timeLabel)"
-        if timerClass.timeLabel <= 5 && timerClass.timeLabel > 0{
+        
+        if timerClass.timeLabel >= LIMITTIME-4 && timerClass.timeLabel < LIMITTIME{
             timeNode.fontColor = SKColor.redColor()
             let zoom = SKAction.scaleTo(2, duration: 0.5)
             let fade = SKAction.fadeAlphaTo(0.1, duration: 0.5)
@@ -426,14 +438,21 @@ class LevelTwoScene: SKScene {
             let action = SKAction.sequence([zoom,fade,fade1,zoom1])
             timeNode.runAction(action)
         }
+        
+        
+        
         if checkResult() {
             timeOut()
             toResultSence()
             
         }
-        if timerClass.timeLabel <= 0 {
+        if timerClass.timeLabel >= LIMITTIME {
             timeNode.text = "Time Out!"
-            //timeOut()
+            
+            //block the game scene
+            state = UtilitiesPortal.stateResult
+            
+            timeOut()
             //alertMessage()
           
         }
