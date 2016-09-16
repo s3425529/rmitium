@@ -7,7 +7,7 @@
 //
 
 /*
-
+3198/3103
 w/h=x/y = 2.483
 
 355/145
@@ -23,11 +23,49 @@ import Social
 class ResultPage: SKScene{
     
     var facebook, twitter, redo, next: CustomButton!
-
+    var i = 0
     var homeDialogue,homeView :SKSpriteNode!
      
     
     override func didMoveToView(view: SKView) {
+        
+        setupMedal()
+        let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
+        scoreNode.fontColor = SKColor(colorLiteralRed: 0.3, green: 0.2, blue: 0.8, alpha: 1)
+        scoreNode.fontSize = 80
+        scoreNode.text = "\(UtilitiesPortal.score)"
+        scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*0.43)
+        addChild(scoreNode)
+        setupItems()
+        setupCustomerButton()
+        createHomeDialogue()
+        
+    }
+    func setupMedal(){
+        
+        //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
+        let medalNode = SKSpriteNode(imageNamed: "Medal5-Rust")
+        medalNode.color = SKColor.blueColor()
+        medalNode.name = "medal"
+        medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 1.6)
+        medalNode.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
+        medalNode.zPosition = 0.1
+        
+        let action = SKAction.rotateToAngle(CGFloat(M_PI/2), duration: 5)
+        let action1 = SKAction.rotateToAngle(CGFloat(-M_PI/2), duration: 5)
+        let sequen = SKAction.sequence([action,action1])
+        
+        let repeatAction = SKAction.repeatActionForever(sequen)
+        
+        addChild(medalNode)
+        
+        medalNode.runAction(repeatAction)
+
+        
+        
+    }
+    
+    func setupItems(){
         
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
@@ -56,29 +94,32 @@ class ResultPage: SKScene{
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(info)
 
+    }
+    
+    func setupCustomerButton(){
         
         facebook = CustomButton(defaultButtonImage: "facebookbutton", activeButtonImage: "facebookbutton1", buttonAction: facebookAction,scale: 0.2)
         facebook.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.8)
+                                    y: UtilitiesPortal.screenHeight * 0.8)
         facebook.name = "facebook"
         facebook.frame.width
         // facebook.setScale(scale1)
         
         twitter = CustomButton(defaultButtonImage: "twitterbutton", activeButtonImage: "twitterbutton1", buttonAction: twitterAction,scale: 0.2)
         twitter.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.6)
+                                   y: UtilitiesPortal.screenHeight * 0.6)
         twitter.name = "twitter"
         //twitter.setScale(scale1)
         
         redo = CustomButton(defaultButtonImage: "retrybutton", activeButtonImage: "retrybutton1", buttonAction: redoAction,scale: 0.2)
         redo.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.4)
+                                y: UtilitiesPortal.screenHeight * 0.4)
         redo.name = "redo"
         //redo.setScale(scale1)
         
         next = CustomButton(defaultButtonImage: "nextbutton", activeButtonImage: "nextbutton1", buttonAction: nextAction, scale: 0.2)
         next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.2)
+                                y: UtilitiesPortal.screenHeight * 0.2)
         next.name = "next"
         //next.setScale(scale1)
         
@@ -86,14 +127,7 @@ class ResultPage: SKScene{
         addChild(twitter)
         addChild(redo)
         addChild(next)
-        
-        let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
-        scoreNode.fontColor = SKColor(colorLiteralRed: 0.3, green: 0.2, blue: 0.8, alpha: 1)
-        scoreNode.fontSize = 80
-        scoreNode.text = "\(UtilitiesPortal.score)"
-        scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth*0.3, y: UtilitiesPortal.screenHeight*0.5)
-        addChild(scoreNode)
-        createHomeDialogue()
+    
     }
     func facebookAction(){
         print("facebook")
@@ -157,6 +191,9 @@ class ResultPage: SKScene{
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
+        removeAllActions()
+        removeFromParent()
+        removeAllChildren()
         UtilitiesPortal.score = 0
     }
     
