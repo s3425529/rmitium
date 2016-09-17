@@ -54,6 +54,25 @@ enum LevelOneQuestion:Int{
             }
         }
     }
+    var itemName:String{
+        
+        get{
+        
+            switch self {
+            case .QuestionOne: return "Morphine"
+            case .QuestionTwo: return "Meropenem"
+            case .QuestionThree: return "Theobromine"
+            case .QuestionFour: return "Muscarine"
+            case .QuestionFive: return "Diltazem"
+            case .QuestionSix: return "Quinine"
+            case .QuestionSeven: return "Tamiflu"
+            case .QuestionEight: return "Vanillin"
+            case .QuestionNine: return "Capsaicin"
+            default:
+                return ""
+            }
+        }
+    }
     
     var imageSol:String
         {

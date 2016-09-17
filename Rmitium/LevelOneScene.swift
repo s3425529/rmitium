@@ -18,7 +18,7 @@ class LevelOneScene: SKScene {
     var resultImage, infoOverlay, factOverlay, homeDialogue, yesBtn, noBtn: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
-    var score, factLabel: SKLabelNode!
+    var score, factLabel, itemName: SKLabelNode!
     var timeNode: SKLabelNode!
     //var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
@@ -119,17 +119,18 @@ class LevelOneScene: SKScene {
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(score)
 
-        // Time label
-        /*
-        timeNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
-        timeNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-        timeNode.zPosition = 0.1
+        // ItemName label
+       
+        itemName = SKLabelNode(fontNamed:"Zapfino")
+        itemName.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        itemName.zPosition = 0.1
+        itemName.fontColor = SKColor(colorLiteralRed: 0.7, green: 0.5, blue: 0.9, alpha: 1)
         
-        timeNode.text = "Time:\(timerClass.timeLabel)"
-        timeNode.fontSize = UtilitiesPortal.factSize
-        timeNode.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
-        self.addChild(timeNode)
-        */
+        itemName.text = "\(lvlOneQuestion.itemName)"
+        itemName.fontSize = UtilitiesPortal.factSize
+        itemName.position = CGPointMake(UtilitiesPortal.screenWidth/3, UtilitiesPortal.borderSize/4)
+        self.addChild(itemName)
+        
     }
     func setupImage() {
         // Image
@@ -513,6 +514,7 @@ class LevelOneScene: SKScene {
         if node.name == UtilitiesPortal.tickButtonName {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
+                itemName.hidden = true
                 return
             }
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {

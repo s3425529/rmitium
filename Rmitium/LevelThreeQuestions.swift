@@ -83,6 +83,28 @@ enum LevelThreeQuestion:Int{
         }
     }
     
+    var itemName:String{
+        
+        get{
+            
+            switch self {
+            case .QuestionOne: return "Morphine"
+            case .QuestionTwo: return "Acetone"
+            case .QuestionThree: return "Coniine"
+            case .QuestionFour: return "Muscarine"
+            case .QuestionFive: return "Cadaverine"
+            case .QuestionSix: return "Piperine"
+            case .QuestionSeven: return "Diethylether"
+            case .QuestionEight: return "Vanillin"
+            case .QuestionNine: return "Capsaicin"
+            case .QuestionTen: return "Acetic acid"
+            default:
+                return ""
+            }
+        }
+    }
+
+    
     var positions:[Position]{
         get {
             switch self {

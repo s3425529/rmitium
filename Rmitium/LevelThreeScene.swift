@@ -18,7 +18,7 @@ class LevelThreeScene: SKScene {
     var resultImage, infoOverlay, factOverlay, homeDialogue: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
-    var score, factLabel: SKLabelNode!
+    var score, factLabel, itemName: SKLabelNode!
     //var questionId = 0
     var lvlThreeQuestion: LevelThreeQuestion!
     var state, previousState: Int!
@@ -118,6 +118,19 @@ class LevelThreeScene: SKScene {
         score.fontSize = UtilitiesPortal.factSize
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(score)
+        
+        // ItemName label
+        
+        itemName = SKLabelNode(fontNamed:"Zapfino")
+        itemName.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+        itemName.zPosition = 0.1
+        itemName.fontColor = SKColor(colorLiteralRed: 0.7, green: 0.5, blue: 0.9, alpha: 1)
+        
+        itemName.text = "\(lvlThreeQuestion.itemName)"
+        itemName.fontSize = UtilitiesPortal.factSize
+        itemName.position = CGPointMake(UtilitiesPortal.screenWidth/3, UtilitiesPortal.borderSize/4)
+        self.addChild(itemName)
+
     }
     func setupImage(){
         // Image
@@ -498,6 +511,7 @@ class LevelThreeScene: SKScene {
         if node.name == UtilitiesPortal.tickButtonName {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
+                itemName.hidden = true
                 return
             }
              
