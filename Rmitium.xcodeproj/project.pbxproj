@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5000EABD1D66C6E000F3A21F /* SKMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000EABC1D66C6E000F3A21F /* SKMultilineLabel.swift */; };
 		500198DB1D75B3640005FCA7 /* SettingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500198DA1D75B3640005FCA7 /* SettingScene.swift */; };
+		5029D3C21D8D8196007DC44F /* Medal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5029D3C11D8D8196007DC44F /* Medal.swift */; };
 		50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */; };
 		50667EE11D70096400C8EBF6 /* LevelThreeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE01D70096400C8EBF6 /* LevelThreeScene.swift */; };
 		50667EE51D7058E600C8EBF6 /* LevelThreeQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE41D7058E600C8EBF6 /* LevelThreeQuestions.swift */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		5000EABC1D66C6E000F3A21F /* SKMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKMultilineLabel.swift; sourceTree = "<group>"; };
 		500198DA1D75B3640005FCA7 /* SettingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingScene.swift; sourceTree = "<group>"; };
+		5029D3C11D8D8196007DC44F /* Medal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medal.swift; sourceTree = "<group>"; };
 		50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesPortal.swift; sourceTree = "<group>"; };
 		50667EE01D70096400C8EBF6 /* LevelThreeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeScene.swift; sourceTree = "<group>"; };
 		50667EE41D7058E600C8EBF6 /* LevelThreeQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeQuestions.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				5000EABC1D66C6E000F3A21F /* SKMultilineLabel.swift */,
 				506E77661D670135004EE1D4 /* CustomSKSpriteNode.swift */,
 				50E94AAE1D82405500C01945 /* TimeControl.swift */,
+				5029D3C11D8D8196007DC44F /* Medal.swift */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				509CEA0E1D884A91002360E1 /* SettingDataModel.xcdatamodeld in Sources */,
 				50E31D151D6BEE3D002F10E0 /* LevelOneModel.swift in Sources */,
 				506FF3301D6E9D3500901A52 /* Result.swift in Sources */,
+				5029D3C21D8D8196007DC44F /* Medal.swift in Sources */,
 				50667EE91D705ABF00C8EBF6 /* LevelThreeModel.swift in Sources */,
 				50D9C4681D5A3EF900221ADD /* QuestionLevelOne.swift in Sources */,
 				50E94B161D880ED000C01945 /* ResultPage2.swift in Sources */,
@@ -464,7 +468,7 @@
 				INFOPLIST_FILE = Rmitium/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.s3425529.Rmitium;
+				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.student.s3527531.Rmitium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 2.3;
@@ -481,7 +485,7 @@
 				INFOPLIST_FILE = Rmitium/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.s3425529.Rmitium;
+				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.student.s3527531.Rmitium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 2.3;

@@ -23,7 +23,18 @@ import Social
 class ResultPage3: SKScene{
     var facebook, twitter, redo, next: CustomButton!
     var homeDialogue,homeView :SKSpriteNode!
+    var text :SKMultilineLabel!
     override func didMoveToView(view: SKView) {
+     
+        
+        setupItem()
+        setupCusterButton()
+        setupMedal()
+        createHomeDialogue()
+        
+    }
+    func setupItem(){
+        
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[2]
@@ -50,28 +61,32 @@ class ResultPage3: SKScene{
         info.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(info)
-
+        
+     
+    }
+    func setupCusterButton(){
+        
         facebook = CustomButton(defaultButtonImage: "facebookbutton", activeButtonImage: "facebookbutton1", buttonAction: facebookAction,scale: 0.2)
         facebook.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.8)
+                                    y: UtilitiesPortal.screenHeight * 0.8)
         facebook.name = "facebook"
         facebook.frame.width
-       
+        
         twitter = CustomButton(defaultButtonImage: "twitterbutton", activeButtonImage: "twitterbutton1", buttonAction: twitterAction,scale: 0.2)
         twitter.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.6)
+                                   y: UtilitiesPortal.screenHeight * 0.6)
         twitter.name = "twitter"
-       
+        
         
         redo = CustomButton(defaultButtonImage: "retrybutton", activeButtonImage: "retrybutton1", buttonAction: redoAction,scale: 0.2)
         redo.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.4)
+                                y: UtilitiesPortal.screenHeight * 0.4)
         redo.name = "redo"
-     
+        
         
         next = CustomButton(defaultButtonImage: "nextbutton", activeButtonImage: "nextbutton1", buttonAction: nextAction, scale: 0.2)
         next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.2)
+                                y: UtilitiesPortal.screenHeight * 0.2)
         next.name = "next"
         //next.setScale(scale1)
         
@@ -79,16 +94,34 @@ class ResultPage3: SKScene{
         addChild(twitter)
         addChild(redo)
         addChild(next)
+    }
+    
+    func setupMedal(){
         
-        let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
-        scoreNode.fontColor = SKColor(colorLiteralRed: 0.3, green: 0.2, blue: 0.8, alpha: 1)
-        scoreNode.fontSize = 80
-        scoreNode.text = "\(UtilitiesPortal.score)"
-        scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth*0.3, y: UtilitiesPortal.screenHeight*0.5)
-        addChild(scoreNode)
+        //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
+        let medalDic = medalClass().assignMedal()
+        let medalName = medalDic.medalName
+        let infomation = medalDic.information
+        let medalNode = SKSpriteNode(imageNamed: medalName)
+        medalNode.color = SKColor.blueColor()
+        medalNode.name = "medal"
+        medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 1.8)
+        medalNode.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
+        medalNode.zPosition = 0.1
         
-        createHomeDialogue()
+        let action = SKAction.rotateToAngle(CGFloat(M_PI/2), duration: 5)
+        let action1 = SKAction.rotateToAngle(CGFloat(-M_PI/2), duration: 5)
+        let sequen = SKAction.sequence([action,action1])
+        let repeatAction = SKAction.repeatActionForever(sequen)
+        addChild(medalNode)
+        medalNode.runAction(repeatAction)
         
+        let p = CGPoint(x: UtilitiesPortal.screenWidth*0.35, y: UtilitiesPortal.screenHeight*0.3)
+        text = SKMultilineLabel(text: infomation, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p)
+        text.alignment = .Left
+        text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
+        text.fontSize = UtilitiesPortal.screenHeight*0.05
+        addChild(text)
     }
     
     func facebookAction() {
@@ -126,6 +159,7 @@ class ResultPage3: SKScene{
     }
     func redoAction() {
         UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         backLevel3()
     }
     func nextAction() {
@@ -146,6 +180,7 @@ class ResultPage3: SKScene{
     //back to the home page,
     func backHomePage() {
         UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         cleanScene()
         
         let secondScene = GameScene(size: self.size)

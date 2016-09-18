@@ -182,7 +182,7 @@ class LevelThreeScene: SKScene {
                                       y:UtilitiesPortal.screenHeight * positions[count].y)
             addChild(sprite)
             questions.append(sprite)
-            
+            UtilitiesPortal.totalQuestions += 1
             let answeredQuestion = CustomSKSpriteNode(imageNamed: UtilitiesPortal.levelOneAnswers[0])
             answeredQuestion.name = UtilitiesPortal.emptyString
             answeredQuestion.value = UtilitiesPortal.emptyString
@@ -622,6 +622,8 @@ class LevelThreeScene: SKScene {
     
     //back to the home page,
     func backHomePage(){
+        UtilitiesPortal.totalQuestions = 0
+        UtilitiesPortal.score = 0
         cleanScene()
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
