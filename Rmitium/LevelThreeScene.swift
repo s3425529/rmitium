@@ -622,6 +622,8 @@ class LevelThreeScene: SKScene {
     
     //back to the home page,
     func backHomePage(){
+        UtilitiesPortal.totalQuestions = 0
+        UtilitiesPortal.score = 0
         cleanScene()
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
