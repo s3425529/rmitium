@@ -183,6 +183,7 @@ class LevelOneScene: SKScene {
             sprite.alpha = 0
             sprite.texture = SKTexture(imageNamed: "\(count)")
             sprite.name = "question\(count)"
+            UtilitiesPortal.totalQuestions += 1
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
             sprite.zPosition = 0.2
             sprite.position = CGPoint(x:UtilitiesPortal.screenWidth * positions[count].x,
@@ -620,6 +621,7 @@ class LevelOneScene: SKScene {
     //back to the home page,
     func backHomePage() {
         cleanScene()
+        UtilitiesPortal.totalQuestions = 0
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill

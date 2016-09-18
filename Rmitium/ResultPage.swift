@@ -25,17 +25,12 @@ class ResultPage: SKScene{
     var facebook, twitter, redo, next: CustomButton!
     var i = 0
     var homeDialogue,homeView :SKSpriteNode!
-     
+    var text: SKMultilineLabel!
     
     override func didMoveToView(view: SKView) {
         
+     
         setupMedal()
-        let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
-        scoreNode.fontColor = SKColor(colorLiteralRed: 0.3, green: 0.2, blue: 0.8, alpha: 1)
-        scoreNode.fontSize = 80
-        scoreNode.text = "\(UtilitiesPortal.score)"
-        scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*0.43)
-        addChild(scoreNode)
         setupItems()
         setupCustomerButton()
         createHomeDialogue()
@@ -44,25 +39,29 @@ class ResultPage: SKScene{
     func setupMedal(){
         
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
-        let medalNode = SKSpriteNode(imageNamed: "Medal5-Rust")
+        let medalDic = medalClass().assignMedal()
+        let medalName = medalDic.medalName
+        let infomation = medalDic.information
+        let medalNode = SKSpriteNode(imageNamed: medalName)
         medalNode.color = SKColor.blueColor()
         medalNode.name = "medal"
-        medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 1.6)
+        medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 1.8)
         medalNode.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
         medalNode.zPosition = 0.1
         
         let action = SKAction.rotateToAngle(CGFloat(M_PI/2), duration: 5)
         let action1 = SKAction.rotateToAngle(CGFloat(-M_PI/2), duration: 5)
         let sequen = SKAction.sequence([action,action1])
-        
         let repeatAction = SKAction.repeatActionForever(sequen)
-        
         addChild(medalNode)
-        
         medalNode.runAction(repeatAction)
-
-        
-        
+     
+        let p = CGPoint(x: UtilitiesPortal.screenWidth*0.35, y: UtilitiesPortal.screenHeight*0.3)
+        text = SKMultilineLabel(text: infomation, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p)
+        text.alignment = .Left
+        text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
+        text.fontSize = UtilitiesPortal.screenHeight*0.05
+        addChild(text)
     }
     
     func setupItems(){

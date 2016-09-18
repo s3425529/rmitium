@@ -182,7 +182,7 @@ class LevelThreeScene: SKScene {
                                       y:UtilitiesPortal.screenHeight * positions[count].y)
             addChild(sprite)
             questions.append(sprite)
-            
+            UtilitiesPortal.totalQuestions += 1
             let answeredQuestion = CustomSKSpriteNode(imageNamed: UtilitiesPortal.levelOneAnswers[0])
             answeredQuestion.name = UtilitiesPortal.emptyString
             answeredQuestion.value = UtilitiesPortal.emptyString
