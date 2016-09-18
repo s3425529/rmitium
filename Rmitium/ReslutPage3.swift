@@ -159,6 +159,7 @@ class ResultPage3: SKScene{
     }
     func redoAction() {
         UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         backLevel3()
     }
     func nextAction() {

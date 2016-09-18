@@ -160,7 +160,8 @@ class ResultPage: SKScene{
     }
     func redoAction(){
         print("redo")
-        //UtilitiesPortal.score = 0
+        UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         backLevel1()
         return
     }
