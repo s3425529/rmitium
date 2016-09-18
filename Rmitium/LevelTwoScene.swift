@@ -453,8 +453,6 @@ class LevelTwoScene: SKScene {
             timeNode.runAction(action)
         }
         
-        
-        
         if checkResult() {
             timeOut()
             toResultSence()

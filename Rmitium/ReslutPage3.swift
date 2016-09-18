@@ -225,6 +225,7 @@ class ResultPage3: SKScene{
         }
         print("Clean Lvl 3 Scene")
     }
+    
     func createHomeDialogue() {
         homeView  = SKSpriteNode()
         homeView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
@@ -295,9 +296,5 @@ class ResultPage3: SKScene{
             
             return
         }
-        
-        
-        
-        
     }
 }

@@ -154,8 +154,6 @@ class ResultPage2: SKScene{
         UtilitiesPortal.score = 0
     }
     
-    
-    
     //Show Home Button Dialogue box
     func createHomeDialogue() {
         homeView  = SKSpriteNode()
@@ -229,10 +227,6 @@ class ResultPage2: SKScene{
             previousState = UtilitiesPortal.stateHome
             return
         }
-
-        
-
-
     }
     
     override func update(currentTime: CFTimeInterval) {
