@@ -6,7 +6,7 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
-enum LevelTwoQuestion:Int{
+enum LevelTwoQuestion:Int {
     
     init()
     {
@@ -38,18 +38,17 @@ enum LevelTwoQuestion:Int{
     
     case NilQuestion=0, p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14
     
-    var imageName:String{
-        get{
-            
+    var imageName:String {
+        get {
             switch self
             {
             case .NilQuestion: return "nil"
-            case .p01: return "lalcoholl"
+            case .p01: return "1alcohol1"
             case .p02: return "1alcohol2"
             case .p03: return "1alkyl1"
             case .p04: return "1alkyl2"
             case .p05: return "1amine1"
-            case .p06: return "1aminel2"
+            case .p06: return "1amine2"
             case .p07: return "2alcohol1"
             case .p08: return "2alcohol2"
             case .p09: return "2amine1"
@@ -62,11 +61,8 @@ enum LevelTwoQuestion:Int{
         }
     }
     
-  
-    
-           
-    static func getQuestions() ->[LevelTwoQuestion]{
-        return [NilQuestion, p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14]
+    static func getQuestions() ->[LevelTwoQuestion] {
+        return [p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, NilQuestion]
     }
     
 }

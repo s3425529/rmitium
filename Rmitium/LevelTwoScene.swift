@@ -6,31 +6,29 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
+import Foundation
 import SpriteKit
 
 class LevelTwoScene: SKScene {
     var answers: [CustomSKSpriteNode] = []
-    var map: [Int] = []
     var chosenAnswer: Int!
     var tick, infoOverlay, homeDialogue: SKSpriteNode!
     var score, factLabel, timeNode: SKLabelNode!
     var state, previousState: Int!
     var timerClass:TimeControl!
     var timeNsNode:NSTimer!
-    var LIMITTIME = 15
+    var LIMITTIME = 60
     
     override func didMoveToView(view: SKView) {
-        //initRecord()
         setupTimer()
         setupScene()
     }
     
     func setupScene() {
-        
+        answers.removeAll()
         self.removeAllChildren()
         
         state = UtilitiesPortal.stateAnswer
-        
         setupItems()
         setupDragLabel()
         setupInfo()
@@ -98,22 +96,22 @@ class LevelTwoScene: SKScene {
     }
     
     func setupDragLabel() {
-        for count in 0...UtilitiesPortal.levelTwoWidth*UtilitiesPortal.levelTwoHeight-1 {
-            let answer = CustomSKSpriteNode(imageNamed:
-                "\(UtilitiesPortal.levelOneAnswers[count%6])-border")
-            answer.name = "\(count)"
-            answer.value = "\(UtilitiesPortal.levelOneAnswers[count%6])"
+        var list = LevelTwoQuestionList.getQuestionsList()
+        for count in 0...list.count-1 {
+            let answer = CustomSKSpriteNode(imageNamed: "\(list[count])")
+            //answer.name = "\(list[count])"
+            answer.value = "\(list[count])"
             answer.zPosition = 0.3
             answer.alpha = 0.9
-            answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.20,
-                                 height: UtilitiesPortal.screenHeight*0.20)
+            answer.size = CGSize(width: UtilitiesPortal.levelTwoImageWidth*UtilitiesPortal.screenWidth,
+                                 height: UtilitiesPortal.levelTwoImageHeight*UtilitiesPortal.screenHeight)
             answer.position = CGPoint(
-                x:UtilitiesPortal.screenWidth*(0.2+UtilitiesPortal.levelTwoImageWidth*CGFloat(count%UtilitiesPortal.levelTwoWidth)),
+                x:UtilitiesPortal.screenWidth*(0.14+UtilitiesPortal.levelTwoImageWidth*CGFloat(count%UtilitiesPortal.levelTwoWidth)),
                 y:UtilitiesPortal.screenHeight*(0.7-UtilitiesPortal.levelTwoImageHeight*CGFloat(count/UtilitiesPortal.levelTwoWidth)))
             
             addChild(answer)
             answers.append(answer)
-            map.append(count)
+            //map.append(1)
         }
     }
     
@@ -355,9 +353,9 @@ class LevelTwoScene: SKScene {
             // Labels selected
             for x in 0...answers.count-1 {
                 if CGRectContainsPoint(answers[x].frame, point) {
-                    if map[x] > UtilitiesPortal.levelTwoNil {
+                    if answers[x].hidden == false {
                         chosenAnswer = x
-                        answers[x].texture = SKTexture(imageNamed: answers[chosenAnswer].value)
+                        answers[x].texture = SKTexture(imageNamed: "\(answers[chosenAnswer].value)-border")
                         state = UtilitiesPortal.stateReview
                     }
                     return
@@ -369,18 +367,16 @@ class LevelTwoScene: SKScene {
             for x in 0...answers.count-1 {
                 if CGRectContainsPoint(answers[x].frame, point) {
                     if x == chosenAnswer {
-                        answers[x].texture = SKTexture(imageNamed: "\(answers[x].value)-border")
+                        answers[x].texture = SKTexture(imageNamed: "\(answers[x].value)")
                     }
-                    else if map[x] > UtilitiesPortal.levelTwoNil {
-                        if answers[x].value == answers[chosenAnswer].value {
+                    else if answers[x].hidden == false {
+                        if compareTiles(x, b: chosenAnswer) {
                             answers[chosenAnswer].hidden = true
                             answers[x].hidden = true
-                            map[chosenAnswer] = UtilitiesPortal.levelTwoNil
-                            map[x] = UtilitiesPortal.levelTwoNil
                         }
                         else {
                             answers[chosenAnswer].texture =
-                                SKTexture(imageNamed: "\(answers[chosenAnswer].value)-border")
+                                SKTexture(imageNamed: "\(answers[chosenAnswer].value)")
                         }
                     }
                     else {
@@ -395,8 +391,26 @@ class LevelTwoScene: SKScene {
         }
     }
     
+    func compareTiles(a: Int, b: Int) -> Bool {
+        print("Compare: \(answers[a].value) and \(answers[b].value)")
+        let stringA: String = answers[a].value
+        let prefixA = stringA.substringWithRange(Range<String.Index>(start: stringA.startIndex.advancedBy(0), end: stringA.endIndex.advancedBy(-1)))
+        let postfixA = stringA.characters.last!
+        
+        let stringB: String = answers[b].value
+        let prefixB = stringB.substringWithRange(Range<String.Index>(start: stringB.startIndex.advancedBy(0), end: stringB.endIndex.advancedBy(-1)))
+        let postfixB = stringB.characters.last!
+        
+        if prefixA == prefixB && postfixA != postfixB {
+            print("Result: true")
+            return true
+        }
+        print("Result: false")
+        return false
+    }
+    
     func checkResult() -> Bool {
-        for x in 0...map.count-1 {
+        for x in 0...answers.count-1 {
             if answers[x].hidden == false {
                 return false
             }
@@ -444,8 +458,8 @@ class LevelTwoScene: SKScene {
         if checkResult() {
             timeOut()
             toResultSence()
-            
         }
+        
         if timerClass.timeLabel >= LIMITTIME {
             timeNode.text = "Time Out!"
             
@@ -498,6 +512,7 @@ class LevelTwoScene: SKScene {
     }
     
     func cleanScene() {
+        answers.removeAll()
         if let s = self.view?.scene {
             NSNotificationCenter.defaultCenter().removeObserver(self)
             self.enumerateChildNodesWithName("//") { node, _ in
