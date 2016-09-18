@@ -179,6 +179,7 @@ class ResultPage3: SKScene{
     //back to the home page,
     func backHomePage() {
         UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         cleanScene()
         
         let secondScene = GameScene(size: self.size)
