@@ -640,14 +640,6 @@ class LevelThreeScene: SKScene {
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
     
-    /*func initRecord(){
-        listOfQuestions = LevelThreeQuestion.getQuestions()
-        for item in 0..<listOfQuestions.count{
-            UtilitiesPortal.record.append(item)
-        }
-        
-    }*/
-    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
