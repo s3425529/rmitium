@@ -36,7 +36,7 @@ class ResultPage: SKScene {
     
     func setupMedal() {
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
-        let medalDic = medalClass().assignMedal()
+        let medalDic = medalClass().assignMedal(UtilitiesPortal.levelOne)
         let medalName = medalDic.medalName
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
@@ -135,7 +135,6 @@ class ResultPage: SKScene {
         addChild(twitter)
         addChild(redo)
         addChild(next)
-    
     }
     
     func facebookAction() {
@@ -146,7 +145,8 @@ class ResultPage: SKScene {
             facebookController.setInitialText("My score is\(UtilitiesPortal.score)")
            // facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(facebookController, animated: true, completion: nil)
-        }else{
+        }
+        else {
             let alert = UIAlertController(title: "Facebook Unavailable", message: "Be sure to go to Settings > Facebook to set up your account", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             controller.presentViewController(alert, animated: true, completion: nil)

@@ -40,7 +40,7 @@ class LevelOneScene: SKScene {
         questions.removeAll()
         answeredQuestions.removeAll()
         let score = DataHandler.getLevelOneScore()
-        if firstTime && score == 0 {
+        if firstTime && score == UtilitiesPortal.defaultScore {
             firstTime = false
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo

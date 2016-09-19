@@ -30,7 +30,7 @@ class LevelTwoScene: SKScene {
         self.removeAllChildren()
         
         let score = DataHandler.getLevelTwoScore()
-        if firstTime && score == 0 {
+        if firstTime && score == UtilitiesPortal.defaultScore {
             firstTime = false
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo

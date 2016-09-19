@@ -93,7 +93,7 @@ class ResultPage3: SKScene {
     
     func setupMedal() {
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
-        let medalDic = medalClass().assignMedal()
+        let medalDic = medalClass().assignMedal(UtilitiesPortal.levelThree)
         let medalName = medalDic.medalName
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]

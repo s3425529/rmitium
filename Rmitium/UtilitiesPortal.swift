@@ -21,6 +21,11 @@ class UtilitiesPortal {
     static let stateFact = 4
     static let stateHome = 5
     
+    static let defaultScore = -1
+    static let levelOne = 1
+    static let levelTwo = 2
+    static let levelThree = 3
+    
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
     static let levelButtonNames = ["lvl01Btn", "lvl02Btn", "lvl03Btn", "settingBtn"]
     
