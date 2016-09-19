@@ -268,14 +268,14 @@ class LevelTwoScene: SKScene {
         yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
-        yesBtn.texture = SKTexture(imageNamed: "tick-white")
+        yesBtn.texture = SKTexture(image: UIImage(named: "tick-white")!)
         yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.5)
         yesBtn.zPosition = 0.9
         
         noBtn.size = yesBtn.size
         noBtn.color = yesBtn.color
         noBtn.name = UtilitiesPortal.noButtonName
-        noBtn.texture = SKTexture(imageNamed: "cross-white")
+        noBtn.texture = SKTexture(image: UIImage(named: "cross-white")!)
         noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.5)
         noBtn.zPosition = 0.9
         
@@ -381,7 +381,7 @@ class LevelTwoScene: SKScene {
                 if CGRectContainsPoint(answers[x].frame, point) {
                     if answers[x].hidden == false {
                         chosenAnswer = x
-                        answers[x].texture = SKTexture(imageNamed: "\(answers[chosenAnswer].value)-border")
+                        answers[x].texture = SKTexture(image: UIImage(named: "\(answers[chosenAnswer].value)-border")!)
                         state = UtilitiesPortal.stateReview
                     }
                     return
@@ -393,7 +393,7 @@ class LevelTwoScene: SKScene {
             for x in 0...answers.count-1 {
                 if CGRectContainsPoint(answers[x].frame, point) {
                     if x == chosenAnswer {
-                        answers[x].texture = SKTexture(imageNamed: "\(answers[x].value)")
+                        answers[x].texture = SKTexture(image: UIImage(named: "\(answers[x].value)")!)
                     }
                     else if answers[x].hidden == false {
                         if compareTiles(x, b: chosenAnswer) {
@@ -402,7 +402,7 @@ class LevelTwoScene: SKScene {
                         }
                         else {
                             answers[chosenAnswer].texture =
-                                SKTexture(imageNamed: "\(answers[chosenAnswer].value)")
+                                SKTexture(image: UIImage(named: "\(answers[chosenAnswer].value)")!)
                         }
                     }
                     else {
