@@ -339,6 +339,7 @@ class LevelOneScene: SKScene {
         infoOverlay.color = SKColor.blackColor()
         infoOverlay.alpha = 0.7
         infoOverlay.zPosition = 0.8
+        
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = false
         }

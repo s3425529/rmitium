@@ -9,6 +9,7 @@
 import SpriteKit
 
 class LevelThreeScene: SKScene {
+    var firstTime: Bool = true
     var answers: [CustomSKSpriteNode] = []
     var questions: [CustomSKSpriteNode] = []
     var answeredQuestions: [CustomSKSpriteNode] = []
@@ -37,6 +38,16 @@ class LevelThreeScene: SKScene {
         questions.removeAll()
         answeredQuestions.removeAll()
         
+        let score = DataHandler.getLevelThreeScore()
+        if firstTime && score == 0 {
+            firstTime = false
+            previousState = UtilitiesPortal.stateAnswer
+            state = UtilitiesPortal.stateInfo
+        }
+        else {
+            state = UtilitiesPortal.stateAnswer
+        }
+        
         lvlThreeQuestion = LevelThreeModel.currentQuestion
         // Result page
         if lvlThreeQuestion.positions.count == 0 {
@@ -47,12 +58,8 @@ class LevelThreeScene: SKScene {
             return
         }
         
-        state = UtilitiesPortal.stateAnswer
-        
         setupImage()
-        
         setupItems()
-        
         setupDragLabel()
         setupTargets()
         setupFactLabel()
@@ -319,7 +326,13 @@ class LevelThreeScene: SKScene {
         infoOverlay.color = SKColor.blackColor()
         infoOverlay.alpha = 0.7
         infoOverlay.zPosition = 0.8
-        infoOverlay.hidden = true
+        
+        if state == UtilitiesPortal.stateInfo {
+            infoOverlay.hidden = false
+        }
+        else {
+            infoOverlay.hidden = true
+        }
         
         infoOverlay.addChild(arrow01)
         infoOverlay.addChild(arrow02)

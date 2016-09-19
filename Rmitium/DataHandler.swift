@@ -28,6 +28,22 @@ class DataHandler {
                 fatalError("Failure to save Settings: \(error)")
             }
         }
+        else {
+            let setting = NSFetchRequest(entityName: "Settings")
+            do {
+                let result = try settings.executeFetchRequest(setting) as! [Settings]
+                let object = result.first!
+                object.setValue(true, forKey: "sound")
+                object.setValue(true, forKey: "rightHand")
+                object.setValue(0, forKey: "levelOne")
+                object.setValue(0, forKey: "levelTwo")
+                object.setValue(0, forKey: "levelThree")
+                try settings.save()
+            }
+            catch {
+                fatalError("Failure reading from coredata: \(error)")
+            }
+        }
     }
     
     static func getSettings() -> Settings {
@@ -41,11 +57,75 @@ class DataHandler {
         }
     }
     
+    // Level One
     static func getLevelOneScore() -> NSNumber {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             return result.first!.levelOne!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func saveLevelOneScore() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            object.setValue(UtilitiesPortal.score, forKey: "levelOne")
+            try settings.save()
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    // Level Two
+    static func getLevelTwoScore() -> NSNumber {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            return result.first!.levelTwo!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func saveLevelTwoScore() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            object.setValue(UtilitiesPortal.score, forKey: "levelTwo")
+            try settings.save()
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    // Level Three
+    static func getLevelThreeScore() -> NSNumber {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            return result.first!.levelThree!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func saveLevelThreeScore() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            object.setValue(UtilitiesPortal.score, forKey: "levelThree")
+            try settings.save()
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")

@@ -13,12 +13,13 @@
 import SpriteKit
 import Social
 
-class ResultPage2: SKScene{
+class ResultPage2: SKScene {
     
     var facebook, twitter, redo, next: CustomButton!
     var state, previousState: Int!
     var homeDialogue, homeView: SKSpriteNode!
     override func didMoveToView(view: SKView) {
+        DataHandler.saveLevelTwoScore()
         
         state = UtilitiesPortal.stateAnswer
         createHomeDialogue()
@@ -84,7 +85,7 @@ class ResultPage2: SKScene{
         addChild(scoreNode)
         
     }
-    func facebookAction(){
+    func facebookAction() {
         print("facebook")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
@@ -100,7 +101,7 @@ class ResultPage2: SKScene{
         
         
     }
-    func twitterAction(){
+    func twitterAction() {
         print("twitter")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
@@ -114,13 +115,15 @@ class ResultPage2: SKScene{
             controller.presentViewController(alert, animated: true, completion: nil)
         }
     }
-    func redoAction(){
+    
+    func redoAction() {
         print("redo")
         UtilitiesPortal.score = 0
         backLevel2()
         return
     }
-    func nextAction(){
+    
+    func nextAction() {
         print("next")
         backHomePage()
     }
@@ -232,5 +235,4 @@ class ResultPage2: SKScene{
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
-    
 }

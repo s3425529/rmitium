@@ -31,6 +31,7 @@ class ResultPage: SKScene {
         setupItems()
         setupCustomerButton()
         createHomeDialogue()
+        DataHandler.saveLevelOneScore()
     }
     
     func setupMedal() {
@@ -136,6 +137,7 @@ class ResultPage: SKScene {
         addChild(next)
     
     }
+    
     func facebookAction() {
         print("facebook")
         let controller = self.view?.window?.rootViewController as! GameViewController
@@ -149,9 +151,8 @@ class ResultPage: SKScene {
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             controller.presentViewController(alert, animated: true, completion: nil)
         }
-        
-        
     }
+    
     func twitterAction() {
         print("twitter")
         let controller = self.view?.window?.rootViewController as! GameViewController
@@ -167,13 +168,15 @@ class ResultPage: SKScene {
             controller.presentViewController(alert, animated: true, completion: nil)
         }
     }
-    func redoAction(){
+    
+    func redoAction() {
         print("redo")
         UtilitiesPortal.score = 0
         UtilitiesPortal.totalQuestions = 0
         backLevel1()
         return
     }
+    
     func nextAction() {
         print("next")
         backHomePage()
@@ -266,7 +269,6 @@ class ResultPage: SKScene {
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home!")
             homeView.hidden = false
-          
         }
         if node.name == UtilitiesPortal.yesButtonName {
             backHomePage()

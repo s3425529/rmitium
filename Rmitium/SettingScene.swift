@@ -19,6 +19,9 @@ class SettingScene: SKScene {
         UtilitiesPortal.score = 0
         state = UtilitiesPortal.stateAnswer
         
+        // Reset the setting every time use enter the setting scene for testing purpose
+        DataHandler.initSettings()
+        
         model = DataHandler.getSettings()
         values.append(model.getSound)
         values.append(model.getSound)
