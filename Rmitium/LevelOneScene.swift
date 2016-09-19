@@ -238,6 +238,7 @@ class LevelOneScene: SKScene {
                                            fontSize: UtilitiesPortal.navLabelSize,
                                            leading: Int(UtilitiesPortal.navLabelSize))
         factOverlayText.name = UtilitiesPortal.factMultiLine
+        //factOverlayText.alignment = .Left
         factOverlayText.zPosition = 1
         
         factOverlay = SKSpriteNode()

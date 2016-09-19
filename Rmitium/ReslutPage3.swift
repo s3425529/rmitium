@@ -23,7 +23,7 @@ import Social
 class ResultPage3: SKScene{
     var facebook, twitter, redo, next: CustomButton!
     var homeDialogue,homeView :SKSpriteNode!
-    var text :SKMultilineLabel!
+    var text,text1 :SKMultilineLabel!
     override func didMoveToView(view: SKView) {
      
         
@@ -101,11 +101,12 @@ class ResultPage3: SKScene{
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
         let medalDic = medalClass().assignMedal()
         let medalName = medalDic.medalName
-        let infomation = medalDic.information
+        let information1 = medalDic.information[0]
+        let information2 = medalDic.information[1]
         let medalNode = SKSpriteNode(imageNamed: medalName)
         medalNode.color = SKColor.blueColor()
         medalNode.name = "medal"
-        medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 1.8)
+        medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
         medalNode.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
         medalNode.zPosition = 0.1
         
@@ -116,12 +117,26 @@ class ResultPage3: SKScene{
         addChild(medalNode)
         medalNode.runAction(repeatAction)
         
-        let p = CGPoint(x: UtilitiesPortal.screenWidth*0.35, y: UtilitiesPortal.screenHeight*0.3)
-        text = SKMultilineLabel(text: infomation, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p)
-        text.alignment = .Left
+        let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
+        scoreNode.text = "\(UtilitiesPortal.score)"
+        scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
+        
+        scoreNode.fontSize = UtilitiesPortal.screenHeight*0.08
+        addChild(scoreNode)
+        
+        let p1 = CGPoint(x: UtilitiesPortal.screenWidth*0.35, y: UtilitiesPortal.screenHeight*0.9)
+        text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
+        text.alignment = .Center
         text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
-        text.fontSize = UtilitiesPortal.screenHeight*0.05
+        text.fontSize = UtilitiesPortal.screenHeight*0.08
         addChild(text)
+        
+        let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.38, y: UtilitiesPortal.screenHeight*0.28)
+        text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
+        text1.alignment = .Left
+        text1.leading =  Int(UtilitiesPortal.screenHeight*0.1)
+        text1.fontSize = UtilitiesPortal.screenHeight*0.05
+        addChild(text1)
     }
     
     func facebookAction() {
