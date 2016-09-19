@@ -125,7 +125,7 @@ class ResultPage2: SKScene {
     
     func nextAction() {
         print("next")
-        backHomePage()
+        goToLevel3()
     }
     
     // Share the score to any social media!
@@ -156,6 +156,15 @@ class ResultPage2: SKScene {
         self.scene!.view?.presentScene(secondScene, transition: transition)
         UtilitiesPortal.score = 0
     }
+    
+    func goToLevel3(){
+        let secondScene = LevelThreeScene(size: self.size)
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
+        secondScene.scaleMode = SKSceneScaleMode.AspectFill
+        self.scene!.view?.presentScene(secondScene, transition: transition)
+        UtilitiesPortal.score = 0
+    }
+
     
     //Show Home Button Dialogue box
     func createHomeDialogue() {
