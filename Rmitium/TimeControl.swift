@@ -9,8 +9,8 @@
 import Foundation
 import SpriteKit
 import UIKit
+
 class TimeControl {
-    
     var timeLabel : Int!
     var limitTime: Int!
     var pauseTime = 1
@@ -56,15 +56,13 @@ class TimeControl {
          remainSecond += 1
     }
     func pause(isTrue: Bool ){
-        
-        if isTrue{
+        if isTrue {
             pauseTime = remainSecond
             stopTimer()
-        }else{
+        }
+        else {
             remainSecond = pauseTime
             startTimer()
         }
     }
-
-    
 }
