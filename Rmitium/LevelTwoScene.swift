@@ -96,6 +96,7 @@ class LevelTwoScene: SKScene {
     }
     
     func setupDragLabel() {
+        answers.removeAll()
         var list = LevelTwoQuestionList.getQuestionsList()
         for count in 0...list.count-1 {
             let answer = CustomSKSpriteNode(imageNamed: "\(list[count])")
@@ -106,8 +107,8 @@ class LevelTwoScene: SKScene {
             answer.size = CGSize(width: UtilitiesPortal.levelTwoImageWidth*UtilitiesPortal.screenWidth,
                                  height: UtilitiesPortal.levelTwoImageHeight*UtilitiesPortal.screenHeight)
             answer.position = CGPoint(
-                x:UtilitiesPortal.screenWidth*(0.14+UtilitiesPortal.levelTwoImageWidth*CGFloat(count%UtilitiesPortal.levelTwoWidth)),
-                y:UtilitiesPortal.screenHeight*(0.7-UtilitiesPortal.levelTwoImageHeight*CGFloat(count/UtilitiesPortal.levelTwoWidth)))
+                x:UtilitiesPortal.screenWidth*(0.10+UtilitiesPortal.levelTwoImageWidth*CGFloat(count%UtilitiesPortal.levelTwoWidth)),
+                y:UtilitiesPortal.screenHeight*(0.8-UtilitiesPortal.levelTwoImageHeight*CGFloat(count/UtilitiesPortal.levelTwoWidth)))
             
             addChild(answer)
             answers.append(answer)

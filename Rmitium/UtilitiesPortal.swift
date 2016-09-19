@@ -28,8 +28,8 @@ class UtilitiesPortal {
                                   "ether", "thioether", "heterocyclicaromatic"]
     static let levelTwoWidth = 10
     static let levelTwoHeight = 6
-    static let levelTwoImageWidth: CGFloat = 0.08
-    static let levelTwoImageHeight: CGFloat = 0.10
+    static let levelTwoImageWidth: CGFloat = 0.09
+    static let levelTwoImageHeight: CGFloat = 0.12
     static let levelTwoNil = -1
     
     static let levelThreeAnswers = ["dipole-dipole", "h-bonding", "ionic", "vanderwaals"]
