@@ -192,7 +192,7 @@ class LevelOneScene: SKScene {
             let sprite = CustomSKSpriteNode()
             sprite.color = UIColor.blueColor()
             sprite.alpha = 0
-            sprite.texture = SKTexture(image: UIImage(named: "\(count)")!)
+            sprite.texture = SKTexture(imageNamed: "\(count)")
             sprite.name = "question\(count)"
             UtilitiesPortal.totalQuestions += 1
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
