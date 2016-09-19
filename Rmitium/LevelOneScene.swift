@@ -220,7 +220,7 @@ class LevelOneScene: SKScene {
     func setupFactLabel() {
         let randomIndex = Int(arc4random_uniform(UInt32(lvlOneQuestion.facts.count)))
         let fact = lvlOneQuestion.facts[randomIndex]
-        let index = fact.startIndex.advancedBy(24)
+        let index = fact.startIndex.advancedBy(19)
         let shortenFact = fact.substringToIndex(index)
         
         factLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
