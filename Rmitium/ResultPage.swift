@@ -36,7 +36,7 @@ class ResultPage: SKScene {
     
     func setupMedal() {
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
-        let medalDic = medalClass().assignMedal()
+        let medalDic = medalClass().assignMedal(UtilitiesPortal.levelOne)
         let medalName = medalDic.medalName
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
@@ -65,12 +65,12 @@ class ResultPage: SKScene {
         text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
         text.alignment = .Center
         text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
-        text.fontSize = UtilitiesPortal.screenHeight*0.08
+        text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
         
-        let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.38, y: UtilitiesPortal.screenHeight*0.28)
+        let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.35, y: UtilitiesPortal.screenHeight*0.28)
         text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
-        text1.alignment = .Left
+        text1.alignment = .Center
         text1.leading =  Int(UtilitiesPortal.screenHeight*0.1)
         text1.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text1)
@@ -135,7 +135,6 @@ class ResultPage: SKScene {
         addChild(twitter)
         addChild(redo)
         addChild(next)
-    
     }
     
     func facebookAction() {
@@ -146,7 +145,8 @@ class ResultPage: SKScene {
             facebookController.setInitialText("My score is\(UtilitiesPortal.score)")
            // facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(facebookController, animated: true, completion: nil)
-        }else{
+        }
+        else {
             let alert = UIAlertController(title: "Facebook Unavailable", message: "Be sure to go to Settings > Facebook to set up your account", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             controller.presentViewController(alert, animated: true, completion: nil)

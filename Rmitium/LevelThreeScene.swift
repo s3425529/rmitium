@@ -35,7 +35,7 @@ class LevelThreeScene: SKScene {
         cleanScene()
         
         let score = DataHandler.getLevelThreeScore()
-        if firstTime && score == 0 {
+        if firstTime && score == UtilitiesPortal.defaultScore {
             firstTime = false
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo
@@ -113,7 +113,6 @@ class LevelThreeScene: SKScene {
         addChild(info)
         
         // Score label
-        
         score = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         score.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         score.zPosition = 0.1
@@ -639,14 +638,6 @@ class LevelThreeScene: SKScene {
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
-    
-    /*func initRecord(){
-        listOfQuestions = LevelThreeQuestion.getQuestions()
-        for item in 0..<listOfQuestions.count{
-            UtilitiesPortal.record.append(item)
-        }
-        
-    }*/
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

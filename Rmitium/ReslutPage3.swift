@@ -93,7 +93,7 @@ class ResultPage3: SKScene {
     
     func setupMedal() {
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
-        let medalDic = medalClass().assignMedal()
+        let medalDic = medalClass().assignMedal(UtilitiesPortal.levelThree)
         let medalName = medalDic.medalName
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
@@ -122,12 +122,12 @@ class ResultPage3: SKScene {
         text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
         text.alignment = .Center
         text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
-        text.fontSize = UtilitiesPortal.screenHeight*0.08
+        text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
         
-        let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.38, y: UtilitiesPortal.screenHeight*0.28)
+        let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.35, y: UtilitiesPortal.screenHeight*0.28)
         text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
-        text1.alignment = .Left
+        text1.alignment = .Center
         text1.leading =  Int(UtilitiesPortal.screenHeight*0.1)
         text1.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text1)
