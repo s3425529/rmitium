@@ -31,7 +31,7 @@ class medalClass {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
             if score > UtilitiesPortal.defaultScore {
-                words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your last record is \(score)!")
+                words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(score)!")
             }
             else {
                 words.append("A perfect score. Your chemistry knowledge is obviously crystal clear.")
@@ -41,7 +41,7 @@ class medalClass {
             medalName = "Medal2-Gold"
             words = ["Well done!"]
             if score > UtilitiesPortal.defaultScore {
-                words.append("You got \(percentString)%. Your chemistry prowess is gold standard. Your last record is \(score)!")
+                words.append("You got \(percentString)%. Your chemistry prowess is gold standard. Your best was \(score)!")
             }
             else {
                 words.append("You got \(percentString)%. Your chemistry prowess is gold standard.")
@@ -51,7 +51,7 @@ class medalClass {
             medalName = "Medal3-Silver"
             words = ["Great work!"]
             if score > UtilitiesPortal.defaultScore {
-                words.append("With that sterling effort you got \(percentString)%. Your last record is \(score)!")
+                words.append("With that sterling effort you got \(percentString)%. Your best was \(score)!")
             }
             else {
                 words.append("With that sterling effort you got \(percentString)%.")
@@ -61,7 +61,7 @@ class medalClass {
             medalName = "Medal4-Bronze"
             words = ["Nice try!"]
             if score > UtilitiesPortal.defaultScore {
-                words.append("You joined tin and copper with \(percentString)%. Your last record is \(score)!")
+                words.append("You joined tin and copper with \(percentString)%. Your best was \(score)!")
             }
             else {
                 words.append("You joined tin and copper with \(percentString)%.")
@@ -71,7 +71,7 @@ class medalClass {
             medalName = "Medal5-Rust"
             words = ["Good effort!"]
             if score > UtilitiesPortal.defaultScore {
-                words.append("But your chemistry is a little rusty. You got \(percentString)%. Your last record is \(score)!")
+                words.append("But your chemistry is a little rusty. You got \(percentString)%. Your best was \(score)!")
             }
             else {
                 words.append("But your chemistry is a little rusty. You got \(percentString)%.")
