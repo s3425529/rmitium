@@ -42,6 +42,7 @@ class LevelTwoQuestionList {
     
     static func select(numberOfQuestion: Int) ->[NSString]
     {
+        imageList.removeAll()
         /*if numberOfQuestion >= listOfQuestions.count {
             return listOfQuestions
         }*/
