@@ -35,7 +35,7 @@ class LevelThreeScene: SKScene {
         cleanScene()
         
         let score = DataHandler.getLevelThreeScore()
-        if firstTime && score == 0 {
+        if firstTime && score == UtilitiesPortal.defaultScore {
             firstTime = false
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo
@@ -113,7 +113,6 @@ class LevelThreeScene: SKScene {
         addChild(info)
         
         // Score label
-        
         score = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         score.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         score.zPosition = 0.1

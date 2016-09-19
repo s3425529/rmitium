@@ -18,10 +18,8 @@ class LevelThreeQuestionList {
     }
     
     static func shuffle() {
-        
         // Perform the swap operation equal to the number of Questions in the list
         for currentQuestionIndex in 0..<listOfQuestions.count-1 {
-            
             // Random number between 0 and the number of Questions in list
             //let randomQuestionIndex = Int(arc4random_uniform(UInt32(listOfQuestions.count)))
             let randomIndex = random()
