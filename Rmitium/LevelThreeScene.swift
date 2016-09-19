@@ -32,11 +32,7 @@ class LevelThreeScene: SKScene {
     }
     
     func setupScene() {
-        
-        self.removeAllChildren()
-        positions.removeAll()
-        questions.removeAll()
-        answeredQuestions.removeAll()
+        cleanScene()
         
         let score = DataHandler.getLevelThreeScore()
         if firstTime && score == 0 {
@@ -657,12 +653,24 @@ class LevelThreeScene: SKScene {
     }
     
     override func willMoveFromView(view: SKView) {
+        answers.removeAll()
+        positions.removeAll()
+        questions.removeAll()
+        answeredQuestions.removeAll()
+        listOfQuestions.removeAll()
+        
         self.removeAllActions()
         self.removeAllChildren()
         print("Remove all nodes Lvl 3 Scene")
     }
     
     func cleanScene() {
+        answers.removeAll()
+        positions.removeAll()
+        questions.removeAll()
+        answeredQuestions.removeAll()
+        listOfQuestions.removeAll()
+
         if let s = self.view?.scene {
             NSNotificationCenter.defaultCenter().removeObserver(self)
             self.enumerateChildNodesWithName("//") { node, _ in
