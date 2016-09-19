@@ -134,7 +134,7 @@ class LevelThreeScene: SKScene {
         self.addChild(itemName)
 
     }
-    func setupImage(){
+    func setupImage() {
         // Image
         let image = SKSpriteNode(imageNamed: lvlThreeQuestion.imageName)
         
@@ -200,7 +200,7 @@ class LevelThreeScene: SKScene {
     }
     
     // Adding Fact label
-    func setupFactLabel(){
+    func setupFactLabel() {
         let randomIndex = Int(arc4random_uniform(UInt32(lvlThreeQuestion.facts.count)))
         let fact = lvlThreeQuestion.facts[randomIndex]
         let index = fact.startIndex.advancedBy(15)
@@ -236,7 +236,7 @@ class LevelThreeScene: SKScene {
     }
     
     // Info layout
-    func setupInfo(){
+    func setupInfo() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9
         arrow01.size = CGSize(width: UtilitiesPortal.navImgSize*2,
@@ -344,7 +344,6 @@ class LevelThreeScene: SKScene {
         
         addChild(infoOverlay)
     }
-
     
     //Show Home Button Dialogue box
     func createHomeDialogue() {
@@ -503,7 +502,6 @@ class LevelThreeScene: SKScene {
                     return
                 }
             }
-            
         }
         
         // Home button selected

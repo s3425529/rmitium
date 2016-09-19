@@ -18,9 +18,8 @@ class ResultPage2: SKScene {
     var facebook, twitter, redo, next: CustomButton!
     var state, previousState: Int!
     var homeDialogue, homeView: SKSpriteNode!
+    
     override func didMoveToView(view: SKView) {
-        DataHandler.saveLevelTwoScore()
-        
         state = UtilitiesPortal.stateAnswer
         createHomeDialogue()
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
@@ -84,6 +83,7 @@ class ResultPage2: SKScene {
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth*0.3, y: UtilitiesPortal.screenHeight*0.5)
         addChild(scoreNode)
         
+        DataHandler.saveLevelTwoScore()
     }
     func facebookAction() {
         print("facebook")

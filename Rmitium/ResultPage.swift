@@ -31,6 +31,7 @@ class ResultPage: SKScene {
         setupItems()
         setupCustomerButton()
         createHomeDialogue()
+        
         DataHandler.saveLevelOneScore()
     }
     
