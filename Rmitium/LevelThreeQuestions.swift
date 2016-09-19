@@ -76,7 +76,7 @@ enum LevelThreeQuestion:Int{
                 case .QuestionFive: return ["h-bonding", "h-bonding"]
                 case .QuestionSix: return ["vanderwaals", "vanderwaals"]
                 case .QuestionSeven: return ["dipole-dipole"]
-                case .QuestionEight: return ["h-bonding", "van ser Waal's", "dipole-dipole"]
+                case .QuestionEight: return ["h-bonding", "vanderwaals", "dipole-dipole"]
                 case .QuestionNine: return ["h-bonding", "dipole-dipole", "h-bonding", "vanderwaals", "vanderwaals"]
                 case .QuestionTen: return ["h-bonding"]
             }

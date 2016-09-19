@@ -150,7 +150,7 @@ class LevelThreeScene: SKScene {
     func setupDragLabel() {
         for count in 0...UtilitiesPortal.levelThreeAnswers.count-1 {
             let answer = CustomSKSpriteNode(imageNamed:
-                "\(UtilitiesPortal.levelThreeAnswers[count])")
+                "\(UtilitiesPortal.levelThreeAnswers[count])-border")
             answer.name = UtilitiesPortal.levelThreeAnswers[count]
             answer.value = UtilitiesPortal.levelThreeAnswers[count]
             answer.zPosition = 0.3
@@ -158,7 +158,7 @@ class LevelThreeScene: SKScene {
             answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.20,
                                  height: UtilitiesPortal.screenHeight*0.15)
             answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
-                                      y:UtilitiesPortal.screenHeight*(0.8-0.20*CGFloat(count)))
+                                      y:UtilitiesPortal.screenHeight*(0.75-0.18*CGFloat(count)))
             
             addChild(answer)
             answers.append(answer)
