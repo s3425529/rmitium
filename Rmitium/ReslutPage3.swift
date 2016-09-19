@@ -138,7 +138,7 @@ class ResultPage3: SKScene {
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
             let facebookController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-            facebookController.setInitialText("My score is\(UtilitiesPortal.score)")
+            facebookController.setInitialText("My score is \(UtilitiesPortal.score)")
             // facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(facebookController, animated: true, completion: nil)
         }
