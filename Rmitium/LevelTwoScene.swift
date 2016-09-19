@@ -321,7 +321,6 @@ class LevelTwoScene: SKScene {
                     if timerClass.timeLabel < LIMITTIME{
                          timeOut()
                     }
-                   
                     backHomePage()
                     return
                 }
