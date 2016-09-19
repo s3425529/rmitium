@@ -125,7 +125,7 @@ class ResultPage3: SKScene {
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
         
-        let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.35, y: UtilitiesPortal.screenHeight*0.28)
+        let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.35, y: UtilitiesPortal.screenHeight*0.26)
         text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
         text1.alignment = .Center
         text1.leading =  Int(UtilitiesPortal.screenHeight*0.08)

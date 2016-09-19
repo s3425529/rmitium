@@ -127,7 +127,7 @@ class LevelTwoScene: SKScene {
     }
     
     // Info layout
-    func setupInfo(){
+    func setupInfo() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9
         arrow01.size = CGSize(width: UtilitiesPortal.navImgSize*2,
@@ -146,8 +146,13 @@ class LevelTwoScene: SKScene {
         arrow03.zPosition = 0.9
         arrow03.size = CGSize(width: UtilitiesPortal.navImgSize*2,
                               height: UtilitiesPortal.navImgSize*2)
-        arrow03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.22,
+        arrow03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.24,
                                    y: UtilitiesPortal.screenHeight * -0.1)
+        let action1_1 = SKAction.fadeOutWithDuration(0.6)
+        let action1_2 = SKAction.fadeInWithDuration(0.6)
+        let sequence1 = SKAction.sequence([action1_1, action1_2])
+        let repeatAction1 = SKAction.repeatActionForever(sequence1)
+        arrow03.runAction(repeatAction1)
         
         let arrow04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[3])
         arrow04.zPosition = 0.9
@@ -155,6 +160,11 @@ class LevelTwoScene: SKScene {
                               height: UtilitiesPortal.navImgSize*2)
         arrow04.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.15,
                                    y: UtilitiesPortal.screenHeight * -0.1)
+        let action2_1 = SKAction.fadeInWithDuration(0.6)
+        let action2_2 = SKAction.fadeOutWithDuration(0.6)
+        let sequence2 = SKAction.sequence([action2_1, action2_2])
+        let repeatAction2 = SKAction.repeatActionForever(sequence2)
+        arrow04.runAction(repeatAction2)
         
         let arrow05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[4])
         arrow05.zPosition = 0.9
@@ -311,7 +321,6 @@ class LevelTwoScene: SKScene {
                     if timerClass.timeLabel < LIMITTIME{
                          timeOut()
                     }
-                   
                     backHomePage()
                     return
                 }
@@ -483,7 +492,6 @@ class LevelTwoScene: SKScene {
             
             timeOut()
             //alertMessage()
-          
         }
     }
     
