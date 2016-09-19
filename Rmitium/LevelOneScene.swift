@@ -9,6 +9,7 @@
 import SpriteKit
 
 class LevelOneScene: SKScene {
+    var firstTime: Bool = true
     var answers: [CustomSKSpriteNode] = []
     var questions: [CustomSKSpriteNode] = []
     var answeredQuestions: [CustomSKSpriteNode] = []
@@ -38,6 +39,16 @@ class LevelOneScene: SKScene {
         positions.removeAll()
         questions.removeAll()
         answeredQuestions.removeAll()
+        let score = DataHandler.getLevelOneScore()
+        if firstTime && score == UtilitiesPortal.defaultScore {
+            firstTime = false
+            previousState = UtilitiesPortal.stateAnswer
+            state = UtilitiesPortal.stateInfo
+        }
+        else {
+            state = UtilitiesPortal.stateAnswer
+        }
+        
         lvlOneQuestion = LevelOneModel.currentQuestion
         
         // Result page
@@ -50,7 +61,7 @@ class LevelOneScene: SKScene {
             return
         }
         
-        state = UtilitiesPortal.stateAnswer
+        //state = UtilitiesPortal.stateAnswer
         setupItems()
         setupImage()
         setupDragLabel()
@@ -234,6 +245,7 @@ class LevelOneScene: SKScene {
         }
         
         factOverlayText.name = UtilitiesPortal.factMultiLine
+        //factOverlayText.alignment = .Left
         factOverlayText.zPosition = 1
         
         factOverlay = SKSpriteNode()
@@ -334,7 +346,13 @@ class LevelOneScene: SKScene {
         infoOverlay.color = SKColor.blackColor()
         infoOverlay.alpha = 0.7
         infoOverlay.zPosition = 0.8
-        infoOverlay.hidden = true
+        
+        if state == UtilitiesPortal.stateInfo {
+            infoOverlay.hidden = false
+        }
+        else {
+            infoOverlay.hidden = true
+        }
         
         infoOverlay.addChild(arrow01)
         infoOverlay.addChild(arrow02)

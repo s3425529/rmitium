@@ -9,6 +9,7 @@
 import SpriteKit
 
 class LevelThreeScene: SKScene {
+    var firstTime: Bool = true
     var answers: [CustomSKSpriteNode] = []
     var questions: [CustomSKSpriteNode] = []
     var answeredQuestions: [CustomSKSpriteNode] = []
@@ -31,11 +32,17 @@ class LevelThreeScene: SKScene {
     }
     
     func setupScene() {
+        cleanScene()
         
-        self.removeAllChildren()
-        positions.removeAll()
-        questions.removeAll()
-        answeredQuestions.removeAll()
+        let score = DataHandler.getLevelThreeScore()
+        if firstTime && score == UtilitiesPortal.defaultScore {
+            firstTime = false
+            previousState = UtilitiesPortal.stateAnswer
+            state = UtilitiesPortal.stateInfo
+        }
+        else {
+            state = UtilitiesPortal.stateAnswer
+        }
         
         lvlThreeQuestion = LevelThreeModel.currentQuestion
         // Result page
@@ -47,12 +54,8 @@ class LevelThreeScene: SKScene {
             return
         }
         
-        state = UtilitiesPortal.stateAnswer
-        
         setupImage()
-        
         setupItems()
-        
         setupDragLabel()
         setupTargets()
         setupFactLabel()
@@ -110,7 +113,6 @@ class LevelThreeScene: SKScene {
         addChild(info)
         
         // Score label
-        
         score = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         score.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         score.zPosition = 0.1
@@ -132,7 +134,7 @@ class LevelThreeScene: SKScene {
         self.addChild(itemName)
 
     }
-    func setupImage(){
+    func setupImage() {
         // Image
         let image = SKSpriteNode(imageNamed: lvlThreeQuestion.imageName)
         
@@ -148,7 +150,7 @@ class LevelThreeScene: SKScene {
     func setupDragLabel() {
         for count in 0...UtilitiesPortal.levelThreeAnswers.count-1 {
             let answer = CustomSKSpriteNode(imageNamed:
-                "\(UtilitiesPortal.levelThreeAnswers[count])")
+                "\(UtilitiesPortal.levelThreeAnswers[count])-border")
             answer.name = UtilitiesPortal.levelThreeAnswers[count]
             answer.value = UtilitiesPortal.levelThreeAnswers[count]
             answer.zPosition = 0.3
@@ -156,7 +158,7 @@ class LevelThreeScene: SKScene {
             answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.20,
                                  height: UtilitiesPortal.screenHeight*0.15)
             answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
-                                      y:UtilitiesPortal.screenHeight*(0.8-0.20*CGFloat(count)))
+                                      y:UtilitiesPortal.screenHeight*(0.75-0.18*CGFloat(count)))
             
             addChild(answer)
             answers.append(answer)
@@ -198,7 +200,7 @@ class LevelThreeScene: SKScene {
     }
     
     // Adding Fact label
-    func setupFactLabel(){
+    func setupFactLabel() {
         let randomIndex = Int(arc4random_uniform(UInt32(lvlThreeQuestion.facts.count)))
         let fact = lvlThreeQuestion.facts[randomIndex]
         let index = fact.startIndex.advancedBy(24)
@@ -240,7 +242,7 @@ class LevelThreeScene: SKScene {
     }
     
     // Info layout
-    func setupInfo(){
+    func setupInfo() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9
         arrow01.size = CGSize(width: UtilitiesPortal.navImgSize*2,
@@ -325,7 +327,13 @@ class LevelThreeScene: SKScene {
         infoOverlay.color = SKColor.blackColor()
         infoOverlay.alpha = 0.7
         infoOverlay.zPosition = 0.8
-        infoOverlay.hidden = true
+        
+        if state == UtilitiesPortal.stateInfo {
+            infoOverlay.hidden = false
+        }
+        else {
+            infoOverlay.hidden = true
+        }
         
         infoOverlay.addChild(arrow01)
         infoOverlay.addChild(arrow02)
@@ -342,7 +350,6 @@ class LevelThreeScene: SKScene {
         
         addChild(infoOverlay)
     }
-
     
     //Show Home Button Dialogue box
     func createHomeDialogue() {
@@ -501,7 +508,6 @@ class LevelThreeScene: SKScene {
                     return
                 }
             }
-            
         }
         
         // Home button selected
@@ -637,25 +643,29 @@ class LevelThreeScene: SKScene {
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
     
-    /*func initRecord(){
-        listOfQuestions = LevelThreeQuestion.getQuestions()
-        for item in 0..<listOfQuestions.count{
-            UtilitiesPortal.record.append(item)
-        }
-        
-    }*/
-    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
     
     override func willMoveFromView(view: SKView) {
+        answers.removeAll()
+        positions.removeAll()
+        questions.removeAll()
+        answeredQuestions.removeAll()
+        listOfQuestions.removeAll()
+        
         self.removeAllActions()
         self.removeAllChildren()
         print("Remove all nodes Lvl 3 Scene")
     }
     
     func cleanScene() {
+        answers.removeAll()
+        positions.removeAll()
+        questions.removeAll()
+        answeredQuestions.removeAll()
+        listOfQuestions.removeAll()
+
         if let s = self.view?.scene {
             NSNotificationCenter.defaultCenter().removeObserver(self)
             self.enumerateChildNodesWithName("//") { node, _ in

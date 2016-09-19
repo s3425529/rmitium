@@ -13,13 +13,13 @@
 import SpriteKit
 import Social
 
-class ResultPage2: SKScene{
+class ResultPage2: SKScene {
     
     var facebook, twitter, redo, next: CustomButton!
     var state, previousState: Int!
     var homeDialogue, homeView: SKSpriteNode!
+    
     override func didMoveToView(view: SKView) {
-        
         state = UtilitiesPortal.stateAnswer
         createHomeDialogue()
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
@@ -83,8 +83,9 @@ class ResultPage2: SKScene{
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth*0.3, y: UtilitiesPortal.screenHeight*0.5)
         addChild(scoreNode)
         
+        DataHandler.saveLevelTwoScore()
     }
-    func facebookAction(){
+    func facebookAction() {
         print("facebook")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
@@ -100,12 +101,12 @@ class ResultPage2: SKScene{
         
         
     }
-    func twitterAction(){
+    func twitterAction() {
         print("twitter")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
             let facebookController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            facebookController.setInitialText("My score is\(UtilitiesPortal.score)")
+            facebookController.setInitialText("My score is \(UtilitiesPortal.score)")
             //facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(facebookController, animated: true, completion: nil)
         }else{
@@ -114,13 +115,15 @@ class ResultPage2: SKScene{
             controller.presentViewController(alert, animated: true, completion: nil)
         }
     }
-    func redoAction(){
+    
+    func redoAction() {
         print("redo")
         UtilitiesPortal.score = 0
         backLevel2()
         return
     }
-    func nextAction(){
+    
+    func nextAction() {
         print("next")
         backHomePage()
     }
@@ -232,5 +235,4 @@ class ResultPage2: SKScene{
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
-    
 }

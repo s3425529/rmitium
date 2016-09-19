@@ -11,6 +11,7 @@ import SpriteKit
 class Result: SKScene {
     var redo, share, back: SKSpriteNode!
     var awardText:String!
+    
     override func didMoveToView(view: SKView) {
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
@@ -78,7 +79,6 @@ class Result: SKScene {
         addChild(award)
         
         let score = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
-     
 
         awardText = String(UtilitiesPortal.score)
         score.text = awardText
@@ -86,6 +86,8 @@ class Result: SKScene {
             y: UtilitiesPortal.screenHeight/2)
         score.zPosition = 1
         addChild(score)
+        
+        DataHandler.saveLevelOneScore()
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -130,7 +132,6 @@ class Result: SKScene {
     
     // Share the score to any social media!
     func displayShareSheet(shareContent:String) {
-        
         let myShare = "My best is \(shareContent)"
         let controller = self.view?.window?.rootViewController as! GameViewController
         
@@ -157,7 +158,6 @@ class Result: SKScene {
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
         UtilitiesPortal.score = 0
-        
     }
     
     

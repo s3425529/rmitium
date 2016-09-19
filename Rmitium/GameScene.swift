@@ -11,6 +11,7 @@ import SpriteKit
 import AVFoundation
 
 class GameScene: SKScene {
+    var audioNode = SKAudioNode(fileNamed: "clickSound.wav")
     var infoOverlay: SKSpriteNode!
     var state: Int!
     
@@ -53,6 +54,11 @@ class GameScene: SKScene {
         logo.zPosition = 0.1
         //image.alpha = 0.8
         addChild(logo)
+        
+        // AudioNode
+        //audioNode = SKAudioNode(fileNamed: "clickSound.wav")
+        audioNode.autoplayLooped = false
+        self.addChild(audioNode)
 
         // Generating level buttons
         for count in 0...2 {
@@ -110,7 +116,9 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        runAction(SKAction.playSoundFileNamed("clickSound.wav", waitForCompletion: true))
+        let playAction = SKAction.play()
+        audioNode.runAction(playAction)
+        
         if state == UtilitiesPortal.stateInfo {
             infoOverlay!.hidden = true
             state = UtilitiesPortal.stateAnswer
@@ -141,7 +149,6 @@ class GameScene: SKScene {
 
         if (node.name == UtilitiesPortal.levelLabelNames[0]
                                 || node.name == UtilitiesPortal.levelButtonNames[0]) {
-            
             cleanScene()
             LevelOneModel.reset()
             
@@ -158,7 +165,7 @@ class GameScene: SKScene {
             cleanScene()
             let secondScene = LevelTwoScene(size: self.size)
                                     
-            //let secondScene = ResultPage(size: self.size)
+            //let secondScene = ResultPage3(size: self.size)
             //let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             let transition = SKTransition.moveInWithDirection(.Down, duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -168,7 +175,6 @@ class GameScene: SKScene {
         
         if (node.name == UtilitiesPortal.levelLabelNames[2]
                                 || node.name == UtilitiesPortal.levelButtonNames[2]) {
-            
             cleanScene()
             LevelThreeModel.reset()
             

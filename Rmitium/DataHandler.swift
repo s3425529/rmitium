@@ -17,15 +17,31 @@ class DataHandler {
             let entity = NSEntityDescription.insertNewObjectForEntityForName("Settings", inManagedObjectContext: settings) as! Settings
             entity.setValue(true, forKey: "sound")
             entity.setValue(true, forKey: "rightHand")
-            entity.setValue(0, forKey: "levelOne")
-            entity.setValue(0, forKey: "levelTwo")
-            entity.setValue(0, forKey: "levelThree")
+            entity.setValue(-1, forKey: "levelOne")
+            entity.setValue(-1, forKey: "levelTwo")
+            entity.setValue(-1, forKey: "levelThree")
             
             do {
                 try settings.save()
             }
             catch {
                 fatalError("Failure to save Settings: \(error)")
+            }
+        }
+        else {
+            let setting = NSFetchRequest(entityName: "Settings")
+            do {
+                let result = try settings.executeFetchRequest(setting) as! [Settings]
+                let object = result.first!
+                object.setValue(true, forKey: "sound")
+                object.setValue(true, forKey: "rightHand")
+                object.setValue(-1, forKey: "levelOne")
+                object.setValue(-1, forKey: "levelTwo")
+                object.setValue(-1, forKey: "levelThree")
+                try settings.save()
+            }
+            catch {
+                fatalError("Failure reading from coredata: \(error)")
             }
         }
     }
@@ -35,6 +51,81 @@ class DataHandler {
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             return result.first!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    // Level One
+    static func getLevelOneScore() -> NSNumber {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            return result.first!.levelOne!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func saveLevelOneScore() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            object.setValue(UtilitiesPortal.score, forKey: "levelOne")
+            try settings.save()
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    // Level Two
+    static func getLevelTwoScore() -> NSNumber {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            return result.first!.levelTwo!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func saveLevelTwoScore() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            object.setValue(UtilitiesPortal.score, forKey: "levelTwo")
+            try settings.save()
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    // Level Three
+    static func getLevelThreeScore() -> NSNumber {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            return result.first!.levelThree!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func saveLevelThreeScore() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            object.setValue(UtilitiesPortal.score, forKey: "levelThree")
+            try settings.save()
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")

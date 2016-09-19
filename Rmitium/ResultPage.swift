@@ -20,32 +20,31 @@ w/355=
 import SpriteKit
 import Social
 
-class ResultPage: SKScene{
-    
+class ResultPage: SKScene {
     var facebook, twitter, redo, next: CustomButton!
     var i = 0
     var homeDialogue,homeView :SKSpriteNode!
-    var text: SKMultilineLabel!
+    var text,text1: SKMultilineLabel!
     
     override func didMoveToView(view: SKView) {
-        
-     
         setupMedal()
         setupItems()
         setupCustomerButton()
         createHomeDialogue()
         
+        DataHandler.saveLevelOneScore()
     }
-    func setupMedal(){
-        
+    
+    func setupMedal() {
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
-        let medalDic = medalClass().assignMedal()
+        let medalDic = medalClass().assignMedal(UtilitiesPortal.levelOne)
         let medalName = medalDic.medalName
-        let infomation = medalDic.information
+        let information1 = medalDic.information[0]
+        let information2 = medalDic.information[1]
         let medalNode = SKSpriteNode(imageNamed: medalName)
         medalNode.color = SKColor.blueColor()
         medalNode.name = "medal"
-        medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 1.8)
+        medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
         medalNode.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
         medalNode.zPosition = 0.1
         
@@ -55,17 +54,30 @@ class ResultPage: SKScene{
         let repeatAction = SKAction.repeatActionForever(sequen)
         addChild(medalNode)
         medalNode.runAction(repeatAction)
-     
-        let p = CGPoint(x: UtilitiesPortal.screenWidth*0.35, y: UtilitiesPortal.screenHeight*0.3)
-        text = SKMultilineLabel(text: infomation, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p)
-        text.alignment = .Left
-        text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
+        
+        let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
+        scoreNode.text = "\(UtilitiesPortal.score)"
+        scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
+        
+        scoreNode.fontSize = UtilitiesPortal.screenHeight*0.08
+        addChild(scoreNode)
+        
+        let p1 = CGPoint(x: UtilitiesPortal.screenWidth*0.35, y: UtilitiesPortal.screenHeight*0.9)
+        text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
+        text.alignment = .Center
+        text.leading =  Int(UtilitiesPortal.screenHeight*0.08)
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
+        
+        let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.35, y: UtilitiesPortal.screenHeight*0.28)
+        text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
+        text1.alignment = .Center
+        text1.leading =  Int(UtilitiesPortal.screenHeight*0.08)
+        text1.fontSize = UtilitiesPortal.screenHeight*0.05
+        addChild(text1)
     }
     
-    func setupItems(){
-        
+    func setupItems() {
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
@@ -92,11 +104,9 @@ class ResultPage: SKScene{
         info.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(info)
-
     }
     
-    func setupCustomerButton(){
-        
+    func setupCustomerButton() {
         facebook = CustomButton(defaultButtonImage: "facebookbutton", activeButtonImage: "facebookbutton1", buttonAction: facebookAction,scale: 0.2)
         facebook.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
                                     y: UtilitiesPortal.screenHeight * 0.8)
@@ -126,9 +136,9 @@ class ResultPage: SKScene{
         addChild(twitter)
         addChild(redo)
         addChild(next)
-    
     }
-    func facebookAction(){
+    
+    func facebookAction() {
         print("facebook")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
@@ -136,47 +146,45 @@ class ResultPage: SKScene{
             facebookController.setInitialText("My score is\(UtilitiesPortal.score)")
            // facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(facebookController, animated: true, completion: nil)
-        }else{
+        }
+        else {
             let alert = UIAlertController(title: "Facebook Unavailable", message: "Be sure to go to Settings > Facebook to set up your account", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             controller.presentViewController(alert, animated: true, completion: nil)
         }
-        
-        
     }
-    func twitterAction(){
+    
+    func twitterAction() {
         print("twitter")
         let controller = self.view?.window?.rootViewController as! GameViewController
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
             let facebookController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            facebookController.setInitialText("My score is\(UtilitiesPortal.score)")
+            facebookController.setInitialText("My score is \(UtilitiesPortal.score)")
             //facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(facebookController, animated: true, completion: nil)
-        }else{
+        }
+        else {
             let alert = UIAlertController(title: "Twitter Unavailable", message: "Be sure to go to Settings > Twitter to set up your account", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             controller.presentViewController(alert, animated: true, completion: nil)
         }
     }
-    func redoAction(){
+    
+    func redoAction() {
         print("redo")
         UtilitiesPortal.score = 0
         UtilitiesPortal.totalQuestions = 0
         backLevel1()
         return
     }
-    func nextAction(){
+    
+    func nextAction() {
         print("next")
         backHomePage()
     }
     
-   
-
-    
-    
     // Share the score to any social media!
     func displayShareSheet(shareContent:String) {
-        
         let myShare = "My best is \(shareContent)"
         let controller = self.view?.window?.rootViewController as! GameViewController
         
@@ -186,7 +194,7 @@ class ResultPage: SKScene{
     }
     
     //back to the home page,
-    func backHomePage(){
+    func backHomePage() {
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -197,7 +205,7 @@ class ResultPage: SKScene{
         UtilitiesPortal.score = 0
     }
     
-    func backLevel1(){
+    func backLevel1() {
         LevelOneModel.reset()
         let secondScene = LevelOneScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
@@ -205,7 +213,6 @@ class ResultPage: SKScene{
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
         UtilitiesPortal.score = 0
-        
     }
     
     func createHomeDialogue() {
@@ -252,7 +259,6 @@ class ResultPage: SKScene{
         homeView.addChild(homeDialogue)
         //addChild(homeDialogue)
         addChild(homeView)
-        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -264,9 +270,6 @@ class ResultPage: SKScene{
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home!")
             homeView.hidden = false
-            
-            //homeDialogue.hidden = false
-          
         }
         if node.name == UtilitiesPortal.yesButtonName {
             backHomePage()
@@ -275,19 +278,11 @@ class ResultPage: SKScene{
         if node.name == UtilitiesPortal.noButtonName {
             //homeDialogue.hidden = true
             homeView.hidden = true
-          
             return
         }
-        
-        
-        
-        
     }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
-    
-    
-    
 }
