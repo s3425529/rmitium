@@ -41,6 +41,17 @@ class DataHandler {
         }
     }
     
+    static func getLevelOneScore() -> NSNumber {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            return result.first!.levelOne!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
     static func checkDataIsEmpty() -> Bool {
         let setting = NSFetchRequest(entityName: "Settings")
         do {

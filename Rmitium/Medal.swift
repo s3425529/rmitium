@@ -11,11 +11,7 @@ class medalClass{
     var percent: Float!
     var medalName, words: String!
     
-    
-    
     func assignMedal() -> (medalName:String , information:String){
-      
-        
         percent = Float(UtilitiesPortal.score) / Float(UtilitiesPortal.totalQuestions)
         let percentString = Int(percent*100)
         if percent == 1 {
