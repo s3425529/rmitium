@@ -31,7 +31,7 @@ class medalClass {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
             if score > UtilitiesPortal.defaultScore {
-                words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. last record score is \(score)!")
+                words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your last record score is \(score)!")
             }
             else {
                 words.append("A perfect score. Your chemistry knowledge is obviously crystal clear.")

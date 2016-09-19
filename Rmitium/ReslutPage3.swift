@@ -29,11 +29,11 @@ class ResultPage3: SKScene {
         setupCusterButton()
         setupMedal()
         createHomeDialogue()
+        
+        DataHandler.saveLevelThreeScore()
     }
     
     func setupItem() {
-        DataHandler.saveLevelThreeScore()
-        
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[2]
