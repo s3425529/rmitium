@@ -29,7 +29,7 @@ class medalClass {
         let percentString = Int(percent*100)
         if percent == 1 {
             medalName = "Medal1-Diamond"
-            words = ["Congratulations"]
+            words = ["Congratulations!"]
             if score > UtilitiesPortal.defaultScore {
                 words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your last record is \(score)!")
             }
@@ -39,7 +39,7 @@ class medalClass {
         }
         if percent >= 0.9 && percent < 1 {
             medalName = "Medal2-Gold"
-            words = ["Well done"]
+            words = ["Well done!"]
             if score > UtilitiesPortal.defaultScore {
                 words.append("You got \(percentString)%. Your chemistry prowess is gold standard. Your last record is \(score)!")
             }
@@ -49,7 +49,7 @@ class medalClass {
         }
         if percent >= 0.7 && percent < 0.9 {
             medalName = "Medal3-Silver"
-            words = ["Great work"]
+            words = ["Great work!"]
             if score > UtilitiesPortal.defaultScore {
                 words.append("With that sterling effort you got \(percentString)%. Your last record is \(score)!")
             }
@@ -59,7 +59,7 @@ class medalClass {
         }
         if percent >= 0.5 && percent < 0.7 {
             medalName = "Medal4-Bronze"
-            words = ["Nice try"]
+            words = ["Nice try!"]
             if score > UtilitiesPortal.defaultScore {
                 words.append("You joined tin and copper with \(percentString)%. Your last record is \(score)!")
             }
@@ -69,7 +69,7 @@ class medalClass {
         }
         if percent < 0.5 {
             medalName = "Medal5-Rust"
-            words = ["Good effort"]
+            words = ["Good effort!"]
             if score > UtilitiesPortal.defaultScore {
                 words.append("But your chemistry is a little rusty. You got \(percentString)%. Your last record is \(score)!")
             }
