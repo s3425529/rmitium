@@ -434,14 +434,14 @@ class LevelOneScene: SKScene {
         }
         
         chosenAnswer.position = touch!.locationInNode(self)
-        //print("+++++++++++++++++++++++++")
+        print("+++++++++++++++++++++++++")
         
-        /*let xPostion = chosenAnswer.position.x
+        let xPostion = chosenAnswer.position.x
         let yPostion = chosenAnswer.position.y
         let x = xPostion / UtilitiesPortal.screenWidth
         let y = yPostion / UtilitiesPortal.screenHeight
         print("x=\(x)")
-        print("y=\(y)")*/
+        print("y=\(y)")
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
