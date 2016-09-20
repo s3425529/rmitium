@@ -141,8 +141,17 @@ class LevelThreeScene: SKScene {
         image.zPosition = 0.1
         image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-                                 y:UtilitiesPortal.screenHeight/2 )
-        image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
+                                 y:UtilitiesPortal.screenHeight/2)
+        let currentSize = image.size
+        let x = UtilitiesPortal.imageWidth/currentSize.width
+        let y = UtilitiesPortal.imageHeight/currentSize.height
+        if x < y {
+            image.setScale(x)
+        }
+        else {
+            image.setScale(y)
+        }
+        //image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
         
     }
