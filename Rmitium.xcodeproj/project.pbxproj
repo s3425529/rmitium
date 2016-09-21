@@ -11,6 +11,7 @@
 		500198DB1D75B3640005FCA7 /* SettingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500198DA1D75B3640005FCA7 /* SettingScene.swift */; };
 		5029D3C21D8D8196007DC44F /* Medal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5029D3C11D8D8196007DC44F /* Medal.swift */; };
 		50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */; };
+		5064B08F1D9248F500A05CBA /* bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5064B08E1D9248F500A05CBA /* bgm.mp3 */; };
 		50667EE11D70096400C8EBF6 /* LevelThreeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE01D70096400C8EBF6 /* LevelThreeScene.swift */; };
 		50667EE51D7058E600C8EBF6 /* LevelThreeQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE41D7058E600C8EBF6 /* LevelThreeQuestions.swift */; };
 		50667EE71D70593F00C8EBF6 /* LevelThreeQuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE61D70593F00C8EBF6 /* LevelThreeQuestionList.swift */; };
@@ -56,6 +57,7 @@
 		500198DA1D75B3640005FCA7 /* SettingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingScene.swift; sourceTree = "<group>"; };
 		5029D3C11D8D8196007DC44F /* Medal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medal.swift; sourceTree = "<group>"; };
 		50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesPortal.swift; sourceTree = "<group>"; };
+		5064B08E1D9248F500A05CBA /* bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgm.mp3; sourceTree = "<group>"; };
 		50667EE01D70096400C8EBF6 /* LevelThreeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeScene.swift; sourceTree = "<group>"; };
 		50667EE41D7058E600C8EBF6 /* LevelThreeQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeQuestions.swift; sourceTree = "<group>"; };
 		50667EE61D70593F00C8EBF6 /* LevelThreeQuestionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeQuestionList.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				50CCBC801D8469BD00D78681 /* LevelTwo */,
 				50667EDF1D70093A00C8EBF6 /* LevelThree */,
 				508BB50F1D5864CF00556CE3 /* AppDelegate.swift */,
+				5064B08E1D9248F500A05CBA /* bgm.mp3 */,
 				508BB5111D5864CF00556CE3 /* GameScene.sks */,
 				508BB5131D5864CF00556CE3 /* GameScene.swift */,
 				50E94AAC1D811C7D00C01945 /* setting.swift */,
@@ -305,6 +308,7 @@
 				508BB51B1D5864CF00556CE3 /* Assets.xcassets in Resources */,
 				509CEA0B1D86F44F002360E1 /* clickSound.wav in Resources */,
 				508BB5191D5864CF00556CE3 /* Main.storyboard in Resources */,
+				5064B08F1D9248F500A05CBA /* bgm.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
