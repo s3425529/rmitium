@@ -110,7 +110,7 @@ class GameScene: SKScene {
     }
     
     func setupSound() {
-        let backgroundMusic = SKAudioNode(fileNamed: "bgSound.wav")
+        let backgroundMusic = SKAudioNode(fileNamed: "bgm.mp3")
         backgroundMusic.autoplayLooped = true
         self.addChild(backgroundMusic)
     }
