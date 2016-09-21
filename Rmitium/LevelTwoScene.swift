@@ -381,7 +381,7 @@ class LevelTwoScene: SKScene {
                 if CGRectContainsPoint(answers[x].frame, point) {
                     if answers[x].hidden == false {
                         chosenAnswer = x
-                        answers[x].texture = SKTexture(image: UIImage(named: "\(answers[chosenAnswer].value)-border")!)
+                        answers[x].texture = SKTexture(imageNamed: "\(answers[chosenAnswer].value)-border")
                         state = UtilitiesPortal.stateReview
                     }
                     return
