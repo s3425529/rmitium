@@ -25,8 +25,11 @@ class ResultPage: SKScene {
     var i = 0
     var homeDialogue,homeView :SKSpriteNode!
     var text,text1: SKMultilineLabel!
-    
+    var socialData:SocialClass!
     override func didMoveToView(view: SKView) {
+        socialData = SocialClass()
+        socialData.initClass()
+        socialData.getRecord()
         setupMedal()
         setupItems()
         setupCustomerButton()
@@ -142,6 +145,16 @@ class ResultPage: SKScene {
     
     func facebookAction() {
         print("facebook")
+        if socialData.socialNode.facebook == true{
+            
+            activeFacebook()
+        }else{
+            facebookAlertMessage()
+        }
+        
+    }
+    func activeFacebook() {
+        print("facebook")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
             let facebookController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
@@ -157,6 +170,16 @@ class ResultPage: SKScene {
     }
     
     func twitterAction() {
+        print("twitter")
+        if socialData.socialNode.twitter == true{
+            
+            activeFacebook()
+        }else{
+            twitterAlertMessage()
+        }
+    }
+    
+    func activeTwitter() {
         print("twitter")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
@@ -292,7 +315,35 @@ class ResultPage: SKScene {
         }
     }
     
+    func facebookAlertMessage() {
+        
+        let controller = self.view?.window?.rootViewController as! GameViewController
+        let alert = UIAlertController(title: "Facebook", message: "FacebookLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            self.socialData.setValue("facebook")
+            self.activeFacebook()
+            
+        }))
+        
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
+    func twitterAlertMessage() {
+        
+        let controller = self.view?.window?.rootViewController as! GameViewController
+        let alert = UIAlertController(title: "Twitter", message: "TwitterLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            self.socialData.setValue("twitter")
+            self.activeTwitter()
+            
+        }))
+        
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
+
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
+    
 }
