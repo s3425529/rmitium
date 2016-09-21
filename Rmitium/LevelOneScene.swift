@@ -149,8 +149,17 @@ class LevelOneScene: SKScene {
         image.zPosition = 0.1
         image.alpha = 0.9
         image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-                                 y:UtilitiesPortal.screenHeight/2 )
-        image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
+                                 y:UtilitiesPortal.screenHeight/2)
+        let currentSize = image.size
+        let x = UtilitiesPortal.imageWidth/currentSize.width
+        let y = UtilitiesPortal.imageHeight/currentSize.height
+        if x < y {
+            image.setScale(x)
+        }
+        else {
+            image.setScale(y)
+        }
+        //image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
     }
     
@@ -401,14 +410,14 @@ class LevelOneScene: SKScene {
         yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
-        yesBtn.texture = SKTexture(imageNamed: "tick-white")
+        yesBtn.texture = SKTexture(image: UIImage(named: "tick-white")!)
         yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.5)
         yesBtn.zPosition = 0.9
         
         noBtn.size = yesBtn.size
         noBtn.color = yesBtn.color
         noBtn.name = UtilitiesPortal.noButtonName
-        noBtn.texture = SKTexture(imageNamed: "cross-white")
+        noBtn.texture = SKTexture(image: UIImage(named: "cross-white")!)
         noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.5)
         noBtn.zPosition = 0.9
         
@@ -425,14 +434,14 @@ class LevelOneScene: SKScene {
         }
         
         chosenAnswer.position = touch!.locationInNode(self)
-        //print("+++++++++++++++++++++++++")
+        print("+++++++++++++++++++++++++")
         
-        /*let xPostion = chosenAnswer.position.x
+        let xPostion = chosenAnswer.position.x
         let yPostion = chosenAnswer.position.y
         let x = xPostion / UtilitiesPortal.screenWidth
         let y = yPostion / UtilitiesPortal.screenHeight
         print("x=\(x)")
-        print("y=\(y)")*/
+        print("y=\(y)")
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -443,7 +452,7 @@ class LevelOneScene: SKScene {
         for x in 0...questions.count-1 {
             if CGRectContainsPoint(questions[x].frame, chosenAnswer.position) {
                 answeredQuestions[x].hidden = false
-                answeredQuestions[x].texture = SKTexture(imageNamed: chosenAnswer.value)
+                answeredQuestions[x].texture = SKTexture(image: UIImage(named: chosenAnswer.value)!)
                 answeredQuestions[x].value = chosenAnswer.value
                 break
             }
@@ -453,10 +462,10 @@ class LevelOneScene: SKScene {
         self.chosenAnswer = nil
         
         if checkResult() {
-            tick.texture = SKTexture(imageNamed: "tick-green")
+            tick.texture = SKTexture(image: UIImage(named: "tick-green")!)
         }
         else {
-            tick.texture = SKTexture(imageNamed: "tick-grey")
+            tick.texture = SKTexture(image: UIImage(named: "tick-grey")!)
         }
     }
     
@@ -570,7 +579,16 @@ class LevelOneScene: SKScene {
                 resultImage.alpha = 1
                 resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
                                                y:UtilitiesPortal.screenHeight/2 )
-                resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
+                let currentSize = resultImage.size
+                let x = UtilitiesPortal.imageWidth/currentSize.width
+                let y = UtilitiesPortal.imageHeight/currentSize.height
+                if x < y {
+                    resultImage.setScale(x)
+                }
+                else {
+                    resultImage.setScale(y)
+                }
+                //resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
                 addChild(resultImage)
                 state = UtilitiesPortal.stateReview
                 return
@@ -620,20 +638,20 @@ class LevelOneScene: SKScene {
             for x in 0...lvlOneQuestion.solutions.count-1 {
                 if answeredQuestions[x].value != UtilitiesPortal.emptyString {
                     if answeredQuestions[x].value == lvlOneQuestion.solutions[x] {
-                        answeredQuestions[x].texture = SKTexture(imageNamed:
-                            "\(answeredQuestions[x].value)-green")
+                        answeredQuestions[x].texture = SKTexture(image: UIImage(named:
+                            "\(answeredQuestions[x].value)-green")!)
                         UtilitiesPortal.score = UtilitiesPortal.score + 1
                     }
                     else {
-                        answeredQuestions[x].texture = SKTexture(imageNamed:
-                            "\(answeredQuestions[x].value)-red")
+                        answeredQuestions[x].texture = SKTexture(image: UIImage(named:
+                            "\(answeredQuestions[x].value)-red")!)
                     }
                 }
             }
         }
         factLabel.hidden = false
         score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
-        tick.texture = SKTexture(imageNamed: "next")
+        tick.texture = SKTexture(image: UIImage(named: "next")!)
         show.hidden = false
         state = UtilitiesPortal.stateResult
     }
@@ -725,12 +743,42 @@ class LevelOneScene: SKScene {
     }
     
     override func willMoveFromView(view: SKView) {
+        for node in answers {
+            node.texture = nil
+        }
+        answers.removeAll()
+        positions.removeAll()
+        for node in questions {
+            node.texture = nil
+        }
+        questions.removeAll()
+        for node in answeredQuestions {
+            node.texture = nil
+        }
+        answeredQuestions.removeAll()
+        listOfQuestions.removeAll()
+        
         self.removeAllActions()
         self.removeAllChildren()
         print("Remove all nodes Lvl 1 Scene")
     }
     
     func cleanScene() {
+        for node in answers {
+            node.texture = nil
+        }
+        answers.removeAll()
+        positions.removeAll()
+        for node in questions {
+            node.texture = nil
+        }
+        questions.removeAll()
+        for node in answeredQuestions {
+            node.texture = nil
+        }
+        answeredQuestions.removeAll()
+        listOfQuestions.removeAll()
+        
         if let s = self.view?.scene {
             NSNotificationCenter.defaultCenter().removeObserver(self)
             self.enumerateChildNodesWithName("//") { node, _ in
