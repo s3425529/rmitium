@@ -6,6 +6,8 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
+import Foundation
+
 enum LevelTwoQuestion:Int {
     
     init()
@@ -38,7 +40,7 @@ enum LevelTwoQuestion:Int {
     
     case NilQuestion=0, p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14
     
-    var imageName:String {
+    /*var imageName:String {
         get {
             switch self
             {
@@ -57,6 +59,43 @@ enum LevelTwoQuestion:Int {
             case .p12: return "3alcohol2"
             case .p13: return "3amine1"
             case .p14: return "3amine2"
+            }
+        }
+    }*/
+    
+    var imageName:String {
+        get {
+            switch self
+            {
+            case .NilQuestion: return "nil"
+            case .p01:
+                let random = Int(arc4random_uniform(UInt32(4)))+1
+                return "1-amine-1-\(random)"
+            case .p02: return "1-amine-2-0"
+            case .p03:
+                let random = Int(arc4random_uniform(UInt32(4)))+1
+                return "1-amine-1-\(random)"
+            case .p04: return "1-amine-2-0"
+            case .p05:
+                let random = Int(arc4random_uniform(UInt32(4)))+1
+                return "1-amine-1-\(random)"
+            case .p06: return "1-amine-2-0"
+            case .p07:
+                let random = Int(arc4random_uniform(UInt32(4)))+1
+                return "1-amine-1-\(random)"
+            case .p08: return "1-amine-2-0"
+            case .p09:
+                let random = Int(arc4random_uniform(UInt32(4)))+1
+                return "1-amine-1-\(random)"
+            case .p10: return "1-amine-2-0"
+            case .p11:
+                let random = Int(arc4random_uniform(UInt32(4)))+1
+                return "1-amine-1-\(random)"
+            case .p12: return "1-amine-2-0"
+            case .p13:
+                let random = Int(arc4random_uniform(UInt32(4)))+1
+                return "1-amine-1-\(random)"
+            case .p14: return "1-amine-2-0"
             }
         }
     }
