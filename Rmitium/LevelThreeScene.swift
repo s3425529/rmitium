@@ -562,9 +562,16 @@ class LevelThreeScene: SKScene {
                 resultImage.alpha = 1
                 resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
                                                y:UtilitiesPortal.screenHeight/2 )
-                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
-                                               y:UtilitiesPortal.screenHeight/2 )
-                resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
+                let currentSize = resultImage.size
+                let x = UtilitiesPortal.imageWidth/currentSize.width
+                let y = UtilitiesPortal.imageHeight/currentSize.height
+                if x < y {
+                    resultImage.setScale(x)
+                }
+                else {
+                    resultImage.setScale(y)
+                }
+                //resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
                 addChild(resultImage)
                 state = UtilitiesPortal.stateReview
                 return
@@ -664,9 +671,18 @@ class LevelThreeScene: SKScene {
     }
     
     override func willMoveFromView(view: SKView) {
+        for node in answers {
+            node.texture = nil
+        }
         answers.removeAll()
         positions.removeAll()
+        for node in questions {
+            node.texture = nil
+        }
         questions.removeAll()
+        for node in answeredQuestions {
+            node.texture = nil
+        }
         answeredQuestions.removeAll()
         listOfQuestions.removeAll()
         
@@ -676,9 +692,18 @@ class LevelThreeScene: SKScene {
     }
     
     func cleanScene() {
+        for node in answers {
+            node.texture = nil
+        }
         answers.removeAll()
         positions.removeAll()
+        for node in questions {
+            node.texture = nil
+        }
         questions.removeAll()
+        for node in answeredQuestions {
+            node.texture = nil
+        }
         answeredQuestions.removeAll()
         listOfQuestions.removeAll()
 

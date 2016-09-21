@@ -535,6 +535,9 @@ class LevelTwoScene: SKScene {
     }
     
     func cleanScene() {
+        for node in answers {
+            node.texture = nil
+        }
         answers.removeAll()
         if let s = self.view?.scene {
             NSNotificationCenter.defaultCenter().removeObserver(self)

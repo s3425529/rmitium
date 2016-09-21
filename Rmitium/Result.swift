@@ -121,7 +121,7 @@ class Result: SKScene {
         if node.name == UtilitiesPortal.backButtonName {
             print("next")
             UtilitiesPortal.score = 0
-            goToLevel2()
+            backHomePage()
             return
         }
         if node.name == UtilitiesPortal.homeButtonName {
@@ -160,14 +160,7 @@ class Result: SKScene {
         UtilitiesPortal.score = 0
     }
     
-    func goToLevel2(){
-        cleanScene()
-        let secondScene = LevelTwoScene(size: self.size)
-        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
-        secondScene.scaleMode = SKSceneScaleMode.AspectFill
-        self.scene!.view?.presentScene(secondScene, transition: transition)
-        UtilitiesPortal.score = 0
-    }
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
