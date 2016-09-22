@@ -109,7 +109,7 @@ class ResultPage2: SKScene {
     }
     func facebookAction() {
         print("facebook")
-        if socialData.socialNode.facebook == true{
+        if socialData.facebook == true{
             
             activeFacebook()
         }else{
@@ -136,7 +136,7 @@ class ResultPage2: SKScene {
     
     func twitterAction() {
         print("twitter")
-        if socialData.socialNode.twitter == true{
+        if socialData.twitter == true{
             
             activeTwitter()
         }else{
