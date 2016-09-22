@@ -18,10 +18,35 @@ class ResultPage2: SKScene {
     var facebook, twitter, redo, next: CustomButton!
     var state, previousState: Int!
     var homeDialogue, homeView: SKSpriteNode!
-    
+    var socialData:SocialClass!
     override func didMoveToView(view: SKView) {
-        state = UtilitiesPortal.stateAnswer
+        socialData = SocialClass()
+        socialData.initClass()
+        socialData.getRecord()
+        setupItem()
+        setupMedal()
+        setupCustomerButton()
         createHomeDialogue()
+        
+        let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
+        scoreNode.fontColor = SKColor(colorLiteralRed: 0.3, green: 0.2, blue: 0.8, alpha: 1)
+        scoreNode.fontSize = 80
+        scoreNode.text = "Great!"
+        scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth*0.3, y: UtilitiesPortal.screenHeight*0.5)
+        addChild(scoreNode)
+        
+        DataHandler.saveLevelTwoScore()
+    }
+    
+    func setupMedal(){
+    
+        
+        
+        
+        
+    }
+    
+    func setupItem(){
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[1]
@@ -38,7 +63,7 @@ class ResultPage2: SKScene {
         home.position = CGPoint(x:UtilitiesPortal.borderSize/2,
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(home)
-
+        
         // Info button
         let info = SKSpriteNode(imageNamed: "help2")
         info.name = UtilitiesPortal.infoButonName
@@ -48,26 +73,31 @@ class ResultPage2: SKScene {
         info.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(info)
+        
 
+    }
+    
+    func setupCustomerButton(){
+    
         facebook = CustomButton(defaultButtonImage: "facebookbutton", activeButtonImage: "facebookbutton1", buttonAction: facebookAction,scale: 0.2)
         facebook.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.8)
+                                    y: UtilitiesPortal.screenHeight * 0.8)
         facebook.name = "facebook"
         facebook.frame.width
         
         twitter = CustomButton(defaultButtonImage: "twitterbutton", activeButtonImage: "twitterbutton1", buttonAction: twitterAction,scale: 0.2)
         twitter.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.6)
+                                   y: UtilitiesPortal.screenHeight * 0.6)
         twitter.name = "twitter"
         
         redo = CustomButton(defaultButtonImage: "retrybutton", activeButtonImage: "retrybutton1", buttonAction: redoAction,scale: 0.2)
         redo.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.4)
+                                y: UtilitiesPortal.screenHeight * 0.4)
         redo.name = "redo"
         
         next = CustomButton(defaultButtonImage: "nextbutton", activeButtonImage: "nextbutton1", buttonAction: nextAction, scale: 0.2)
         next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-            y: UtilitiesPortal.screenHeight * 0.2)
+                                y: UtilitiesPortal.screenHeight * 0.2)
         next.name = "next"
         //next.setScale(scale1)
         
@@ -75,17 +105,19 @@ class ResultPage2: SKScene {
         addChild(twitter)
         addChild(redo)
         addChild(next)
-        
-        let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
-        scoreNode.fontColor = SKColor(colorLiteralRed: 0.3, green: 0.2, blue: 0.8, alpha: 1)
-        scoreNode.fontSize = 80
-        scoreNode.text = "Great!"
-        scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth*0.3, y: UtilitiesPortal.screenHeight*0.5)
-        addChild(scoreNode)
-        
-        DataHandler.saveLevelTwoScore()
+
     }
     func facebookAction() {
+        print("facebook")
+        if socialData.facebook == true{
+            
+            activeFacebook()
+        }else{
+            facebookAlertMessage()
+        }
+        
+    }
+    func activeFacebook() {
         print("facebook")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
@@ -101,7 +133,18 @@ class ResultPage2: SKScene {
         
         
     }
+    
     func twitterAction() {
+        print("twitter")
+        if socialData.twitter == true{
+            
+            activeTwitter()
+        }else{
+            twitterAlertMessage()
+        }
+    }
+    
+    func activeTwitter() {
         print("twitter")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
@@ -240,6 +283,34 @@ class ResultPage2: SKScene {
             return
         }
     }
+    
+    func facebookAlertMessage() {
+        
+        let controller = self.view?.window?.rootViewController as! GameViewController
+        let alert = UIAlertController(title: "Facebook", message: "FacebookLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            self.socialData.setValue("facebook")
+            self.activeFacebook()
+            
+        }))
+        
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
+    func twitterAlertMessage() {
+        
+        let controller = self.view?.window?.rootViewController as! GameViewController
+        let alert = UIAlertController(title: "Twitter", message: "TwitterLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            self.socialData.setValue("twitter")
+            self.activeTwitter()
+            
+        }))
+        
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
+
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

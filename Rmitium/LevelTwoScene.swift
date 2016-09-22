@@ -22,6 +22,7 @@ class LevelTwoScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         setupTimer()
+        timerClass.pause(true)
         setupScene()
     }
     
@@ -110,7 +111,6 @@ class LevelTwoScene: SKScene {
         var list = LevelTwoQuestionList.getQuestionsList()
         for count in 0...list.count-1 {
             let answer = CustomSKSpriteNode(imageNamed: "\(list[count])")
-            //answer.name = "\(list[count])"
             answer.value = "\(list[count])"
             answer.zPosition = 0.3
             answer.alpha = 0.9
@@ -122,7 +122,6 @@ class LevelTwoScene: SKScene {
             
             addChild(answer)
             answers.append(answer)
-            //map.append(1)
         }
     }
     
@@ -319,10 +318,14 @@ class LevelTwoScene: SKScene {
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
                     if timerClass.timeLabel < LIMITTIME{
-                         timeOut()
+                        timeOut()
+                        backHomePage()
+                        return
+                    }else{
+                        backHomePage()
+                        return
                     }
-                    backHomePage()
-                    return
+                    
                 }
                 else if node.name == UtilitiesPortal.noButtonName {
                     timerClass.pause(false)
@@ -381,7 +384,7 @@ class LevelTwoScene: SKScene {
                 if CGRectContainsPoint(answers[x].frame, point) {
                     if answers[x].hidden == false {
                         chosenAnswer = x
-                        answers[x].texture = SKTexture(imageNamed: "\(answers[chosenAnswer].value)-border")
+                        answers[x].texture = SKTexture(image: UIImage(named: "\(answers[chosenAnswer].value)-selected")!)
                         state = UtilitiesPortal.stateReview
                     }
                     return
@@ -419,12 +422,17 @@ class LevelTwoScene: SKScene {
     
     func compareTiles(a: Int, b: Int) -> Bool {
         print("Compare: \(answers[a].value) and \(answers[b].value)")
-        let stringA: String = answers[a].value
-        let prefixA = stringA.substringWithRange(Range<String.Index>(start: stringA.startIndex.advancedBy(0), end: stringA.endIndex.advancedBy(-1)))
+        let string: String = answers[a].value
+        let removeColor = string.startIndex.advancedBy(0)..<string.endIndex.advancedBy(-2)
+        
+        let stringA: String = answers[a].value.substringWithRange(removeColor)
+        let rangeA = stringA.startIndex.advancedBy(0)..<stringA.endIndex.advancedBy(-1)
+        let prefixA = stringA.substringWithRange(rangeA)
         let postfixA = stringA.characters.last!
         
-        let stringB: String = answers[b].value
-        let prefixB = stringB.substringWithRange(Range<String.Index>(start: stringB.startIndex.advancedBy(0), end: stringB.endIndex.advancedBy(-1)))
+        let stringB: String = answers[b].value.substringWithRange(removeColor)
+        let rangeB = stringB.startIndex.advancedBy(0)..<stringB.endIndex.advancedBy(-1)
+        let prefixB = stringB.substringWithRange(rangeB)
         let postfixB = stringB.characters.last!
         
         if prefixA == prefixB && postfixA != postfixB {
