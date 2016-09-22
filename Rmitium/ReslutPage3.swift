@@ -178,7 +178,7 @@ class ResultPage3: SKScene {
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
             let twitterController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            twitterController.setInitialText("My score is\(UtilitiesPortal.score)")
+            twitterController.setInitialText("My score is \(UtilitiesPortal.score)")
             //facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(twitterController, animated: true, completion: nil)
         }
@@ -330,7 +330,7 @@ class ResultPage3: SKScene {
     func facebookAlertMessage() {
         
         let controller = self.view?.window?.rootViewController as! GameViewController
-        let alert = UIAlertController(title: "Facebook", message: "FacebookLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Facebook", message: "Rmitium would like to access your Facebook", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("facebook")
@@ -343,7 +343,7 @@ class ResultPage3: SKScene {
     func twitterAlertMessage() {
         
         let controller = self.view?.window?.rootViewController as! GameViewController
-        let alert = UIAlertController(title: "Twitter", message: "TwitterLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Twitter", message: "Rmitium would like to access your Twitter", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("twitter")
