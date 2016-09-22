@@ -39,7 +39,7 @@ class GameScene: SKScene {
         addChild(setting)
         
         // Help button
-        let info = SKSpriteNode(imageNamed: "help2")
+        let info = SKSpriteNode(imageNamed: "help3")
         info.name = UtilitiesPortal.infoButonName
         info.zPosition = 0.1
         info.alpha = 0.9

@@ -82,7 +82,7 @@ class LevelThreeScene: SKScene {
         addChild(home)
         
         // Tick button
-        tick = SKSpriteNode(imageNamed: "tick-grey")
+        tick = SKSpriteNode(imageNamed: "submit-grey")
         tick.name = UtilitiesPortal.tickButtonName
         tick.zPosition = 0.1
         tick.alpha = 1
@@ -103,7 +103,7 @@ class LevelThreeScene: SKScene {
         addChild(show)
         
         // Info button
-        let info = SKSpriteNode(imageNamed: "help2")
+        let info = SKSpriteNode(imageNamed: "help3")
         info.name = UtilitiesPortal.infoButonName
         info.zPosition = 0.1
         info.alpha = 1
@@ -444,10 +444,10 @@ class LevelThreeScene: SKScene {
         self.chosenAnswer = nil
         
         if checkResult() {
-            tick.texture = SKTexture(image: UIImage(named: "tick-green")!)
+            tick.texture = SKTexture(image: UIImage(named: "submit-blue")!)
         }
         else {
-            tick.texture = SKTexture(image: UIImage(named: "tick-grey")!)
+            tick.texture = SKTexture(image: UIImage(named: "submit-grey")!)
         }
     }
     

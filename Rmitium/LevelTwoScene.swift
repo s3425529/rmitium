@@ -65,7 +65,7 @@ class LevelTwoScene: SKScene {
         addChild(home)
         
         // Tick button
-        tick = SKSpriteNode(imageNamed: "tick-white")
+        tick = SKSpriteNode(imageNamed: "submit-grey")
         tick.name = UtilitiesPortal.tickButtonName
         tick.hidden = true
         tick.zPosition = 0.1
@@ -76,7 +76,7 @@ class LevelTwoScene: SKScene {
         addChild(tick)
         
         // Info button
-        let info = SKSpriteNode(imageNamed: "help2")
+        let info = SKSpriteNode(imageNamed: "help3")
         info.name = UtilitiesPortal.infoButonName
         info.zPosition = 0.1
         info.alpha = 1
