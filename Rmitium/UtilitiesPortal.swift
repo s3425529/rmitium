@@ -102,6 +102,17 @@ class UtilitiesPortal {
     static var score = 0
     static var totalQuestions = 0
     //static var record = [Int]()
+    static func setBgm(){
+        let soundSetting = DataHandler.getSettings().getSound
+        SKTAudio.sharedInstance().playBackgroundMusic("bgm.mp3")
+        if soundSetting {
+            SKTAudio.sharedInstance().resumeBackgroundMusic()
+        }
+        else {
+            SKTAudio.sharedInstance().pauseBackgroundMusic()
+        }
+        
+    }
 }
 
 extension SystemSoundID {

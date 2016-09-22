@@ -14,6 +14,7 @@ class GameScene: SKScene {
     var audioNode = SKAudioNode(fileNamed: "clickSound.wav")
     var infoOverlay: SKSpriteNode!
     var state: Int!
+    var playBgm = SKAction.playSoundFileNamed("bgm.mp3", waitForCompletion: false)
     
     override func didMoveToView(view: SKView) {
         UtilitiesPortal.score = 0
@@ -83,7 +84,7 @@ class GameScene: SKScene {
             
             setupInfo()
         }
-        setupSound()
+        UtilitiesPortal.setBgm()
     }
     
     // Info layout
@@ -107,12 +108,6 @@ class GameScene: SKScene {
         infoOverlay.hidden = true
         infoOverlay.addChild(infoOverlayText)
         addChild(infoOverlay!)
-    }
-    
-    func setupSound() {
-        let backgroundMusic = SKAudioNode(fileNamed: "bgm.mp3")
-        backgroundMusic.autoplayLooped = true
-        self.addChild(backgroundMusic)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

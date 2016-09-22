@@ -12,6 +12,7 @@
 		5029D3C21D8D8196007DC44F /* Medal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5029D3C11D8D8196007DC44F /* Medal.swift */; };
 		50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */; };
 		5064B08F1D9248F500A05CBA /* bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5064B08E1D9248F500A05CBA /* bgm.mp3 */; };
+		5064B0911D9398C900A05CBA /* SKTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5064B0901D9398C900A05CBA /* SKTAudio.swift */; };
 		50667EE11D70096400C8EBF6 /* LevelThreeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE01D70096400C8EBF6 /* LevelThreeScene.swift */; };
 		50667EE51D7058E600C8EBF6 /* LevelThreeQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE41D7058E600C8EBF6 /* LevelThreeQuestions.swift */; };
 		50667EE71D70593F00C8EBF6 /* LevelThreeQuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50667EE61D70593F00C8EBF6 /* LevelThreeQuestionList.swift */; };
@@ -58,6 +59,7 @@
 		5029D3C11D8D8196007DC44F /* Medal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Medal.swift; sourceTree = "<group>"; };
 		50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesPortal.swift; sourceTree = "<group>"; };
 		5064B08E1D9248F500A05CBA /* bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgm.mp3; sourceTree = "<group>"; };
+		5064B0901D9398C900A05CBA /* SKTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTAudio.swift; sourceTree = "<group>"; };
 		50667EE01D70096400C8EBF6 /* LevelThreeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeScene.swift; sourceTree = "<group>"; };
 		50667EE41D7058E600C8EBF6 /* LevelThreeQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeQuestions.swift; sourceTree = "<group>"; };
 		50667EE61D70593F00C8EBF6 /* LevelThreeQuestionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelThreeQuestionList.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				506E77661D670135004EE1D4 /* CustomSKSpriteNode.swift */,
 				50E94AAE1D82405500C01945 /* TimeControl.swift */,
 				5029D3C11D8D8196007DC44F /* Medal.swift */,
+				5064B0901D9398C900A05CBA /* SKTAudio.swift */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				50D9C4631D58B2BD00221ADD /* LevelOneScene.swift in Sources */,
 				50667EE51D7058E600C8EBF6 /* LevelThreeQuestions.swift in Sources */,
 				508BB5141D5864CF00556CE3 /* GameScene.swift in Sources */,
+				5064B0911D9398C900A05CBA /* SKTAudio.swift in Sources */,
 				50CCBC821D846A1400D78681 /* LevelTwoScene.swift in Sources */,
 				508BB5161D5864CF00556CE3 /* GameViewController.swift in Sources */,
 				509CEA111D884C3D002360E1 /* Settings+CoreDataProperties.swift in Sources */,

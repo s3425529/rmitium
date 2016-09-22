@@ -8,12 +8,13 @@
 
 import Foundation
 import SpriteKit
+import AVFoundation
 
 class SettingScene: SKScene {
     var settings: [SKSpriteNode] = []
     var values: [Bool] = []
     var state: Int?
-    var model: Settings!
+    var model: Settings!    
     
     override func didMoveToView(view: SKView) {
         UtilitiesPortal.score = 0
@@ -26,6 +27,7 @@ class SettingScene: SKScene {
         values.append(model.getSound)
         values.append(model.getSound)
         values.append(model.getSound)
+        
         
         // Home button
         let home = SKSpriteNode(imageNamed: "home")
