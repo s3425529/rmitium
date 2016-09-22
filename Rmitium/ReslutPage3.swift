@@ -139,7 +139,7 @@ class ResultPage3: SKScene {
     
     func facebookAction() {
         print("facebook")
-        if socialData.socialNode.facebook == true{
+        if socialData.facebook == true{
             
             activeFacebook()
         }else{
@@ -166,9 +166,9 @@ class ResultPage3: SKScene {
     
     func twitterAction() {
         print("twitter")
-        if socialData.socialNode.twitter == true{
+        if socialData.twitter == true{
             
-            activeFacebook()
+            activeTwitter()
         }else{
             twitterAlertMessage()
         }
@@ -177,10 +177,10 @@ class ResultPage3: SKScene {
     func activeTwitter(){
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
-            let facebookController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            facebookController.setInitialText("My score is\(UtilitiesPortal.score)")
+            let twitterController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            twitterController.setInitialText("My score is\(UtilitiesPortal.score)")
             //facebookController.addImage(UIImage(named: "next"))
-            controller.presentViewController(facebookController, animated: true, completion: nil)
+            controller.presentViewController(twitterController, animated: true, completion: nil)
         }
         else {
             let alert = UIAlertController(title: "Twitter Unavailable", message: "Be sure to go to Settings > Twitter to set up your account", preferredStyle: UIAlertControllerStyle.Alert)

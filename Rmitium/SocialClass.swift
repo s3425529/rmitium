@@ -11,7 +11,7 @@ import CoreData
 
 class SocialClass {
     var context = DataController().managedObjectContext
-    var socialNode :Social!
+    var facebook, twitter:Bool!
     func initClass(){
         
         if checkDataIsEmpty() == true {
@@ -36,8 +36,9 @@ class SocialClass {
                 print("2222222222222222222222")
                 print(item.facebook)
                 print(item.twitter)
-                //print(item.time)
-                socialNode = item
+               
+                facebook = item.facebook
+                twitter = item.twitter
             }
             
             
@@ -46,25 +47,24 @@ class SocialClass {
         }
     }
     func setValue(keyString: String){
+        
         delCoreData()
         let entity = NSEntityDescription.insertNewObjectForEntityForName("Social", inManagedObjectContext: context)
         if keyString == "facebook"{
             entity.setValue(true, forKey: "facebook")
-            entity.setValue(socialNode.twitter, forKey: "twitter")
+            
+            entity.setValue(twitter, forKey: "twitter")
         }
         if keyString == "twitter"{
             entity.setValue(true, forKey: "twitter")
-            entity.setValue(socialNode.twitter, forKey: "facebook")
+            entity.setValue(facebook, forKey: "facebook")
         }
-
-        getRecord()
-        
-        
         do{
             try context.save()
         }catch{
             print("Error!")
         }
+        getRecord()
         
         
     }
