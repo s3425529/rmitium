@@ -22,6 +22,7 @@ class LevelTwoScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         setupTimer()
+        timerClass.pause(true)
         setupScene()
     }
     
@@ -317,10 +318,14 @@ class LevelTwoScene: SKScene {
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
                     if timerClass.timeLabel < LIMITTIME{
-                         timeOut()
+                        timeOut()
+                        backHomePage()
+                        return
+                    }else{
+                        backHomePage()
+                        return
                     }
-                    backHomePage()
-                    return
+                    
                 }
                 else if node.name == UtilitiesPortal.noButtonName {
                     timerClass.pause(false)
