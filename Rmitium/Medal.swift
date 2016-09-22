@@ -13,8 +13,8 @@ class medalClass {
     var words = [String]()
     
     func assignMedal(level: Int) -> (medalName:String , information:[String]) {
-        percent = Float(UtilitiesPortal.score) / Float(UtilitiesPortal.totalQuestions)
-        //percent = 0.7
+        //percent = Float(UtilitiesPortal.score) / Float(UtilitiesPortal.totalQuestions)
+        percent = 1
         var score = 0
         if level == UtilitiesPortal.levelOne {
             score = DataHandler.getLevelOneScore() as Int
@@ -44,7 +44,7 @@ class medalClass {
                 words.append("You got \(percentString)%. Your chemistry prowess is gold standard. Your best was \(score)!")
             }
             else {
-                words.append("You got \(percentString)%. Your chemistry prowess is gold standard.")
+                words.append("You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your chemistry prowess is gold standard.")
             }
         }
         if percent >= 0.7 && percent < 0.9 {
@@ -54,7 +54,7 @@ class medalClass {
                 words.append("With that sterling effort you got \(percentString)%. Your best was \(score)!")
             }
             else {
-                words.append("With that sterling effort you got \(percentString)%.")
+                words.append("With that sterling effort you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions)")
             }
         }
         if percent >= 0.5 && percent < 0.7 {
@@ -64,7 +64,7 @@ class medalClass {
                 words.append("You joined tin and copper with \(percentString)%. Your best was \(score)!")
             }
             else {
-                words.append("You joined tin and copper with \(percentString)%.")
+                words.append("You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions)")
             }
         }
         if percent < 0.5 {
@@ -74,7 +74,7 @@ class medalClass {
                 words.append("But your chemistry is a little rusty. You got \(percentString)%. Your best was \(score)!")
             }
             else {
-                words.append("But your chemistry is a little rusty. You got \(percentString)%.")
+                words.append("But your chemistry is a little rusty. You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions)")
             }
         }
         return (medalName, words)
