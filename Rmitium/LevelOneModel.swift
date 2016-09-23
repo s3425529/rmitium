@@ -33,6 +33,7 @@ class LevelOneModel {
         get {
             let current = index
             if index == listOfQuestions.count {
+            
                 reset()
             }
             else {

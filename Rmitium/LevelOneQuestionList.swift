@@ -19,7 +19,8 @@ class LevelOneQuestionList {
     static func getQuestionsList() ->[LevelOneQuestion] {
         listOfQuestions = LevelOneQuestion.getQuestions()
         shuffle()
-        select(9)
+        //select(9)
+        select(5)
         return listOfQuestions
     }
     

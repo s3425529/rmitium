@@ -138,8 +138,8 @@ class LevelOneScene: SKScene {
         itemName.fontColor = SKColor(colorLiteralRed: 0.7, green: 0.5, blue: 0.9, alpha: 1)
         
         itemName.text = "\(lvlOneQuestion.itemName)"
-        itemName.fontSize = UtilitiesPortal.factSize
-        itemName.position = CGPointMake(UtilitiesPortal.screenWidth/3, UtilitiesPortal.borderSize/4)
+        itemName.fontSize = UtilitiesPortal.factSize*0.8
+        itemName.position = CGPointMake(UtilitiesPortal.screenWidth * 0.01, UtilitiesPortal.screenHeight * 0.8)
         self.addChild(itemName)
         
     }
@@ -559,7 +559,7 @@ class LevelOneScene: SKScene {
         if node.name == UtilitiesPortal.tickButtonName {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
-                itemName.hidden = true
+               
                 return
             }
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
