@@ -13,7 +13,7 @@ class LevelThreeQuestionList {
     static func getQuestionsList() ->[LevelThreeQuestion] {
         listOfQuestions = LevelThreeQuestion.getQuestions()
         shuffle()
-        select(10)
+        select(5)
         return listOfQuestions
     }
     

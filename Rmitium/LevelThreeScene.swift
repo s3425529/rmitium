@@ -129,8 +129,8 @@ class LevelThreeScene: SKScene {
         itemName.fontColor = SKColor(colorLiteralRed: 0.7, green: 0.5, blue: 0.9, alpha: 1)
         
         itemName.text = "\(lvlThreeQuestion.itemName)"
-        itemName.fontSize = UtilitiesPortal.factSize
-        itemName.position = CGPointMake(UtilitiesPortal.screenWidth/3, UtilitiesPortal.borderSize/4)
+        itemName.fontSize = UtilitiesPortal.factSize*0.8
+        itemName.position = CGPointMake(UtilitiesPortal.screenWidth * 0.01, UtilitiesPortal.screenHeight * 0.83)
         self.addChild(itemName)
 
     }
