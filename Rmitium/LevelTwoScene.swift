@@ -22,7 +22,7 @@ class LevelTwoScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         setupTimer()
-        timerClass.pause(true)
+        //timerClass.pause(true)
         setupScene()
     }
     
@@ -483,6 +483,7 @@ class LevelTwoScene: SKScene {
         }
         */
         if checkResult() {
+            UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
             toResultSence()
         }

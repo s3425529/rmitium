@@ -160,7 +160,7 @@ class GameScene: SKScene {
             cleanScene()
             let secondScene = LevelTwoScene(size: self.size)
                                     
-            //let secondScene = ResultPage(size: self.size)
+            //let secondScene = ResultPage2(size: self.size)
             //let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             let transition = SKTransition.moveInWithDirection(.Down, duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
