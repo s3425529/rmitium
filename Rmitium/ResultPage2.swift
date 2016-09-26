@@ -330,7 +330,7 @@ class ResultPage2: SKScene {
     func facebookAlertMessage() {
         
         let controller = self.view?.window?.rootViewController as! GameViewController
-        let alert = UIAlertController(title: "Facebook", message: "FacebookLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Facebook", message: "Rmitium would like to access your Facebook", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("facebook")
@@ -343,7 +343,7 @@ class ResultPage2: SKScene {
     func twitterAlertMessage() {
         
         let controller = self.view?.window?.rootViewController as! GameViewController
-        let alert = UIAlertController(title: "Twitter", message: "TwitterLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Twitter", message: "Rmitium would like to access your Twitter", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("twitter")
