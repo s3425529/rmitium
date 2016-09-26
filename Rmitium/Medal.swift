@@ -34,7 +34,7 @@ class medalClass {
                 words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(score)!")
             }
             else {
-                words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(score)!")
+                words.append("A perfect score. Your chemistry knowledge is obviously crystal clear.")
             }
         }
         if percent >= 0.9 && percent < 1 {
@@ -44,7 +44,7 @@ class medalClass {
                 words.append("You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
-                words.append("You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your chemistry prowess is gold standard. Your best was \(score)!")
+                words.append("You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your chemistry prowess is gold standard.")
             }
         }
         if percent >= 0.7 && percent < 0.9 {
@@ -54,7 +54,7 @@ class medalClass {
                 words.append("With that sterling effort you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
-                words.append("With that sterling effort you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
+                words.append("With that sterling effort you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions).")
             }
         }
         if percent >= 0.5 && percent < 0.7 {
@@ -64,7 +64,7 @@ class medalClass {
                 words.append("You joined tin and you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
-                words.append("You joined tin and you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
+                words.append("You joined tin and you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions).")
             }
         }
         if percent < 0.5 {
@@ -74,7 +74,7 @@ class medalClass {
                 words.append("But your chemistry is a little rusty. you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
-                words.append("But your chemistry is a little rusty. You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
+                words.append("But your chemistry is a little rusty. You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions).")
             }
         }
         return (medalName, words)
@@ -94,7 +94,7 @@ class medalClass {
                 words.append("2A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(scoreMin):\(scireSec)")
             }
             else {
-                words.append("1A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(scoreMin):\(scireSec)")
+                words.append("1A perfect score. Your chemistry knowledge is obviously crystal clear.")
             }
         }
         if result < 30 && result >= 20  {
@@ -104,7 +104,7 @@ class medalClass {
                 words.append("You took \(min) minutes \(sec) seconds. Your chemistry prowess is gold standard. Your best was \(scoreMin):\(scireSec)")
             }
             else {
-                words.append("You took \(min) minutes \(sec) seconds. Your chemistry prowess is gold standard. Your best was \(scoreMin):\(scireSec)")
+                words.append("You took \(min) minutes \(sec) seconds. Your chemistry prowess is gold standard.")
             }
         }
         if result < 40 && result >= 30 {
@@ -114,7 +114,7 @@ class medalClass {
                 words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
             }
             else {
-                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
+                words.append("You took \(min) minutes \(sec) seconds.")
             }
         }
         if result < 60 && result >= 40{
@@ -124,7 +124,7 @@ class medalClass {
                 words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
             }
             else {
-                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
+                words.append("You took \(min) minutes \(sec) seconds.")
             }
         }
         if result > 60 {
@@ -134,7 +134,7 @@ class medalClass {
                 words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
             }
             else {
-                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
+                words.append("You took \(min) minutes \(sec) seconds.")
             }
         }
         return (medalName, words)
