@@ -20,6 +20,24 @@ class LevelTwoScene: SKScene {
     var LIMITTIME = 100000
     
     override func didMoveToView(view: SKView) {
+        //This is the template for implementing setting
+        switch String(self.userData!.valueForKey("gameMode")!) {
+            case "Standard":
+                //code goes here
+                print("Game mode: Standard!")
+            break
+            case "Time Trial":
+                //code goes here
+                print("Game mode: Time Trial!")
+            break
+            case "Beat the Clock":
+                //code goes here
+                print("Game mode: Beat the Clock!")
+            break
+            default:
+            break
+        }
+        
         setupTimer()
         //timerClass.pause(true)
         setupScene()
@@ -307,6 +325,9 @@ class LevelTwoScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
+        let sfx = SKAction.playSoundFileNamed("clickSound.wav", waitForCompletion: false)
+        
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         
@@ -316,10 +337,12 @@ class LevelTwoScene: SKScene {
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
                     if timerClass.timeLabel < LIMITTIME{
+                        runAction(sfx)
                         timeOut()
                         backHomePage()
                         return
                     }else{
+                        runAction(sfx)
                         backHomePage()
                         return
                     }
@@ -351,7 +374,7 @@ class LevelTwoScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-            
+            runAction(sfx)
             homeDialogue.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
@@ -359,12 +382,14 @@ class LevelTwoScene: SKScene {
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
+            runAction(sfx)
             print("Tick")
             return
         }
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
+            runAction(sfx)
             previousState = state
             state = UtilitiesPortal.stateInfo
             infoOverlay.hidden = false
@@ -427,7 +452,6 @@ class LevelTwoScene: SKScene {
         let rangeB = stringB.startIndex.advancedBy(0)..<stringB.endIndex.advancedBy(-1)
         let prefixB = stringB.substringWithRange(rangeB)
         let postfixB = stringB.characters.last!
-        
         if prefixA == prefixB && postfixA != postfixB {
             print("Result: true")
             return true

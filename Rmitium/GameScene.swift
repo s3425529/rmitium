@@ -11,10 +11,8 @@ import SpriteKit
 import AVFoundation
 
 class GameScene: SKScene {
-    var audioNode = SKAudioNode(fileNamed: "clickSound.wav")
     var infoOverlay: SKSpriteNode!
     var state: Int!
-    //weak var playBgm = SKAction.playSoundFileNamed("bgm.mp3", waitForCompletion: false)
     
     override func didMoveToView(view: SKView) {
         UtilitiesPortal.score = 0
@@ -55,11 +53,6 @@ class GameScene: SKScene {
         logo.zPosition = 0.1
         //image.alpha = 0.8
         addChild(logo)
-        
-        // AudioNode
-        //audioNode = SKAudioNode(fileNamed: "clickSound.wav")
-        audioNode.autoplayLooped = false
-        self.addChild(audioNode)
 
         // Generating level buttons
         for count in 0...2 {
@@ -111,8 +104,7 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let playAction = SKAction.play()
-        audioNode.runAction(playAction)
+        let sfx = SKAction.playSoundFileNamed("clickSound.wav", waitForCompletion: false)
         
         if state == UtilitiesPortal.stateInfo {
             infoOverlay!.hidden = true
@@ -125,6 +117,7 @@ class GameScene: SKScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
+            runAction(sfx)
             state = UtilitiesPortal.stateInfo
             infoOverlay!.hidden = false
             
@@ -136,6 +129,7 @@ class GameScene: SKScene {
         
         // Setting selected
         if node.name == UtilitiesPortal.settingButtonName {
+            runAction(sfx)
             cleanScene()
             
             let secondScene = SettingScene(size: self.size)
@@ -149,6 +143,7 @@ class GameScene: SKScene {
         if (node.name == UtilitiesPortal.levelLabelNames[0]
                                 || node.name == UtilitiesPortal.levelButtonNames[0]) {
             cleanScene()
+            runAction(sfx)
             LevelOneModel.reset()
             
             let secondScene = LevelOneScene(size: self.size)
@@ -161,19 +156,14 @@ class GameScene: SKScene {
         
         if (node.name == UtilitiesPortal.levelLabelNames[1]
                                 || node.name == UtilitiesPortal.levelButtonNames[1]) {
-            cleanScene()
-            let secondScene = LevelTwoMenuScene(size: self.size)
-                                    
-            //let secondScene = ResultPage2(size: self.size)
-            //let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
-            let transition = SKTransition.moveInWithDirection(.Down, duration: 0.1)
-            secondScene.scaleMode = SKSceneScaleMode.AspectFill
-            self.scene!.view?.presentScene(secondScene, transition: transition)
+            runAction(sfx)
+            showLevelTwoModes()
             return
         }
         
         if (node.name == UtilitiesPortal.levelLabelNames[2]
                                 || node.name == UtilitiesPortal.levelButtonNames[2]) {
+            runAction(sfx)
             cleanScene()
             LevelThreeModel.reset()
             
@@ -184,6 +174,51 @@ class GameScene: SKScene {
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
             return
+        }
+        // Level 2 - Standard
+        if (node.name == UtilitiesPortal.modeLabelNames[0]
+            || node.name == UtilitiesPortal.modeButtonNames[0]) {
+                runAction(sfx)
+                cleanScene()
+                //let secondScene = ResultPage(size: self.size)
+                let secondScene = LevelTwoScene(size: self.size)
+                secondScene.userData = NSMutableDictionary()
+                secondScene.userData?.setValue("Standard", forKey: "gameMode")
+                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+                //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+                secondScene.scaleMode = SKSceneScaleMode.AspectFill
+                self.scene!.view?.presentScene(secondScene, transition: transition)
+                return
+        }
+        // Level 2 - Time Trial
+        if (node.name == UtilitiesPortal.modeLabelNames[1]
+            || node.name == UtilitiesPortal.modeButtonNames[1]) {
+                runAction(sfx)
+                cleanScene()
+                //let secondScene = ResultPage(size: self.size)
+                let secondScene = LevelTwoScene(size: self.size)
+                secondScene.userData = NSMutableDictionary()
+                secondScene.userData?.setValue("Time Trial", forKey: "gameMode")
+                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+                //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+                secondScene.scaleMode = SKSceneScaleMode.AspectFill
+                self.scene!.view?.presentScene(secondScene, transition: transition)
+                return
+        }
+        
+        if (node.name == UtilitiesPortal.modeLabelNames[2]
+            || node.name == UtilitiesPortal.modeButtonNames[2]) {
+                runAction(sfx)
+                cleanScene()
+                //let secondScene = ResultPage(size: self.size)
+                let secondScene = LevelTwoScene(size: self.size)
+                secondScene.userData = NSMutableDictionary()
+                secondScene.userData?.setValue("Beat the Clock", forKey: "gameMode")
+                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+                //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+                secondScene.scaleMode = SKSceneScaleMode.AspectFill
+                self.scene!.view?.presentScene(secondScene, transition: transition)
+                return
         }
     }
    
@@ -198,6 +233,31 @@ class GameScene: SKScene {
         print("Remove all nodes Game Scene")
     }
     
+    func showLevelTwoModes() {
+        childNodeWithName(UtilitiesPortal.levelLabelNames[1])?.hidden = true
+        childNodeWithName(UtilitiesPortal.levelButtonNames[1])?.hidden = true
+        for count in 0 ... 2 {
+            let modeLabel = SKLabelNode(fontNamed:UtilitiesPortal.levelLabelFont)
+            //levelLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+            modeLabel.zPosition = 0.4
+            modeLabel.name = UtilitiesPortal.modeLabelNames[count]
+            modeLabel.text = UtilitiesPortal.modeLabelTexts[count]
+            modeLabel.fontSize = UtilitiesPortal.levelLabelSize
+            modeLabel.position = CGPointMake(UtilitiesPortal.borderSize*3 + CGFloat(count)*UtilitiesPortal.screenWidth*0.3/*UtilitiesPortal.borderSize*/,
+                UtilitiesPortal.screenHeight*(0.58-0.18))
+            addChild(modeLabel)
+            
+            let levelButton = SKSpriteNode(imageNamed: "menubar3")
+            levelButton.name = UtilitiesPortal.modeButtonNames[count]
+            levelButton.alpha = 0.9
+            levelButton.zPosition = 0.3
+            levelButton.position = CGPointMake(UtilitiesPortal.borderSize*3 + CGFloat(count)*UtilitiesPortal.screenWidth*0.3, UtilitiesPortal.screenHeight*(0.60-0.18))
+            levelButton.size = CGSize(width: UtilitiesPortal.screenWidth*0.29,
+                height: UtilitiesPortal.hexImageSize*1.2)
+            addChild(levelButton)
+        }
+    }
+
     func cleanScene() {
         //playBgm = nil
         if let s = self.view?.scene {

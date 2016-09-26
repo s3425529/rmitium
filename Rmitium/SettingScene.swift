@@ -79,9 +79,13 @@ class SettingScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let sfx = SKAction.playSoundFileNamed("clickSound.wav", waitForCompletion: false)
+        
+        
         let location = touches.first!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
+            runAction(sfx)
             // Save settings
             DataHandler.updateSettings(values)
             PositionHandler.setRightHand()
@@ -100,6 +104,7 @@ class SettingScene: SKScene {
         // Sound
         if (node.name == UtilitiesPortal.settingLabelNames[0] ||
             node.name == UtilitiesPortal.settingLabelButtons[0]) {
+            runAction(sfx)
             if values[0] {
                 values[0] = false
                 settings[0].texture = SKTexture(image: UIImage(named: "offbutton")!)
@@ -115,6 +120,7 @@ class SettingScene: SKScene {
         
         if (node.name == UtilitiesPortal.settingLabelNames[1] ||
             node.name == UtilitiesPortal.settingLabelButtons[1]) {
+            runAction(sfx)
             if values[1] {
                 values[1] = false
                 settings[1].texture = SKTexture(image: UIImage(named: "offbutton")!)
@@ -127,6 +133,7 @@ class SettingScene: SKScene {
         
         if (node.name == UtilitiesPortal.settingLabelNames[2] ||
             node.name == UtilitiesPortal.settingLabelButtons[2]) {
+            runAction(sfx)
             if values[2] {
                 values[2] = false
                 settings[2].texture = SKTexture(image: UIImage(named: "offbutton")!)

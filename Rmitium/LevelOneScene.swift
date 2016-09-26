@@ -485,6 +485,9 @@ class LevelOneScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+
+        let sfx = SKAction.playSoundFileNamed("clickSound.wav", waitForCompletion: false)
+        
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         
@@ -493,10 +496,12 @@ class LevelOneScene: SKScene {
             let nodes = self.nodesAtPoint(location)
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
+                    runAction(sfx)
                     backHomePage()
                     return
                 }
                 else if node.name == UtilitiesPortal.noButtonName {
+                    runAction(sfx)
                     homeDialogue.hidden = true
                     state = previousState
                     previousState = UtilitiesPortal.stateHome
@@ -565,6 +570,7 @@ class LevelOneScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
+            runAction(sfx)
             homeDialogue.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
@@ -572,6 +578,7 @@ class LevelOneScene: SKScene {
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
+            runAction(sfx)
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
                
@@ -587,6 +594,7 @@ class LevelOneScene: SKScene {
         
         // Show button selected
         if node.name == UtilitiesPortal.showButtonName {
+            runAction(sfx)
             if state == UtilitiesPortal.stateResult {
                 displayAnswers(true)
                 resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
@@ -622,6 +630,7 @@ class LevelOneScene: SKScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
+            runAction(sfx)
             previousState = state
             state = UtilitiesPortal.stateInfo
             infoOverlay.hidden = false
@@ -630,6 +639,7 @@ class LevelOneScene: SKScene {
         
         //Fact Overlay selected
         if node.name == UtilitiesPortal.factOverlayName {
+            runAction(sfx)
             factOverlay.hidden = true
             setupScene()
             return

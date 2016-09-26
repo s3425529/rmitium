@@ -30,6 +30,9 @@ class UtilitiesPortal {
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
     static let levelButtonNames = ["lvl01Btn", "lvl02Btn", "lvl03Btn", "settingBtn"]
     
+    static let modeLabelNames = ["mode01", "mode02", "mode03"]
+    static let modeButtonNames = ["mode01Btn", "mode02Btn", "mode03Btn"]
+    
     static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene", "aldehyde", "ester",
                                   "ether", "thioether", "heterocyclicaromatic"]
     static let levelTwoWidth = 10
@@ -43,6 +46,8 @@ class UtilitiesPortal {
     static let levelLabelTexts = ["Level 1: Identifying Functional Groups",
                                   "Level 2: Building Molecules",
                                   "Level 3: Intermolecular Forces", "SETTINGS"]
+    
+    static let modeLabelTexts = ["Standard", "Time Trial", "Beat the Clock"]
     
     static let settingLabelTexts = ["Sound", "Right Hand", "Setting 3"]
     static let settingLabelNames = ["sound", "rightHand", "setting03"]
