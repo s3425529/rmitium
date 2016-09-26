@@ -541,7 +541,7 @@ class LevelThreeScene: SKScene {
         if node.name == UtilitiesPortal.tickButtonName {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
-                itemName.hidden = true
+                
                 return
             }
              
