@@ -30,8 +30,7 @@ class UtilitiesPortal {
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
     static let levelButtonNames = ["lvl01Btn", "lvl02Btn", "lvl03Btn", "settingBtn"]
     
-    static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene", "aldehyde", "ester",
-                                  "ether", "thioether", "heterocyclicaromatic"]
+    static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene", "aldehyde", "ester", "ether", "thioether"]
     static let levelTwoWidth = 10
     static let levelTwoHeight = 6
     static let levelTwoImageWidth: CGFloat = 0.09
