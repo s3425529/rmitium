@@ -29,6 +29,15 @@ extension Settings {
             rightHand = NSNumber(bool: newValue)
         }
     }
+    @NSManaged var effect: NSNumber
+    var getEffect: Bool {
+        get {
+            return Bool(effect)
+        }
+        set {
+            effect = NSNumber(bool: newValue)
+        }
+    }
     @NSManaged var levelOne: NSNumber?
     @NSManaged var levelTwo: NSNumber?
     @NSManaged var levelThree: NSNumber?

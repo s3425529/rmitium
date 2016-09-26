@@ -128,8 +128,7 @@ class GameScene: SKScene {
             state = UtilitiesPortal.stateInfo
             infoOverlay!.hidden = false
             
-            // Reset setting when user click info button
-            // For testing display info layout the first time
+            // Reset settings for testing purposes
             DataHandler.resetSettings()
             return
         }

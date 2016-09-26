@@ -17,6 +17,7 @@ class DataHandler {
             let entity = NSEntityDescription.insertNewObjectForEntityForName("Settings", inManagedObjectContext: settings) as! Settings
             entity.setValue(true, forKey: "sound")
             entity.setValue(true, forKey: "rightHand")
+            entity.setValue(true, forKey: "effect")
             entity.setValue(-1, forKey: "levelOne")
             entity.setValue(-1, forKey: "levelTwo")
             entity.setValue(-1, forKey: "levelThree")
@@ -37,10 +38,32 @@ class DataHandler {
             let object = result.first!
             object.setValue(true, forKey: "sound")
             object.setValue(true, forKey: "rightHand")
+            object.setValue(true, forKey: "effect")
             object.setValue(-1, forKey: "levelOne")
             object.setValue(-1, forKey: "levelTwo")
             object.setValue(-1, forKey: "levelThree")
             try settings.save()
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func resetScores() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            print("Scores: \(object.levelOne), \(object.levelTwo), \(object.levelThree)")
+            object.setValue(0, forKey: "levelOne")
+            object.setValue(0, forKey: "levelTwo")
+            object.setValue(0, forKey: "levelThree")
+            try settings.save()
+            
+            
+            let result1 = try settings.executeFetchRequest(setting) as! [Settings]
+            let object1 = result1.first!
+            print("Reset to: \(object1.levelOne), \(object1.levelTwo), \(object1.levelThree)")
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
@@ -155,7 +178,8 @@ class DataHandler {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
             object.setValue(values[0], forKey: "sound")
-            object.setValue(values[1], forKey: "rightHand")
+            object.setValue(values[1], forKey: "effect")
+            object.setValue(values[2], forKey: "rightHand")
             try settings.save()
             print("Trying to Save value: Sound(\(values[0])), RightHand(\(values[1]))")
         }

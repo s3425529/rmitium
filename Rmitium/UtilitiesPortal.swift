@@ -43,9 +43,9 @@ class UtilitiesPortal {
                                   "Level 2: Building Molecules",
                                   "Level 3: Intermolecular Forces", "SETTINGS"]
     
-    static let settingLabelTexts = ["Sound", "Right Hand", "Setting 3"]
-    static let settingLabelNames = ["sound", "rightHand", "setting03"]
-    static let settingLabelButtons = ["soundBtn", "setting02Btn", "setting03Btn"]
+    static let settingLabelTexts = ["Background Music", "Sound Effects", "Lefthand Mode", "Reset Scores"]
+    static let settingLabelNames = ["background", "soundEffects", "leftHand", "reset"]
+    static let settingLabelButtons = ["backgroundBtn", "effectsBtn", "leftHandBtn", "resetBtn"]
     
     static let emptyString = ""
     
