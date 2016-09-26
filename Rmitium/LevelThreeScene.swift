@@ -19,7 +19,7 @@ class LevelThreeScene: SKScene {
     var resultImage, infoOverlay, factOverlay, homeDialogue: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
-    var score, factLabel, itemName: SKLabelNode!
+    var score, factLabel, molecule: SKLabelNode!
     //var questionId = 0
     var lvlThreeQuestion: LevelThreeQuestion!
     var state, previousState: Int!
@@ -34,7 +34,9 @@ class LevelThreeScene: SKScene {
     func setupScene() {
         cleanScene()
         
+        PositionHandler.setRightHand()
         let score = DataHandler.getLevelThreeScore()
+        
         if firstTime && score == UtilitiesPortal.defaultScore {
             firstTime = false
             previousState = UtilitiesPortal.stateAnswer
@@ -121,27 +123,31 @@ class LevelThreeScene: SKScene {
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(score)
         
-        // ItemName label
-        
-        itemName = SKLabelNode(fontNamed:"Zapfino")
-        itemName.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-        itemName.zPosition = 0.1
-        itemName.fontColor = SKColor(colorLiteralRed: 0.7, green: 0.5, blue: 0.9, alpha: 1)
-        
-        itemName.text = "\(lvlThreeQuestion.itemName)"
-        itemName.fontSize = UtilitiesPortal.factSize*0.8
-        itemName.position = CGPointMake(UtilitiesPortal.screenWidth * 0.01, UtilitiesPortal.screenHeight * 0.83)
-        self.addChild(itemName)
+        // Molecule name label
+        molecule = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
+        molecule.text = "\(lvlThreeQuestion.itemName)"
+        molecule.fontSize = UtilitiesPortal.factSize*0.8
+        molecule.zPosition = 0.1
+        molecule.fontColor = SKColor.whiteColor()
+        if DataHandler.getSettings().getRightHand {
+            molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+            molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.01, UtilitiesPortal.screenHeight * 0.8)
+        }
+        else {
+            molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+            molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.99, UtilitiesPortal.screenHeight * 0.8)
+        }
+        self.addChild(molecule)
 
     }
     func setupImage() {
-        // Image
         let image = SKSpriteNode(imageNamed: lvlThreeQuestion.imageName)
         
         image.zPosition = 0.1
         image.alpha = 0.9
-        image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-                                 y:UtilitiesPortal.screenHeight/2)
+        let current = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+                              y:UtilitiesPortal.screenHeight/2)
+        image.position = PositionHandler.convertTargetPoint(current)
         let currentSize = image.size
         let x = UtilitiesPortal.imageWidth/currentSize.width
         let y = UtilitiesPortal.imageHeight/currentSize.height
@@ -166,8 +172,9 @@ class LevelThreeScene: SKScene {
             answer.alpha = 0.9
             answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.20,
                                  height: UtilitiesPortal.screenHeight*0.15)
-            answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
-                                      y:UtilitiesPortal.screenHeight*(0.75-0.18*CGFloat(count)))
+            let current = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
+                                  y:UtilitiesPortal.screenHeight*(0.75-0.18*CGFloat(count)))
+            answer.position = PositionHandler.convertLevelThreeLabelPoint(current)
             
             addChild(answer)
             answers.append(answer)
@@ -188,8 +195,9 @@ class LevelThreeScene: SKScene {
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
             //sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.6, UtilitiesPortal.screenHeight*0.6)
             sprite.zPosition = 0.2
-            sprite.position = CGPoint(x:UtilitiesPortal.screenWidth * positions[count].x,
-                                      y:UtilitiesPortal.screenHeight * positions[count].y)
+            let current = CGPoint(x:UtilitiesPortal.screenWidth * positions[count].x,
+                                  y:UtilitiesPortal.screenHeight * positions[count].y)
+            sprite.position = PositionHandler.convertTargetPoint(current)
             addChild(sprite)
             questions.append(sprite)
             UtilitiesPortal.totalQuestions += 1
@@ -560,8 +568,9 @@ class LevelThreeScene: SKScene {
                 resultImage = SKSpriteNode(imageNamed: lvlThreeQuestion.imageSol)
                 resultImage.zPosition = 0.5
                 resultImage.alpha = 1
-                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
-                                               y:UtilitiesPortal.screenHeight/2 )
+                let current = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
+                                      y:UtilitiesPortal.screenHeight/2 )
+                resultImage.position = PositionHandler.convertTargetPoint(current)
                 let currentSize = resultImage.size
                 let x = UtilitiesPortal.imageWidth/currentSize.width
                 let y = UtilitiesPortal.imageHeight/currentSize.height

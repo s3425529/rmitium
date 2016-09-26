@@ -27,12 +27,22 @@ class PositionHandler {
         }
     }
     
-    static func convertLabelPoint(current: CGPoint) -> CGPoint {
+    static func convertLevelOneLabelPoint(current: CGPoint) -> CGPoint {
         if rightHand {
             return current
         }
         else {
             return CGPoint(x: current.x - UtilitiesPortal.screenWidth*0.65,
+                           y: current.y)
+        }
+    }
+    
+    static func convertLevelThreeLabelPoint(current: CGPoint) -> CGPoint {
+        if rightHand {
+            return current
+        }
+        else {
+            return CGPoint(x: current.x - UtilitiesPortal.screenWidth*0.70,
                            y: current.y)
         }
     }

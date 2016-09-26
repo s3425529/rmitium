@@ -170,7 +170,6 @@
 				50CCBC801D8469BD00D78681 /* LevelTwo */,
 				50667EDF1D70093A00C8EBF6 /* LevelThree */,
 				508BB50F1D5864CF00556CE3 /* AppDelegate.swift */,
-				5064B08E1D9248F500A05CBA /* bgm.mp3 */,
 				508BB5111D5864CF00556CE3 /* GameScene.sks */,
 				508BB5131D5864CF00556CE3 /* GameScene.swift */,
 				50E94AAC1D811C7D00C01945 /* setting.swift */,
@@ -200,6 +199,7 @@
 		509CEA071D86EF98002360E1 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				5064B08E1D9248F500A05CBA /* bgm.mp3 */,
 				509CEA0A1D86F44E002360E1 /* clickSound.wav */,
 				509CEA081D86EFC1002360E1 /* bgSound.wav */,
 			);

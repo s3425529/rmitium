@@ -19,7 +19,7 @@ class LevelOneScene: SKScene {
     var resultImage, infoOverlay, factOverlay, homeDialogue, yesBtn, noBtn: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
-    var score, factLabel, itemName: SKLabelNode!
+    var score, factLabel, molecule: SKLabelNode!
     var timeNode: SKLabelNode!
     //var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
@@ -132,23 +132,21 @@ class LevelOneScene: SKScene {
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(score)
 
-        // ItemName label
-        //itemName = SKLabelNode(fontNamed:"Zapfino")
-        itemName = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
-        itemName.text = "\(lvlOneQuestion.itemName)"
-        itemName.fontSize = UtilitiesPortal.factSize*0.8
-        itemName.zPosition = 0.1
-        //itemName.fontColor = SKColor(colorLiteralRed: 0.7, green: 0.5, blue: 0.9, alpha: 1)
-        itemName.fontColor = SKColor.whiteColor()
+        // Molecule name label
+        molecule = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
+        molecule.text = "\(lvlOneQuestion.itemName)"
+        molecule.fontSize = UtilitiesPortal.factSize*0.8
+        molecule.zPosition = 0.1
+        molecule.fontColor = SKColor.whiteColor()
         if DataHandler.getSettings().getRightHand {
-            itemName.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-            itemName.position = CGPointMake(UtilitiesPortal.screenWidth * 0.01, UtilitiesPortal.screenHeight * 0.8)
+            molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+            molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.01, UtilitiesPortal.screenHeight * 0.8)
         }
         else {
-            itemName.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
-            itemName.position = CGPointMake(UtilitiesPortal.screenWidth * 0.99, UtilitiesPortal.screenHeight * 0.8)
+            molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+            molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.99, UtilitiesPortal.screenHeight * 0.8)
         }
-        self.addChild(itemName)
+        self.addChild(molecule)
     }
     
     func setupImage() {
@@ -185,21 +183,21 @@ class LevelOneScene: SKScene {
             if count < 5 {
                 let x = CGPoint(x:UtilitiesPortal.screenWidth*0.75,
                                 y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count)))
-                answer.position = PositionHandler.convertLabelPoint(x);
+                answer.position = PositionHandler.convertLevelOneLabelPoint(x);
                 //answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.75,
                                           //y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count)))
             }
             else if count < 10 {
                 let x = CGPoint(x:UtilitiesPortal.screenWidth*0.90,
                                 y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
-                answer.position = PositionHandler.convertLabelPoint(x);
+                answer.position = PositionHandler.convertLevelOneLabelPoint(x);
                 //answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.90,
                                           //y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
             }
             else {
                 let x = CGPoint(x:UtilitiesPortal.screenWidth*0.83    ,
                                 y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
-                answer.position = PositionHandler.convertLabelPoint(x);
+                answer.position = PositionHandler.convertLevelOneLabelPoint(x);
                 //answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.83    ,
                                           //y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
             }
