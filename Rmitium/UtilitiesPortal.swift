@@ -106,9 +106,13 @@ class UtilitiesPortal {
     //static var record = [Int]()
     static func setBgm(){
         let soundSetting = DataHandler.getSettings().getSound
-        SKTAudio.sharedInstance().playBackgroundMusic("bgm.mp3")
         if soundSetting {
-            SKTAudio.sharedInstance().resumeBackgroundMusic()
+            if (SKTAudio.sharedInstance().backgroundMusicPlayer == nil){
+                SKTAudio.sharedInstance().playBackgroundMusic("bgm.mp3")
+            }            
+            else {
+                SKTAudio.sharedInstance().resumeBackgroundMusic()
+            }
         }
         else {
             SKTAudio.sharedInstance().pauseBackgroundMusic()

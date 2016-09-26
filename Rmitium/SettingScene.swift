@@ -103,11 +103,14 @@ class SettingScene: SKScene {
             if values[0] {
                 values[0] = false
                 settings[0].texture = SKTexture(image: UIImage(named: "offbutton")!)
+                SKTAudio.sharedInstance().pauseBackgroundMusic()
             }
             else {
                 values[0] = true
                 settings[0].texture = SKTexture(image: UIImage(named: "onbutton")!)
+                SKTAudio.sharedInstance().resumeBackgroundMusic()
             }
+            
         }
         
         if (node.name == UtilitiesPortal.settingLabelNames[1] ||
