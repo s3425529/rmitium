@@ -9,7 +9,6 @@
 import SpriteKit
 
 class LevelThreeScene: SKScene {
-    var firstTime: Bool = true
     var answers: [CustomSKSpriteNode] = []
     var questions: [CustomSKSpriteNode] = []
     var answeredQuestions: [CustomSKSpriteNode] = []
@@ -35,12 +34,11 @@ class LevelThreeScene: SKScene {
         cleanScene()
         
         PositionHandler.setRightHand()
-        let score = DataHandler.getLevelThreeScore()
         
-        if firstTime && score == UtilitiesPortal.defaultScore {
-            firstTime = false
+        if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstTime {
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo
+            DataHandler.saveLevelThreeScore()
         }
         else {
             state = UtilitiesPortal.stateAnswer

@@ -10,7 +10,6 @@ import Foundation
 import SpriteKit
 
 class LevelTwoScene: SKScene {
-    var firstTime: Bool = true
     var answers: [CustomSKSpriteNode] = []
     var chosenAnswer: Int!
     var tick, infoOverlay, homeDialogue: SKSpriteNode!
@@ -30,11 +29,10 @@ class LevelTwoScene: SKScene {
         answers.removeAll()
         self.removeAllChildren()
         
-        let score = DataHandler.getLevelTwoScore()
-        if firstTime && score == UtilitiesPortal.defaultScore {
-            firstTime = false
+        if DataHandler.getLevelTwoScore() == UtilitiesPortal.defaultScore {
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo
+            DataHandler.saveLevelTwoScore()
         }
         else {
             state = UtilitiesPortal.stateAnswer
