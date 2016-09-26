@@ -155,7 +155,6 @@ class LevelThreeScene: SKScene {
         else {
             image.setScale(y)
         }
-        //image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
         
     }
@@ -168,10 +167,16 @@ class LevelThreeScene: SKScene {
             answer.value = UtilitiesPortal.levelThreeAnswers[count]
             answer.zPosition = 0.3
             answer.alpha = 0.9
-            answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.20,
+            /*answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.20,
                                  height: UtilitiesPortal.screenHeight*0.15)
             let current = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
-                                  y:UtilitiesPortal.screenHeight*(0.75-0.18*CGFloat(count)))
+                                  y:UtilitiesPortal.screenHeight*(0.75-0.18*CGFloat(count)))*/
+            
+            answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
+                                 height: UtilitiesPortal.screenHeight*0.1)
+            let current = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
+                                  y:UtilitiesPortal.screenHeight*(0.7-0.12*CGFloat(count)))
+            
             answer.position = PositionHandler.convertLevelThreeLabelPoint(current)
             
             addChild(answer)

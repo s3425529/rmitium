@@ -180,24 +180,13 @@ class LevelOneScene: SKScene {
             
             if count < 5 {
                 let x = CGPoint(x:UtilitiesPortal.screenWidth*0.75,
-                                y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count)))
+                                y:UtilitiesPortal.screenHeight*(0.7-0.12*CGFloat(count)))
                 answer.position = PositionHandler.convertLevelOneLabelPoint(x);
-                //answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.75,
-                                          //y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count)))
             }
             else if count < 10 {
                 let x = CGPoint(x:UtilitiesPortal.screenWidth*0.90,
-                                y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
+                                y:UtilitiesPortal.screenHeight*(0.7-0.12*CGFloat(count-5)))
                 answer.position = PositionHandler.convertLevelOneLabelPoint(x);
-                //answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.90,
-                                          //y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
-            }
-            else {
-                let x = CGPoint(x:UtilitiesPortal.screenWidth*0.83    ,
-                                y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
-                answer.position = PositionHandler.convertLevelOneLabelPoint(x);
-                //answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.83    ,
-                                          //y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
             }
             
             addChild(answer)
