@@ -230,7 +230,7 @@ class LevelThreeScene: SKScene {
         factLabel.hidden = true
         factLabel.zPosition = 0.3
         factLabel.position = CGPoint(x: UtilitiesPortal.screenWidth*0.20, y: UtilitiesPortal.borderSize/4)
-        addChild(factLabel)
+        //addChild(factLabel)
         
         factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth,
                                            pos: CGPoint(x: 0, y: UtilitiesPortal.screenHeight/8),fontName: UtilitiesPortal.navLabelFont,
@@ -554,7 +554,7 @@ class LevelThreeScene: SKScene {
             }
              
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
-                setupScene()
+                factOverlay.hidden = false
             }
             return
         }
@@ -604,11 +604,10 @@ class LevelThreeScene: SKScene {
             return
         }
         
-        // Fact label selected
-        if node.name == UtilitiesPortal.factLabelName {
-            previousState = state
-            state = UtilitiesPortal.stateFact
-            factOverlay.hidden = false
+        // Fact Overlay selected
+        if node.name == UtilitiesPortal.factOverlayName {
+            factOverlay.hidden = true
+            setupScene()
             return
         }
     }
