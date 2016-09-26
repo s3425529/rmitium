@@ -114,7 +114,7 @@ class medalClass {
                 words.append("1You have taken \(timeFormat(result)). Your best was \(timeFormat(score))!")
             }
         }
-        if result < 50 && result >= 40{
+        if result < 60 && result >= 40{
             medalName = "Medal4-Bronze"
             words = ["Nice try!"]
             if score > UtilitiesPortal.defaultScore {
