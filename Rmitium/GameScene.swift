@@ -14,7 +14,7 @@ class GameScene: SKScene {
     var audioNode = SKAudioNode(fileNamed: "clickSound.wav")
     var infoOverlay: SKSpriteNode!
     var state: Int!
-    var playBgm = SKAction.playSoundFileNamed("bgm.mp3", waitForCompletion: false)
+    //weak var playBgm = SKAction.playSoundFileNamed("bgm.mp3", waitForCompletion: false)
     
     override func didMoveToView(view: SKView) {
         UtilitiesPortal.score = 0
@@ -188,12 +188,14 @@ class GameScene: SKScene {
     }
     
     override func willMoveFromView(view: SKView) {
+        //playBgm = nil
         self.removeAllActions()
         self.removeAllChildren()
         print("Remove all nodes Game Scene")
     }
     
     func cleanScene() {
+        //playBgm = nil
         if let s = self.view?.scene {
             NSNotificationCenter.defaultCenter().removeObserver(self)
             self.enumerateChildNodesWithName("//") { node, _ in
