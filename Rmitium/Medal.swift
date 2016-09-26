@@ -26,7 +26,7 @@ class medalClass {
             score = DataHandler.getLevelThreeScore() as Int
         }
    
-        let percentString = Int(percent*100)
+        //let percentString = Int(percent*100)
         if percent == 1 {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]

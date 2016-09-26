@@ -29,6 +29,7 @@ class UtilitiesPortal {
     
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
     static let levelButtonNames = ["lvl01Btn", "lvl02Btn", "lvl03Btn", "settingBtn"]
+    static let levelMedalNames = ["lvl01Medal", "lvl02Medal", "lvl03Medal", "lvl04Medal"]
     
     static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene", "aldehyde", "ester", "ether", "thioether"]
     static let levelTwoWidth = 10

@@ -82,6 +82,18 @@ class GameScene: SKScene {
                                          height: UtilitiesPortal.hexImageSize*1.2)
             self.addChild(levelButton)
             
+            if DataHandler.getScore(count+1) != -1 {
+                let levelMedal = SKSpriteNode(imageNamed: "Medal2-Gold")
+                levelMedal.name = UtilitiesPortal.levelMedalNames[count]
+                levelMedal.alpha = 0.9
+                levelMedal.zPosition = 0.1
+                levelMedal.position = CGPointMake(UtilitiesPortal.screenWidth*0.88,
+                                                  UtilitiesPortal.screenHeight*(0.60-CGFloat(count)*0.18))
+                levelMedal.size = CGSize(width: UtilitiesPortal.hexImageSize,
+                                         height: UtilitiesPortal.hexImageSize)
+                self.addChild(levelMedal)
+            }
+            
             setupInfo()
         }
         UtilitiesPortal.setBgm()

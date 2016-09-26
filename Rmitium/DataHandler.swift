@@ -195,4 +195,26 @@ class DataHandler {
             fatalError("Failure reading from coredata: \(error)")
         }
     }
+    
+    static func getScore(level: Int) -> NSNumber {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            if level == UtilitiesPortal.levelOne {
+                return result.first!.levelOne!
+            }
+            else if level == UtilitiesPortal.levelTwo {
+                return result.first!.levelTwo!
+            }
+            else if level == UtilitiesPortal.levelThree {
+                return result.first!.levelThree!
+            }
+            else {
+                return 0;
+            }
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
 }
