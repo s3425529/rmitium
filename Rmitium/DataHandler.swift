@@ -28,21 +28,22 @@ class DataHandler {
                 fatalError("Failure to save Settings: \(error)")
             }
         }
-        else {
-            let setting = NSFetchRequest(entityName: "Settings")
-            do {
-                let result = try settings.executeFetchRequest(setting) as! [Settings]
-                let object = result.first!
-                object.setValue(true, forKey: "sound")
-                object.setValue(true, forKey: "rightHand")
-                object.setValue(0, forKey: "levelOne")
-                object.setValue(0, forKey: "levelTwo")
-                object.setValue(0, forKey: "levelThree")
-                try settings.save()
-            }
-            catch {
-                fatalError("Failure reading from coredata: \(error)")
-            }
+    }
+    
+    static func resetSettings() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            object.setValue(true, forKey: "sound")
+            object.setValue(true, forKey: "rightHand")
+            object.setValue(0, forKey: "levelOne")
+            object.setValue(0, forKey: "levelTwo")
+            object.setValue(0, forKey: "levelThree")
+            try settings.save()
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
         }
     }
     
@@ -144,13 +145,27 @@ class DataHandler {
         }
     }
     
-    static func updateSound(sound: Bool) {
+    static func updateSettings(values: [Bool]) {
+        if values.count != 3 {
+            print("Settings fails with count: \(values.count)")
+            return
+        }
         let setting = NSFetchRequest(entityName: "Settings")
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
-            object.setValue(sound, forKey: "sound")
+            object.setValue(values[0], forKey: "sound")
+            object.setValue(values[1], forKey: "rightHand")
             try settings.save()
+            print("Trying to Save value: Sound(\(values[0])), RightHand(\(values[1]))")
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+        
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            print("Load value: Sound(\(result.first!.getSound)), RightHand(\(result.first!.getRightHand))")
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
