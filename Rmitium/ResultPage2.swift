@@ -41,6 +41,9 @@ class ResultPage2: SKScene {
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
         let medalNode = SKSpriteNode(imageNamed: medalName)
+        let mins = UtilitiesPortal.score/60
+        let sec = UtilitiesPortal.score%60
+        var labelText:String!
         medalNode.color = SKColor.blueColor()
         medalNode.name = "medal"
         medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
@@ -55,8 +58,12 @@ class ResultPage2: SKScene {
         medalNode.runAction(repeatAction)
         
         let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
-        
-        scoreNode.text = timeFormat()
+        if mins == 0 {
+            labelText = "\(sec)sec"
+        }else{
+            labelText = "\(mins):\(sec)"
+        }
+        scoreNode.text = labelText
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
         
         scoreNode.fontSize = UtilitiesPortal.screenHeight*0.05
