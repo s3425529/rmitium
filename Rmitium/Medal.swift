@@ -81,65 +81,63 @@ class medalClass {
     }
     func level2() -> (medalName:String , information:[String]){
         
-      
+        let min = UtilitiesPortal.score/60
+        let sec = UtilitiesPortal.score%60
         score = DataHandler.getLevelTwoScore() as Int
+        let scoreMin = score/60
+        let scireSec = score%60
         let result = UtilitiesPortal.score
         if result < 20 {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
             if score > UtilitiesPortal.defaultScore {
-                words.append("2A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(timeFormat(score))!")
+                words.append("2A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(scoreMin):\(scireSec)")
             }
             else {
-                words.append("1A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(timeFormat(score))!")
+                words.append("1A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(scoreMin):\(scireSec)")
             }
         }
         if result < 30 && result >= 20  {
             medalName = "Medal2-Gold"
             words = ["Well done!"]
             if score > UtilitiesPortal.defaultScore {
-                words.append("2You have taken \(timeFormat(result)). Your chemistry prowess is gold standard. Your best was \(timeFormat(score))!")
+                words.append("You took \(min) minutes \(sec) seconds. Your chemistry prowess is gold standard. Your best was \(scoreMin):\(scireSec)")
             }
             else {
-                words.append("1You have taken \(timeFormat(result)). Your chemistry prowess is gold standard. Your best was \(timeFormat(score))!")
+                words.append("You took \(min) minutes \(sec) seconds. Your chemistry prowess is gold standard. Your best was \(scoreMin):\(scireSec)")
             }
         }
         if result < 40 && result >= 30 {
             medalName = "Medal3-Silver"
             words = ["Great work!"]
             if score > UtilitiesPortal.defaultScore {
-                words.append("2You have taken \(timeFormat(result)). Your best was \(timeFormat(score))!")
+                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
             }
             else {
-                words.append("1You have taken \(timeFormat(result)). Your best was \(timeFormat(score))!")
+                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
             }
         }
         if result < 60 && result >= 40{
             medalName = "Medal4-Bronze"
             words = ["Nice try!"]
             if score > UtilitiesPortal.defaultScore {
-                words.append("2You have taken \(timeFormat(result)). Your best was \(timeFormat(score))!")
+                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
             }
             else {
-                words.append("1You have taken \(timeFormat(result)). Your best was \(timeFormat(score))!")
+                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
             }
         }
         if result > 60 {
             medalName = "Medal5-Rust"
             words = ["Good effort!"]
             if score > UtilitiesPortal.defaultScore {
-                words.append("2You have taken \(timeFormat(result)). Your best was \(timeFormat(score))!")
+                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
             }
             else {
-                words.append("1You have taken \(timeFormat(result)). Your best was \(timeFormat(score))!")
+                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
             }
         }
         return (medalName, words)
     }
-    func  timeFormat(score:Int) -> String{
-        let hour = score/3600
-        let min = score/60
-        let sec = score%60
-        return"\(hour):\(min):\(sec)"
-    }
+ 
 }
