@@ -485,9 +485,7 @@ class LevelThreeScene: SKScene {
         }
         
         if state == UtilitiesPortal.stateFact {
-            factOverlay.hidden = true
-            state = previousState
-            previousState = UtilitiesPortal.stateFact
+            setupScene()
             return
         }
         
@@ -552,11 +550,12 @@ class LevelThreeScene: SKScene {
         if node.name == UtilitiesPortal.tickButtonName {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
-                
                 return
             }
              
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
+                previousState = state
+                state = UtilitiesPortal.stateFact
                 factOverlay.hidden = false
             }
             return

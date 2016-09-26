@@ -496,11 +496,10 @@ class LevelOneScene: SKScene {
         }
         
         if state == UtilitiesPortal.stateFact {
-            factOverlay.hidden = true
-            state = previousState
-            previousState = UtilitiesPortal.stateFact
+            setupScene()
             return
         }
+        
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
             state = previousState
@@ -563,16 +562,15 @@ class LevelOneScene: SKScene {
         if node.name == UtilitiesPortal.tickButtonName {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
-               
                 return
             }
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
+                previousState = state
+                state = UtilitiesPortal.stateFact
                 factOverlay.hidden = false
             }
             return
         }
-        
-  
         
         // Show button selected
         if node.name == UtilitiesPortal.showButtonName {
