@@ -21,7 +21,8 @@ class UtilitiesPortal {
     static let stateFact = 4
     static let stateHome = 5
     
-    static let defaultScore = -1
+    static let firstTime = -1
+    static let defaultScore = 0
     static let levelOne = 1
     static let levelTwo = 2
     static let levelThree = 3

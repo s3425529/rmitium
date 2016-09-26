@@ -17,9 +17,9 @@ class DataHandler {
             let entity = NSEntityDescription.insertNewObjectForEntityForName("Settings", inManagedObjectContext: settings) as! Settings
             entity.setValue(true, forKey: "sound")
             entity.setValue(true, forKey: "rightHand")
-            entity.setValue(0, forKey: "levelOne")
-            entity.setValue(0, forKey: "levelTwo")
-            entity.setValue(0, forKey: "levelThree")
+            entity.setValue(-1, forKey: "levelOne")
+            entity.setValue(-1, forKey: "levelTwo")
+            entity.setValue(-1, forKey: "levelThree")
             
             do {
                 try settings.save()
@@ -37,9 +37,9 @@ class DataHandler {
             let object = result.first!
             object.setValue(true, forKey: "sound")
             object.setValue(true, forKey: "rightHand")
-            object.setValue(0, forKey: "levelOne")
-            object.setValue(0, forKey: "levelTwo")
-            object.setValue(0, forKey: "levelThree")
+            object.setValue(-1, forKey: "levelOne")
+            object.setValue(-1, forKey: "levelTwo")
+            object.setValue(-1, forKey: "levelThree")
             try settings.save()
         }
         catch {

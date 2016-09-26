@@ -127,6 +127,10 @@ class GameScene: SKScene {
         if node.name == UtilitiesPortal.infoButonName {
             state = UtilitiesPortal.stateInfo
             infoOverlay!.hidden = false
+            
+            // Reset setting when user click info button
+            // For testing display info layout the first time
+            DataHandler.resetSettings()
             return
         }
         

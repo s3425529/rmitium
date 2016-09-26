@@ -9,7 +9,6 @@
 import SpriteKit
 
 class LevelOneScene: SKScene {
-    var firstTime: Bool = true
     var answers: [CustomSKSpriteNode] = []
     var questions: [CustomSKSpriteNode] = []
     var answeredQuestions: [CustomSKSpriteNode] = []
@@ -40,12 +39,11 @@ class LevelOneScene: SKScene {
         answeredQuestions.removeAll()
         
         PositionHandler.setRightHand()
-        let score = DataHandler.getLevelOneScore()
         
-        if firstTime && score == UtilitiesPortal.defaultScore {
-            firstTime = false
+        if DataHandler.getLevelOneScore() == UtilitiesPortal.firstTime {
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo
+            DataHandler.saveLevelOneScore()
         }
         else {
             state = UtilitiesPortal.stateAnswer
