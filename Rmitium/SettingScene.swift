@@ -14,20 +14,21 @@ class SettingScene: SKScene {
     var settings: [SKSpriteNode] = []
     var values: [Bool] = []
     var state: Int?
-    var model: Settings!    
+    weak var model: Settings!
     
     override func didMoveToView(view: SKView) {
+        settings.removeAll()
+        values.removeAll()
         UtilitiesPortal.score = 0
         state = UtilitiesPortal.stateAnswer
         
         // Reset the setting every time use enter the setting scene for testing purpose
-        DataHandler.initSettings()
+        //DataHandler.initSettings()
         
         model = DataHandler.getSettings()
         values.append(model.getSound)
+        values.append(model.getRightHand)
         values.append(model.getSound)
-        values.append(model.getSound)
-        
         
         // Home button
         let home = SKSpriteNode(imageNamed: "home")
@@ -60,7 +61,10 @@ class SettingScene: SKScene {
             self.addChild(levelLabel)
             
             let levelButton = SKSpriteNode(imageNamed: "offbutton")
-            if model.getSound {
+            if count == 0 && model.getSound {
+                levelButton.texture = SKTexture(image: UIImage(named: "onbutton")!)
+            }
+            else if count == 1 && model.getRightHand {
                 levelButton.texture = SKTexture(image: UIImage(named: "onbutton")!)
             }
             levelButton.name = UtilitiesPortal.settingLabelButtons[count]
@@ -79,7 +83,8 @@ class SettingScene: SKScene {
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
             // Save settings
-            DataHandler.updateSound(values[0])
+            DataHandler.updateSettings(values)
+            PositionHandler.setRightHand()
             cleanScene()
             
             let secondScene = GameScene(size: self.size)
@@ -138,12 +143,16 @@ class SettingScene: SKScene {
     }
     
     override func willMoveFromView(view: SKView) {
+        settings.removeAll()
+        values.removeAll()
         self.removeAllActions()
         self.removeAllChildren()
         print("Remove all nodes Setting Scene")
     }
     
     func cleanScene() {
+        settings.removeAll()
+        values.removeAll()
         if let s = self.view?.scene {
             NSNotificationCenter.defaultCenter().removeObserver(self)
             self.enumerateChildNodesWithName("//") { node, _ in

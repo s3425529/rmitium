@@ -19,7 +19,7 @@ class LevelOneScene: SKScene {
     var resultImage, infoOverlay, factOverlay, homeDialogue, yesBtn, noBtn: SKSpriteNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
-    var score, factLabel, itemName: SKLabelNode!
+    var score, factLabel, molecule: SKLabelNode!
     var timeNode: SKLabelNode!
     //var questionId = 0
     var lvlOneQuestion: LevelOneQuestion!
@@ -35,11 +35,13 @@ class LevelOneScene: SKScene {
     
     func setupScene() {
         self.removeAllChildren()
-        
         positions.removeAll()
         questions.removeAll()
         answeredQuestions.removeAll()
+        
+        PositionHandler.setRightHand()
         let score = DataHandler.getLevelOneScore()
+        
         if firstTime && score == UtilitiesPortal.defaultScore {
             firstTime = false
             previousState = UtilitiesPortal.stateAnswer
@@ -72,7 +74,7 @@ class LevelOneScene: SKScene {
     }
     
     func setupItems() {
-        let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
+        let levelLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
         levelLabel.fontSize = UtilitiesPortal.navLabelSize
@@ -90,7 +92,7 @@ class LevelOneScene: SKScene {
         addChild(home)
         
         // Tick button
-        tick = SKSpriteNode(imageNamed: "tick-grey")
+        tick = SKSpriteNode(imageNamed: "submit-grey")
         tick.name = UtilitiesPortal.tickButtonName
         tick.zPosition = 0.1
         tick.alpha = 1
@@ -111,7 +113,7 @@ class LevelOneScene: SKScene {
         addChild(show)
         
         // Info button
-        let info = SKSpriteNode(imageNamed: "help2")
+        let info = SKSpriteNode(imageNamed: "help3")
         info.name = UtilitiesPortal.infoButonName
         info.zPosition = 0.1
         info.alpha = 1
@@ -130,26 +132,31 @@ class LevelOneScene: SKScene {
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(score)
 
-        // ItemName label
-       
-        itemName = SKLabelNode(fontNamed:"Zapfino")
-        itemName.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-        itemName.zPosition = 0.1
-        itemName.fontColor = SKColor(colorLiteralRed: 0.7, green: 0.5, blue: 0.9, alpha: 1)
-        
-        itemName.text = "\(lvlOneQuestion.itemName)"
-        itemName.fontSize = UtilitiesPortal.factSize
-        itemName.position = CGPointMake(UtilitiesPortal.screenWidth/3, UtilitiesPortal.borderSize/4)
-        self.addChild(itemName)
-        
+        // Molecule name label
+        molecule = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
+        molecule.text = "\(lvlOneQuestion.itemName)"
+        molecule.fontSize = UtilitiesPortal.factSize*0.8
+        molecule.zPosition = 0.1
+        molecule.fontColor = SKColor.whiteColor()
+        if DataHandler.getSettings().getRightHand {
+            molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+            molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.01, UtilitiesPortal.screenHeight * 0.8)
+        }
+        else {
+            molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+            molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.99, UtilitiesPortal.screenHeight * 0.8)
+        }
+        self.addChild(molecule)
     }
+    
     func setupImage() {
         // Image
         let image = SKSpriteNode(imageNamed: lvlOneQuestion.imageName)
         image.zPosition = 0.1
         image.alpha = 0.9
-        image.position = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
-                                 y:UtilitiesPortal.screenHeight/2)
+        let current = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+                       y:UtilitiesPortal.screenHeight/2)
+        image.position = PositionHandler.convertTargetPoint(current)
         let currentSize = image.size
         let x = UtilitiesPortal.imageWidth/currentSize.width
         let y = UtilitiesPortal.imageHeight/currentSize.height
@@ -174,16 +181,25 @@ class LevelOneScene: SKScene {
                                  height: UtilitiesPortal.screenHeight*0.1)
             
             if count < 5 {
-                answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.75,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count)))
+                let x = CGPoint(x:UtilitiesPortal.screenWidth*0.75,
+                                y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count)))
+                answer.position = PositionHandler.convertLevelOneLabelPoint(x);
+                //answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.75,
+                                          //y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count)))
             }
             else if count < 10 {
-                answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.90,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
+                let x = CGPoint(x:UtilitiesPortal.screenWidth*0.90,
+                                y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
+                answer.position = PositionHandler.convertLevelOneLabelPoint(x);
+                //answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.90,
+                                          //y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
             }
             else {
-                answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.83    ,
-                                          y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
+                let x = CGPoint(x:UtilitiesPortal.screenWidth*0.83    ,
+                                y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
+                answer.position = PositionHandler.convertLevelOneLabelPoint(x);
+                //answer.position = CGPoint(x:UtilitiesPortal.screenWidth*0.83    ,
+                                          //y:UtilitiesPortal.screenHeight*(0.8-0.12*CGFloat(count-5)))
             }
             
             addChild(answer)
@@ -206,8 +222,9 @@ class LevelOneScene: SKScene {
             UtilitiesPortal.totalQuestions += 1
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
             sprite.zPosition = 0.2
-            sprite.position = CGPoint(x:UtilitiesPortal.screenWidth * positions[count].x,
-                                      y:UtilitiesPortal.screenHeight * positions[count].y)
+            let x = CGPoint(x:UtilitiesPortal.screenWidth * positions[count].x,
+                            y:UtilitiesPortal.screenHeight * positions[count].y)
+            sprite.position = PositionHandler.convertTargetPoint(x)
             addChild(sprite)
             questions.append(sprite)
             
@@ -462,10 +479,10 @@ class LevelOneScene: SKScene {
         self.chosenAnswer = nil
         
         if checkResult() {
-            tick.texture = SKTexture(image: UIImage(named: "tick-green")!)
+            tick.texture = SKTexture(image: UIImage(named: "submit-blue")!)
         }
         else {
-            tick.texture = SKTexture(image: UIImage(named: "tick-grey")!)
+            tick.texture = SKTexture(image: UIImage(named: "submit-grey")!)
         }
     }
     
@@ -559,7 +576,7 @@ class LevelOneScene: SKScene {
         if node.name == UtilitiesPortal.tickButtonName {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
-                itemName.hidden = true
+               
                 return
             }
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
@@ -577,8 +594,9 @@ class LevelOneScene: SKScene {
                 resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
                 resultImage.zPosition = 0.5
                 resultImage.alpha = 1
-                resultImage.position = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
-                                               y:UtilitiesPortal.screenHeight/2 )
+                let current = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
+                                y:UtilitiesPortal.screenHeight/2)
+                resultImage.position = PositionHandler.convertTargetPoint(current)
                 let currentSize = resultImage.size
                 let x = UtilitiesPortal.imageWidth/currentSize.width
                 let y = UtilitiesPortal.imageHeight/currentSize.height

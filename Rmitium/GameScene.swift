@@ -14,7 +14,7 @@ class GameScene: SKScene {
     var audioNode = SKAudioNode(fileNamed: "clickSound.wav")
     var infoOverlay: SKSpriteNode!
     var state: Int!
-    var playBgm = SKAction.playSoundFileNamed("bgm.mp3", waitForCompletion: false)
+    //weak var playBgm = SKAction.playSoundFileNamed("bgm.mp3", waitForCompletion: false)
     
     override func didMoveToView(view: SKView) {
         UtilitiesPortal.score = 0
@@ -39,7 +39,7 @@ class GameScene: SKScene {
         addChild(setting)
         
         // Help button
-        let info = SKSpriteNode(imageNamed: "help2")
+        let info = SKSpriteNode(imageNamed: "help3")
         info.name = UtilitiesPortal.infoButonName
         info.zPosition = 0.1
         info.alpha = 0.9
@@ -160,7 +160,7 @@ class GameScene: SKScene {
             cleanScene()
             let secondScene = LevelTwoMenuScene(size: self.size)
                                     
-            //let secondScene = ResultPage(size: self.size)
+            //let secondScene = ResultPage2(size: self.size)
             //let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             let transition = SKTransition.moveInWithDirection(.Down, duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -188,12 +188,14 @@ class GameScene: SKScene {
     }
     
     override func willMoveFromView(view: SKView) {
+        //playBgm = nil
         self.removeAllActions()
         self.removeAllChildren()
         print("Remove all nodes Game Scene")
     }
     
     func cleanScene() {
+        //playBgm = nil
         if let s = self.view?.scene {
             NSNotificationCenter.defaultCenter().removeObserver(self)
             self.enumerateChildNodesWithName("//") { node, _ in

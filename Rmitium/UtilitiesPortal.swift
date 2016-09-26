@@ -43,8 +43,8 @@ class UtilitiesPortal {
                                   "Level 2: Building Molecules",
                                   "Level 3: Intermolecular Forces", "SETTINGS"]
     
-    static let settingLabelTexts = ["Sound", "Setting 2", "Setting 3"]
-    static let settingLabelNames = ["sound", "setting02", "setting03"]
+    static let settingLabelTexts = ["Sound", "Right Hand", "Setting 3"]
+    static let settingLabelNames = ["sound", "rightHand", "setting03"]
     static let settingLabelButtons = ["soundBtn", "setting02Btn", "setting03Btn"]
     
     static let emptyString = ""
@@ -101,6 +101,7 @@ class UtilitiesPortal {
     
     static var score = 0
     static var totalQuestions = 0
+   
     //static var record = [Int]()
     static func setBgm(){
         let soundSetting = DataHandler.getSettings().getSound

@@ -26,6 +26,7 @@ class ResultPage: SKScene {
     var homeDialogue,homeView :SKSpriteNode!
     var text,text1: SKMultilineLabel!
     var socialData:SocialClass!
+  
     override func didMoveToView(view: SKView) {
         socialData = SocialClass()
         socialData.initClass()
@@ -220,6 +221,8 @@ class ResultPage: SKScene {
     
     //back to the home page,
     func backHomePage() {
+        self.removeAllActions()
+        self.removeAllChildren()
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -231,6 +234,8 @@ class ResultPage: SKScene {
     }
     
     func backLevel1() {
+        self.removeAllActions()
+        self.removeAllChildren()
         LevelOneModel.reset()
         let secondScene = LevelOneScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
@@ -241,6 +246,8 @@ class ResultPage: SKScene {
     }
     
     func goToLevel2(){
+        self.removeAllActions()
+        self.removeAllChildren()
         let secondScene = LevelTwoScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -305,6 +312,8 @@ class ResultPage: SKScene {
             homeView.hidden = false
         }
         if node.name == UtilitiesPortal.yesButtonName {
+            self.removeAllActions()
+            self.removeAllChildren()
             backHomePage()
             return
         }
@@ -346,4 +355,8 @@ class ResultPage: SKScene {
         /* Called before each frame is rendered */
     }
     
+
+
+
+
 }

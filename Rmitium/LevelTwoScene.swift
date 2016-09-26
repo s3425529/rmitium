@@ -18,11 +18,11 @@ class LevelTwoScene: SKScene {
     var state, previousState: Int!
     var timerClass:TimeControl!
     var timeNsNode:NSTimer!
-    var LIMITTIME = 60
+    var LIMITTIME = 100000
     
     override func didMoveToView(view: SKView) {
         setupTimer()
-        timerClass.pause(true)
+        //timerClass.pause(true)
         setupScene()
     }
     
@@ -65,7 +65,7 @@ class LevelTwoScene: SKScene {
         addChild(home)
         
         // Tick button
-        tick = SKSpriteNode(imageNamed: "tick-white")
+        tick = SKSpriteNode(imageNamed: "submit-grey")
         tick.name = UtilitiesPortal.tickButtonName
         tick.hidden = true
         tick.zPosition = 0.1
@@ -76,7 +76,7 @@ class LevelTwoScene: SKScene {
         addChild(tick)
         
         // Info button
-        let info = SKSpriteNode(imageNamed: "help2")
+        let info = SKSpriteNode(imageNamed: "help3")
         info.name = UtilitiesPortal.infoButonName
         info.zPosition = 0.1
         info.alpha = 1
@@ -354,10 +354,6 @@ class LevelTwoScene: SKScene {
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
             
-            if timerClass.timeLabel <= LIMITTIME{
-                timerClass.pause(true)
-            }
-            
             homeDialogue.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
@@ -371,7 +367,6 @@ class LevelTwoScene: SKScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
-            timerClass.pause(true)
             previousState = state
             state = UtilitiesPortal.stateInfo
             infoOverlay.hidden = false
@@ -454,6 +449,8 @@ class LevelTwoScene: SKScene {
     
     //back to the home page,
     func backHomePage() {
+        self.removeAllActions()
+        self.removeAllChildren()
         cleanScene()
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
@@ -476,7 +473,7 @@ class LevelTwoScene: SKScene {
     
     @objc func getTime(timer:NSTimer) {
         timeNode.text = "Time:\(timerClass.timeLabel)"
-        
+        /*
         if timerClass.timeLabel >= LIMITTIME-4 && timerClass.timeLabel < LIMITTIME{
             timeNode.fontColor = SKColor.redColor()
             let zoom = SKAction.scaleTo(2, duration: 0.5)
@@ -486,12 +483,13 @@ class LevelTwoScene: SKScene {
             let action = SKAction.sequence([zoom,fade,fade1,zoom1])
             timeNode.runAction(action)
         }
-        
+        */
         if checkResult() {
+            UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
             toResultSence()
         }
-        
+        /*
         if timerClass.timeLabel >= LIMITTIME {
             timeNode.text = "Time Out!"
             
@@ -501,6 +499,7 @@ class LevelTwoScene: SKScene {
             timeOut()
             //alertMessage()
         }
+         */
     }
     
     func alertMessage(){
