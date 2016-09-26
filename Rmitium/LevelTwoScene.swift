@@ -17,28 +17,32 @@ class LevelTwoScene: SKScene {
     var state, previousState: Int!
     var timerClass:TimeControl!
     var timeNsNode:NSTimer!
-    var LIMITTIME = 100000
-    
+    var LIMITTIME :Int!
+    var plus = false
     override func didMoveToView(view: SKView) {
         //This is the template for implementing setting
         switch String(self.userData!.valueForKey("gameMode")!) {
             case "Standard":
                 //code goes here
                 print("Game mode: Standard!")
+                
+                setupTimer()
             break
             case "Time Trial":
                 //code goes here
                 print("Game mode: Time Trial!")
+                trialTimer()
             break
             case "Beat the Clock":
                 //code goes here
                 print("Game mode: Beat the Clock!")
+                beatTimer()
             break
             default:
             break
         }
         
-        setupTimer()
+        
         //timerClass.pause(true)
         setupScene()
     }
@@ -336,7 +340,7 @@ class LevelTwoScene: SKScene {
             let nodes = self.nodesAtPoint(location)
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
-                    if timerClass.timeLabel < LIMITTIME{
+                    if timerClass.timeLabel > 0{
                         runAction(sfx)
                         timeOut()
                         backHomePage()
@@ -420,6 +424,7 @@ class LevelTwoScene: SKScene {
                         if compareTiles(x, b: chosenAnswer) {
                             answers[chosenAnswer].hidden = true
                             answers[x].hidden = true
+                            plus = true
                         }
                         else {
                             answers[chosenAnswer].texture =
@@ -486,7 +491,8 @@ class LevelTwoScene: SKScene {
     
     //MARK------- Timer
     func setupTimer() {
-        timerClass = TimeControl(limitTime: LIMITTIME)
+        LIMITTIME = 100000
+        timerClass = TimeControl(limitTime: LIMITTIME, tag: true)
         timerClass.startTimer()
         
        // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
@@ -524,6 +530,93 @@ class LevelTwoScene: SKScene {
          */
     }
     
+    func trialTimer(){
+        LIMITTIME = 10
+        timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
+        timerClass.startTimer()
+        
+        // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
+        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime2:", userInfo: nil, repeats: true)
+    }
+    @objc func getTime2(timer:NSTimer) {
+        if plus == true{
+        
+            timerClass.remainSecond = timerClass.remainSecond + 5
+            LIMITTIME = timerClass.remainSecond
+            timerClass.limitTime = LIMITTIME
+            plus = false
+        }
+        timeNode.text = "Time:\(timerClass.timeLabel)"
+        
+         if timerClass.timeLabel >= 0 && timerClass.timeLabel <= 4{
+         timeNode.fontColor = SKColor.redColor()
+         let zoom = SKAction.scaleTo(2, duration: 0.5)
+         let fade = SKAction.fadeAlphaTo(0.1, duration: 0.5)
+         let zoom1 = SKAction.scaleTo(1, duration: 0.1)
+         let fade1 = SKAction.fadeAlphaTo(1, duration: 0.1)
+         let action = SKAction.sequence([zoom,fade,fade1,zoom1])
+         timeNode.runAction(action)
+         }
+        
+        if checkResult() {
+            UtilitiesPortal.score = timerClass.timeLabel
+            timeOut()
+            toResultSence()
+        }
+        
+         if timerClass.timeLabel <= 0 {
+         timeNode.text = "Time Out!"
+         
+         //block the game scene
+         state = UtilitiesPortal.stateResult
+         
+         timeOut()
+         //alertMessage()
+         }
+        
+    }
+
+    func beatTimer(){
+        LIMITTIME = 30
+        timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
+        timerClass.startTimer()
+        
+        // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
+        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime3:", userInfo: nil, repeats: true)
+        
+    }
+    @objc func getTime3(timer:NSTimer) {
+        timeNode.text = "Time:\(timerClass.timeLabel)"
+        
+         if timerClass.timeLabel >= 1 && timerClass.timeLabel < 5{
+         timeNode.fontColor = SKColor.redColor()
+         let zoom = SKAction.scaleTo(2, duration: 0.5)
+         let fade = SKAction.fadeAlphaTo(0.1, duration: 0.5)
+         let zoom1 = SKAction.scaleTo(1, duration: 0.1)
+         let fade1 = SKAction.fadeAlphaTo(1, duration: 0.1)
+         let action = SKAction.sequence([zoom,fade,fade1,zoom1])
+         timeNode.runAction(action)
+         }
+        
+        if checkResult() {
+            UtilitiesPortal.score = timerClass.timeLabel
+            timeOut()
+            toResultSence()
+        }
+        
+         if timerClass.timeLabel <= 0 {
+         timeNode.text = "Time Out!"
+         
+         //block the game scene
+         state = UtilitiesPortal.stateResult
+         
+         timeOut()
+         //alertMessage()
+         }
+
+    }
+
+    
     func alertMessage(){
         let controller = self.view?.window?.rootViewController as! GameViewController
         let alert = UIAlertController(title: "Time Out!", message: "Try Again or Back Home?", preferredStyle: UIAlertControllerStyle.Alert)
@@ -551,10 +644,17 @@ class LevelTwoScene: SKScene {
     
     func toResultSence() {
         cleanScene()
+        
         let secondScene = ResultPage2(size: self.size)
+        secondScene.userData = NSMutableDictionary()
+        let mode = self.userData?.valueForKey("gameMode")
+        secondScene.userData?.setValue(mode, forKey: "gameMode")
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
+        
+        
+        
     }
     
     override func willMoveFromView(view: SKView) {

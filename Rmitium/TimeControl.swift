@@ -15,15 +15,24 @@ class TimeControl {
     var limitTime: Int!
     var pauseTime = 1
     var countDownTimer: NSTimer?
+    var tag:Bool!
    // var action:()->Void
     
     var remainSecond :Int = 0 {
         willSet{
             timeLabel = newValue
-            if newValue >= limitTime {
-                //action()
-                isCount = false
+            
+            if tag == true{
+                if newValue >= limitTime {
+                    //action()
+                    isCount = false
+                }
+            }else{
+                if newValue <= 0 {
+                    isCount = false
+                }
             }
+            
         }
     }
     
@@ -32,7 +41,12 @@ class TimeControl {
             if newValue {
                 //countDownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(TimeControl.updateTime(_:)), userInfo: nil, repeats: true)
                 countDownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "updateTime:", userInfo: nil, repeats: true)
-                remainSecond = pauseTime
+                if tag == true{
+                    remainSecond = pauseTime
+                }else{
+                    remainSecond = limitTime
+                }
+                
               
             }
             else {
@@ -42,8 +56,9 @@ class TimeControl {
         }
     }
     
-    init(limitTime:Int) {
+    init(limitTime:Int, tag:Bool) {
         self.limitTime = limitTime
+        self.tag = tag
     }
     
     func startTimer() {
@@ -53,7 +68,12 @@ class TimeControl {
         isCount = false
     }
     @objc func updateTime(timer: NSTimer) {
-         remainSecond += 1
+        if tag == true{
+            remainSecond += 1
+        }else{
+            remainSecond -= 1
+        }
+        
     }
     func pause(isTrue: Bool ){
         if isTrue {

@@ -238,7 +238,11 @@ class ResultPage2: SKScene {
     func backLevel2() {
         self.removeAllActions()
         self.removeAllChildren()
+        
         let secondScene = LevelTwoScene(size: self.size)
+        secondScene.userData = NSMutableDictionary()
+        let mode = self.userData?.valueForKey("gameMode")
+        secondScene.userData?.setValue(mode, forKey: "gameMode")
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
