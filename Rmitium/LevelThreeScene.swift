@@ -155,7 +155,6 @@ class LevelThreeScene: SKScene {
         else {
             image.setScale(y)
         }
-        //image.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
         addChild(image)
         
     }
@@ -168,10 +167,16 @@ class LevelThreeScene: SKScene {
             answer.value = UtilitiesPortal.levelThreeAnswers[count]
             answer.zPosition = 0.3
             answer.alpha = 0.9
-            answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.20,
+            /*answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.20,
                                  height: UtilitiesPortal.screenHeight*0.15)
             let current = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
-                                  y:UtilitiesPortal.screenHeight*(0.75-0.18*CGFloat(count)))
+                                  y:UtilitiesPortal.screenHeight*(0.75-0.18*CGFloat(count)))*/
+            
+            answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
+                                 height: UtilitiesPortal.screenHeight*0.1)
+            let current = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
+                                  y:UtilitiesPortal.screenHeight*(0.7-0.12*CGFloat(count)))
+            
             answer.position = PositionHandler.convertLevelThreeLabelPoint(current)
             
             addChild(answer)
@@ -228,7 +233,7 @@ class LevelThreeScene: SKScene {
         factLabel.hidden = true
         factLabel.zPosition = 0.3
         factLabel.position = CGPoint(x: UtilitiesPortal.screenWidth*0.20, y: UtilitiesPortal.borderSize/4)
-        addChild(factLabel)
+        //addChild(factLabel)
         
         factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth,
                                            pos: CGPoint(x: 0, y: UtilitiesPortal.screenHeight/8),fontName: UtilitiesPortal.navLabelFont,
@@ -552,7 +557,7 @@ class LevelThreeScene: SKScene {
             }
              
             if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
-                setupScene()
+                factOverlay.hidden = false
             }
             return
         }
@@ -602,11 +607,10 @@ class LevelThreeScene: SKScene {
             return
         }
         
-        // Fact label selected
-        if node.name == UtilitiesPortal.factLabelName {
-            previousState = state
-            state = UtilitiesPortal.stateFact
-            factOverlay.hidden = false
+        // Fact Overlay selected
+        if node.name == UtilitiesPortal.factOverlayName {
+            factOverlay.hidden = true
+            setupScene()
             return
         }
     }

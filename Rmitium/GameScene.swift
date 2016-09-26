@@ -162,7 +162,7 @@ class GameScene: SKScene {
         if (node.name == UtilitiesPortal.levelLabelNames[1]
                                 || node.name == UtilitiesPortal.levelButtonNames[1]) {
             cleanScene()
-            let secondScene = LevelTwoScene(size: self.size)
+            let secondScene = LevelTwoMenuScene(size: self.size)
                                     
             //let secondScene = ResultPage2(size: self.size)
             //let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
