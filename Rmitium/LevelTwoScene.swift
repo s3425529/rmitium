@@ -449,6 +449,8 @@ class LevelTwoScene: SKScene {
     
     //back to the home page,
     func backHomePage() {
+        self.removeAllActions()
+        self.removeAllChildren()
         cleanScene()
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)

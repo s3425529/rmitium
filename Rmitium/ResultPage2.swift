@@ -219,6 +219,8 @@ class ResultPage2: SKScene {
     
     //back to the home page,
     func backHomePage() {
+        self.removeAllActions()
+        self.removeAllChildren()
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -227,6 +229,8 @@ class ResultPage2: SKScene {
     }
     
     func backLevel2() {
+        self.removeAllActions()
+        self.removeAllChildren()
         let secondScene = LevelTwoScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
@@ -236,6 +240,8 @@ class ResultPage2: SKScene {
     }
     
     func goToLevel3(){
+        self.removeAllActions()
+        self.removeAllChildren()
         let secondScene = LevelThreeScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -307,6 +313,8 @@ class ResultPage2: SKScene {
             state = UtilitiesPortal.stateHome
         }
         if node.name == UtilitiesPortal.yesButtonName {
+            self.removeAllActions()
+            self.removeAllChildren()
             backHomePage()
             return
         }
