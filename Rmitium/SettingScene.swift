@@ -27,8 +27,8 @@ class SettingScene: SKScene {
         
         model = DataHandler.getSettings()
         values.append(model.getSound)
+        values.append(model.getEffect)
         values.append(model.getRightHand)
-        values.append(model.getSound)
         
         // Home button
         let home = SKSpriteNode(imageNamed: "home")
@@ -49,30 +49,36 @@ class SettingScene: SKScene {
         self.addChild(levelLabel)
         
         // Generating level buttons
-        for count in 0...2 {
+        for count in 0..<UtilitiesPortal.settingLabelNames.count {
             let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.levelLabelFont)
             levelLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
             levelLabel.zPosition = 0.2
             levelLabel.name = UtilitiesPortal.settingLabelNames[count]
             levelLabel.text = UtilitiesPortal.settingLabelTexts[count]
             levelLabel.fontSize = UtilitiesPortal.levelLabelSize
-            levelLabel.position = CGPointMake(UtilitiesPortal.screenWidth*0.38,
-                UtilitiesPortal.screenHeight*(0.60-CGFloat(count)*0.15))
+            levelLabel.position = CGPointMake(UtilitiesPortal.screenWidth*0.27,
+                UtilitiesPortal.screenHeight*(0.68-CGFloat(count)*0.15))
             self.addChild(levelLabel)
             
             let levelButton = SKSpriteNode(imageNamed: "offbutton")
             if count == 0 && model.getSound {
                 levelButton.texture = SKTexture(image: UIImage(named: "onbutton")!)
             }
-            else if count == 1 && model.getRightHand {
+            else if count == 1 && model.getEffect {
+                levelButton.texture = SKTexture(image: UIImage(named: "onbutton")!)
+            }
+            else if count == 2 && model.getRightHand {
                 levelButton.texture = SKTexture(image: UIImage(named: "onbutton")!)
             }
             levelButton.name = UtilitiesPortal.settingLabelButtons[count]
             levelButton.alpha = 0.9
             levelButton.zPosition = 0.1
-            levelButton.position = CGPointMake(UtilitiesPortal.screenWidth*0.62,
-                                               UtilitiesPortal.screenHeight*(0.62-CGFloat(count)*0.15))
+            levelButton.position = CGPointMake(UtilitiesPortal.screenWidth*0.68,
+                                               UtilitiesPortal.screenHeight*(0.70-CGFloat(count)*0.15))
             levelButton.size = CGSize(width: 305/3,height: 143/3)
+            if count == UtilitiesPortal.settingLabelNames.count-1 {
+                levelButton.hidden = true
+            }
             self.addChild(levelButton)
             settings.append(levelButton)
         }
@@ -102,7 +108,31 @@ class SettingScene: SKScene {
         print("height: \(UtilitiesPortal.screenHeight)")
         
         // Sound
-        if (node.name == UtilitiesPortal.settingLabelNames[0] ||
+        for count in 0..<UtilitiesPortal.settingLabelNames.count {
+            if (node.name == UtilitiesPortal.settingLabelNames[count] ||
+                node.name == UtilitiesPortal.settingLabelButtons[count]) {
+                if count == UtilitiesPortal.settingLabelNames.count-1 {
+                    DataHandler.resetScores()
+                    return
+                }
+                else if values[count] {
+                    values[count] = false
+                    settings[count].texture = SKTexture(image: UIImage(named: "offbutton")!)
+                    if count == 0 {
+                        SKTAudio.sharedInstance().pauseBackgroundMusic()
+                    }
+                }
+                else {
+                    values[count] = true
+                    settings[count].texture = SKTexture(image: UIImage(named: "onbutton")!)
+                    if count == 0 {
+                        SKTAudio.sharedInstance().resumeBackgroundMusic()
+                    }
+                }
+            }
+        }
+        
+        /*if (node.name == UtilitiesPortal.settingLabelNames[0] ||
             node.name == UtilitiesPortal.settingLabelButtons[0]) {
             runAction(sfx)
             if values[0] {
@@ -142,7 +172,7 @@ class SettingScene: SKScene {
                 values[2] = true
                 settings[2].texture = SKTexture(image: UIImage(named: "onbutton")!)
             }
-        }
+        }*/
     }
     
     override func update(currentTime: CFTimeInterval) {
