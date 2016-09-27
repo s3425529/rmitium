@@ -231,6 +231,7 @@ class ResultPage: SKScene {
         removeFromParent()
         removeAllChildren()
         UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
     }
     
     func backLevel1() {
@@ -243,6 +244,7 @@ class ResultPage: SKScene {
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
         UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
     }
     
     func goToLevel2(){
@@ -256,6 +258,7 @@ class ResultPage: SKScene {
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
         UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
     }
     
     func createHomeDialogue() {

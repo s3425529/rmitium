@@ -224,6 +224,7 @@ class ResultPage3: SKScene {
     
     func backLevel3() {
         UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         LevelThreeModel.reset()
         cleanScene()
         
