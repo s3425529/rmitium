@@ -12,6 +12,7 @@ class medalClass {
     var medalName: String!
     var words = [String]()
     var score = 0
+    
     func assignMedal(level: Int) -> (medalName:String , information:[String]) {
         percent = Float(UtilitiesPortal.score) / Float(UtilitiesPortal.totalQuestions)
         //percent = 1
@@ -19,11 +20,8 @@ class medalClass {
         if level == UtilitiesPortal.levelOne {
             score = DataHandler.getLevelOneScore() as Int
         }
-        else if level == UtilitiesPortal.levelTwo {
-            score = DataHandler.getLevelTwoScore() as Int
-        }
         else if level == UtilitiesPortal.levelThree {
-            score = DataHandler.getLevelThreeScore() as Int
+           score = DataHandler.getLevelThreeScore() as Int
         }
    
         //let percentString = Int(percent*100)
@@ -79,6 +77,7 @@ class medalClass {
         }
         return (medalName, words)
     }
+   
     func level2() -> (medalName:String , information:[String]){
         
         let min = UtilitiesPortal.score/60

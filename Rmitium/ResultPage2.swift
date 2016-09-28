@@ -209,6 +209,7 @@ class ResultPage2: SKScene {
     }
     
     func nextAction() {
+       
         print("next")
         goToLevel3()
     }
@@ -228,17 +229,18 @@ class ResultPage2: SKScene {
     func backHomePage() {
         self.removeAllActions()
         self.removeAllChildren()
+        UtilitiesPortal.score = 0
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        UtilitiesPortal.score = 0
+       
     }
     
     func backLevel2() {
         self.removeAllActions()
         self.removeAllChildren()
-        
+        UtilitiesPortal.score = 0
         let secondScene = LevelTwoScene(size: self.size)
         secondScene.userData = NSMutableDictionary()
         let mode = self.userData?.valueForKey("gameMode")
@@ -247,17 +249,18 @@ class ResultPage2: SKScene {
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        UtilitiesPortal.score = 0
+        
     }
     
     func goToLevel3(){
         self.removeAllActions()
         self.removeAllChildren()
+        UtilitiesPortal.score = 0
         let secondScene = LevelThreeScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        UtilitiesPortal.score = 0
+        
     }
 
     

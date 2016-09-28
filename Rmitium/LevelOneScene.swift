@@ -685,6 +685,8 @@ class LevelOneScene: SKScene {
     
     //back to the home page,
     func backHomePage() {
+        UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         cleanScene()
         UtilitiesPortal.totalQuestions = 0
         let secondScene = GameScene(size: self.size)
