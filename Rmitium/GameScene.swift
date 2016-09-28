@@ -16,6 +16,7 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         state = UtilitiesPortal.stateAnswer
         
         let image = SKSpriteNode(imageNamed: "chem-bg2")

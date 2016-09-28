@@ -67,7 +67,7 @@ class LevelOneScene: SKScene {
         setupDragLabel()
         setupTargets()
         setupFactLabel()
-        setupInfo()
+        //setupInfo()
         createHomeDialogue()
     }
     
@@ -506,7 +506,10 @@ class LevelOneScene: SKScene {
         }
         
         if state == UtilitiesPortal.stateInfo {
+            
             infoOverlay.hidden = true
+            infoOverlay.removeAllActions()
+            infoOverlay.removeAllChildren()
             state = previousState
             previousState = UtilitiesPortal.stateInfo
             return
@@ -618,6 +621,7 @@ class LevelOneScene: SKScene {
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
             runAction(sfx)
+            setupInfo()
             previousState = state
             state = UtilitiesPortal.stateInfo
             infoOverlay.hidden = false

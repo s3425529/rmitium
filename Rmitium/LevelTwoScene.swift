@@ -62,7 +62,7 @@ class LevelTwoScene: SKScene {
         
         setupItems()
         setupDragLabel()
-        setupInfo()
+        //setupInfo()
         createHomeDialogue()
     }
     
@@ -365,6 +365,8 @@ class LevelTwoScene: SKScene {
         
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
+            infoOverlay.removeAllActions()
+            infoOverlay.removeAllChildren()
             if timerClass.timeLabel <= LIMITTIME{
                 timerClass.pause(false)
             }
@@ -396,6 +398,7 @@ class LevelTwoScene: SKScene {
             runAction(sfx)
             previousState = state
             state = UtilitiesPortal.stateInfo
+            setupInfo()
             infoOverlay.hidden = false
             return
         }
