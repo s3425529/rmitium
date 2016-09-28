@@ -6,17 +6,7 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
-/*
-
-w/h=x/y = 2.483
-
-355/145
-w/355=
-
-
-
-*/
-
+import AVFoundation
 import SpriteKit
 import Social
 
@@ -25,6 +15,8 @@ class ResultPage3: SKScene {
     var homeDialogue,homeView :SKSpriteNode!
     var text,text1 :SKMultilineLabel!
     var socialData:SocialClass!
+    var audioPlayer = AVAudioPlayer()
+    
     override func didMoveToView(view: SKView) {
         socialData = SocialClass()
         socialData.initClass()
@@ -33,6 +25,16 @@ class ResultPage3: SKScene {
         setupCusterButton()
         setupMedal()
         createHomeDialogue()
+        
+        if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
+            do {
+                try audioPlayer = AVAudioPlayer(contentsOfURL: clickSound, fileTypeHint: nil)
+                audioPlayer.prepareToPlay()
+            }
+            catch {
+                fatalError("Error loading sound: \(error)")
+            }
+        }
         
         DataHandler.saveLevelThreeScore()
     }
@@ -169,7 +171,8 @@ class ResultPage3: SKScene {
         if socialData.twitter == true{
             
             activeTwitter()
-        }else{
+        }
+        else {
             twitterAlertMessage()
         }
 
@@ -307,6 +310,10 @@ class ResultPage3: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if DataHandler.getSettings().getEffect {
+            audioPlayer.play()
+        }
+        
         let touch = touches.first
         
         // Home button selected
@@ -323,24 +330,21 @@ class ResultPage3: SKScene {
         if node.name == UtilitiesPortal.noButtonName {
             //homeDialogue.hidden = true
             homeView.hidden = true
-            
             return
         }
     }
     
     func facebookAlertMessage() {
-        
         let controller = self.view?.window?.rootViewController as! GameViewController
         let alert = UIAlertController(title: "Facebook", message: "Rmitium would like to access your Facebook", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("facebook")
             self.activeFacebook()
-            
         }))
-        
         controller.presentViewController(alert, animated: true, completion: nil)
     }
+    
     func twitterAlertMessage() {
         
         let controller = self.view?.window?.rootViewController as! GameViewController
@@ -349,10 +353,7 @@ class ResultPage3: SKScene {
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("twitter")
             self.activeTwitter()
-            
         }))
-        
         controller.presentViewController(alert, animated: true, completion: nil)
     }
-    
 }

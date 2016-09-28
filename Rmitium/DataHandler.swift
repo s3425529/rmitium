@@ -10,7 +10,14 @@ import CoreData
 import Foundation
 
 class DataHandler {
+    class var sharedInstance: DataHandler {
+        struct Static {
+            static let instance = DataHandler()
+        }
+        return Static.instance
+    }
     static var settings = DataController().managedObjectContext
+    static var localSetting: Settings = DataHandler.getSettings()
     
     static func initSettings() {
         if checkDataIsEmpty() {
@@ -24,6 +31,7 @@ class DataHandler {
             
             do {
                 try settings.save()
+                //localSetting = entity
             }
             catch {
                 fatalError("Failure to save Settings: \(error)")
@@ -43,6 +51,7 @@ class DataHandler {
             object.setValue(-1, forKey: "levelTwo")
             object.setValue(-1, forKey: "levelThree")
             try settings.save()
+            //localSetting = object
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
@@ -64,6 +73,7 @@ class DataHandler {
             let result1 = try settings.executeFetchRequest(setting) as! [Settings]
             let object1 = result1.first!
             print("Reset to: \(object1.levelOne), \(object1.levelTwo), \(object1.levelThree)")
+            //localSetting = result1.first!
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
@@ -74,11 +84,17 @@ class DataHandler {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
+            //localSetting = result.first!
+            //return localSetting
             return result.first!
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
         }
+    }
+    
+    static func getLocalSetting() -> Settings {
+        return localSetting
     }
     
     // Level One
@@ -181,7 +197,7 @@ class DataHandler {
             object.setValue(values[1], forKey: "effect")
             object.setValue(values[2], forKey: "rightHand")
             try settings.save()
-            print("Trying to Save value: Sound(\(values[0])), RightHand(\(values[1]))")
+            print("Trying to Save value: Sound(\(values[0])), Effect(\(values[1]), RightHand(\(values[2]))")
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
@@ -189,7 +205,8 @@ class DataHandler {
         
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
-            print("Load value: Sound(\(result.first!.getSound)), RightHand(\(result.first!.getRightHand))")
+            print("Load value: Sound(\(result.first!.getSound)), Effect(\(result.first!.getEffect), RightHand(\(result.first!.getRightHand))")
+            localSetting = result.first!
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")

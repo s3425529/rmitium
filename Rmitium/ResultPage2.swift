@@ -10,6 +10,7 @@
 //  Rmitium
 //
 
+import AVFoundation
 import SpriteKit
 import Social
 
@@ -20,6 +21,8 @@ class ResultPage2: SKScene {
     var homeDialogue, homeView: SKSpriteNode!
     var socialData:SocialClass!
     var text,text1 :SKMultilineLabel!
+    var audioPlayer = AVAudioPlayer()
+    
     override func didMoveToView(view: SKView) {
         socialData = SocialClass()
         socialData.initClass()
@@ -28,13 +31,21 @@ class ResultPage2: SKScene {
         setupMedal()
         setupCustomerButton()
         createHomeDialogue()
-       
+        
+        if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
+            do {
+                try audioPlayer = AVAudioPlayer(contentsOfURL: clickSound, fileTypeHint: nil)
+                audioPlayer.prepareToPlay()
+            }
+            catch {
+                fatalError("Error loading sound: \(error)")
+            }
+        }
         
         DataHandler.saveLevelTwoScore()
     }
     
     func setupMedal(){
-    
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
         let medalDic = medalClass().level2()
         let medalName = medalDic.medalName
@@ -82,10 +93,6 @@ class ResultPage2: SKScene {
         text1.leading =  Int(UtilitiesPortal.screenHeight*0.1)
         text1.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text1)
-
-        
-        
-        
     }
     
     func setupItem(){
@@ -115,12 +122,9 @@ class ResultPage2: SKScene {
         info.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(info)
-        
-        
     }
     
     func setupCustomerButton(){
-    
         facebook = CustomButton(defaultButtonImage: "facebookbutton", activeButtonImage: "facebookbutton1", buttonAction: facebookAction,scale: 0.2)
         facebook.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
                                     y: UtilitiesPortal.screenHeight * 0.8)
@@ -172,8 +176,6 @@ class ResultPage2: SKScene {
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             controller.presentViewController(alert, animated: true, completion: nil)
         }
-        
-        
     }
     
     func twitterAction() {
@@ -181,7 +183,8 @@ class ResultPage2: SKScene {
         if socialData.twitter == true{
             
             activeTwitter()
-        }else{
+        }
+        else {
             twitterAlertMessage()
         }
     }
@@ -194,7 +197,8 @@ class ResultPage2: SKScene {
             facebookController.setInitialText("My score is \(UtilitiesPortal.score)")
             //facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(facebookController, animated: true, completion: nil)
-        }else{
+        }
+        else {
             let alert = UIAlertController(title: "Twitter Unavailable", message: "Be sure to go to Settings > Twitter to set up your account", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             controller.presentViewController(alert, animated: true, completion: nil)
@@ -234,7 +238,6 @@ class ResultPage2: SKScene {
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-       
     }
     
     func backLevel2() {
@@ -249,7 +252,6 @@ class ResultPage2: SKScene {
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        
     }
     
     func goToLevel3(){
@@ -260,7 +262,6 @@ class ResultPage2: SKScene {
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        
     }
 
     
@@ -309,10 +310,12 @@ class ResultPage2: SKScene {
         homeView.addChild(homeDialogue)
         //addChild(homeDialogue)
         addChild(homeView)
-        
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if DataHandler.getSettings().getEffect {
+            audioPlayer.play()
+        }
         let touch = touches.first
 
         // Home button selected
@@ -342,37 +345,33 @@ class ResultPage2: SKScene {
     }
     
     func facebookAlertMessage() {
-        
         let controller = self.view?.window?.rootViewController as! GameViewController
         let alert = UIAlertController(title: "Facebook", message: "Rmitium would like to access your Facebook", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("facebook")
             self.activeFacebook()
-            
         }))
-        
         controller.presentViewController(alert, animated: true, completion: nil)
     }
+    
     func twitterAlertMessage() {
-        
         let controller = self.view?.window?.rootViewController as! GameViewController
         let alert = UIAlertController(title: "Twitter", message: "Rmitium would like to access your Twitter", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("twitter")
             self.activeTwitter()
-            
         }))
-        
         controller.presentViewController(alert, animated: true, completion: nil)
     }
-    func  timeFormat() -> String{
+    
+    func  timeFormat() -> String {
         let hour = UtilitiesPortal.score/3600
         let min = UtilitiesPortal.score/60
         let sec = UtilitiesPortal.score%60
         return"\(hour):\(min):\(sec)"
-        }
+    }
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

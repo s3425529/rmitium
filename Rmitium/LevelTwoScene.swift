@@ -6,6 +6,7 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
+import AVFoundation
 import Foundation
 import SpriteKit
 
@@ -19,6 +20,8 @@ class LevelTwoScene: SKScene {
     var timeNsNode:NSTimer!
     var LIMITTIME :Int!
     var plus = false
+    var audioPlayer = AVAudioPlayer()
+    
     override func didMoveToView(view: SKView) {
         //This is the template for implementing setting
         switch String(self.userData!.valueForKey("gameMode")!) {
@@ -58,6 +61,16 @@ class LevelTwoScene: SKScene {
         }
         else {
             state = UtilitiesPortal.stateAnswer
+        }
+        
+        if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
+            do {
+                try audioPlayer = AVAudioPlayer(contentsOfURL: clickSound, fileTypeHint: nil)
+                audioPlayer.prepareToPlay()
+            }
+            catch {
+                fatalError("Error loading sound: \(error)")
+            }
         }
         
         setupItems()
@@ -329,8 +342,9 @@ class LevelTwoScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        
-        let sfx = SKAction.playSoundFileNamed("clickSound.wav", waitForCompletion: false)
+        if DataHandler.getSettings().getEffect {
+            audioPlayer.play()
+        }
         
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
@@ -341,12 +355,11 @@ class LevelTwoScene: SKScene {
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
                     if timerClass.timeLabel > 0{
-                        runAction(sfx)
                         timeOut()
                         backHomePage()
                         return
-                    }else{
-                        runAction(sfx)
+                    }
+                    else {
                         backHomePage()
                         return
                     }
@@ -380,7 +393,6 @@ class LevelTwoScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-            runAction(sfx)
             homeDialogue.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
@@ -388,14 +400,12 @@ class LevelTwoScene: SKScene {
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
-            runAction(sfx)
             print("Tick")
             return
         }
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
-            runAction(sfx)
             previousState = state
             state = UtilitiesPortal.stateInfo
             setupInfo()
@@ -501,7 +511,7 @@ class LevelTwoScene: SKScene {
         timerClass.startTimer()
         
        // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
-        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime:", userInfo: nil, repeats: true)
+        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
     }
     
     @objc func getTime(timer:NSTimer) {
@@ -541,7 +551,7 @@ class LevelTwoScene: SKScene {
         timerClass.startTimer()
         
         // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
-        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime2:", userInfo: nil, repeats: true)
+        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime2(_:)), userInfo: nil, repeats: true)
     }
     @objc func getTime2(timer:NSTimer) {
         if plus == true{
@@ -587,7 +597,7 @@ class LevelTwoScene: SKScene {
         timerClass.startTimer()
         
         // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
-        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime3:", userInfo: nil, repeats: true)
+        timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime3(_:)), userInfo: nil, repeats: true)
         
     }
     @objc func getTime3(timer:NSTimer) {

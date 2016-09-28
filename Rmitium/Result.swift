@@ -6,11 +6,13 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
+import AVFoundation
 import SpriteKit
 
 class Result: SKScene {
     var redo, share, back: SKSpriteNode!
     var awardText:String!
+    var audioPlayer = AVAudioPlayer()
     
     override func didMoveToView(view: SKView) {
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)

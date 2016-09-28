@@ -6,17 +6,7 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
-/*
-3198/3103
-w/h=x/y = 2.483
-
-355/145
-w/355=
-
-
-
-*/
-
+import AVFoundation
 import SpriteKit
 import Social
 
@@ -26,8 +16,19 @@ class ResultPage: SKScene {
     var homeDialogue,homeView :SKSpriteNode!
     var text,text1: SKMultilineLabel!
     var socialData:SocialClass!
+    var audioPlayer = AVAudioPlayer()
   
     override func didMoveToView(view: SKView) {
+        if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
+            do {
+                try audioPlayer = AVAudioPlayer(contentsOfURL: clickSound, fileTypeHint: nil)
+                audioPlayer.prepareToPlay()
+            }
+            catch {
+                fatalError("Error loading sound: \(error)")
+            }
+        }
+        
         socialData = SocialClass()
         socialData.initClass()
         socialData.getRecord()
@@ -149,7 +150,8 @@ class ResultPage: SKScene {
         if socialData.facebook == true{
             
             activeFacebook()
-        }else{
+        }
+        else {
             facebookAlertMessage()
         }
         
@@ -175,7 +177,8 @@ class ResultPage: SKScene {
         if socialData.twitter == true{
             
             activeTwitter()
-        }else{
+        }
+        else {
             twitterAlertMessage()
         }
     }
@@ -308,6 +311,9 @@ class ResultPage: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if DataHandler.getSettings().getEffect {
+            audioPlayer.play()
+        }
         let touch = touches.first
         
         // Home button selected
@@ -331,38 +337,28 @@ class ResultPage: SKScene {
     }
     
     func facebookAlertMessage() {
-        
         let controller = self.view?.window?.rootViewController as! GameViewController
         let alert = UIAlertController(title: "Facebook", message: "FacebookLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("facebook")
             self.activeFacebook()
-            
         }))
-        
         controller.presentViewController(alert, animated: true, completion: nil)
     }
+    
     func twitterAlertMessage() {
-        
         let controller = self.view?.window?.rootViewController as! GameViewController
         let alert = UIAlertController(title: "Twitter", message: "TwitterLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("twitter")
             self.activeTwitter()
-            
         }))
-        
         controller.presentViewController(alert, animated: true, completion: nil)
     }
 
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
-    
-
-
-
-
 }

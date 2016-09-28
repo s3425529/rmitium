@@ -15,6 +15,7 @@ class SettingScene: SKScene {
     var values: [Bool] = []
     var state: Int?
     weak var model: Settings!
+    var audioPlayer = AVAudioPlayer()
     
     override func didMoveToView(view: SKView) {
         settings.removeAll()
@@ -29,6 +30,16 @@ class SettingScene: SKScene {
         values.append(model.getSound)
         values.append(model.getEffect)
         values.append(model.getRightHand)
+        
+        if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
+            do {
+                try audioPlayer = AVAudioPlayer(contentsOfURL: clickSound, fileTypeHint: nil)
+                audioPlayer.prepareToPlay()
+            }
+            catch {
+                fatalError("Error loading sound: \(error)")
+            }
+        }
         
         // Home button
         let home = SKSpriteNode(imageNamed: "home")
@@ -57,7 +68,7 @@ class SettingScene: SKScene {
             levelLabel.text = UtilitiesPortal.settingLabelTexts[count]
             levelLabel.fontSize = UtilitiesPortal.levelLabelSize
             levelLabel.position = CGPointMake(UtilitiesPortal.screenWidth*0.27,
-                UtilitiesPortal.screenHeight*(0.68-CGFloat(count)*0.15))
+                                              UtilitiesPortal.screenHeight*(0.68-CGFloat(count)*0.15))
             self.addChild(levelLabel)
             
             let levelButton = SKSpriteNode(imageNamed: "offbutton")
@@ -67,7 +78,7 @@ class SettingScene: SKScene {
             else if count == 1 && model.getEffect {
                 levelButton.texture = SKTexture(image: UIImage(named: "onbutton")!)
             }
-            else if count == 2 && model.getRightHand {
+            else if count == 2 && !model.getRightHand {
                 levelButton.texture = SKTexture(image: UIImage(named: "onbutton")!)
             }
             levelButton.name = UtilitiesPortal.settingLabelButtons[count]
@@ -85,13 +96,13 @@ class SettingScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let sfx = SKAction.playSoundFileNamed("clickSound.wav", waitForCompletion: false)
-        
+        if DataHandler.getSettings().getEffect {
+            audioPlayer.play()
+        }
         
         let location = touches.first!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-            runAction(sfx)
             // Save settings
             DataHandler.updateSettings(values)
             PositionHandler.setRightHand()
@@ -115,6 +126,16 @@ class SettingScene: SKScene {
                     DataHandler.resetScores()
                     return
                 }
+                else if count == UtilitiesPortal.settingLabelNames.count-2 {
+                    if values[count] {
+                        values[count] = false
+                        settings[count].texture = SKTexture(image: UIImage(named: "onbutton")!)
+                    }
+                    else {
+                        values[count] = true
+                        settings[count].texture = SKTexture(image: UIImage(named: "offbutton")!)
+                    }
+                }
                 else if values[count] {
                     values[count] = false
                     settings[count].texture = SKTexture(image: UIImage(named: "offbutton")!)
@@ -133,46 +154,43 @@ class SettingScene: SKScene {
         }
         
         /*if (node.name == UtilitiesPortal.settingLabelNames[0] ||
-            node.name == UtilitiesPortal.settingLabelButtons[0]) {
-            runAction(sfx)
-            if values[0] {
-                values[0] = false
-                settings[0].texture = SKTexture(image: UIImage(named: "offbutton")!)
-                SKTAudio.sharedInstance().pauseBackgroundMusic()
-            }
-            else {
-                values[0] = true
-                settings[0].texture = SKTexture(image: UIImage(named: "onbutton")!)
-                SKTAudio.sharedInstance().resumeBackgroundMusic()
-            }
-            
-        }
-        
-        if (node.name == UtilitiesPortal.settingLabelNames[1] ||
-            node.name == UtilitiesPortal.settingLabelButtons[1]) {
-            runAction(sfx)
-            if values[1] {
-                values[1] = false
-                settings[1].texture = SKTexture(image: UIImage(named: "offbutton")!)
-            }
-            else {
-                values[1] = true
-                settings[1].texture = SKTexture(image: UIImage(named: "onbutton")!)
-            }
-        }
-        
-        if (node.name == UtilitiesPortal.settingLabelNames[2] ||
-            node.name == UtilitiesPortal.settingLabelButtons[2]) {
-            runAction(sfx)
-            if values[2] {
-                values[2] = false
-                settings[2].texture = SKTexture(image: UIImage(named: "offbutton")!)
-            }
-            else {
-                values[2] = true
-                settings[2].texture = SKTexture(image: UIImage(named: "onbutton")!)
-            }
-        }*/
+         node.name == UtilitiesPortal.settingLabelButtons[0]) {
+         if values[0] {
+         values[0] = false
+         settings[0].texture = SKTexture(image: UIImage(named: "offbutton")!)
+         SKTAudio.sharedInstance().pauseBackgroundMusic()
+         }
+         else {
+         values[0] = true
+         settings[0].texture = SKTexture(image: UIImage(named: "onbutton")!)
+         SKTAudio.sharedInstance().resumeBackgroundMusic()
+         }
+         
+         }
+         
+         if (node.name == UtilitiesPortal.settingLabelNames[1] ||
+         node.name == UtilitiesPortal.settingLabelButtons[1]) {
+         if values[1] {
+         values[1] = false
+         settings[1].texture = SKTexture(image: UIImage(named: "offbutton")!)
+         }
+         else {
+         values[1] = true
+         settings[1].texture = SKTexture(image: UIImage(named: "onbutton")!)
+         }
+         }
+         
+         if (node.name == UtilitiesPortal.settingLabelNames[2] ||
+         node.name == UtilitiesPortal.settingLabelButtons[2]) {
+         if values[2] {
+         values[2] = false
+         settings[2].texture = SKTexture(image: UIImage(named: "offbutton")!)
+         }
+         else {
+         values[2] = true
+         settings[2].texture = SKTexture(image: UIImage(named: "onbutton")!)
+         }
+         }*/
     }
     
     override func update(currentTime: CFTimeInterval) {

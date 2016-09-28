@@ -6,6 +6,7 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
+import AVFoundation
 import SpriteKit
 
 class LevelOneScene: SKScene {
@@ -26,7 +27,7 @@ class LevelOneScene: SKScene {
     var listOfQuestions:[LevelOneQuestion] = []
     //var timerClass:TimeControl!
     var timeNsNode:NSTimer!
-  
+    var audioPlayer = AVAudioPlayer()
     
     override func didMoveToView(view: SKView) {
         setupScene()
@@ -59,6 +60,16 @@ class LevelOneScene: SKScene {
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
             return
+        }
+        
+        if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
+            do {
+                try audioPlayer = AVAudioPlayer(contentsOfURL: clickSound, fileTypeHint: nil)
+                audioPlayer.prepareToPlay()
+            }
+            catch {
+                fatalError("Error loading sound: \(error)")
+            }
         }
         
         //state = UtilitiesPortal.stateAnswer
@@ -474,8 +485,9 @@ class LevelOneScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-
-        let sfx = SKAction.playSoundFileNamed("clickSound.wav", waitForCompletion: false)
+        if DataHandler.getSettings().getEffect {
+            audioPlayer.play()
+        }
         
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
@@ -485,12 +497,10 @@ class LevelOneScene: SKScene {
             let nodes = self.nodesAtPoint(location)
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
-                    runAction(sfx)
                     backHomePage()
                     return
                 }
                 else if node.name == UtilitiesPortal.noButtonName {
-                    runAction(sfx)
                     homeDialogue.hidden = true
                     state = previousState
                     previousState = UtilitiesPortal.stateHome
@@ -558,7 +568,6 @@ class LevelOneScene: SKScene {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
-            runAction(sfx)
             homeDialogue.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
@@ -566,7 +575,6 @@ class LevelOneScene: SKScene {
         
         // Tick button selected
         if node.name == UtilitiesPortal.tickButtonName {
-            runAction(sfx)
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
                 return
@@ -588,7 +596,6 @@ class LevelOneScene: SKScene {
         // Show button selected
         
         if node.name == UtilitiesPortal.showButtonName {
-            runAction(sfx)
             if state == UtilitiesPortal.stateResult {
                 displayAnswers(true)
                 resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
@@ -624,7 +631,6 @@ class LevelOneScene: SKScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
-            runAction(sfx)
             setupInfo()
             previousState = state
             state = UtilitiesPortal.stateInfo
@@ -634,7 +640,6 @@ class LevelOneScene: SKScene {
         
         //Fact Overlay selected
         if node.name == UtilitiesPortal.factOverlayName {
-            runAction(sfx)
             factOverlay.hidden = true
             setupScene()
             return

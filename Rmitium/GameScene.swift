@@ -13,11 +13,22 @@ import AVFoundation
 class GameScene: SKScene {
     var infoOverlay: SKSpriteNode!
     var state: Int!
+    var audioPlayer = AVAudioPlayer()
     
     override func didMoveToView(view: SKView) {
         UtilitiesPortal.score = 0
         UtilitiesPortal.totalQuestions = 0
         state = UtilitiesPortal.stateAnswer
+        
+        if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
+            do {
+                try audioPlayer = AVAudioPlayer(contentsOfURL: clickSound, fileTypeHint: nil)
+                audioPlayer.prepareToPlay()
+            }
+            catch {
+                fatalError("Error loading sound: \(error)")
+            }
+        }
         
         let image = SKSpriteNode(imageNamed: "chem-bg2")
         image.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
@@ -90,11 +101,11 @@ class GameScene: SKScene {
             
             setupInfo()
         }
-        UtilitiesPortal.setBgm()
+        //UtilitiesPortal.setBgm()
     }
     
     // Info layout
-    func setupInfo(){
+    func setupInfo() {
         let infoOverlayText = SKMultilineLabel(text: "Info layout", labelWidth:UtilitiesPortal.screenWidth,
                                                pos: CGPoint(x: 0, y: 0),fontName: UtilitiesPortal.navLabelFont,
                                                fontSize: UtilitiesPortal.navLabelSize,
@@ -117,7 +128,9 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let sfx = SKAction.playSoundFileNamed("clickSound.wav", waitForCompletion: false)
+        if DataHandler.getSettings().getEffect {
+            audioPlayer.play()
+        }
         
         if state == UtilitiesPortal.stateInfo {
             infoOverlay!.hidden = true
@@ -130,7 +143,7 @@ class GameScene: SKScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
-            runAction(sfx)
+            //runAction(sfx)
             state = UtilitiesPortal.stateInfo
             infoOverlay!.hidden = false
             
@@ -141,9 +154,8 @@ class GameScene: SKScene {
         
         // Setting selected
         if node.name == UtilitiesPortal.settingButtonName {
-            runAction(sfx)
+            //runAction(sfx)
             cleanScene()
-            
             let secondScene = SettingScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
@@ -154,8 +166,8 @@ class GameScene: SKScene {
 
         if (node.name == UtilitiesPortal.levelLabelNames[0]
                                 || node.name == UtilitiesPortal.levelButtonNames[0]) {
+            //runAction(sfx)
             cleanScene()
-            runAction(sfx)
             LevelOneModel.reset()
             
             let secondScene = LevelOneScene(size: self.size)
@@ -168,69 +180,60 @@ class GameScene: SKScene {
         
         if (node.name == UtilitiesPortal.levelLabelNames[1]
                                 || node.name == UtilitiesPortal.levelButtonNames[1]) {
-            runAction(sfx)
+            //runAction(sfx)
             showLevelTwoModes()
             return
         }
         
         if (node.name == UtilitiesPortal.levelLabelNames[2]
                                 || node.name == UtilitiesPortal.levelButtonNames[2]) {
-            runAction(sfx)
+            //runAction(sfx)
             cleanScene()
             LevelThreeModel.reset()
-            
-            //let secondScene = ResultPage(size: self.size)
             let secondScene = LevelThreeScene(size: self.size)
-            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
-            //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
             return
         }
         // Level 2 - Standard
         if (node.name == UtilitiesPortal.modeLabelNames[0]
-            || node.name == UtilitiesPortal.modeButtonNames[0]) {
-                runAction(sfx)
-                cleanScene()
-                //let secondScene = ResultPage(size: self.size)
-                let secondScene = LevelTwoScene(size: self.size)
-                secondScene.userData = NSMutableDictionary()
-                secondScene.userData?.setValue("Standard", forKey: "gameMode")
-                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
-                //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
-                secondScene.scaleMode = SKSceneScaleMode.AspectFill
-                self.scene!.view?.presentScene(secondScene, transition: transition)
-                return
+                                || node.name == UtilitiesPortal.modeButtonNames[0]) {
+            //runAction(sfx)
+            cleanScene()
+            let secondScene = LevelTwoScene(size: self.size)
+            secondScene.userData = NSMutableDictionary()
+            secondScene.userData?.setValue("Standard", forKey: "gameMode")
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+            return
         }
         // Level 2 - Time Trial
         if (node.name == UtilitiesPortal.modeLabelNames[1]
-            || node.name == UtilitiesPortal.modeButtonNames[1]) {
-                runAction(sfx)
-                cleanScene()
-                //let secondScene = ResultPage(size: self.size)
-                let secondScene = LevelTwoScene(size: self.size)
-                secondScene.userData = NSMutableDictionary()
-                secondScene.userData?.setValue("Time Trial", forKey: "gameMode")
-                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
-                //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
-                secondScene.scaleMode = SKSceneScaleMode.AspectFill
-                self.scene!.view?.presentScene(secondScene, transition: transition)
-                return
+                                || node.name == UtilitiesPortal.modeButtonNames[1]) {
+            //runAction(sfx)
+            cleanScene()
+            let secondScene = LevelTwoScene(size: self.size)
+            secondScene.userData = NSMutableDictionary()
+            secondScene.userData?.setValue("Time Trial", forKey: "gameMode")
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+            return
         }
         
         if (node.name == UtilitiesPortal.modeLabelNames[2]
-            || node.name == UtilitiesPortal.modeButtonNames[2]) {
-                runAction(sfx)
-                cleanScene()
-                //let secondScene = ResultPage(size: self.size)
-                let secondScene = LevelTwoScene(size: self.size)
-                secondScene.userData = NSMutableDictionary()
-                secondScene.userData?.setValue("Beat the Clock", forKey: "gameMode")
-                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
-                //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
-                secondScene.scaleMode = SKSceneScaleMode.AspectFill
-                self.scene!.view?.presentScene(secondScene, transition: transition)
-                return
+                                || node.name == UtilitiesPortal.modeButtonNames[2]) {
+            //runAction(sfx)
+            cleanScene()
+            let secondScene = LevelTwoScene(size: self.size)
+            secondScene.userData = NSMutableDictionary()
+            secondScene.userData?.setValue("Beat the Clock", forKey: "gameMode")
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
+            return
         }
     }
    

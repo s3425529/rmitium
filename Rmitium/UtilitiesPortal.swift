@@ -50,9 +50,9 @@ class UtilitiesPortal {
     
     static let modeLabelTexts = ["Standard", "Time Trial", "Beat the Clock"]
     
-    static let settingLabelTexts = ["Sound", "Right Hand", "Setting 3"]
-    static let settingLabelNames = ["sound", "rightHand", "setting03"]
-    static let settingLabelButtons = ["soundBtn", "setting02Btn", "setting03Btn"]
+    static let settingLabelTexts = ["Background Music", "Sound Effects", "Left-Hand Mode", "Reset Scores"]
+    static let settingLabelNames = ["background", "soundEffects", "leftHand", "reset"]
+    static let settingLabelButtons = ["backgroundBtn", "effectsBtn", "leftHandBtn", "resetBtn"]
     
     static let emptyString = ""
     
@@ -108,9 +108,11 @@ class UtilitiesPortal {
     
     static var score = 0
     static var totalQuestions = 0
+    
+    static var effect = "sfx"
    
     //static var record = [Int]()
-    static func setBgm(){
+    /*static func setBgm(){
         let soundSetting = DataHandler.getSettings().getSound
         if soundSetting {
             if (SKTAudio.sharedInstance().backgroundMusicPlayer == nil){
@@ -123,11 +125,10 @@ class UtilitiesPortal {
         else {
             SKTAudio.sharedInstance().pauseBackgroundMusic()
         }
-        
-    }
+    }*/
 }
 
-extension SystemSoundID {
+/*extension SystemSoundID {
     static func playFileNamed(fileName: String, withExtenstion fileExtension: String? = "aif") {
         var sound: SystemSoundID = 0
         if let soundURL = NSBundle.mainBundle().URLForResource(fileName, withExtension: fileExtension) {
@@ -135,4 +136,4 @@ extension SystemSoundID {
             AudioServicesPlaySystemSound(sound)
         }
     }
-}
+}*/
