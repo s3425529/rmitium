@@ -96,7 +96,7 @@ class SettingScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if DataHandler.getSettings().getEffect {
+        if values[1] {
             audioPlayer.play()
         }
         
@@ -152,45 +152,6 @@ class SettingScene: SKScene {
                 }
             }
         }
-        
-        /*if (node.name == UtilitiesPortal.settingLabelNames[0] ||
-         node.name == UtilitiesPortal.settingLabelButtons[0]) {
-         if values[0] {
-         values[0] = false
-         settings[0].texture = SKTexture(image: UIImage(named: "offbutton")!)
-         SKTAudio.sharedInstance().pauseBackgroundMusic()
-         }
-         else {
-         values[0] = true
-         settings[0].texture = SKTexture(image: UIImage(named: "onbutton")!)
-         SKTAudio.sharedInstance().resumeBackgroundMusic()
-         }
-         
-         }
-         
-         if (node.name == UtilitiesPortal.settingLabelNames[1] ||
-         node.name == UtilitiesPortal.settingLabelButtons[1]) {
-         if values[1] {
-         values[1] = false
-         settings[1].texture = SKTexture(image: UIImage(named: "offbutton")!)
-         }
-         else {
-         values[1] = true
-         settings[1].texture = SKTexture(image: UIImage(named: "onbutton")!)
-         }
-         }
-         
-         if (node.name == UtilitiesPortal.settingLabelNames[2] ||
-         node.name == UtilitiesPortal.settingLabelButtons[2]) {
-         if values[2] {
-         values[2] = false
-         settings[2].texture = SKTexture(image: UIImage(named: "offbutton")!)
-         }
-         else {
-         values[2] = true
-         settings[2].texture = SKTexture(image: UIImage(named: "onbutton")!)
-         }
-         }*/
     }
     
     override func update(currentTime: CFTimeInterval) {

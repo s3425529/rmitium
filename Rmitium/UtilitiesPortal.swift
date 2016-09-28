@@ -112,7 +112,7 @@ class UtilitiesPortal {
     static var effect = "sfx"
    
     //static var record = [Int]()
-    /*static func setBgm(){
+    static func setBgm(){
         let soundSetting = DataHandler.getSettings().getSound
         if soundSetting {
             if (SKTAudio.sharedInstance().backgroundMusicPlayer == nil){
@@ -125,7 +125,7 @@ class UtilitiesPortal {
         else {
             SKTAudio.sharedInstance().pauseBackgroundMusic()
         }
-    }*/
+    }
 }
 
 /*extension SystemSoundID {

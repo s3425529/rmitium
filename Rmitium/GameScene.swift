@@ -101,7 +101,7 @@ class GameScene: SKScene {
             
             setupInfo()
         }
-        //UtilitiesPortal.setBgm()
+        UtilitiesPortal.setBgm()
     }
     
     // Info layout
