@@ -500,10 +500,7 @@ class LevelOneScene: SKScene {
             return
         }
         
-        if state == UtilitiesPortal.stateFact {
-            setupScene()
-            return
-        }
+        
         
         if state == UtilitiesPortal.stateInfo {
             
@@ -582,7 +579,14 @@ class LevelOneScene: SKScene {
             return
         }
         
+        if state == UtilitiesPortal.stateFact {
+            setupScene()
+            return
+        }
+        
+        
         // Show button selected
+        
         if node.name == UtilitiesPortal.showButtonName {
             runAction(sfx)
             if state == UtilitiesPortal.stateResult {

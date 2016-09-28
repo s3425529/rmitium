@@ -489,10 +489,7 @@ class LevelThreeScene: SKScene {
             return
         }
         
-        if state == UtilitiesPortal.stateFact {
-            setupScene()
-            return
-        }
+        
         
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
@@ -570,7 +567,10 @@ class LevelThreeScene: SKScene {
             return
         }
         
-        
+        if state == UtilitiesPortal.stateFact {
+            setupScene()
+            return
+        }
         
         // Show button selected
         if node.name == UtilitiesPortal.showButtonName {
