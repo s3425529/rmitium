@@ -377,9 +377,10 @@ class LevelTwoScene: SKScene {
         }
         
         if state == UtilitiesPortal.stateInfo {
-            infoOverlay.hidden = true
+           
             infoOverlay.removeAllActions()
             infoOverlay.removeAllChildren()
+            infoOverlay.removeFromParent()
             if timerClass.timeLabel <= LIMITTIME{
                 timerClass.pause(false)
             }
