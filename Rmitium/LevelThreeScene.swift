@@ -39,7 +39,6 @@ class LevelThreeScene: SKScene {
         
         if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstTime {
             previousState = UtilitiesPortal.stateAnswer
-            setupInfo()
             state = UtilitiesPortal.stateInfo
             DataHandler.saveLevelThreeScore()
         }
@@ -72,7 +71,7 @@ class LevelThreeScene: SKScene {
         setupDragLabel()
         setupTargets()
         setupFactLabel()
-        //setupInfo()
+        setupInfo()
         createHomeDialogue()
         
     }
@@ -331,8 +330,8 @@ class LevelThreeScene: SKScene {
         info01.zPosition = 1
         info01.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
                              height: UtilitiesPortal.screenHeight*0.15)
-        info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.27,
-                                  y: UtilitiesPortal.screenHeight * 0.15)
+        info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.38,
+                                  y: UtilitiesPortal.screenHeight * 0.14)
         
         let info02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[1])
         info02.zPosition = 1
@@ -369,14 +368,14 @@ class LevelThreeScene: SKScene {
         infoOverlay.color = SKColor.blackColor()
         infoOverlay.alpha = 0.7
         infoOverlay.zPosition = 0.8
-        /*
+        
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = false
         }
         else {
             infoOverlay.hidden = true
         }
-        */
+ 
         infoOverlay.addChild(arrow01)
         infoOverlay.addChild(arrow02)
         infoOverlay.addChild(arrow03)
