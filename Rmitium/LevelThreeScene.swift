@@ -39,6 +39,7 @@ class LevelThreeScene: SKScene {
         
         if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstTime {
             previousState = UtilitiesPortal.stateAnswer
+            setupInfo()
             state = UtilitiesPortal.stateInfo
             DataHandler.saveLevelThreeScore()
         }
@@ -368,14 +369,14 @@ class LevelThreeScene: SKScene {
         infoOverlay.color = SKColor.blackColor()
         infoOverlay.alpha = 0.7
         infoOverlay.zPosition = 0.8
-        
+        /*
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = false
         }
         else {
             infoOverlay.hidden = true
         }
-        
+        */
         infoOverlay.addChild(arrow01)
         infoOverlay.addChild(arrow02)
         infoOverlay.addChild(arrow03)
@@ -504,9 +505,10 @@ class LevelThreeScene: SKScene {
         
         
         if state == UtilitiesPortal.stateInfo {
-            infoOverlay.hidden = true
+            //infoOverlay.hidden = true
             infoOverlay.removeAllActions()
             infoOverlay.removeAllChildren()
+            infoOverlay.removeFromParent()
             state = previousState
             previousState = UtilitiesPortal.stateInfo
             return
