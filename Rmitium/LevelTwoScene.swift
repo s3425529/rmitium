@@ -13,7 +13,8 @@ import SpriteKit
 class LevelTwoScene: SKScene {
     var answers: [CustomSKSpriteNode] = []
     var chosenAnswer: Int!
-    var tick, infoOverlay, homeDialogue: SKSpriteNode!
+    var tick, infoOverlay: SKSpriteNode!
+    var homeDialogue: SKShapeNode!
     var score, factLabel, timeNode: SKLabelNode!
     var state, previousState: Int!
     var timerClass:TimeControl!
@@ -289,10 +290,11 @@ class LevelTwoScene: SKScene {
         alertMessage.zPosition = 0.9
         alertMessage.fontName = UtilitiesPortal.navLabelFont
         alertMessage.fontSize = 15
-        homeDialogue = SKSpriteNode()
-        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5)
+        homeDialogue = SKShapeNode()
+        homeDialogue.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
         homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
-        homeDialogue.color = SKColor.blackColor()
+        homeDialogue.fillColor = SKColor.blackColor()
+
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
         homeDialogue.hidden = true
@@ -301,14 +303,14 @@ class LevelTwoScene: SKScene {
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
         yesBtn.texture = SKTexture(image: UIImage(named: "tick-white")!)
-        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.5)
+        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.2)
         yesBtn.zPosition = 0.9
         
         noBtn.size = yesBtn.size
         noBtn.color = yesBtn.color
         noBtn.name = UtilitiesPortal.noButtonName
         noBtn.texture = SKTexture(image: UIImage(named: "cross-white")!)
-        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.5)
+        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.2)
         noBtn.zPosition = 0.9
         
         homeDialogue.addChild(yesBtn)
