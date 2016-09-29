@@ -43,8 +43,8 @@ class UtilitiesPortal {
     
     static let levelThreeAnswers = ["dipole-dipole", "h-bonding", "ionic", "vanderwaals"]
     
-    static let levelLabelTexts = ["Level 1: Identifying Functional Groups",
-                                  "Level 2: Building Molecules",
+    static let levelLabelTexts = ["Level 1: Functional Groups",
+                                  "Level 2: Structure Classification",
                                   "Level 3: Intermolecular Forces", "SETTINGS"]
     
     static let modeLabelTexts = ["Standard", "Time Trial", "Beat the Clock"]
