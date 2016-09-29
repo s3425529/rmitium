@@ -78,7 +78,7 @@ class LevelOneScene: SKScene {
         setupDragLabel()
         setupTargets()
         setupFactLabel()
-        //setupInfo()
+        setupInfo()
         createHomeDialogue()
     }
     
@@ -342,8 +342,8 @@ class LevelOneScene: SKScene {
         info01.zPosition = 1
         info01.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
                              height: UtilitiesPortal.screenHeight*0.15)
-        info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.27,
-                                  y: UtilitiesPortal.screenHeight * 0.15)
+        info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.38,
+                                  y: UtilitiesPortal.screenHeight * 0.14)
         
         let info02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[1])
         info02.zPosition = 1
@@ -510,10 +510,7 @@ class LevelOneScene: SKScene {
             return
         }
         
-        
-        
         if state == UtilitiesPortal.stateInfo {
-            
             infoOverlay.hidden = true
             infoOverlay.removeAllActions()
             infoOverlay.removeAllChildren()

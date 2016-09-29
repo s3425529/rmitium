@@ -34,7 +34,7 @@ class UtilitiesPortal {
     static let modeLabelNames = ["mode01", "mode02", "mode03"]
     static let modeButtonNames = ["mode01Btn", "mode02Btn", "mode03Btn"]
     
-    static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene", "aldehyde", "ester", "ether", "thioether"]
+    static let levelOneAnswers = ["phenol", "acid", "alcohol", "amine", "amide", "alkene", "aldehyde",               "ester", "ether", "thioether"]
     static let levelTwoWidth = 10
     static let levelTwoHeight = 6
     static let levelTwoImageWidth: CGFloat = 0.09
@@ -79,8 +79,8 @@ class UtilitiesPortal {
     
     static let alphabet = ["A", "B", "C", "D", "E", "F", "G"] //HIJKLMNOPQRSTUVXYZ"
     
-    static let infoArrowNames = ["arrow1", "arrow2", "arrow3", "arrow4", "arrow5", "arrow6"]
-    static let infoLabelNames = ["info1", "info2", "info3", "info4", "info5"]
+    static let infoArrowNames = ["arrow1", "arrow2", "arrow3", "arrow4", "arrow5", "arrow6", "arrow7", "arrow8"]
+    static let infoLabelNames = ["info1", "info2", "info3", "info4", "info5", "info6", "info2-2", "info3-2", "info5-2"]
     
     static let screenSize: CGRect = UIScreen.mainScreen().bounds
     static let screenWidth = screenSize.width
