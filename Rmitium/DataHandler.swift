@@ -113,9 +113,15 @@ class DataHandler {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
-            let object = result.first!
-            object.setValue(UtilitiesPortal.score, forKey: "levelOne")
-            try settings.save()
+            let object = result.first! 
+            let oldScore = object.levelOne as! Int
+           
+            if oldScore < UtilitiesPortal.score{
+                object.setValue(UtilitiesPortal.score, forKey: "levelOne")
+                try settings.save()
+            }
+           
+            
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
@@ -164,8 +170,12 @@ class DataHandler {
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
-            object.setValue(UtilitiesPortal.score, forKey: "levelThree")
-            try settings.save()
+            let oldScore = object.levelThree as! Int
+            
+            if oldScore < UtilitiesPortal.score{
+                object.setValue(UtilitiesPortal.score, forKey: "levelThree")
+                try settings.save()
+            }
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
