@@ -52,9 +52,8 @@ class LevelTwoScene: SKScene {
         answers.removeAll()
         self.removeAllChildren()
         
-        if DataHandler.getLevelTwoScore() == UtilitiesPortal.defaultScore {
+        if DataHandler.getLevelTwoScore() == UtilitiesPortal.firstTime {
             previousState = UtilitiesPortal.stateAnswer
-            setupInfo()
             state = UtilitiesPortal.stateInfo
             DataHandler.saveLevelTwoScore()
         }
@@ -253,7 +252,7 @@ class LevelTwoScene: SKScene {
         infoOverlay.color = SKColor.blackColor()
         infoOverlay.alpha = 0.7
         infoOverlay.zPosition = 0.8
-        /*
+        
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = false
         }
@@ -377,11 +376,11 @@ class LevelTwoScene: SKScene {
         }
         
         if state == UtilitiesPortal.stateInfo {
-           
-            infoOverlay.removeAllActions()
+            infoOverlay.hidden = true
+            /*infoOverlay.removeAllActions()
             infoOverlay.removeAllChildren()
-            infoOverlay.removeFromParent()
-            if timerClass.timeLabel <= LIMITTIME{
+            infoOverlay.removeFromParent()*/
+            if timerClass.timeLabel <= LIMITTIME {
                 timerClass.pause(false)
             }
             
