@@ -13,7 +13,8 @@ import Social
 class ResultPage: SKScene {
     var facebook, twitter, redo, next: CustomButton!
     var i = 0
-    var homeDialogue,homeView :SKSpriteNode!
+    var homeDialogue: SKShapeNode!
+    var homeView :SKSpriteNode!
     var text,text1: SKMultilineLabel!
     var socialData:SocialClass!
     var audioPlayer = AVAudioPlayer()
@@ -280,28 +281,28 @@ class ResultPage: SKScene {
         alertMessage.zPosition = 0.9
         alertMessage.fontName = UtilitiesPortal.navLabelFont
         alertMessage.fontSize = 15
-        homeDialogue = SKSpriteNode()
-        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5)
-        homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/11, y: UtilitiesPortal.screenHeight/11)
-        homeDialogue.color = SKColor.blackColor()
+        homeDialogue = SKShapeNode()
+        homeDialogue.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
+        homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        homeDialogue.fillColor = SKColor.blackColor()
+        
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
-        homeDialogue.hidden = false
+        homeDialogue.hidden = true
         
         yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
-        yesBtn.texture = SKTexture(imageNamed: "tick-white")
-        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.5)
+        yesBtn.texture = SKTexture(image: UIImage(named: "tick-white")!)
+        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.2)
         yesBtn.zPosition = 0.9
         
         noBtn.size = yesBtn.size
         noBtn.color = yesBtn.color
         noBtn.name = UtilitiesPortal.noButtonName
-        noBtn.texture = SKTexture(imageNamed: "cross-white")
-        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.5)
+        noBtn.texture = SKTexture(image: UIImage(named: "cross-white")!)
+        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.2)
         noBtn.zPosition = 0.9
-        
         homeDialogue.addChild(yesBtn)
         homeDialogue.addChild(noBtn)
         homeDialogue.addChild(alertMessage)
