@@ -201,8 +201,7 @@ class ResultPage: SKScene {
     
     func redoAction() {
         print("redo")
-        UtilitiesPortal.score = 0
-        UtilitiesPortal.totalQuestions = 0
+        print(UtilitiesPortal.totalQuestions)
         backLevel1()
         return
     }
@@ -226,6 +225,8 @@ class ResultPage: SKScene {
     func backHomePage() {
         self.removeAllActions()
         self.removeAllChildren()
+        UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -233,35 +234,35 @@ class ResultPage: SKScene {
         removeAllActions()
         removeFromParent()
         removeAllChildren()
-        UtilitiesPortal.score = 0
-        UtilitiesPortal.totalQuestions = 0
+       
     }
     
     func backLevel1() {
         self.removeAllActions()
         self.removeAllChildren()
         LevelOneModel.reset()
+        UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         let secondScene = LevelOneScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        UtilitiesPortal.score = 0
-        UtilitiesPortal.totalQuestions = 0
+        
     }
     
     func goToLevel2(){
         self.removeAllActions()
         self.removeAllChildren()
-        
+        UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         let secondScene = LevelTwoScene(size: self.size)
         secondScene.userData = NSMutableDictionary()
         secondScene.userData?.setValue("Standard", forKey: "gameMode")
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        UtilitiesPortal.score = 0
-        UtilitiesPortal.totalQuestions = 0
+        
     }
     
     func createHomeDialogue() {

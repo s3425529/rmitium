@@ -109,7 +109,7 @@ class UtilitiesPortal {
     static var totalQuestions = 0
     
     static var effect = "sfx"
-   
+    
     //static var record = [Int]()
     static func setBgm(){
         let soundSetting = DataHandler.getSettings().getSound

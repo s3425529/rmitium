@@ -211,6 +211,9 @@ class LevelOneScene: SKScene {
         for x in 0...lvlOneQuestion.positions.count-1 {
             positions.append(lvlOneQuestion.positions[x])
         }
+        UtilitiesPortal.totalQuestions += positions.count
+        
+    
         
         for count in 0...positions.count-1 {
             let sprite = CustomSKSpriteNode()
@@ -590,6 +593,7 @@ class LevelOneScene: SKScene {
         }
         
         if state == UtilitiesPortal.stateFact {
+            
             setupScene()
             return
         }
@@ -703,7 +707,6 @@ class LevelOneScene: SKScene {
         UtilitiesPortal.score = 0
         UtilitiesPortal.totalQuestions = 0
         cleanScene()
-        UtilitiesPortal.totalQuestions = 0
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
