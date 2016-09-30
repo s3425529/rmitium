@@ -221,7 +221,8 @@ class LevelOneScene: SKScene {
             sprite.alpha = 0
             sprite.texture = SKTexture(imageNamed: "\(count)")
             sprite.name = "question\(count)"
-            UtilitiesPortal.totalQuestions += 1
+            
+           
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
             sprite.zPosition = 0.2
             let x = CGPoint(x:UtilitiesPortal.screenWidth * positions[count].x,
