@@ -16,7 +16,8 @@ class LevelThreeScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
-    var resultImage, infoOverlay, factOverlay, homeDialogue: SKSpriteNode!
+    var resultImage, infoOverlay, factOverlay : SKSpriteNode!
+    var homeDialogue: SKShapeNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
     var score, factLabel, molecule: SKLabelNode!
@@ -38,7 +39,6 @@ class LevelThreeScene: SKScene {
         
         if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstTime {
             previousState = UtilitiesPortal.stateAnswer
-            setupInfo()
             state = UtilitiesPortal.stateInfo
             DataHandler.saveLevelThreeScore()
         }
@@ -71,7 +71,7 @@ class LevelThreeScene: SKScene {
         setupDragLabel()
         setupTargets()
         setupFactLabel()
-        //setupInfo()
+        setupInfo()
         createHomeDialogue()
         
     }
@@ -330,8 +330,8 @@ class LevelThreeScene: SKScene {
         info01.zPosition = 1
         info01.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
                              height: UtilitiesPortal.screenHeight*0.15)
-        info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.27,
-                                  y: UtilitiesPortal.screenHeight * 0.15)
+        info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.38,
+                                  y: UtilitiesPortal.screenHeight * 0.14)
         
         let info02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[1])
         info02.zPosition = 1
@@ -368,14 +368,14 @@ class LevelThreeScene: SKScene {
         infoOverlay.color = SKColor.blackColor()
         infoOverlay.alpha = 0.7
         infoOverlay.zPosition = 0.8
-        /*
+        
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = false
         }
         else {
             infoOverlay.hidden = true
         }
-        */
+ 
         infoOverlay.addChild(arrow01)
         infoOverlay.addChild(arrow02)
         infoOverlay.addChild(arrow03)
@@ -402,10 +402,11 @@ class LevelThreeScene: SKScene {
         alertMessage.zPosition = 0.9
         alertMessage.fontName = UtilitiesPortal.navLabelFont
         alertMessage.fontSize = 15
-        homeDialogue = SKSpriteNode()
-        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5)
+        homeDialogue = SKShapeNode()
+        homeDialogue.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
         homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
-        homeDialogue.color = SKColor.blackColor()
+        homeDialogue.fillColor = SKColor.blackColor()
+
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
         homeDialogue.hidden = true
@@ -414,14 +415,14 @@ class LevelThreeScene: SKScene {
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
         yesBtn.texture = SKTexture(image: UIImage(named: "tick-white")!)
-        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.5)
+        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.2)
         yesBtn.zPosition = 0.9
         
         noBtn.size = yesBtn.size
         noBtn.color = yesBtn.color
         noBtn.name = UtilitiesPortal.noButtonName
         noBtn.texture = SKTexture(image: UIImage(named: "cross-white")!)
-        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.5)
+        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.2)
         noBtn.zPosition = 0.9
         
         homeDialogue.addChild(yesBtn)

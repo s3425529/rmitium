@@ -13,7 +13,8 @@ import SpriteKit
 class LevelTwoScene: SKScene {
     var answers: [CustomSKSpriteNode] = []
     var chosenAnswer: Int!
-    var tick, infoOverlay, homeDialogue: SKSpriteNode!
+    var tick, infoOverlay: SKSpriteNode!
+    var homeDialogue: SKShapeNode!
     var score, factLabel, timeNode: SKLabelNode!
     var state, previousState: Int!
     var timerClass:TimeControl!
@@ -44,9 +45,6 @@ class LevelTwoScene: SKScene {
             default:
             break
         }
-        
-        
-        //timerClass.pause(true)
         setupScene()
     }
     
@@ -54,9 +52,8 @@ class LevelTwoScene: SKScene {
         answers.removeAll()
         self.removeAllChildren()
         
-        if DataHandler.getLevelTwoScore() == UtilitiesPortal.defaultScore {
+        if DataHandler.getLevelTwoScore() == UtilitiesPortal.firstTime {
             previousState = UtilitiesPortal.stateAnswer
-            setupInfo()
             state = UtilitiesPortal.stateInfo
             DataHandler.saveLevelTwoScore()
         }
@@ -76,7 +73,7 @@ class LevelTwoScene: SKScene {
         
         setupItems()
         setupDragLabel()
-        //setupInfo()
+        setupInfo()
         createHomeDialogue()
     }
     
@@ -161,12 +158,12 @@ class LevelTwoScene: SKScene {
     
     // Info layout
     func setupInfo() {
-        let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
+        /*let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9
         arrow01.size = CGSize(width: UtilitiesPortal.navImgSize*2,
                               height: UtilitiesPortal.navImgSize*2)
         arrow01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.4,
-                                   y: UtilitiesPortal.screenHeight * -0.3)
+                                   y: UtilitiesPortal.screenHeight * -0.3)*/
         
         let arrow02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[1])
         arrow02.zPosition = 0.9
@@ -175,7 +172,7 @@ class LevelTwoScene: SKScene {
         arrow02.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.4,
                                    y: UtilitiesPortal.screenHeight * 0.3)
         
-        let arrow03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[2])
+        /*let arrow03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[2])
         arrow03.zPosition = 0.9
         arrow03.size = CGSize(width: UtilitiesPortal.navImgSize*2,
                               height: UtilitiesPortal.navImgSize*2)
@@ -197,7 +194,7 @@ class LevelTwoScene: SKScene {
         let action2_2 = SKAction.fadeOutWithDuration(0.6)
         let sequence2 = SKAction.sequence([action2_1, action2_2])
         let repeatAction2 = SKAction.repeatActionForever(sequence2)
-        arrow04.runAction(repeatAction2)
+        arrow04.runAction(repeatAction2)*/
         
         let arrow05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[4])
         arrow05.zPosition = 0.9
@@ -217,22 +214,22 @@ class LevelTwoScene: SKScene {
         info01.zPosition = 1
         info01.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
                              height: UtilitiesPortal.screenHeight*0.15)
-        info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.27,
-                                  y: UtilitiesPortal.screenHeight * 0.15)
+        info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.38,
+                                  y: UtilitiesPortal.screenHeight * 0.14)
         
-        let info02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[1])
+        let info02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[6])
         info02.zPosition = 1
-        info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
-                             height: UtilitiesPortal.screenHeight*0.15)
-        info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.05,
-                                  y: UtilitiesPortal.screenHeight * -0.2)
+        info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25*2.2,
+                             height: UtilitiesPortal.screenHeight*0.15*1.49)
+        info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.01,
+                                  y: UtilitiesPortal.screenHeight*(0))
         
-        let info03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[2])
+        /*let info03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[2])
         info03.zPosition = 1
         info03.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
                              height: UtilitiesPortal.screenHeight*0.15)
         info03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.3,
-                                  y: UtilitiesPortal.screenHeight * -0.3)
+                                  y: UtilitiesPortal.screenHeight * -0.3)*/
         
         let info04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[3])
         info04.zPosition = 1
@@ -241,7 +238,7 @@ class LevelTwoScene: SKScene {
         info04.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.35,
                                   y: UtilitiesPortal.screenHeight * 0.15)
         
-        let info05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[4])
+        let info05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[8])
         info05.zPosition = 1
         info05.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
                              height: UtilitiesPortal.screenHeight*0.15)
@@ -255,24 +252,24 @@ class LevelTwoScene: SKScene {
         infoOverlay.color = SKColor.blackColor()
         infoOverlay.alpha = 0.7
         infoOverlay.zPosition = 0.8
-        /*
+        
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = false
         }
         else {
             infoOverlay.hidden = true
         }
-        */
-        infoOverlay.addChild(arrow01)
+        
+        //infoOverlay.addChild(arrow01)
         infoOverlay.addChild(arrow02)
-        infoOverlay.addChild(arrow03)
-        infoOverlay.addChild(arrow04)
+        //infoOverlay.addChild(arrow03)
+        //infoOverlay.addChild(arrow04)
         infoOverlay.addChild(arrow05)
         infoOverlay.addChild(arrow06)
         
         infoOverlay.addChild(info01)
         infoOverlay.addChild(info02)
-        infoOverlay.addChild(info03)
+        //infoOverlay.addChild(info03)
         infoOverlay.addChild(info04)
         infoOverlay.addChild(info05)
         
@@ -290,10 +287,11 @@ class LevelTwoScene: SKScene {
         alertMessage.zPosition = 0.9
         alertMessage.fontName = UtilitiesPortal.navLabelFont
         alertMessage.fontSize = 15
-        homeDialogue = SKSpriteNode()
-        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5)
+        homeDialogue = SKShapeNode()
+        homeDialogue.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
         homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
-        homeDialogue.color = SKColor.blackColor()
+        homeDialogue.fillColor = SKColor.blackColor()
+
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
         homeDialogue.hidden = true
@@ -302,14 +300,14 @@ class LevelTwoScene: SKScene {
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
         yesBtn.texture = SKTexture(image: UIImage(named: "tick-white")!)
-        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.5)
+        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.2)
         yesBtn.zPosition = 0.9
         
         noBtn.size = yesBtn.size
         noBtn.color = yesBtn.color
         noBtn.name = UtilitiesPortal.noButtonName
         noBtn.texture = SKTexture(image: UIImage(named: "cross-white")!)
-        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.5)
+        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.2)
         noBtn.zPosition = 0.9
         
         homeDialogue.addChild(yesBtn)
@@ -378,11 +376,11 @@ class LevelTwoScene: SKScene {
         }
         
         if state == UtilitiesPortal.stateInfo {
-           
-            infoOverlay.removeAllActions()
+            infoOverlay.hidden = true
+            /*infoOverlay.removeAllActions()
             infoOverlay.removeAllChildren()
-            infoOverlay.removeFromParent()
-            if timerClass.timeLabel <= LIMITTIME{
+            infoOverlay.removeFromParent()*/
+            if timerClass.timeLabel <= LIMITTIME {
                 timerClass.pause(false)
             }
             
