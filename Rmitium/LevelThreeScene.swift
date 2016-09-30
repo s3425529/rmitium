@@ -136,19 +136,21 @@ class LevelThreeScene: SKScene {
         // Molecule name label
         molecule = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
         molecule.text = "\(lvlThreeQuestion.itemName)"
-        molecule.fontSize = UtilitiesPortal.factSize*0.8
+        molecule.fontSize = UtilitiesPortal.factSize
         molecule.zPosition = 0.1
         molecule.fontColor = SKColor.whiteColor()
-        if DataHandler.getSettings().getRightHand {
-            molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-            molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.01, UtilitiesPortal.screenHeight * 0.8)
-        }
-        else {
-            molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
-            molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.99, UtilitiesPortal.screenHeight * 0.8)
-        }
+        /*
+         if DataHandler.getSettings().getRightHand {
+         molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+         molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.01, UtilitiesPortal.screenHeight * 0.8)
+         }
+         else {
+         molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+         molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.99, UtilitiesPortal.screenHeight * 0.8)
+         }
+         */
+        molecule.position = CGPoint(x:UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.borderSize/4)
         self.addChild(molecule)
-
     }
     func setupImage() {
         let image = SKSpriteNode(imageNamed: lvlThreeQuestion.imageName)
