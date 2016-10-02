@@ -16,7 +16,7 @@ class GameScene: SKScene {
     var audioPlayer = AVAudioPlayer()
     
     override func didMoveToView(view: SKView) {
-        //UtilitiesPortal.score = 0
+        UtilitiesPortal.score = 0
         UtilitiesPortal.totalQuestions = 0
         state = UtilitiesPortal.stateAnswer
         
@@ -216,8 +216,8 @@ class GameScene: SKScene {
                                 || node.name == UtilitiesPortal.modeButtonNames[1]) {
             //runAction(sfx)
             cleanScene()
-            //let secondScene = LevelTwoScene(size: self.size)
-            let secondScene = ResultPage2(size: self.size)
+            let secondScene = LevelTwoScene(size: self.size)
+            //let secondScene = ResultPage2(size: self.size)
             secondScene.userData = NSMutableDictionary()
             secondScene.userData?.setValue("Time Trial", forKey: "gameMode")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
