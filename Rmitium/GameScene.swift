@@ -202,8 +202,8 @@ class GameScene: SKScene {
                                 || node.name == UtilitiesPortal.modeButtonNames[0]) {
             //runAction(sfx)
             cleanScene()
-            //let secondScene = LevelTwoScene(size: self.size)
-            let secondScene = ResultPage(size: self.size)
+            let secondScene = LevelTwoScene(size: self.size)
+            //let secondScene = ResultPage(size: self.size)
             secondScene.userData = NSMutableDictionary()
             secondScene.userData?.setValue("Standard", forKey: "gameMode")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
