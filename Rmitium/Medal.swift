@@ -14,8 +14,8 @@ class medalClass {
     var score = 0
     
     func assignMedal(level: Int) -> (medalName:String , information:[String]) {
-        percent = Float(UtilitiesPortal.score) / Float(UtilitiesPortal.totalQuestions)
-        //percent = 1
+        //percent = Float(UtilitiesPortal.score) / Float(UtilitiesPortal.totalQuestions)
+        percent = 1
         
         if level == UtilitiesPortal.levelOne {
             score = DataHandler.getLevelOneScore() as Int

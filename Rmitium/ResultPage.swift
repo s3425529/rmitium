@@ -276,7 +276,8 @@ class ResultPage: SKScene{
     func createHomeDialogue() {
         homeView  = SKSpriteNode()
         homeView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
-        homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2.5, y: UtilitiesPortal.screenHeight/2)
+        //homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2.5, y: UtilitiesPortal.screenHeight/2)
+        homeView.position = CGPoint(x: 0, y: 0)
         homeView.zPosition = 0.8
         // homeView.color = SKColor.redColor()
         homeView.alpha = 1
@@ -296,7 +297,7 @@ class ResultPage: SKScene{
         
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
-        homeDialogue.hidden = true
+        homeDialogue.hidden = false
         
         yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
@@ -339,8 +340,6 @@ class ResultPage: SKScene{
             homeView.hidden = false
         }
         if node.name == UtilitiesPortal.yesButtonName {
-            self.removeAllActions()
-            self.removeAllChildren()
             backHomePage()
             return
         }
