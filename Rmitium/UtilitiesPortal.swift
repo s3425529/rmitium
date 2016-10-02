@@ -104,7 +104,8 @@ class UtilitiesPortal {
     static let imageWidth = screenWidth*0.6
     static let imageHeight = screenHeight*0.6
     
-    static var score = 0
+    static var score = 180
+    
     static var totalQuestions = 0
     
     static var effect = "sfx"

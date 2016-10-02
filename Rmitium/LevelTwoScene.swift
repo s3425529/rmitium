@@ -542,7 +542,7 @@ class LevelTwoScene: SKScene {
             timeOut()
             //alertMessage()
         }
-         */
+        */
     }
     
     func trialTimer(){
@@ -592,20 +592,20 @@ class LevelTwoScene: SKScene {
             toResultSence()
         }
         
-         if timerClass.timeLabel <= 0 {
-         timeNode.text = "Time Out!"
+        if timerClass.timeLabel <= 0 {
+            timeNode.text = "Time Out!"
          
-         //block the game scene
-         state = UtilitiesPortal.stateResult
-         
-         timeOut()
-         //alertMessage()
+            //block the game scene
+            state = UtilitiesPortal.stateResult
+            timeOut()
+            // go to resultpage or retr
+            //alertMessage()
          }
         
     }
 
     func beatTimer(){
-        LIMITTIME = 30
+        LIMITTIME = 300
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
         timerClass.startTimer()
         

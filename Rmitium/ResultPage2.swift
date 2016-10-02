@@ -23,16 +23,34 @@ class ResultPage2: SKScene {
     var socialData:SocialClass!
     var text,text1 :SKMultilineLabel!
     var audioPlayer = AVAudioPlayer()
+    var Dic:medalClass!
+    var medalDic:(medalName:String,information:[String])!
     
     override func didMoveToView(view: SKView) {
-        socialData = SocialClass()
-        socialData.initClass()
-        socialData.getRecord()
-        setupItem()
-        setupMedal()
-        setupCustomerButton()
-        createHomeDialogue()
         
+        Dic = medalClass()
+        switch String(self.userData!.valueForKey("gameMode")!) {
+        case "Standard":
+            //code goes here
+            print("Game mode: Standard!")
+            medalDic = Dic.level2("stand")
+            DataHandler.saveLevelTwoScore()
+            break
+        case "Time Trial":
+            //code goes here
+            print("Game mode: Time Trial!")
+             medalDic = Dic.level2("trial")
+            DataHandler.saveLevelTwoTrialScore()
+            break
+        case "Beat the Clock":
+            //code goes here
+            print("Game mode: Beat the Clock!")
+             medalDic = Dic.level2("beat")
+            DataHandler.saveLevelTwoBeatScore()
+            break
+        default:
+            break
+        }
         if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
             do {
                 try audioPlayer = AVAudioPlayer(contentsOfURL: clickSound, fileTypeHint: nil)
@@ -43,12 +61,22 @@ class ResultPage2: SKScene {
             }
         }
         
-        DataHandler.saveLevelTwoScore()
+        socialData = SocialClass()
+        socialData.initClass()
+        socialData.getRecord()
+        setupItem()
+        setupMedal()
+        setupCustomerButton()
+        createHomeDialogue()
+        
+        
+  
     }
     
     func setupMedal(){
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
-        let medalDic = medalClass().level2()
+        
+        
         let medalName = medalDic.medalName
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
@@ -70,10 +98,16 @@ class ResultPage2: SKScene {
         medalNode.runAction(repeatAction)
         
         let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
+    
         if mins == 0 {
             labelText = "\(sec)sec"
         }else{
-            labelText = "\(mins):\(sec)"
+            if sec < 10{
+                labelText = "\(mins):0\(sec)"
+            }else{
+                labelText = "\(mins):\(sec)"
+            }
+            
         }
         scoreNode.text = labelText
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
@@ -270,7 +304,8 @@ class ResultPage2: SKScene {
     func createHomeDialogue() {
         homeView  = SKSpriteNode()
         homeView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
-        homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2.5, y: UtilitiesPortal.screenHeight/2)
+       // homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2.5, y: UtilitiesPortal.screenHeight/2)
+        homeView.position = CGPoint(x: 0, y: 0)
         homeView.zPosition = 0.8
        // homeView.color = SKColor.redColor()
         homeView.alpha = 1
@@ -290,7 +325,7 @@ class ResultPage2: SKScene {
         
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
-        homeDialogue.hidden = true
+        homeDialogue.hidden = false
         
         yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
