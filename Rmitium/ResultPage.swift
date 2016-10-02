@@ -10,7 +10,7 @@ import AVFoundation
 import SpriteKit
 import Social
 
-class ResultPage: SKScene {
+class ResultPage: SKScene{
     var facebook, twitter, redo, next: CustomButton!
     var i = 0
     var homeDialogue: SKShapeNode!
@@ -18,8 +18,14 @@ class ResultPage: SKScene {
     var text,text1: SKMultilineLabel!
     var socialData:SocialClass!
     var audioPlayer = AVAudioPlayer()
-  
+    var myTable:UITableView!
+    var state = false
+    var myView:SKShapeNode!
     override func didMoveToView(view: SKView) {
+        
+        
+       
+        
         if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
             do {
                 try audioPlayer = AVAudioPlayer(contentsOfURL: clickSound, fileTypeHint: nil)
@@ -39,6 +45,7 @@ class ResultPage: SKScene {
         createHomeDialogue()
         
         DataHandler.saveLevelOneScore()
+        
     }
     
     func setupMedal() {
@@ -313,6 +320,7 @@ class ResultPage: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
         if DataHandler.getSettings().getEffect {
             audioPlayer.play()
         }
@@ -321,6 +329,11 @@ class ResultPage: SKScene {
         // Home button selected
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
+        
+        if state == true{
+            myView.removeAllChildren()
+            myView.removeFromParent()
+        }
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home!")
             homeView.hidden = false
@@ -336,6 +349,10 @@ class ResultPage: SKScene {
             homeView.hidden = true
             return
         }
+        if node.name == UtilitiesPortal.infoButonName{
+            infoTable()
+            state = true
+        }
     }
     
     func facebookAlertMessage() {
@@ -347,6 +364,7 @@ class ResultPage: SKScene {
             self.activeFacebook()
         }))
         controller.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     func twitterAlertMessage() {
@@ -362,5 +380,14 @@ class ResultPage: SKScene {
 
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    //MARK---- table view
+    
+    func infoTable(){
+        myView = SKShapeNode()
+        let x = MedalInfo(myView: myView)
+        x.setupItem()
+        addChild(myView)
+        
     }
 }

@@ -17,7 +17,8 @@ class ResultPage3: SKScene {
     var text,text1 :SKMultilineLabel!
     var socialData:SocialClass!
     var audioPlayer = AVAudioPlayer()
-    
+    var myView:SKShapeNode!
+    var state = false
     override func didMoveToView(view: SKView) {
         socialData = SocialClass()
         socialData.initClass()
@@ -319,6 +320,11 @@ class ResultPage3: SKScene {
         // Home button selected
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
+        
+        if state == true{
+            myView.removeAllChildren()
+            myView.removeFromParent()
+        }
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home!")
             homeView.hidden = false
@@ -331,6 +337,10 @@ class ResultPage3: SKScene {
             //homeDialogue.hidden = true
             homeView.hidden = true
             return
+        }
+        if node.name == UtilitiesPortal.infoButonName{
+            infoTable()
+            state = true
         }
     }
     
@@ -356,4 +366,14 @@ class ResultPage3: SKScene {
         }))
         controller.presentViewController(alert, animated: true, completion: nil)
     }
+    //MARK---- table view
+    
+    func infoTable(){
+        myView = SKShapeNode()
+        let x = MedalInfo(myView: myView)
+        x.setupItem()
+        addChild(myView)
+        
+    }
+
 }

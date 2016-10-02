@@ -15,6 +15,7 @@
 		504913F01D92BD4E0077DB74 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504913EF1D92BD4E0077DB74 /* Social.swift */; };
 		504913F21D92BD6E0077DB74 /* Social+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504913F11D92BD6E0077DB74 /* Social+CoreDataProperties.swift */; };
 		504913F41D92BE800077DB74 /* SocialClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504913F31D92BE800077DB74 /* SocialClass.swift */; };
+		505102FB1DA00889007D8EA6 /* MedalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505102FA1DA00889007D8EA6 /* MedalInfo.swift */; };
 		50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */; };
 		5064B08F1D9248F500A05CBA /* bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5064B08E1D9248F500A05CBA /* bgm.mp3 */; };
 		5064B0911D9398C900A05CBA /* SKTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5064B0901D9398C900A05CBA /* SKTAudio.swift */; };
@@ -67,6 +68,7 @@
 		504913EF1D92BD4E0077DB74 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
 		504913F11D92BD6E0077DB74 /* Social+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Social+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		504913F31D92BE800077DB74 /* SocialClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialClass.swift; sourceTree = "<group>"; };
+		505102FA1DA00889007D8EA6 /* MedalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedalInfo.swift; sourceTree = "<group>"; };
 		50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesPortal.swift; sourceTree = "<group>"; };
 		5064B08E1D9248F500A05CBA /* bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgm.mp3; sourceTree = "<group>"; };
 		5064B0901D9398C900A05CBA /* SKTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTAudio.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				50E94AAE1D82405500C01945 /* TimeControl.swift */,
 				5029D3C11D8D8196007DC44F /* Medal.swift */,
 				5064B0901D9398C900A05CBA /* SKTAudio.swift */,
+				505102FA1DA00889007D8EA6 /* MedalInfo.swift */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				506E77671D670135004EE1D4 /* CustomSKSpriteNode.swift in Sources */,
 				509691811D639EA300CFD453 /* Question.swift in Sources */,
 				50E94AAF1D82405600C01945 /* TimeControl.swift in Sources */,
+				505102FB1DA00889007D8EA6 /* MedalInfo.swift in Sources */,
 				50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */,
 				50667EE11D70096400C8EBF6 /* LevelThreeScene.swift in Sources */,
 				500198DB1D75B3640005FCA7 /* SettingScene.swift in Sources */,
