@@ -69,7 +69,7 @@ class medalClass {
             medalName = "Medal5-Rust"
             words = ["Good effort!"]
             if score < UtilitiesPortal.score {
-                words.append("But your chemistry is a little rusty. you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
+                words.append("But your chemistry is a little rusty. You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
                 words.append("But your chemistry is a little rusty. You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions).")
@@ -135,7 +135,7 @@ class medalClass {
                 words = ["Well done!"]
                 if score > UtilitiesPortal.score {
                     words = ["New record!"]
-                    words.append("\(message)  Your best was \(bestTime).")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
                     words.append("\(message) Your chemistry prowess is gold standard.")
@@ -183,7 +183,7 @@ class medalClass {
                 medalName = "Medal1-Diamond"
                                 if score < UtilitiesPortal.score {
                     words = ["New record!"]
-                    words.append("A perfect score.  Your best was \(bestTime).")
+                    words.append("A perfect score. Your best was \(bestTime).")
                 }
                 else {
                     words = ["Congratulations!"]
