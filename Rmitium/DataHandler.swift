@@ -30,6 +30,8 @@ class DataHandler {
             entity.setValue(-1, forKey: "levelThree")
             entity.setValue(-1, forKey: "levelTwoTrail")
             entity.setValue(-1, forKey: "levelTwoBeat")
+            entity.setValue(0, forKey: "levelOneScore")
+            entity.setValue(0, forKey: "levelThreeScore")
             do {
                 try settings.save()
                 //localSetting = entity
@@ -53,6 +55,8 @@ class DataHandler {
             object.setValue(-1, forKey: "levelThree")
             object.setValue(-1, forKey: "levelTwoTrail")
             object.setValue(-1, forKey: "levelTwoBeat")
+            object.setValue(0, forKey: "levelOneScore")
+            object.setValue(0, forKey: "levelThreeScore")
             try settings.save()
             //localSetting = object
         }
@@ -72,6 +76,8 @@ class DataHandler {
             object.setValue(0, forKey: "levelThree")
             object.setValue(0, forKey: "levelTwoTrail")
             object.setValue(0, forKey: "levelTwoBeat")
+            object.setValue(0, forKey: "levelOneScore")
+            object.setValue(0, forKey: "levelThreeScore")
             try settings.save()
             
             
@@ -114,6 +120,17 @@ class DataHandler {
         }
     }
     
+    static func getLevelOnePercentage() -> NSNumber {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            return result.first!.levelOneScore!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
     static func saveLevelOneScore() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -123,6 +140,8 @@ class DataHandler {
            
             if oldScore < UtilitiesPortal.score{
                 object.setValue(UtilitiesPortal.score, forKey: "levelOne")
+                object.setValue(UtilitiesPortal.score/UtilitiesPortal.totalQuestions,
+                                forKey: "levelOneScore")
                 try settings.save()
             }
            
@@ -235,6 +254,17 @@ class DataHandler {
         }
     }
     
+    static func getLevelThreePercentage() -> NSNumber {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            return result.first!.levelThreeScore!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
     static func saveLevelThreeScore() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -244,6 +274,8 @@ class DataHandler {
             
             if oldScore < UtilitiesPortal.score{
                 object.setValue(UtilitiesPortal.score, forKey: "levelThree")
+                object.setValue(UtilitiesPortal.score/UtilitiesPortal.totalQuestions,
+                                forKey: "levelThreeScore")
                 try settings.save()
             }
         }
