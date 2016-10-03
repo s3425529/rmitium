@@ -357,7 +357,7 @@ class DataHandler {
         }
     }
     
-    static func getMedal(level: Int) -> String {
+    static func getMedal(level: Int, mode: Int) -> String {
         let setting = NSFetchRequest(entityName: "Settings")
         var score = 0.0
         do {
@@ -367,6 +367,69 @@ class DataHandler {
             }
             else if level == UtilitiesPortal.levelThree {
                 score = result.first!.levelThreeScore! as Double
+            }
+            else {
+                if mode == UtilitiesPortal.modeStandard {
+                    if UtilitiesPortal.score < 20 {
+                        return "Medal1-Diamond"
+                    }
+                    else if UtilitiesPortal.score < 30 && UtilitiesPortal.score >= 20 {
+                        return "Medal2-Gold"
+                    }
+                    else if UtilitiesPortal.score < 40 && UtilitiesPortal.score >= 30 {
+                        return "Medal3-Silver"
+                    }
+                    else if UtilitiesPortal.score < 60 && UtilitiesPortal.score >= 40 {
+                        return "Medal4-Bronze"
+                    }
+                    else if UtilitiesPortal.score >= 60 {
+                        return "Medal5-Rust"
+                    }
+                    else {
+                        return ""
+                    }
+                    
+                }
+                else if mode == UtilitiesPortal.modeTrial {
+                    if UtilitiesPortal.score >= 150 {
+                        return "Medal1-Diamond"
+                    }
+                    if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
+                        return "Medal2-Gold"
+                    }
+                    if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
+                        return "Medal3-Silver"
+                    }
+                    if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
+                        return "Medal4-Bronze"
+                    }
+                    if UtilitiesPortal.score < 60 {
+                        return "Medal5-Rust"
+                    }
+                    else {
+                        return ""
+                    }
+                }
+                else if mode == UtilitiesPortal.modeBeat {
+                    if UtilitiesPortal.score >= 150 {
+                        return "Medal1-Diamond"
+                    }
+                    if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
+                        return "Medal2-Gold"
+                    }
+                    if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
+                        return "Medal3-Silver"
+                    }
+                    if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
+                        return "Medal4-Bronze"
+                    }
+                    if UtilitiesPortal.score < 60 {
+                        return "Medal5-Rust"
+                    }
+                    else {
+                        return ""
+                    }
+                }
             }
             
             if score >= 1 {

@@ -12,7 +12,7 @@ import AVFoundation
 
 class GameScene: SKScene {
     var infoOverlay: SKSpriteNode!
-    var state: Int!
+    var state, previousState: Int!
     var audioPlayer = AVAudioPlayer()
     
     override func didMoveToView(view: SKView) {
@@ -91,9 +91,9 @@ class GameScene: SKScene {
             self.addChild(levelButton)
             
             
-            let medal = DataHandler.getMedal(count+1)
-            if DataHandler.getMedal(count+1) != "" {
-                if count != UtilitiesPortal.levelTwo - 1 {
+            if count != UtilitiesPortal.levelTwo - 1 {
+                let medal = DataHandler.getMedal(count+1, mode: UtilitiesPortal.modeStandard)
+                if medal != "" {
                     let levelMedal = SKSpriteNode(imageNamed: medal)
                     levelMedal.name = UtilitiesPortal.levelMedalNames[count]
                     levelMedal.alpha = 0.9
@@ -105,9 +105,13 @@ class GameScene: SKScene {
                     self.addChild(levelMedal)
                 }
             }
+            else {
+                // Lvl 2 medal
+            }
             
             setupInfo()
         }
+        setupLevelTwoModes()
         UtilitiesPortal.setBgm()
     }
     
@@ -141,7 +145,8 @@ class GameScene: SKScene {
         
         if state == UtilitiesPortal.stateInfo {
             infoOverlay!.hidden = true
-            state = UtilitiesPortal.stateAnswer
+            state = previousState
+            previousState = UtilitiesPortal.stateInfo
             return
         }
         
@@ -151,6 +156,7 @@ class GameScene: SKScene {
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
             //runAction(sfx)
+            previousState = state
             state = UtilitiesPortal.stateInfo
             infoOverlay!.hidden = false
             
@@ -190,6 +196,8 @@ class GameScene: SKScene {
                                 || node.name == UtilitiesPortal.levelButtonNames[1]) {
             //runAction(sfx)
             showLevelTwoModes()
+            previousState = state
+            state = UtilitiesPortal.stateResult
             return
         }
         
@@ -246,6 +254,19 @@ class GameScene: SKScene {
             self.scene!.view?.presentScene(secondScene, transition: transition)
             return
         }
+        
+        if state == UtilitiesPortal.stateResult {
+            previousState = UtilitiesPortal.stateResult
+            state = UtilitiesPortal.stateAnswer
+            
+            childNodeWithName(UtilitiesPortal.levelLabelNames[1])?.hidden = false
+            childNodeWithName(UtilitiesPortal.levelButtonNames[1])?.hidden = false
+            
+            for x in 0..<UtilitiesPortal.modeLabelNames.count {
+                childNodeWithName(UtilitiesPortal.modeLabelNames[x])?.hidden = true
+                childNodeWithName(UtilitiesPortal.modeButtonNames[x])?.hidden = true
+            }
+        }
     }
    
     override func update(currentTime: CFTimeInterval) {
@@ -259,13 +280,12 @@ class GameScene: SKScene {
         print("Remove all nodes Game Scene")
     }
     
-    func showLevelTwoModes() {
-        childNodeWithName(UtilitiesPortal.levelLabelNames[1])?.hidden = true
-        childNodeWithName(UtilitiesPortal.levelButtonNames[1])?.hidden = true
+    func setupLevelTwoModes() {
         for count in 0 ... 2 {
             let modeLabel = SKLabelNode(fontNamed:UtilitiesPortal.levelLabelFont)
             //levelLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
             modeLabel.zPosition = 0.4
+            modeLabel.hidden = true
             modeLabel.name = UtilitiesPortal.modeLabelNames[count]
             modeLabel.text = UtilitiesPortal.modeLabelTexts[count]
             modeLabel.fontSize = UtilitiesPortal.levelLabelSize
@@ -275,13 +295,25 @@ class GameScene: SKScene {
             
             let levelButton = SKSpriteNode(imageNamed: "menubar3")
             levelButton.name = UtilitiesPortal.modeButtonNames[count]
+            levelButton.hidden = true
             levelButton.alpha = 0.9
             levelButton.zPosition = 0.3
             levelButton.position = CGPointMake(UtilitiesPortal.borderSize*3 + CGFloat(count)*UtilitiesPortal.screenWidth*0.3, UtilitiesPortal.screenHeight*(0.60-0.18))
             levelButton.size = CGSize(width: UtilitiesPortal.screenWidth*0.29,
-                height: UtilitiesPortal.hexImageSize*1.2)
+                                      height: UtilitiesPortal.hexImageSize*1.2)
             addChild(levelButton)
         }
+    }
+    
+    func showLevelTwoModes() {
+        childNodeWithName(UtilitiesPortal.levelLabelNames[1])?.hidden = true
+        childNodeWithName(UtilitiesPortal.levelButtonNames[1])?.hidden = true
+        for count in 0 ... 2 {
+            childNodeWithName(UtilitiesPortal.modeLabelNames[count])?.hidden = false
+            childNodeWithName(UtilitiesPortal.modeButtonNames[count])?.hidden = false
+        }
+        state = UtilitiesPortal.stateResult
+        previousState = UtilitiesPortal.stateAnswer
     }
 
     func cleanScene() {

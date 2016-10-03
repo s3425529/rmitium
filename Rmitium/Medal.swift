@@ -78,7 +78,7 @@ class medalClass {
         return (medalName, words)
     }
    
-    func level2(mode:String) -> (medalName:String , information:[String]){
+    func level2(mode:String) -> (medalName:String , information:[String]) {
         var message:String!
         var bestTime:String!
         let min = UtilitiesPortal.score/60
@@ -98,9 +98,10 @@ class medalClass {
         let scoreSec = score%60
         let result = UtilitiesPortal.score
         
-        if min == 0{
+        if min == 0 {
             message = "You took \(sec) seconds."
-        }else{
+        }
+        else {
         
             message = "You took \(min) minutes \(sec) seconds."
         }
@@ -108,10 +109,11 @@ class medalClass {
         if  scoreSec < 10 {
         
             bestTime = "\(scoreMin):0\(scoreSec)"
-        }else{
+        }
+        else {
             bestTime = "\(scoreMin):\(scoreSec)"
         }
-        if mode == "stand"{
+        if mode == "stand" {
             if UtilitiesPortal.score < 20 {
                 medalName = "Medal1-Diamond"
                 
@@ -124,7 +126,7 @@ class medalClass {
                     words.append("\(message). Your chemistry knowledge is obviously crystal clear.")
                 }
             }
-            if UtilitiesPortal.score < 30 && UtilitiesPortal.score >= 20  {
+            if UtilitiesPortal.score < 30 && UtilitiesPortal.score >= 20 {
                 medalName = "Medal2-Gold"
                 words = ["Well done!"]
                 if score > UtilitiesPortal.score {
@@ -146,7 +148,7 @@ class medalClass {
                     words.append("\(message).")
                 }
             }
-            if UtilitiesPortal.score < 60 && UtilitiesPortal.score >= 40{
+            if UtilitiesPortal.score < 60 && UtilitiesPortal.score >= 40 {
                 medalName = "Medal4-Bronze"
                 words = ["Nice try!"]
                 if score > UtilitiesPortal.score {
@@ -171,7 +173,7 @@ class medalClass {
         
         }
         
-        if mode == "trial"{
+        if mode == "trial" {
             
             if UtilitiesPortal.score >= 150 {
                 medalName = "Medal1-Diamond"
@@ -208,7 +210,7 @@ class medalClass {
                     words.append("\(message).")
                 }
             }
-            if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90{
+            if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
                 medalName = "Medal4-Bronze"
                 
                 if score < UtilitiesPortal.score {
@@ -232,13 +234,9 @@ class medalClass {
                     words.append("\(message).")
                 }
             }
-            
-
-        
         }
         
-        if mode == "beat"{
-        
+        if mode == "beat" {
             if UtilitiesPortal.score >= 150 {
                 medalName = "Medal1-Diamond"
                 
@@ -275,7 +273,7 @@ class medalClass {
                     words.append("\(message).")
                 }
             }
-            if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90{
+            if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
                 medalName = "Medal4-Bronze"
               
                 if score > UtilitiesPortal.score {
