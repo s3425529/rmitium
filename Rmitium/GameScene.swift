@@ -30,6 +30,9 @@ class GameScene: SKScene {
             }
         }
         
+        // Display score data to test
+        DataHandler.getSettings()
+        
         let image = SKSpriteNode(imageNamed: "chem-bg2")
         image.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         image.position = CGPoint(x:frame.midX, y:frame.midY)
@@ -87,16 +90,20 @@ class GameScene: SKScene {
                                          height: UtilitiesPortal.hexImageSize*1.2)
             self.addChild(levelButton)
             
-            if DataHandler.getScore(count+1) != -1 {
-                let levelMedal = SKSpriteNode(imageNamed: "Medal2-Gold")
-                levelMedal.name = UtilitiesPortal.levelMedalNames[count]
-                levelMedal.alpha = 0.9
-                levelMedal.zPosition = 0.1
-                levelMedal.position = CGPointMake(UtilitiesPortal.screenWidth*0.88,
-                                                  UtilitiesPortal.screenHeight*(0.60-CGFloat(count)*0.18))
-                levelMedal.size = CGSize(width: UtilitiesPortal.hexImageSize,
-                                         height: UtilitiesPortal.hexImageSize)
-                self.addChild(levelMedal)
+            
+            let medal = DataHandler.getMedal(count+1)
+            if DataHandler.getMedal(count+1) != "" {
+                if count != UtilitiesPortal.levelTwo - 1 {
+                    let levelMedal = SKSpriteNode(imageNamed: medal)
+                    levelMedal.name = UtilitiesPortal.levelMedalNames[count]
+                    levelMedal.alpha = 0.9
+                    levelMedal.zPosition = 0.2
+                    levelMedal.position = CGPointMake(UtilitiesPortal.screenWidth*0.88,
+                                                      UtilitiesPortal.screenHeight*(0.60-CGFloat(count)*0.18))
+                    levelMedal.size = CGSize(width: UtilitiesPortal.hexImageSize,
+                                             height: UtilitiesPortal.hexImageSize)
+                    self.addChild(levelMedal)
+                }
             }
             
             setupInfo()
