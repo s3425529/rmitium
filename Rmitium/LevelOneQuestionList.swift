@@ -67,7 +67,7 @@ class LevelOneQuestionList {
             
         }
         selectedQuestions.append(listOfQuestions[listOfQuestions.count-1])
-        
+        listOfQuestions.removeAll()
         listOfQuestions = selectedQuestions
         return listOfQuestions
     }

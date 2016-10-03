@@ -365,7 +365,7 @@ class LevelTwoScene: SKScene {
                     
                 }
                 else if node.name == UtilitiesPortal.noButtonName {
-                    timerClass.pause(false)
+                    //timerClass.pause(false)
                     homeDialogue.hidden = true
                     state = previousState
                     previousState = UtilitiesPortal.stateHome
@@ -379,11 +379,11 @@ class LevelTwoScene: SKScene {
             infoOverlay.hidden = true
             /*infoOverlay.removeAllActions()
             infoOverlay.removeAllChildren()
-            infoOverlay.removeFromParent()*/
+            infoOverlay.removeFromParent()
             if timerClass.timeLabel <= LIMITTIME {
                 timerClass.pause(false)
             }
-            
+            */
             state = previousState
             previousState = UtilitiesPortal.stateInfo
             return
