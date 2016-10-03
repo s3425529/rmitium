@@ -563,6 +563,7 @@ class LevelThreeScene: SKScene {
         }
         
         chosenAnswer.position = touch!.locationInNode(self)
+        /*
         print("+++++++++++++++++++++++++")
         
         let xPostion = chosenAnswer.position.x
@@ -571,6 +572,7 @@ class LevelThreeScene: SKScene {
         let y = yPostion / UtilitiesPortal.screenHeight
         print("x=\(x)")
         print("y=\(y)")
+         */
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
