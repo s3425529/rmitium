@@ -22,10 +22,6 @@ class ResultPage: SKScene{
     var state = false
     var myView:SKShapeNode!
     override func didMoveToView(view: SKView) {
-        
-        
-       
-        
         if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
             do {
                 try audioPlayer = AVAudioPlayer(contentsOfURL: clickSound, fileTypeHint: nil)
@@ -46,7 +42,6 @@ class ResultPage: SKScene{
         infoTable()
         
         DataHandler.saveLevelOneScore()
-        
     }
     
     func setupMedal() {
@@ -260,7 +255,7 @@ class ResultPage: SKScene{
         
     }
     
-    func goToLevel2(){
+    func goToLevel2() {
         self.removeAllActions()
         self.removeAllChildren()
         UtilitiesPortal.score = 0

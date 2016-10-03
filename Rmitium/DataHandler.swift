@@ -95,8 +95,10 @@ class DataHandler {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
-            //localSetting = result.first!
-            //return localSetting
+            print("Lvl 1 Score: \(result.first!.levelOne)")
+            print("Lvl 1 Percent: \(result.first!.levelOneScore)")
+            print("Lvl 3 Score: \(result.first!.levelThree)")
+            print("Lvl 3 Percent: \(result.first!.levelThreeScore)")
             return result.first!
         }
         catch {
@@ -138,14 +140,17 @@ class DataHandler {
             let object = result.first! 
             let oldScore = object.levelOne as! Int
            
-            if oldScore < UtilitiesPortal.score{
+            if oldScore < UtilitiesPortal.score {
                 object.setValue(UtilitiesPortal.score, forKey: "levelOne")
-                object.setValue(UtilitiesPortal.score/UtilitiesPortal.totalQuestions,
-                                forKey: "levelOneScore")
                 try settings.save()
             }
-           
             
+            let percentage = object.levelOneScore! as Double
+            let newPercent = Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions)
+            if percentage < newPercent {
+                object.setValue(newPercent, forKey: "levelOneScore")
+                try settings.save()
+            }
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
@@ -274,8 +279,13 @@ class DataHandler {
             
             if oldScore < UtilitiesPortal.score{
                 object.setValue(UtilitiesPortal.score, forKey: "levelThree")
-                object.setValue(UtilitiesPortal.score/UtilitiesPortal.totalQuestions,
-                                forKey: "levelThreeScore")
+                try settings.save()
+            }
+            
+            let percentage = object.levelThreeScore! as Double
+            let newPercent = Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions)
+            if percentage < newPercent {
+                object.setValue(newPercent, forKey: "levelThreeScore")
                 try settings.save()
             }
         }
@@ -340,6 +350,42 @@ class DataHandler {
             }
             else {
                 return 0;
+            }
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func getMedal(level: Int) -> String {
+        let setting = NSFetchRequest(entityName: "Settings")
+        var score = 0.0
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            if level == UtilitiesPortal.levelOne {
+                score = result.first!.levelOneScore! as Double
+            }
+            else if level == UtilitiesPortal.levelThree {
+                score = result.first!.levelThreeScore! as Double
+            }
+            
+            if score >= 1 {
+                return "Medal1-Diamond"
+            }
+            else if score >= 0.9 && score < 1 {
+                return "Medal2-Gold"
+            }
+            else if score >= 0.7 && score < 0.9 {
+                return "Medal3-Silver"
+            }
+            else if score >= 0.5 && score < 0.7 {
+                return "Medal4-Bronze"
+            }
+            else if score < 0.5 && score > 0{
+                return "Medal5-Rust"
+            }
+            else {
+                return ""
             }
         }
         catch {
