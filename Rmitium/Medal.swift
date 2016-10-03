@@ -123,7 +123,7 @@ class medalClass {
                 }
                 else {
                     words = ["Congratulations!"]
-                    words.append("\(message). Your chemistry knowledge is obviously crystal clear.")
+                    words.append("\(message) Your chemistry knowledge is obviously crystal clear.")
                 }
             }
             if UtilitiesPortal.score < 30 && UtilitiesPortal.score >= 20 {
@@ -145,7 +145,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
-                    words.append("\(message).")
+                    words.append("\(message)")
                 }
             }
             if UtilitiesPortal.score < 60 && UtilitiesPortal.score >= 40 {
@@ -156,7 +156,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
-                    words.append("\(message).")
+                    words.append("\(message)")
                 }
             }
             if UtilitiesPortal.score >= 60 {
@@ -167,7 +167,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
-                    words.append("\(message).")
+                    words.append("\(message)")
                 }
             }
         
@@ -183,7 +183,7 @@ class medalClass {
                 }
                 else {
                     words = ["Congratulations!"]
-                    words.append("\(message). Your chemistry knowledge is obviously crystal clear.")
+                    words.append("\(message) Your chemistry knowledge is obviously crystal clear.")
                 }
             }
             if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
@@ -195,7 +195,7 @@ class medalClass {
                 }
                 else {
                     words = ["Well done!"]
-                    words.append("\(message). Your chemistry prowess is gold standard.")
+                    words.append("\(message) Your chemistry prowess is gold standard.")
                 }
             }
             if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
@@ -207,7 +207,7 @@ class medalClass {
                 }
                 else {
                     words = ["Great work!"]
-                    words.append("\(message).")
+                    words.append("\(message)")
                 }
             }
             if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
@@ -219,7 +219,7 @@ class medalClass {
                 }
                 else {
                     words = ["Nice try!"]
-                    words.append("\(message).")
+                    words.append("\(message)")
                 }
             }
             if result < 60 {
@@ -231,7 +231,7 @@ class medalClass {
                 }
                 else {
                     words = ["Good effort!"]
-                    words.append("\(message).")
+                    words.append("\(message)")
                 }
             }
         }
@@ -246,7 +246,7 @@ class medalClass {
                 }
                 else {
                     words = ["Congratulations!"]
-                    words.append("\(message). Your chemistry knowledge is obviously crystal clear.")
+                    words.append("\(message) Your chemistry knowledge is obviously crystal clear.")
                 }
             }
             if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
@@ -254,11 +254,11 @@ class medalClass {
                 
                 if score > UtilitiesPortal.score {
                     words = ["New record!"]
-                    words.append("\(message) Your chemistry prowess is gold standard. Your best was \(bestTime).")
+                    words.append("\(message) Your chemistry prowess is gold standard. Your best was \(bestTime)")
                 }
                 else {
                     words = ["Well done!"]
-                    words.append("\(message). Your chemistry prowess is gold standard.")
+                    words.append("\(message) Your chemistry prowess is gold standard.")
                 }
             }
             if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
@@ -270,7 +270,7 @@ class medalClass {
                 }
                 else {
                     words = ["Great work!"]
-                    words.append("\(message).")
+                    words.append("\(message)")
                 }
             }
             if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
@@ -282,7 +282,7 @@ class medalClass {
                 }
                 else {
                     words = ["Nice try!"]
-                    words.append("\(message).")
+                    words.append("\(message)")
                 }
             }
             if result < 60 {
@@ -294,7 +294,7 @@ class medalClass {
                 }
                 else {
                     words = ["Good effort!"]
-                    words.append("\(message).")
+                    words.append("\(message)")
                 }
             }
         }
