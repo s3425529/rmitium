@@ -10,12 +10,6 @@ import Foundation
 class LevelOneQuestionList {
     static var listOfQuestions:[LevelOneQuestion] = []
     
-    /*init(){
-        listOfQuestions = LevelOneQuestion.getQuestions()
-        shuffle()
-        select(9)
-    }*/
-    
     static func getQuestionsList() ->[LevelOneQuestion] {
         listOfQuestions = LevelOneQuestion.getQuestions()
         shuffle()
@@ -42,18 +36,8 @@ class LevelOneQuestionList {
     }
     
     static func random() -> Int{
-        
         let randomQuestionIndex = Int(arc4random_uniform(UInt32(listOfQuestions.count-1)))
         return randomQuestionIndex
-        
-        /*for i in 0..<listOfQuestions.count-1 {
-            
-            if randomQuestionIndex == UtilitiesPortal.record[i]{
-                UtilitiesPortal.record.removeAtIndex(i)
-                return randomQuestionIndex
-            }
-        }
-        return 0*/
     }
     
     static func select(numberOfQuestion: Int) ->[LevelOneQuestion]
