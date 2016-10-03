@@ -16,7 +16,11 @@ class LevelThreeScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
+<<<<<<< HEAD
     var resultImage, infoOverlay, factOverlay, homeView : SKSpriteNode!
+=======
+    var resultImage, infoOverlay, infoOverlayResult, factOverlay : SKSpriteNode!
+>>>>>>> 1392fef89aa7a5ee7fa48b7cfb1feef39a9bda55
     var homeDialogue: SKShapeNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
@@ -40,7 +44,7 @@ class LevelThreeScene: SKScene {
         if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstTime {
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo
-            DataHandler.saveLevelThreeScore()
+            //DataHandler.saveLevelThreeScore()
         }
         else {
             state = UtilitiesPortal.stateAnswer
@@ -72,6 +76,7 @@ class LevelThreeScene: SKScene {
         setupTargets()
         setupFactLabel()
         setupInfo()
+        setupInfoResult()
         createHomeDialogue()
         
     }
@@ -275,6 +280,126 @@ class LevelThreeScene: SKScene {
     }
     
     // Info layout
+    func setupInfoResult() {
+        let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
+        arrow01.zPosition = 0.9
+        arrow01.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.30,
+                                   y: UtilitiesPortal.screenHeight * -0.3)
+        
+        let arrow02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[1])
+        arrow02.zPosition = 0.9
+        arrow02.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow02.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.4,
+                                   y: UtilitiesPortal.screenHeight * 0.3)
+        
+        /*let arrow03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[2])
+         arrow03.zPosition = 0.9
+         arrow03.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+         height: UtilitiesPortal.navImgSize*2)
+         arrow03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.24,
+         y: UtilitiesPortal.screenHeight * -0.1)
+         let action1_1 = SKAction.fadeOutWithDuration(0.6)
+         let action1_2 = SKAction.fadeInWithDuration(0.6)
+         let sequence1 = SKAction.sequence([action1_1, action1_2])
+         let repeatAction1 = SKAction.repeatActionForever(sequence1)
+         arrow03.runAction(repeatAction1)*/
+        
+        let arrow04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[6])
+        arrow04.zPosition = 0.9
+        arrow04.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow04.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.40,
+                                   y: UtilitiesPortal.screenHeight * -0.3)
+        /*let action2_1 = SKAction.fadeInWithDuration(0.6)
+         let action2_2 = SKAction.fadeOutWithDuration(0.6)
+         let sequence2 = SKAction.sequence([action2_1, action2_2])
+         let repeatAction2 = SKAction.repeatActionForever(sequence2)
+         arrow04.runAction(repeatAction2)*/
+        
+        let arrow05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[4])
+        arrow05.zPosition = 0.9
+        arrow05.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow05.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.4,
+                                   y: UtilitiesPortal.screenHeight * 0.30)
+        
+        let arrow06 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[5])
+        arrow06.zPosition = 0.9
+        arrow06.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+                              height: UtilitiesPortal.navImgSize*2)
+        arrow06.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.4,
+                                   y: UtilitiesPortal.screenHeight * -0.30)
+        
+        let info01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[0])
+        info01.zPosition = 1
+        info01.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+                             height: UtilitiesPortal.screenHeight*0.15)
+        info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.38,
+                                  y: UtilitiesPortal.screenHeight * 0.14)
+        
+        let info02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[7])
+        info02.zPosition = 1
+        info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+                             height: UtilitiesPortal.screenHeight*0.15)
+        info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.40,
+                                  y: UtilitiesPortal.screenHeight * -0.1)
+        
+        let info03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[5])
+        info03.zPosition = 1
+        info03.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+                             height: UtilitiesPortal.screenHeight*0.15)
+        info03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.20,
+                                  y: UtilitiesPortal.screenHeight * -0.3)
+        
+        let info04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[3])
+        info04.zPosition = 1
+        info04.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+                             height: UtilitiesPortal.screenHeight*0.15)
+        info04.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.35,
+                                  y: UtilitiesPortal.screenHeight * 0.15)
+        
+        let info05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[4])
+        info05.zPosition = 1
+        info05.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+                             height: UtilitiesPortal.screenHeight*0.15)
+        info05.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.35,
+                                  y: UtilitiesPortal.screenHeight * -0.10)
+        
+        infoOverlayResult = SKSpriteNode()
+        infoOverlayResult.name = UtilitiesPortal.factOverlayName
+        infoOverlayResult.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        infoOverlayResult.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        infoOverlayResult.color = SKColor.blackColor()
+        infoOverlayResult.alpha = 0.7
+        infoOverlayResult.zPosition = 0.8
+        
+        if state == UtilitiesPortal.stateInfoResult {
+            infoOverlayResult.hidden = false
+        }
+        else {
+            infoOverlayResult.hidden = true
+        }
+        
+        infoOverlayResult.addChild(arrow01)
+        infoOverlayResult.addChild(arrow02)
+        //infoOverlay.addChild(arrow03)
+        infoOverlayResult.addChild(arrow04)
+        infoOverlayResult.addChild(arrow05)
+        infoOverlayResult.addChild(arrow06)
+        
+        infoOverlayResult.addChild(info01)
+        infoOverlayResult.addChild(info02)
+        infoOverlayResult.addChild(info03)
+        infoOverlayResult.addChild(info04)
+        infoOverlayResult.addChild(info05)
+        
+        addChild(infoOverlayResult)
+    }
+    
+    // Info layout
     func setupInfo() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9
@@ -452,6 +577,7 @@ class LevelThreeScene: SKScene {
         }
         
         chosenAnswer.position = touch!.locationInNode(self)
+        /*
         print("+++++++++++++++++++++++++")
         
         let xPostion = chosenAnswer.position.x
@@ -460,6 +586,7 @@ class LevelThreeScene: SKScene {
         let y = yPostion / UtilitiesPortal.screenHeight
         print("x=\(x)")
         print("y=\(y)")
+         */
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -488,10 +615,6 @@ class LevelThreeScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if DataHandler.getSettings().getEffect {
-            audioPlayer.play()
-        }
-        
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         
@@ -526,10 +649,25 @@ class LevelThreeScene: SKScene {
             return
         }
         
+        if state == UtilitiesPortal.stateInfoResult {
+            infoOverlayResult .hidden = true
+            infoOverlayResult .removeAllActions()
+            infoOverlayResult .removeAllChildren()
+            infoOverlayResult .removeFromParent()
+            state = previousState
+            previousState = UtilitiesPortal.stateInfoResult
+            return
+        }
+        
         if state == UtilitiesPortal.stateAnswer {
             // Labels selected
             for x in 0...answers.count-1 {
                 if CGRectContainsPoint(answers[x].frame, point) {
+                    // Play sound only when drag labels
+                    if DataHandler.getSettings().getEffect {
+                        audioPlayer.play()
+                    }
+                    
                     chosenAnswer = CustomSKSpriteNode(imageNamed: answers[x].name!)
                     chosenAnswer.value = answers[x].name!
                     chosenAnswer.zPosition = 0.4
@@ -581,6 +719,12 @@ class LevelThreeScene: SKScene {
         if node.name == UtilitiesPortal.tickButtonName {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
+                if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstTime {
+                    infoOverlayResult.hidden = false
+                    previousState = UtilitiesPortal.stateResult
+                    state = UtilitiesPortal.stateInfoResult
+                    DataHandler.saveLevelThreeScore()
+                }
                 return
             }
              
@@ -634,11 +778,20 @@ class LevelThreeScene: SKScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
-            setupInfo()
-            previousState = state
-            state = UtilitiesPortal.stateInfo
-            infoOverlay.hidden = false
-            return
+            if state == UtilitiesPortal.stateAnswer {
+                setupInfo()
+                previousState = state
+                state = UtilitiesPortal.stateInfo
+                infoOverlay.hidden = false
+                return
+            }
+            else {
+                setupInfoResult()
+                previousState = state
+                state = UtilitiesPortal.stateInfoResult
+                infoOverlayResult.hidden = false
+                return
+            }
         }
         
         // Fact Overlay selected

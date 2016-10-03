@@ -22,6 +22,10 @@ class UtilitiesPortal {
     static let stateFact = 5
     static let stateHome = 6
     
+    static let modeStandard = 0
+    static let modeTrial = 1
+    static let modeBeat = 2
+    
     static let firstTime = -1
     static let defaultScore = 0
     static let levelOne = 1
@@ -34,6 +38,7 @@ class UtilitiesPortal {
     
     static let modeLabelNames = ["mode01", "mode02", "mode03"]
     static let modeButtonNames = ["mode01Btn", "mode02Btn", "mode03Btn"]
+    static let modeMedalNames = ["mode01Medal", "mode02Medal", "mode03Medal"]
     static let levelOneAnswers = ["acid", "amine", "amide", "alcohol", "aldehyde", "alkene", "ether", "ester", "phenol" ,"thioether"]
     static let levelTwoWidth = 10
     static let levelTwoHeight = 6
@@ -47,7 +52,7 @@ class UtilitiesPortal {
                                   "Level 2: Structure Classification",
                                   "Level 3: Intermolecular Forces", "SETTINGS"]
     
-    static let modeLabelTexts = ["Standard", "Time Trial", "Beat the Clock"]
+    static let modeLabelTexts = ["Standard", "Time Trial", "Extreme"]
     
     static let settingLabelTexts = ["Background Music", "Sound Effects", "Left-Hand Mode", "Reset Scores"]
     static let settingLabelNames = ["background", "soundEffects", "leftHand", "reset"]
@@ -109,7 +114,6 @@ class UtilitiesPortal {
     static var score = 0
     
     static var totalQuestions = 0
-    
     static var effect = "sfx"
     
     //static var record = [Int]()

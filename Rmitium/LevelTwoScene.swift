@@ -416,10 +416,6 @@ class LevelTwoScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if DataHandler.getSettings().getEffect {
-            audioPlayer.play()
-        }
-        
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         
@@ -519,6 +515,11 @@ class LevelTwoScene: SKScene {
                     }
                     else if answers[x].hidden == false {
                         if compareTiles(x, b: chosenAnswer) {
+                            // Play sound when two tiles are matched only
+                            if DataHandler.getSettings().getEffect {
+                                audioPlayer.play()
+                            }
+                            
                             answers[chosenAnswer].hidden = true
                             answers[x].hidden = true
                             plus = true

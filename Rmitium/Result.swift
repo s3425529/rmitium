@@ -121,7 +121,6 @@ class Result: SKScene {
         }
         //back button selected
         if node.name == UtilitiesPortal.backButtonName {
-            print("next")
             UtilitiesPortal.score = 0
             backHomePage()
             return
