@@ -106,8 +106,14 @@ class medalClass {
         }
         
         if  scoreSec < 10 {
-        
-            bestTime = "\(scoreMin):0\(scoreSec)"
+            if scoreSec == -1{
+            
+                bestTime = "\(scoreMin):00"
+            }else{
+                bestTime = "\(scoreMin):0\(scoreSec)"
+            }
+           
+            
         }else{
             bestTime = "\(scoreMin):\(scoreSec)"
         }

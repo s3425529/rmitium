@@ -16,7 +16,7 @@ class GameScene: SKScene {
     var audioPlayer = AVAudioPlayer()
     
     override func didMoveToView(view: SKView) {
-        UtilitiesPortal.score = 0
+        //UtilitiesPortal.score = 0
         UtilitiesPortal.totalQuestions = 0
         state = UtilitiesPortal.stateAnswer
         
