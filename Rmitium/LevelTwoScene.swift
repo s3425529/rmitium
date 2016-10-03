@@ -13,9 +13,9 @@ import SpriteKit
 class LevelTwoScene: SKScene {
     var answers: [CustomSKSpriteNode] = []
     var chosenAnswer: Int!
-    var tick, infoOverlay: SKSpriteNode!
-    var homeDialogue: SKShapeNode!
-    var score, factLabel, timeNode: SKLabelNode!
+    var tick, infoOverlay, homeView: SKSpriteNode!
+    var homeDialogue, timeOutMessage: SKShapeNode!
+    var score, factLabel, timeNode, modeLabel: SKLabelNode!
     var state, previousState: Int!
     var timerClass:TimeControl!
     var timeNsNode:NSTimer!
@@ -126,7 +126,14 @@ class LevelTwoScene: SKScene {
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
         self.addChild(score)
         
+        // Mode Label
+        modeLabel = SKLabelNode(fontNamed: UtilitiesPortal.factFont)
+        modeLabel.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.borderSize/4)
+        modeLabel.zPosition = 0.1
+        modeLabel.fontSize = UtilitiesPortal.factSize
         
+        modeLabel.text = String(self.userData!.valueForKey("gameMode")!)
+        self.addChild(modeLabel)
         // Time label
         timeNode = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         timeNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
@@ -281,12 +288,22 @@ class LevelTwoScene: SKScene {
     func createHomeDialogue() {
         let yesBtn = SKSpriteNode()
         let noBtn = SKSpriteNode()
+        let alertMessage = SKLabelNode(text: "You sure you wanna quit?")
         
-        let alertMessage = SKLabelNode(text: "Are you sure you want to quit?")
         alertMessage.position = CGPoint(x: 0, y: 0)
         alertMessage.zPosition = 0.9
         alertMessage.fontName = UtilitiesPortal.navLabelFont
-        alertMessage.fontSize = 15
+        alertMessage.fontSize = UtilitiesPortal.factSize
+        
+        homeView = SKSpriteNode()
+        homeView.color = SKColor.blackColor()
+        homeView.alpha = 0.8
+        homeView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        homeView.zPosition = 0.8
+        homeView.hidden = true
+
+        
         homeDialogue = SKShapeNode()
         homeDialogue.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
         homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
@@ -314,8 +331,66 @@ class LevelTwoScene: SKScene {
         homeDialogue.addChild(noBtn)
         homeDialogue.addChild(alertMessage)
         addChild(homeDialogue)
-        
+        addChild(homeView)
     }
+    
+    func addTimeOutMessage() {
+        let retryBtn = SKSpriteNode()
+        let backHomebtn = SKSpriteNode()
+        let title = SKLabelNode(text:"Time Out!")
+        let message = SKLabelNode(text: "Wanna try again?")
+        let backgroundNode = SKSpriteNode()
+        
+        homeDialogue.hidden = true
+        homeView.hidden = true
+        
+        backgroundNode.color = SKColor.blackColor()
+        backgroundNode.alpha = 0.8
+        backgroundNode.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        backgroundNode.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        backgroundNode.zPosition = 0.8
+        
+        title.position = CGPoint(x: 0, y: 0 + message.fontSize*3.5)
+        title.zPosition = 0.9
+        title.fontName = UtilitiesPortal.navLabelFont
+        title.fontSize = UtilitiesPortal.factSize
+        
+        message.position = CGPoint(x: 0, y: 0)
+        message.zPosition = 0.9
+        message.fontName = UtilitiesPortal.navLabelFont
+        message.fontSize = UtilitiesPortal.factSize
+        
+        
+        timeOutMessage = SKShapeNode()
+        timeOutMessage.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
+        timeOutMessage.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        timeOutMessage.fillColor = SKColor.blackColor()
+        
+        timeOutMessage.alpha = 0.9
+        timeOutMessage.zPosition = 0.9
+        
+        retryBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        retryBtn.color = SKColor.grayColor()
+        retryBtn.name = UtilitiesPortal.timeOutRetryName
+        retryBtn.texture = SKTexture(image: UIImage(named: "replay")!)
+        retryBtn.position = CGPoint(x: (0 - retryBtn.size.width), y: (0 - retryBtn.size.height)*1.2)
+        retryBtn.zPosition = 0.9
+        
+        backHomebtn.size = retryBtn.size
+        backHomebtn.color = retryBtn.color
+        backHomebtn.name = UtilitiesPortal.timeOutHomeName
+        backHomebtn.texture = SKTexture(image: UIImage(named: "home")!)
+        backHomebtn.position = CGPoint(x: retryBtn.size.width, y: (0 - retryBtn.size.height)*1.2)
+        backHomebtn.zPosition = 0.9
+        
+        timeOutMessage.addChild(retryBtn)
+        timeOutMessage.addChild(backHomebtn)
+        timeOutMessage.addChild(message)
+        timeOutMessage.addChild(title)
+        addChild(backgroundNode)
+        addChild(timeOutMessage)
+    }
+    
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /*let touch = touches.first
@@ -367,6 +442,7 @@ class LevelTwoScene: SKScene {
                 else if node.name == UtilitiesPortal.noButtonName {
                     //timerClass.pause(false)
                     homeDialogue.hidden = true
+                    homeView.hidden = true
                     state = previousState
                     previousState = UtilitiesPortal.stateHome
                     return
@@ -394,6 +470,7 @@ class LevelTwoScene: SKScene {
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
             homeDialogue.hidden = false
+            homeView.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
         }
@@ -413,6 +490,13 @@ class LevelTwoScene: SKScene {
             return
         }
         
+        if node.name == UtilitiesPortal.timeOutHomeName {
+            backHomePage()
+        }
+        
+        if node.name == UtilitiesPortal.timeOutRetryName {
+            retryLvl()
+        }
         if state == UtilitiesPortal.stateAnswer {
             // Labels selected
             for x in 0...answers.count-1 {
@@ -500,6 +584,22 @@ class LevelTwoScene: SKScene {
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
     
+    // retry level 2
+    func retryLvl() {
+        self.removeAllActions()
+        self.removeAllChildren()
+        UtilitiesPortal.score = 0
+        let secondScene = LevelTwoScene(size: self.size)
+        secondScene.userData = NSMutableDictionary()
+        let mode = self.userData?.valueForKey("gameMode")
+        secondScene.userData?.setValue(mode, forKey: "gameMode")
+        let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+        //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+        secondScene.scaleMode = SKSceneScaleMode.AspectFill
+        self.scene!.view?.presentScene(secondScene, transition: transition)
+    }
+    
+    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
@@ -530,7 +630,7 @@ class LevelTwoScene: SKScene {
         if checkResult() {
             UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
-            toResultSence()
+            toResultScene()
         }
         /*
         if timerClass.timeLabel >= LIMITTIME {
@@ -589,7 +689,7 @@ class LevelTwoScene: SKScene {
         if checkResult() {
             UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
-            toResultSence()
+            toResultScene()
         }
         
         if timerClass.timeLabel <= 0 {
@@ -599,8 +699,8 @@ class LevelTwoScene: SKScene {
             state = UtilitiesPortal.stateResult
             timeOut()
             // go to resultpage or retr
-            //alertMessage()
-         }
+            addTimeOutMessage()
+        }
         
     }
 
@@ -629,7 +729,7 @@ class LevelTwoScene: SKScene {
         if checkResult() {
             UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
-            toResultSence()
+            toResultScene()
         }
         
          if timerClass.timeLabel <= 0 {
@@ -639,8 +739,8 @@ class LevelTwoScene: SKScene {
          state = UtilitiesPortal.stateResult
          
          timeOut()
-         //alertMessage()
-         }
+         addTimeOutMessage()
+        }
 
     }
 
@@ -670,7 +770,7 @@ class LevelTwoScene: SKScene {
         timeNsNode = nil
     }
     
-    func toResultSence() {
+    func toResultScene() {
         cleanScene()
         
         let secondScene = ResultPage2(size: self.size)

@@ -67,7 +67,8 @@ class UtilitiesPortal {
     static let backButtonName = "back"
     static let yesButtonName = "yesBtn"
     static let noButtonName = "noBtn"
-    
+    static let timeOutRetryName = "timeOutRetryBtn"
+    static let timeOutHomeName = "timeOutHomeBtn"
     static let factLabelName = "factLbl"
     static let factOverlayName = "factOvl"
     static let factMultiLine = "factMultiLine"

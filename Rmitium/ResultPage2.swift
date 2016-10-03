@@ -133,7 +133,7 @@ class ResultPage2: SKScene {
     func setupItem(){
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
-        levelLabel.text = UtilitiesPortal.levelLabelTexts[1]
+        levelLabel.text = "Level 2: \(self.userData!.valueForKey("gameMode")!)"
         levelLabel.fontSize = UtilitiesPortal.navLabelSize
         levelLabel.position = CGPointMake(frame.midX, UtilitiesPortal.screenHeight*0.92)
         self.addChild(levelLabel)
@@ -302,22 +302,24 @@ class ResultPage2: SKScene {
     
     //Show Home Button Dialogue box
     func createHomeDialogue() {
-        homeView  = SKSpriteNode()
-        homeView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
-       // homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2.5, y: UtilitiesPortal.screenHeight/2)
-        homeView.position = CGPoint(x: 0, y: 0)
-        homeView.zPosition = 0.8
-       // homeView.color = SKColor.redColor()
-        homeView.alpha = 1
-        homeView.hidden = true
         let yesBtn = SKSpriteNode()
         let noBtn = SKSpriteNode()
+        let alertMessage = SKLabelNode(text: "You sure you wanna quit?")
         
-        let alertMessage = SKLabelNode(text: "Are you sure you want to quit?")
         alertMessage.position = CGPoint(x: 0, y: 0)
         alertMessage.zPosition = 0.9
         alertMessage.fontName = UtilitiesPortal.navLabelFont
-        alertMessage.fontSize = 15
+        alertMessage.fontSize = UtilitiesPortal.factSize
+        
+        homeView = SKSpriteNode()
+        homeView.color = SKColor.blackColor()
+        homeView.alpha = 0.8
+        homeView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        homeView.zPosition = 0.8
+        homeView.hidden = true
+        
+        
         homeDialogue = SKShapeNode()
         homeDialogue.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
         homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
@@ -325,7 +327,7 @@ class ResultPage2: SKScene {
         
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
-        homeDialogue.hidden = false
+        homeDialogue.hidden = true
         
         yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
@@ -344,8 +346,7 @@ class ResultPage2: SKScene {
         homeDialogue.addChild(yesBtn)
         homeDialogue.addChild(noBtn)
         homeDialogue.addChild(alertMessage)
-        homeView.addChild(homeDialogue)
-        //addChild(homeDialogue)
+        addChild(homeDialogue)
         addChild(homeView)
     }
 
@@ -361,8 +362,7 @@ class ResultPage2: SKScene {
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home!")
             homeView.hidden = false
-            
-            //homeDialogue.hidden = false
+            homeDialogue.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
         }
@@ -373,7 +373,7 @@ class ResultPage2: SKScene {
             return
         }
         if node.name == UtilitiesPortal.noButtonName {
-            //homeDialogue.hidden = true
+            homeDialogue.hidden = true
             homeView.hidden = true
             state = previousState
             previousState = UtilitiesPortal.stateHome

@@ -16,7 +16,7 @@ class LevelThreeScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
-    var resultImage, infoOverlay, factOverlay : SKSpriteNode!
+    var resultImage, infoOverlay, factOverlay, homeView : SKSpriteNode!
     var homeDialogue: SKShapeNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
@@ -398,17 +398,27 @@ class LevelThreeScene: SKScene {
     func createHomeDialogue() {
         let yesBtn = SKSpriteNode()
         let noBtn = SKSpriteNode()
+        let alertMessage = SKLabelNode(text: "You sure you wanna quit?")
         
-        let alertMessage = SKLabelNode(text: "Are you sure you want to quit?")
         alertMessage.position = CGPoint(x: 0, y: 0)
         alertMessage.zPosition = 0.9
         alertMessage.fontName = UtilitiesPortal.navLabelFont
-        alertMessage.fontSize = 15
+        alertMessage.fontSize = UtilitiesPortal.factSize
+        
+        homeView = SKSpriteNode()
+        homeView.color = SKColor.blackColor()
+        homeView.alpha = 0.8
+        homeView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        homeView.zPosition = 0.8
+        homeView.hidden = true
+        
+        
         homeDialogue = SKShapeNode()
         homeDialogue.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
         homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
         homeDialogue.fillColor = SKColor.blackColor()
-
+        
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
         homeDialogue.hidden = true
@@ -431,7 +441,7 @@ class LevelThreeScene: SKScene {
         homeDialogue.addChild(noBtn)
         homeDialogue.addChild(alertMessage)
         addChild(homeDialogue)
-
+        addChild(homeView)
     }
 
     
@@ -495,6 +505,7 @@ class LevelThreeScene: SKScene {
                 }
                 else if node.name == UtilitiesPortal.noButtonName {
                     homeDialogue.hidden = true
+                    homeView.hidden = true
                     state = previousState
                     previousState = UtilitiesPortal.stateHome
                     return
@@ -561,6 +572,7 @@ class LevelThreeScene: SKScene {
         let node = self.nodeAtPoint(location)
         if node.name == UtilitiesPortal.homeButtonName {
             homeDialogue.hidden = false
+            homeView.hidden = false
             previousState = state
             state = UtilitiesPortal.stateHome
         }

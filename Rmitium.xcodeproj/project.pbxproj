@@ -50,7 +50,7 @@
 		50E94AAD1D811C7D00C01945 /* setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E94AAC1D811C7D00C01945 /* setting.swift */; };
 		50E94AAF1D82405600C01945 /* TimeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E94AAE1D82405500C01945 /* TimeControl.swift */; };
 		50E94AE91D867F9100C01945 /* ResultPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E94AE81D867F9100C01945 /* ResultPage.swift */; };
-		50E94B141D87D58400C01945 /* ReslutPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E94B131D87D58400C01945 /* ReslutPage3.swift */; };
+		50E94B141D87D58400C01945 /* ResultPage3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E94B131D87D58400C01945 /* ResultPage3.swift */; };
 		50E94B161D880ED000C01945 /* ResultPage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E94B151D880ED000C01945 /* ResultPage2.swift */; };
 		50EEF2721D8ED87A00B8F0E1 /* LevelTwoQuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EEF2711D8ED87A00B8F0E1 /* LevelTwoQuestionList.swift */; };
 		50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */; };
@@ -105,7 +105,7 @@
 		50E94AAC1D811C7D00C01945 /* setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = setting.swift; sourceTree = "<group>"; };
 		50E94AAE1D82405500C01945 /* TimeControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeControl.swift; sourceTree = "<group>"; };
 		50E94AE81D867F9100C01945 /* ResultPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultPage.swift; sourceTree = "<group>"; };
-		50E94B131D87D58400C01945 /* ReslutPage3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReslutPage3.swift; sourceTree = "<group>"; };
+		50E94B131D87D58400C01945 /* ResultPage3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultPage3.swift; sourceTree = "<group>"; };
 		50E94B151D880ED000C01945 /* ResultPage2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultPage2.swift; sourceTree = "<group>"; };
 		50EEF2711D8ED87A00B8F0E1 /* LevelTwoQuestionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTwoQuestionList.swift; sourceTree = "<group>"; };
 		50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneQuestions.swift; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 				50667EE41D7058E600C8EBF6 /* LevelThreeQuestions.swift */,
 				50667EE61D70593F00C8EBF6 /* LevelThreeQuestionList.swift */,
 				50667EE81D705ABF00C8EBF6 /* LevelThreeModel.swift */,
-				50E94B131D87D58400C01945 /* ReslutPage3.swift */,
+				50E94B131D87D58400C01945 /* ResultPage3.swift */,
 			);
 			name = LevelThree;
 			sourceTree = "<group>";
@@ -378,7 +378,7 @@
 				504913F21D92BD6E0077DB74 /* Social+CoreDataProperties.swift in Sources */,
 				50EEF2721D8ED87A00B8F0E1 /* LevelTwoQuestionList.swift in Sources */,
 				503DD7411D98B6B300E06E43 /* PositionHandler.swift in Sources */,
-				50E94B141D87D58400C01945 /* ReslutPage3.swift in Sources */,
+				50E94B141D87D58400C01945 /* ResultPage3.swift in Sources */,
 				50FD70941D6175360090CDAD /* textFiled.swift in Sources */,
 				50D741041D60D38600EF36E4 /* Position.swift in Sources */,
 				50E94AE91D867F9100C01945 /* ResultPage.swift in Sources */,
