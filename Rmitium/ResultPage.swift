@@ -348,7 +348,6 @@ class ResultPage: SKScene{
             return
         }
         if node.name == UtilitiesPortal.infoButonName{
-            infoTable()
             myView.hidden = false
             state = true
         }
@@ -384,7 +383,7 @@ class ResultPage: SKScene{
     
     func infoTable(){
         myView = SKShapeNode()
-        let x = MedalInfo(myView: myView)
+        let x = MedalInfo(myView: myView, modeName: "level")
         x.setupItem()
         myView.hidden = true
         addChild(myView)

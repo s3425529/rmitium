@@ -112,7 +112,6 @@ class UtilitiesPortal {
     static var score = 0
     
     static var totalQuestions = 0
-    
     static var effect = "sfx"
     
     //static var record = [Int]()

@@ -25,7 +25,8 @@ class ResultPage2: SKScene {
     var audioPlayer = AVAudioPlayer()
     var Dic:medalClass!
     var medalDic:(medalName:String,information:[String])!
-    
+    var myView:SKShapeNode!
+    var stateInfo = false
     override func didMoveToView(view: SKView) {
         
         Dic = medalClass()
@@ -34,18 +35,21 @@ class ResultPage2: SKScene {
             //code goes here
             print("Game mode: Standard!")
             medalDic = Dic.level2("stand")
+            infoTable("stand")
             DataHandler.saveLevelTwoScore()
             break
         case "Time Trial":
             //code goes here
             print("Game mode: Time Trial!")
              medalDic = Dic.level2("trial")
+            infoTable("trial")
             DataHandler.saveLevelTwoTrialScore()
             break
         case "Beat the Clock":
             //code goes here
             print("Game mode: Beat the Clock!")
              medalDic = Dic.level2("beat")
+            infoTable("beat")
             DataHandler.saveLevelTwoBeatScore()
             break
         default:
@@ -358,6 +362,14 @@ class ResultPage2: SKScene {
         // Home button selected
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
+        
+        if stateInfo == true{
+            //myView.removeAllChildren()
+            //myView.removeFromParent()
+            myView.hidden = true
+            stateInfo = false
+        }
+        
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home!")
             homeView.hidden = false
@@ -379,6 +391,12 @@ class ResultPage2: SKScene {
             previousState = UtilitiesPortal.stateHome
             return
         }
+        
+        if node.name == UtilitiesPortal.infoButonName{
+            myView.hidden = false
+            stateInfo = true
+        }
+
     }
     
     func facebookAlertMessage() {
@@ -410,6 +428,14 @@ class ResultPage2: SKScene {
         return"\(hour):\(min):\(sec)"
     }
     
+    func infoTable(mode:String){
+        myView = SKShapeNode()
+        let x = MedalInfo(myView: myView, modeName: mode)
+        x.setupItem()
+        myView.hidden = true
+        addChild(myView)
+        
+    }
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }

@@ -375,7 +375,7 @@ class ResultPage3: SKScene {
     
     func infoTable(){
         myView = SKShapeNode()
-        let x = MedalInfo(myView: myView)
+        let x = MedalInfo(myView: myView, modeName: "level")
         x.setupItem()
         myView.hidden = true
         addChild(myView)
