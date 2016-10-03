@@ -27,6 +27,7 @@ class ResultPage3: SKScene {
         setupCusterButton()
         setupMedal()
         createHomeDialogue()
+        infoTable()
         
         if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
             do {
@@ -122,7 +123,6 @@ class ResultPage3: SKScene {
         let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         scoreNode.text = "\(UtilitiesPortal.score)"
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
-        
         scoreNode.fontSize = UtilitiesPortal.screenHeight*0.08
         addChild(scoreNode)
         
@@ -323,8 +323,9 @@ class ResultPage3: SKScene {
         let node = self.nodeAtPoint(location)
         
         if state == true{
-            myView.removeAllChildren()
-            myView.removeFromParent()
+            // myView.removeAllChildren()
+            //myView.removeFromParent()
+            myView.hidden = true
             state = false
         }
         if node.name == UtilitiesPortal.homeButtonName {
@@ -341,7 +342,9 @@ class ResultPage3: SKScene {
             return
         }
         if node.name == UtilitiesPortal.infoButonName{
-            infoTable()
+            //infoTable()
+            myView.hidden = false
+
             state = true
         }
     }
@@ -374,8 +377,10 @@ class ResultPage3: SKScene {
         myView = SKShapeNode()
         let x = MedalInfo(myView: myView)
         x.setupItem()
+        myView.hidden = true
         addChild(myView)
         
     }
-
+    
+    
 }

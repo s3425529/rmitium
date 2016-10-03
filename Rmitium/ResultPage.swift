@@ -43,6 +43,7 @@ class ResultPage: SKScene{
         setupItems()
         setupCustomerButton()
         createHomeDialogue()
+        infoTable()
         
         DataHandler.saveLevelOneScore()
         
@@ -332,8 +333,10 @@ class ResultPage: SKScene{
         let node = self.nodeAtPoint(location)
         
         if state == true{
-            myView.removeAllChildren()
-            myView.removeFromParent()
+            //myView.removeAllChildren()
+            //myView.removeFromParent()
+            myView.hidden = true
+            state = false
         }
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home!")
@@ -342,6 +345,7 @@ class ResultPage: SKScene{
         if node.name == UtilitiesPortal.yesButtonName {
             backHomePage()
             return
+          
         }
         if node.name == UtilitiesPortal.noButtonName {
             //homeDialogue.hidden = true
@@ -350,6 +354,7 @@ class ResultPage: SKScene{
         }
         if node.name == UtilitiesPortal.infoButonName{
             infoTable()
+            myView.hidden = false
             state = true
         }
     }
@@ -386,6 +391,7 @@ class ResultPage: SKScene{
         myView = SKShapeNode()
         let x = MedalInfo(myView: myView)
         x.setupItem()
+        myView.hidden = true
         addChild(myView)
         
     }
