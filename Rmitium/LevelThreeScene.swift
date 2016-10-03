@@ -16,11 +16,7 @@ class LevelThreeScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var chosenAnswer: CustomSKSpriteNode!
-<<<<<<< HEAD
-    var resultImage, infoOverlay, factOverlay, homeView : SKSpriteNode!
-=======
-    var resultImage, infoOverlay, infoOverlayResult, factOverlay : SKSpriteNode!
->>>>>>> 1392fef89aa7a5ee7fa48b7cfb1feef39a9bda55
+    var resultImage, infoOverlay, infoOverlayResult, factOverlay, homeView : SKSpriteNode!
     var homeDialogue: SKShapeNode!
     var factOverlayText: SKMultilineLabel!
     var show, tick, redo, share, back: SKSpriteNode!
