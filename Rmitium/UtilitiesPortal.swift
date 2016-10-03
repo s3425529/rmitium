@@ -106,10 +106,11 @@ class UtilitiesPortal {
     static let imageHeight = screenHeight*0.6
     
     static var score = 0
+    
     static var totalQuestions = 0
     
     static var effect = "sfx"
-   
+    
     //static var record = [Int]()
     static func setBgm(){
         let soundSetting = DataHandler.getSettings().getSound

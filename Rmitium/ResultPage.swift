@@ -10,15 +10,22 @@ import AVFoundation
 import SpriteKit
 import Social
 
-class ResultPage: SKScene {
+class ResultPage: SKScene{
     var facebook, twitter, redo, next: CustomButton!
     var i = 0
-    var homeDialogue,homeView :SKSpriteNode!
+    var homeDialogue: SKShapeNode!
+    var homeView :SKSpriteNode!
     var text,text1: SKMultilineLabel!
     var socialData:SocialClass!
     var audioPlayer = AVAudioPlayer()
-  
+    var myTable:UITableView!
+    var state = false
+    var myView:SKShapeNode!
     override func didMoveToView(view: SKView) {
+        
+        
+       
+        
         if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
             do {
                 try audioPlayer = AVAudioPlayer(contentsOfURL: clickSound, fileTypeHint: nil)
@@ -38,6 +45,7 @@ class ResultPage: SKScene {
         createHomeDialogue()
         
         DataHandler.saveLevelOneScore()
+        
     }
     
     func setupMedal() {
@@ -201,8 +209,7 @@ class ResultPage: SKScene {
     
     func redoAction() {
         print("redo")
-        UtilitiesPortal.score = 0
-        UtilitiesPortal.totalQuestions = 0
+        print(UtilitiesPortal.totalQuestions)
         backLevel1()
         return
     }
@@ -226,6 +233,8 @@ class ResultPage: SKScene {
     func backHomePage() {
         self.removeAllActions()
         self.removeAllChildren()
+        UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         let secondScene = GameScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -233,41 +242,42 @@ class ResultPage: SKScene {
         removeAllActions()
         removeFromParent()
         removeAllChildren()
-        UtilitiesPortal.score = 0
-        UtilitiesPortal.totalQuestions = 0
+       
     }
     
     func backLevel1() {
         self.removeAllActions()
         self.removeAllChildren()
         LevelOneModel.reset()
+        UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         let secondScene = LevelOneScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        UtilitiesPortal.score = 0
-        UtilitiesPortal.totalQuestions = 0
+        
     }
     
     func goToLevel2(){
         self.removeAllActions()
         self.removeAllChildren()
-        
+        UtilitiesPortal.score = 0
+        UtilitiesPortal.totalQuestions = 0
         let secondScene = LevelTwoScene(size: self.size)
         secondScene.userData = NSMutableDictionary()
         secondScene.userData?.setValue("Standard", forKey: "gameMode")
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        UtilitiesPortal.score = 0
-        UtilitiesPortal.totalQuestions = 0
+        
     }
     
     func createHomeDialogue() {
         homeView  = SKSpriteNode()
         homeView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
-        homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2.5, y: UtilitiesPortal.screenHeight/2)
+        //homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2.5, y: UtilitiesPortal.screenHeight/2)
+        homeView.position = CGPoint(x: 0, y: 0)
         homeView.zPosition = 0.8
         // homeView.color = SKColor.redColor()
         homeView.alpha = 1
@@ -280,10 +290,11 @@ class ResultPage: SKScene {
         alertMessage.zPosition = 0.9
         alertMessage.fontName = UtilitiesPortal.navLabelFont
         alertMessage.fontSize = 15
-        homeDialogue = SKSpriteNode()
-        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5)
-        homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/11, y: UtilitiesPortal.screenHeight/11)
-        homeDialogue.color = SKColor.blackColor()
+        homeDialogue = SKShapeNode()
+        homeDialogue.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
+        homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        homeDialogue.fillColor = SKColor.blackColor()
+        
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
         homeDialogue.hidden = false
@@ -291,17 +302,16 @@ class ResultPage: SKScene {
         yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
-        yesBtn.texture = SKTexture(imageNamed: "tick-white")
-        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.5)
+        yesBtn.texture = SKTexture(image: UIImage(named: "tick-white")!)
+        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.2)
         yesBtn.zPosition = 0.9
         
         noBtn.size = yesBtn.size
         noBtn.color = yesBtn.color
         noBtn.name = UtilitiesPortal.noButtonName
-        noBtn.texture = SKTexture(imageNamed: "cross-white")
-        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.5)
+        noBtn.texture = SKTexture(image: UIImage(named: "cross-white")!)
+        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.2)
         noBtn.zPosition = 0.9
-        
         homeDialogue.addChild(yesBtn)
         homeDialogue.addChild(noBtn)
         homeDialogue.addChild(alertMessage)
@@ -311,6 +321,7 @@ class ResultPage: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
         if DataHandler.getSettings().getEffect {
             audioPlayer.play()
         }
@@ -319,13 +330,16 @@ class ResultPage: SKScene {
         // Home button selected
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
+        
+        if state == true{
+            myView.removeAllChildren()
+            myView.removeFromParent()
+        }
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home!")
             homeView.hidden = false
         }
         if node.name == UtilitiesPortal.yesButtonName {
-            self.removeAllActions()
-            self.removeAllChildren()
             backHomePage()
             return
         }
@@ -333,6 +347,10 @@ class ResultPage: SKScene {
             //homeDialogue.hidden = true
             homeView.hidden = true
             return
+        }
+        if node.name == UtilitiesPortal.infoButonName{
+            infoTable()
+            state = true
         }
     }
     
@@ -345,6 +363,7 @@ class ResultPage: SKScene {
             self.activeFacebook()
         }))
         controller.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     func twitterAlertMessage() {
@@ -360,5 +379,14 @@ class ResultPage: SKScene {
 
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    //MARK---- table view
+    
+    func infoTable(){
+        myView = SKShapeNode()
+        let x = MedalInfo(myView: myView)
+        x.setupItem()
+        addChild(myView)
+        
     }
 }

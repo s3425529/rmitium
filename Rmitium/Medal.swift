@@ -28,7 +28,7 @@ class medalClass {
         if percent == 1 {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
-            if score > UtilitiesPortal.defaultScore {
+            if score < UtilitiesPortal.score {
                 words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(score)!")
             }
             else {
@@ -38,7 +38,7 @@ class medalClass {
         if percent >= 0.9 && percent < 1 {
             medalName = "Medal2-Gold"
             words = ["Well done!"]
-            if score > UtilitiesPortal.defaultScore {
+            if score < UtilitiesPortal.score {
                 words.append("You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
@@ -48,7 +48,7 @@ class medalClass {
         if percent >= 0.7 && percent < 0.9 {
             medalName = "Medal3-Silver"
             words = ["Great work!"]
-            if score > UtilitiesPortal.defaultScore {
+            if score < UtilitiesPortal.score {
                 words.append("With that sterling effort you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
@@ -58,7 +58,7 @@ class medalClass {
         if percent >= 0.5 && percent < 0.7 {
             medalName = "Medal4-Bronze"
             words = ["Nice try!"]
-            if score > UtilitiesPortal.defaultScore {
+            if score < UtilitiesPortal.score {
                 words.append("You joined tin and you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
@@ -68,7 +68,7 @@ class medalClass {
         if percent < 0.5 {
             medalName = "Medal5-Rust"
             words = ["Good effort!"]
-            if score > UtilitiesPortal.defaultScore {
+            if score < UtilitiesPortal.score {
                 words.append("But your chemistry is a little rusty. you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
@@ -78,64 +78,229 @@ class medalClass {
         return (medalName, words)
     }
    
-    func level2() -> (medalName:String , information:[String]){
-        
+    func level2(mode:String) -> (medalName:String , information:[String]){
+        var message:String!
+        var bestTime:String!
         let min = UtilitiesPortal.score/60
         let sec = UtilitiesPortal.score%60
-        score = DataHandler.getLevelTwoScore() as Int
+        if mode == "stand"{
+            score = DataHandler.getLevelTwoScore() as Int
+        }
+        if mode == "trial"{
+            score = DataHandler.getLevelTwoTrialScore() as Int
+        }
+        if mode == "beat"{
+            score = DataHandler.getLevelTwoBeatScore() as Int
+        
+        }
+        
         let scoreMin = score/60
-        let scireSec = score%60
+        let scoreSec = score%60
         let result = UtilitiesPortal.score
-        if result < 20 {
-            medalName = "Medal1-Diamond"
-            words = ["Congratulations!"]
-            if score > UtilitiesPortal.defaultScore {
-                words.append("2A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(scoreMin):\(scireSec)")
+        
+        if min == 0{
+            message = "You took \(sec) seconds."
+        }else{
+        
+            message = "You took \(min) minutes \(sec) seconds."
+        }
+        
+        if  scoreSec < 10 {
+        
+            bestTime = "\(scoreMin):0\(scoreSec)"
+        }else{
+            bestTime = "\(scoreMin):\(scoreSec)"
+        }
+        if mode == "stand"{
+            if UtilitiesPortal.score < 20 {
+                medalName = "Medal1-Diamond"
+                
+                if score > UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("A perfect score.  Your best was \(bestTime).")
+                }
+                else {
+                    words = ["Congratulations!"]
+                    words.append("\(message). Your chemistry knowledge is obviously crystal clear.")
+                }
             }
-            else {
-                words.append("1A perfect score. Your chemistry knowledge is obviously crystal clear.")
+            if UtilitiesPortal.score < 30 && UtilitiesPortal.score >= 20  {
+                medalName = "Medal2-Gold"
+                words = ["Well done!"]
+                if score > UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message)  Your best was \(bestTime).")
+                }
+                else {
+                    words.append("\(message) Your chemistry prowess is gold standard.")
+                }
+            }
+            if UtilitiesPortal.score < 40 && UtilitiesPortal.score >= 30 {
+                medalName = "Medal3-Silver"
+                words = ["Great work!"]
+                if score > UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message) Your best was \(bestTime).")
+                }
+                else {
+                    words.append("\(message).")
+                }
+            }
+            if UtilitiesPortal.score < 60 && UtilitiesPortal.score >= 40{
+                medalName = "Medal4-Bronze"
+                words = ["Nice try!"]
+                if score > UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message) Your best was \(bestTime).")
+                }
+                else {
+                    words.append("\(message).")
+                }
+            }
+            if UtilitiesPortal.score >= 60 {
+                medalName = "Medal5-Rust"
+                words = ["Good effort!"]
+                if score > UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message) Your best was \(bestTime).")
+                }
+                else {
+                    words.append("\(message).")
+                }
+            }
+        
+        }
+        
+        if mode == "trial"{
+            
+            if UtilitiesPortal.score >= 150 {
+                medalName = "Medal1-Diamond"
+                                if score < UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("A perfect score.  Your best was \(bestTime).")
+                }
+                else {
+                    words = ["Congratulations!"]
+                    words.append("\(message). Your chemistry knowledge is obviously crystal clear.")
+                }
+            }
+            if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
+                medalName = "Medal2-Gold"
+                
+                if score < UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message) Your best was \(bestTime).")
+                }
+                else {
+                    words = ["Well done!"]
+                    words.append("\(message). Your chemistry prowess is gold standard.")
+                }
+            }
+            if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
+                medalName = "Medal3-Silver"
+                
+                if score < UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message) Your best was \(bestTime).")
+                }
+                else {
+                    words = ["Great work!"]
+                    words.append("\(message).")
+                }
+            }
+            if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90{
+                medalName = "Medal4-Bronze"
+                
+                if score < UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message) Your best was \(bestTime).")
+                }
+                else {
+                    words = ["Nice try!"]
+                    words.append("\(message).")
+                }
+            }
+            if result < 60 {
+                medalName = "Medal5-Rust"
+                
+                if score < UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message) Your best was \(bestTime).")
+                }
+                else {
+                    words = ["Good effort!"]
+                    words.append("\(message).")
+                }
+            }
+            
+
+        
+        }
+        
+        if mode == "beat"{
+        
+            if UtilitiesPortal.score >= 150 {
+                medalName = "Medal1-Diamond"
+                
+                if score > UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(bestTime).")
+                }
+                else {
+                    words = ["Congratulations!"]
+                    words.append("\(message). Your chemistry knowledge is obviously crystal clear.")
+                }
+            }
+            if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
+                medalName = "Medal2-Gold"
+                
+                if score > UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message) Your chemistry prowess is gold standard. Your best was \(bestTime).")
+                }
+                else {
+                    words = ["Well done!"]
+                    words.append("\(message). Your chemistry prowess is gold standard.")
+                }
+            }
+            if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
+                medalName = "Medal3-Silver"
+                
+                if score > UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message) Your best was \(bestTime).")
+                }
+                else {
+                    words = ["Great work!"]
+                    words.append("\(message).")
+                }
+            }
+            if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90{
+                medalName = "Medal4-Bronze"
+              
+                if score > UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message) Your best was \(bestTime).")
+                }
+                else {
+                    words = ["Nice try!"]
+                    words.append("\(message).")
+                }
+            }
+            if result < 60 {
+                medalName = "Medal5-Rust"
+                
+                if score > UtilitiesPortal.score {
+                    words = ["New record!"]
+                    words.append("\(message) Your best was \(bestTime).")
+                }
+                else {
+                    words = ["Good effort!"]
+                    words.append("\(message).")
+                }
             }
         }
-        if result < 30 && result >= 20  {
-            medalName = "Medal2-Gold"
-            words = ["Well done!"]
-            if score > UtilitiesPortal.defaultScore {
-                words.append("You took \(min) minutes \(sec) seconds. Your chemistry prowess is gold standard. Your best was \(scoreMin):\(scireSec)")
-            }
-            else {
-                words.append("You took \(min) minutes \(sec) seconds. Your chemistry prowess is gold standard.")
-            }
-        }
-        if result < 40 && result >= 30 {
-            medalName = "Medal3-Silver"
-            words = ["Great work!"]
-            if score > UtilitiesPortal.defaultScore {
-                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
-            }
-            else {
-                words.append("You took \(min) minutes \(sec) seconds.")
-            }
-        }
-        if result < 60 && result >= 40{
-            medalName = "Medal4-Bronze"
-            words = ["Nice try!"]
-            if score > UtilitiesPortal.defaultScore {
-                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
-            }
-            else {
-                words.append("You took \(min) minutes \(sec) seconds.")
-            }
-        }
-        if result > 60 {
-            medalName = "Medal5-Rust"
-            words = ["Good effort!"]
-            if score > UtilitiesPortal.defaultScore {
-                words.append("You took \(min) minutes \(sec) seconds. Your best was \(scoreMin):\(scireSec)")
-            }
-            else {
-                words.append("You took \(min) minutes \(sec) seconds.")
-            }
-        }
+        
         return (medalName, words)
     }
  

@@ -171,6 +171,7 @@ class GameScene: SKScene {
             LevelOneModel.reset()
             
             let secondScene = LevelOneScene(size: self.size)
+            //let secondScene = ResultPage(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -202,6 +203,7 @@ class GameScene: SKScene {
             //runAction(sfx)
             cleanScene()
             let secondScene = LevelTwoScene(size: self.size)
+            //let secondScene = ResultPage2(size: self.size)
             secondScene.userData = NSMutableDictionary()
             secondScene.userData?.setValue("Standard", forKey: "gameMode")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
@@ -215,6 +217,7 @@ class GameScene: SKScene {
             //runAction(sfx)
             cleanScene()
             let secondScene = LevelTwoScene(size: self.size)
+            //let secondScene = ResultPage2(size: self.size)
             secondScene.userData = NSMutableDictionary()
             secondScene.userData?.setValue("Time Trial", forKey: "gameMode")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
@@ -228,6 +231,7 @@ class GameScene: SKScene {
             //runAction(sfx)
             cleanScene()
             let secondScene = LevelTwoScene(size: self.size)
+            //let secondScene = ResultPage2(size: self.size)
             secondScene.userData = NSMutableDictionary()
             secondScene.userData?.setValue("Beat the Clock", forKey: "gameMode")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)

@@ -41,5 +41,7 @@ extension Settings {
     @NSManaged var levelOne: NSNumber?
     @NSManaged var levelTwo: NSNumber?
     @NSManaged var levelThree: NSNumber?
+    @NSManaged var levelTwoTrail: NSNumber?
+    @NSManaged var levelTwoBeat: NSNumber?
 
 }

@@ -13,7 +13,7 @@ import UIKit
 class TimeControl {
     var timeLabel : Int!
     var limitTime: Int!
-    var pauseTime = 1
+    var pauseTime = 0
     var countDownTimer: NSTimer?
     var tag:Bool!
    // var action:()->Void

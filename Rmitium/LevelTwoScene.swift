@@ -365,7 +365,7 @@ class LevelTwoScene: SKScene {
                     
                 }
                 else if node.name == UtilitiesPortal.noButtonName {
-                    timerClass.pause(false)
+                    //timerClass.pause(false)
                     homeDialogue.hidden = true
                     state = previousState
                     previousState = UtilitiesPortal.stateHome
@@ -379,11 +379,11 @@ class LevelTwoScene: SKScene {
             infoOverlay.hidden = true
             /*infoOverlay.removeAllActions()
             infoOverlay.removeAllChildren()
-            infoOverlay.removeFromParent()*/
+            infoOverlay.removeFromParent()
             if timerClass.timeLabel <= LIMITTIME {
                 timerClass.pause(false)
             }
-            
+            */
             state = previousState
             previousState = UtilitiesPortal.stateInfo
             return
@@ -542,11 +542,11 @@ class LevelTwoScene: SKScene {
             timeOut()
             //alertMessage()
         }
-         */
+        */
     }
     
     func trialTimer(){
-        LIMITTIME = 10
+        LIMITTIME = 15
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
         timerClass.startTimer()
         
@@ -555,13 +555,27 @@ class LevelTwoScene: SKScene {
     }
     @objc func getTime2(timer:NSTimer) {
         if plus == true{
-        
-            timerClass.remainSecond = timerClass.remainSecond + 5
+            if timerClass.remainSecond != 0{
+                timerClass.remainSecond = timerClass.remainSecond + 6
+            }
+            
             LIMITTIME = timerClass.remainSecond
             timerClass.limitTime = LIMITTIME
             plus = false
         }
         timeNode.text = "Time:\(timerClass.timeLabel)"
+        
+        if timerClass.timeLabel > 5{
+        
+            timeNode.removeAllActions()
+            timeNode.fontSize = UtilitiesPortal.factSize
+            timeNode.fontColor = SKColor.whiteColor()
+            let zoom1 = SKAction.scaleTo(1, duration: 0.1)
+            let fade1 = SKAction.fadeAlphaTo(1, duration: 0.1)
+            let action = SKAction.sequence([fade1,zoom1])
+            timeNode.runAction(action)
+            
+        }
         
          if timerClass.timeLabel >= 0 && timerClass.timeLabel <= 4{
          timeNode.fontColor = SKColor.redColor()
@@ -572,27 +586,26 @@ class LevelTwoScene: SKScene {
          let action = SKAction.sequence([zoom,fade,fade1,zoom1])
          timeNode.runAction(action)
          }
-        
         if checkResult() {
             UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
             toResultSence()
         }
         
-         if timerClass.timeLabel <= 0 {
-         timeNode.text = "Time Out!"
+        if timerClass.timeLabel <= 0 {
+            timeNode.text = "Time Out!"
          
-         //block the game scene
-         state = UtilitiesPortal.stateResult
-         
-         timeOut()
-         //alertMessage()
+            //block the game scene
+            state = UtilitiesPortal.stateResult
+            timeOut()
+            // go to resultpage or retr
+            //alertMessage()
          }
         
     }
 
     func beatTimer(){
-        LIMITTIME = 30
+        LIMITTIME = 300
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
         timerClass.startTimer()
         

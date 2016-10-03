@@ -12,11 +12,13 @@ import Social
 
 class ResultPage3: SKScene {
     var facebook, twitter, redo, next: CustomButton!
-    var homeDialogue,homeView :SKSpriteNode!
+    var homeView :SKSpriteNode!
+    var homeDialogue: SKShapeNode!
     var text,text1 :SKMultilineLabel!
     var socialData:SocialClass!
     var audioPlayer = AVAudioPlayer()
-    
+    var myView:SKShapeNode!
+    var state = false
     override func didMoveToView(view: SKView) {
         socialData = SocialClass()
         socialData.initClass()
@@ -193,8 +195,6 @@ class ResultPage3: SKScene {
     }
     
     func redoAction() {
-        UtilitiesPortal.score = 0
-        UtilitiesPortal.totalQuestions = 0
         backLevel3()
     }
     
@@ -266,7 +266,8 @@ class ResultPage3: SKScene {
     func createHomeDialogue() {
         homeView  = SKSpriteNode()
         homeView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
-        homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2.5, y: UtilitiesPortal.screenHeight/2)
+       // homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        homeView.position = CGPoint(x: 0, y: 0)
         homeView.zPosition = 0.8
         // homeView.color = SKColor.redColor()
         homeView.alpha = 1
@@ -279,10 +280,11 @@ class ResultPage3: SKScene {
         alertMessage.zPosition = 0.9
         alertMessage.fontName = UtilitiesPortal.navLabelFont
         alertMessage.fontSize = 15
-        homeDialogue = SKSpriteNode()
-        homeDialogue.size = CGSize(width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5)
-        homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/11, y: UtilitiesPortal.screenHeight/11)
-        homeDialogue.color = SKColor.blackColor()
+        homeDialogue = SKShapeNode()
+        homeDialogue.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
+        homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        homeDialogue.fillColor = SKColor.blackColor()
+        
         homeDialogue.alpha = 0.9
         homeDialogue.zPosition = 0.9
         homeDialogue.hidden = false
@@ -290,15 +292,15 @@ class ResultPage3: SKScene {
         yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
-        yesBtn.texture = SKTexture(imageNamed: "tick-white")
-        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.5)
+        yesBtn.texture = SKTexture(image: UIImage(named: "tick-white")!)
+        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.2)
         yesBtn.zPosition = 0.9
         
         noBtn.size = yesBtn.size
         noBtn.color = yesBtn.color
         noBtn.name = UtilitiesPortal.noButtonName
-        noBtn.texture = SKTexture(imageNamed: "cross-white")
-        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.5)
+        noBtn.texture = SKTexture(image: UIImage(named: "cross-white")!)
+        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.2)
         noBtn.zPosition = 0.9
         
         homeDialogue.addChild(yesBtn)
@@ -319,6 +321,12 @@ class ResultPage3: SKScene {
         // Home button selected
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
+        
+        if state == true{
+            myView.removeAllChildren()
+            myView.removeFromParent()
+            state = false
+        }
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home!")
             homeView.hidden = false
@@ -331,6 +339,10 @@ class ResultPage3: SKScene {
             //homeDialogue.hidden = true
             homeView.hidden = true
             return
+        }
+        if node.name == UtilitiesPortal.infoButonName{
+            infoTable()
+            state = true
         }
     }
     
@@ -356,4 +368,14 @@ class ResultPage3: SKScene {
         }))
         controller.presentViewController(alert, animated: true, completion: nil)
     }
+    //MARK---- table view
+    
+    func infoTable(){
+        myView = SKShapeNode()
+        let x = MedalInfo(myView: myView)
+        x.setupItem()
+        addChild(myView)
+        
+    }
+
 }

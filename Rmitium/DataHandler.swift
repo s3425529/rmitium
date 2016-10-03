@@ -28,7 +28,8 @@ class DataHandler {
             entity.setValue(-1, forKey: "levelOne")
             entity.setValue(-1, forKey: "levelTwo")
             entity.setValue(-1, forKey: "levelThree")
-            
+            entity.setValue(-1, forKey: "levelTwoTrail")
+            entity.setValue(-1, forKey: "levelTwoBeat")
             do {
                 try settings.save()
                 //localSetting = entity
@@ -50,6 +51,8 @@ class DataHandler {
             object.setValue(-1, forKey: "levelOne")
             object.setValue(-1, forKey: "levelTwo")
             object.setValue(-1, forKey: "levelThree")
+            object.setValue(-1, forKey: "levelTwoTrail")
+            object.setValue(-1, forKey: "levelTwoBeat")
             try settings.save()
             //localSetting = object
         }
@@ -67,6 +70,8 @@ class DataHandler {
             object.setValue(0, forKey: "levelOne")
             object.setValue(0, forKey: "levelTwo")
             object.setValue(0, forKey: "levelThree")
+            object.setValue(0, forKey: "levelTwoTrail")
+            object.setValue(0, forKey: "levelTwoBeat")
             try settings.save()
             
             
@@ -145,13 +150,78 @@ class DataHandler {
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
-            object.setValue(UtilitiesPortal.score, forKey: "levelTwo")
-            try settings.save()
+            let x = object.levelTwo as! Int
+            if x > UtilitiesPortal.score || x == 0{
+                object.setValue(UtilitiesPortal.score, forKey: "levelTwo")
+                try settings.save()
+            }
+            
+            
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
         }
     }
+    //level2  Trail
+    
+    static func getLevelTwoTrialScore() -> NSNumber {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            return result.first!.levelTwoTrail!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func saveLevelTwoTrialScore() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            let x = object.levelTwoTrail as! Int
+            if  x < UtilitiesPortal.score{
+                object.setValue(UtilitiesPortal.score, forKey: "levelTwoTrail")
+                try settings.save()
+            }
+            
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+
+    //level2 beat
+    
+    static func getLevelTwoBeatScore() -> NSNumber {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            return result.first!.levelTwoBeat!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func saveLevelTwoBeatScore() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            let x = object.levelTwoBeat as! Int
+            if x < UtilitiesPortal.score {
+                object.setValue(UtilitiesPortal.score, forKey: "levelTwoBeat")
+                try settings.save()
+            }
+            
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+
     
     // Level Three
     static func getLevelThreeScore() -> NSNumber {
