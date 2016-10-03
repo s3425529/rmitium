@@ -18,8 +18,9 @@ class UtilitiesPortal {
     static let stateResult = 1
     static let stateReview = 2
     static let stateInfo = 3
-    static let stateFact = 4
-    static let stateHome = 5
+    static let stateInfoResult = 4
+    static let stateFact = 5
+    static let stateHome = 6
     
     static let firstTime = -1
     static let defaultScore = 0
