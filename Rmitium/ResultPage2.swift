@@ -252,14 +252,12 @@ class ResultPage2: SKScene {
     }
     
     func nextAction() {
-       
         print("next")
         goToLevel3()
     }
     
     // Share the score to any social media!
     func displayShareSheet(shareContent:String) {
-        
         let myShare = "My best is \(shareContent)"
         let controller = self.view?.window?.rootViewController as! GameViewController
         
@@ -270,6 +268,7 @@ class ResultPage2: SKScene {
     
     //back to the home page,
     func backHomePage() {
+        cleanScene()
         self.removeAllActions()
         self.removeAllChildren()
         UtilitiesPortal.score = 0
@@ -280,6 +279,7 @@ class ResultPage2: SKScene {
     }
     
     func backLevel2() {
+        cleanScene()
         self.removeAllActions()
         self.removeAllChildren()
         UtilitiesPortal.score = 0
@@ -294,6 +294,7 @@ class ResultPage2: SKScene {
     }
     
     func goToLevel3(){
+        cleanScene()
         self.removeAllActions()
         self.removeAllChildren()
         UtilitiesPortal.score = 0
@@ -438,5 +439,26 @@ class ResultPage2: SKScene {
     }
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    
+    override func willMoveFromView(view: SKView) {
+        self.removeAllActions()
+        self.removeAllChildren()
+        print("Remove all nodes Lvl 2 Result Scene")
+    }
+    
+    func cleanScene() {
+        if let s = self.view?.scene {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+            self.enumerateChildNodesWithName("//") { node, _ in
+                node.removeAllActions()
+                node.removeAllChildren()
+                node.removeFromParent()
+            }
+            s.removeAllActions()
+            s.removeAllChildren()
+            s.removeFromParent()
+        }
+        print("Clean Lvl 2 Result Scene")
     }
 }

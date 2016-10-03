@@ -179,7 +179,6 @@ class ResultPage: SKScene{
     func twitterAction() {
         print("twitter")
         if socialData.twitter == true{
-            
             activeTwitter()
         }
         else {
@@ -227,6 +226,7 @@ class ResultPage: SKScene{
     
     //back to the home page,
     func backHomePage() {
+        cleanScene()
         self.removeAllActions()
         self.removeAllChildren()
         UtilitiesPortal.score = 0
@@ -242,6 +242,7 @@ class ResultPage: SKScene{
     }
     
     func backLevel1() {
+        cleanScene()
         self.removeAllActions()
         self.removeAllChildren()
         LevelOneModel.reset()
@@ -256,6 +257,7 @@ class ResultPage: SKScene{
     }
     
     func goToLevel2() {
+        cleanScene()
         self.removeAllActions()
         self.removeAllChildren()
         UtilitiesPortal.score = 0
@@ -266,7 +268,6 @@ class ResultPage: SKScene{
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        
     }
     
     func createHomeDialogue() {
@@ -387,6 +388,26 @@ class ResultPage: SKScene{
         x.setupItem()
         myView.hidden = true
         addChild(myView)
-        
+    }
+    
+    override func willMoveFromView(view: SKView) {
+        self.removeAllActions()
+        self.removeAllChildren()
+        print("Remove all nodes Lvl 1 Result Scene")
+    }
+    
+    func cleanScene() {
+        if let s = self.view?.scene {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+            self.enumerateChildNodesWithName("//") { node, _ in
+                node.removeAllActions()
+                node.removeAllChildren()
+                node.removeFromParent()
+            }
+            s.removeAllActions()
+            s.removeAllChildren()
+            s.removeFromParent()
+        }
+        print("Clean Lvl 1 Result Scene")
     }
 }

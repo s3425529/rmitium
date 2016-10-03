@@ -616,10 +616,6 @@ class LevelOneScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if DataHandler.getSettings().getEffect {
-            audioPlayer.play()
-        }
-        
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         
@@ -686,6 +682,11 @@ class LevelOneScene: SKScene {
             // Targets node selected
             for x in 0...questions.count-1 {
                 if CGRectContainsPoint(questions[x].frame, point) {
+                    // Play sound only when drag labels
+                    if DataHandler.getSettings().getEffect {
+                        audioPlayer.play()
+                    }
+                    
                     if answeredQuestions[x].hidden {
                         return
                     }

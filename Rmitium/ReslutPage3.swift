@@ -143,7 +143,7 @@ class ResultPage3: SKScene {
     
     func facebookAction() {
         print("facebook")
-        if socialData.facebook == true{
+        if socialData.facebook == true {
             
             activeFacebook()
         }else{
@@ -245,7 +245,7 @@ class ResultPage3: SKScene {
     override func willMoveFromView(view: SKView) {
         self.removeAllActions()
         self.removeAllChildren()
-        print("Remove all nodes Lvl 3 Scene")
+        print("Remove all nodes Lvl 3 Result Scene")
     }
     
     func cleanScene() {
@@ -260,7 +260,7 @@ class ResultPage3: SKScene {
             s.removeAllChildren()
             s.removeFromParent()
         }
-        print("Clean Lvl 3 Scene")
+        print("Clean Lvl 3 Result Scene")
     }
     
     func createHomeDialogue() {
@@ -344,7 +344,6 @@ class ResultPage3: SKScene {
         if node.name == UtilitiesPortal.infoButonName{
             //infoTable()
             myView.hidden = false
-
             state = true
         }
     }
@@ -379,8 +378,5 @@ class ResultPage3: SKScene {
         x.setupItem()
         myView.hidden = true
         addChild(myView)
-        
     }
-    
-    
 }

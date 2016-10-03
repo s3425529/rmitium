@@ -265,6 +265,7 @@ class GameScene: SKScene {
             for x in 0..<UtilitiesPortal.modeLabelNames.count {
                 childNodeWithName(UtilitiesPortal.modeLabelNames[x])?.hidden = true
                 childNodeWithName(UtilitiesPortal.modeButtonNames[x])?.hidden = true
+                childNodeWithName(UtilitiesPortal.modeMedalNames[x])?.hidden = true
             }
         }
     }
@@ -302,6 +303,19 @@ class GameScene: SKScene {
             levelButton.size = CGSize(width: UtilitiesPortal.screenWidth*0.29,
                                       height: UtilitiesPortal.hexImageSize*1.2)
             addChild(levelButton)
+            
+            let medal = DataHandler.getMedal(UtilitiesPortal.levelTwo, mode: count)
+            if medal != "" {
+                let levelMedal = SKSpriteNode(imageNamed: medal)
+                levelMedal.name = UtilitiesPortal.modeMedalNames[count]
+                levelMedal.hidden = true
+                levelMedal.alpha = 0.9
+                levelMedal.zPosition = 0.4
+                levelMedal.position = CGPointMake(UtilitiesPortal.borderSize*4.5 + CGFloat(count)*UtilitiesPortal.screenWidth*0.3, UtilitiesPortal.screenHeight*(0.60-0.18))
+                levelMedal.size = CGSize(width: UtilitiesPortal.hexImageSize*2/3,
+                                         height: UtilitiesPortal.hexImageSize*2/3)
+                self.addChild(levelMedal)
+            }
         }
     }
     
@@ -311,6 +325,7 @@ class GameScene: SKScene {
         for count in 0 ... 2 {
             childNodeWithName(UtilitiesPortal.modeLabelNames[count])?.hidden = false
             childNodeWithName(UtilitiesPortal.modeButtonNames[count])?.hidden = false
+            childNodeWithName(UtilitiesPortal.modeMedalNames[count])?.hidden = false
         }
         state = UtilitiesPortal.stateResult
         previousState = UtilitiesPortal.stateAnswer
