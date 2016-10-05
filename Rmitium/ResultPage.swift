@@ -39,8 +39,6 @@ class ResultPage: SKScene{
         setupItems()
         setupCustomerButton()
         createHomeDialogue()
-        infoTable()
-        
         DataHandler.saveLevelOneScore()
     }
     
@@ -331,9 +329,8 @@ class ResultPage: SKScene{
         let node = self.nodeAtPoint(location)
         
         if state == true{
-            //myView.removeAllChildren()
-            //myView.removeFromParent()
-            myView.hidden = true
+            myView.removeAllChildren()
+            myView.removeFromParent()
             state = false
         }
         if node.name == UtilitiesPortal.homeButtonName {
@@ -352,7 +349,7 @@ class ResultPage: SKScene{
             return
         }
         if node.name == UtilitiesPortal.infoButonName{
-            myView.hidden = false
+            infoTable()
             state = true
         }
     }
@@ -389,7 +386,6 @@ class ResultPage: SKScene{
         myView = SKShapeNode()
         let x = MedalInfo(myView: myView, modeName: "level")
         x.setupItem()
-        myView.hidden = true
         addChild(myView)
     }
     
