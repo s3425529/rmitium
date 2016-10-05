@@ -37,15 +37,12 @@ class GameScene: SKScene {
         image.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         image.position = CGPoint(x:frame.midX, y:frame.midY)
         image.zPosition = 0
-        //image.setScale(1.5)
-        //image.alpha = 0.8
         addChild(image)
         
         // Setting button
         let setting = SKSpriteNode(imageNamed: "settings")
         setting.name = UtilitiesPortal.settingButtonName
         setting.zPosition = 0.1
-        //setting.alpha = 0.2
         setting.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         setting.position = CGPoint(x:UtilitiesPortal.borderSize/2,
             y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
@@ -66,7 +63,6 @@ class GameScene: SKScene {
         logo.setScale(UtilitiesPortal.screenHeight/88*0.30)
         logo.position = CGPoint(x:frame.midX, y:UtilitiesPortal.screenHeight*0.85)
         logo.zPosition = 0.1
-        //image.alpha = 0.8
         addChild(logo)
 
         // Generating level buttons
@@ -104,9 +100,6 @@ class GameScene: SKScene {
                                              height: UtilitiesPortal.hexImageSize)
                     self.addChild(levelMedal)
                 }
-            }
-            else {
-                // Lvl 2 medal
             }
             
             setupInfo()
@@ -155,19 +148,14 @@ class GameScene: SKScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
-            //runAction(sfx)
             previousState = state
             state = UtilitiesPortal.stateInfo
             infoOverlay!.hidden = false
-            
-            // Reset settings for testing purposes
-            DataHandler.resetSettings()
             return
         }
         
         // Setting selected
         if node.name == UtilitiesPortal.settingButtonName {
-            //runAction(sfx)
             cleanScene()
             let secondScene = SettingScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
@@ -179,7 +167,6 @@ class GameScene: SKScene {
 
         if (node.name == UtilitiesPortal.levelLabelNames[0]
                                 || node.name == UtilitiesPortal.levelButtonNames[0]) {
-            //runAction(sfx)
             cleanScene()
             LevelOneModel.reset()
             
@@ -196,7 +183,6 @@ class GameScene: SKScene {
         
         if (node.name == UtilitiesPortal.levelLabelNames[1]
                                 || node.name == UtilitiesPortal.levelButtonNames[1]) {
-            //runAction(sfx)
             showLevelTwoModes()
             previousState = state
             state = UtilitiesPortal.stateResult
@@ -205,7 +191,6 @@ class GameScene: SKScene {
         
         if (node.name == UtilitiesPortal.levelLabelNames[2]
                                 || node.name == UtilitiesPortal.levelButtonNames[2]) {
-            //runAction(sfx)
             cleanScene()
             LevelThreeModel.reset()
             let secondScene = LevelThreeScene(size: self.size)
@@ -218,8 +203,8 @@ class GameScene: SKScene {
         }
         // Level 2 - Standard
         if (node.name == UtilitiesPortal.modeLabelNames[0]
-                                || node.name == UtilitiesPortal.modeButtonNames[0]) {
-            //runAction(sfx)
+                                || node.name == UtilitiesPortal.modeButtonNames[0]
+                                || node.name == UtilitiesPortal.modeMedalNames[0]) {
             cleanScene()
             let secondScene = LevelTwoScene(size: self.size)
             //let secondScene = ResultPage2(size: self.size)
@@ -233,8 +218,8 @@ class GameScene: SKScene {
         }
         // Level 2 - Time Trial
         if (node.name == UtilitiesPortal.modeLabelNames[1]
-                                || node.name == UtilitiesPortal.modeButtonNames[1]) {
-            //runAction(sfx)
+                                || node.name == UtilitiesPortal.modeButtonNames[1]
+                                || node.name == UtilitiesPortal.modeMedalNames[1]) {
             cleanScene()
             let secondScene = LevelTwoScene(size: self.size)
             //let secondScene = ResultPage2(size: self.size)
@@ -248,8 +233,8 @@ class GameScene: SKScene {
         }
         
         if (node.name == UtilitiesPortal.modeLabelNames[2]
-                                || node.name == UtilitiesPortal.modeButtonNames[2]) {
-            //runAction(sfx)
+                                || node.name == UtilitiesPortal.modeButtonNames[2]
+                                || node.name == UtilitiesPortal.modeMedalNames[2]) {
             cleanScene()
             let secondScene = LevelTwoScene(size: self.size)
             //let secondScene = ResultPage2(size: self.size)
@@ -282,7 +267,6 @@ class GameScene: SKScene {
     }
     
     override func willMoveFromView(view: SKView) {
-        //playBgm = nil
         self.removeAllActions()
         self.removeAllChildren()
         print("Remove all nodes Game Scene")
@@ -339,7 +323,6 @@ class GameScene: SKScene {
     }
 
     func cleanScene() {
-        //playBgm = nil
         if let s = self.view?.scene {
             NSNotificationCenter.defaultCenter().removeObserver(self)
             self.enumerateChildNodesWithName("//") { node, _ in

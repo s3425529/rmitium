@@ -7,7 +7,7 @@
 //
 
 import Foundation
-enum LevelThreeQuestion:Int{
+enum LevelThreeQuestion:Int {
     
     init()
     {
@@ -36,8 +36,8 @@ enum LevelThreeQuestion:Int{
     
     case NilQuestion=0, QuestionOne, QuestionTwo, QuestionThree, QuestionFour, QuestionFive, QuestionSix, QuestionSeven, QuestionEight, QuestionNine, QuestionTen
     
-    var imageName:String{
-        get{
+    var imageName:String {
+        get {
             
             switch self
             {
@@ -56,8 +56,7 @@ enum LevelThreeQuestion:Int{
         }
     }
     
-    var imageSol:String
-        {
+    var imageSol:String {
         get
         {
             return self.imageName.stringByAppendingString("solution")
@@ -65,7 +64,7 @@ enum LevelThreeQuestion:Int{
         
     }
     
-    var solutions:[String]{
+    var solutions:[String] {
         get {
             switch self {
                 case .NilQuestion: return []
@@ -83,10 +82,8 @@ enum LevelThreeQuestion:Int{
         }
     }
     
-    var itemName:String{
-        
-        get{
-            
+    var itemName:String {
+        get {
             switch self {
             case .QuestionOne: return "Morphine"
             case .QuestionTwo: return "Acetone"
@@ -105,7 +102,7 @@ enum LevelThreeQuestion:Int{
     }
 
     
-    var positions:[Position]{
+    var positions:[Position] {
         get {
             switch self {
             case .NilQuestion: return []
@@ -123,9 +120,9 @@ enum LevelThreeQuestion:Int{
         }
     }
     
-    var facts:[String]{
+    var facts:[String] {
         get {
-            switch self{
+            switch self {
             case .NilQuestion: return []
             case .QuestionOne: return["Morphine binds to its receptor in the body by 3 interactions: a van der Waal’s, a hydrogen bond and an ionic bond.","Morphine (Opium) was used as a narcotic in Sumerian cultures in Asia Minor as early as 4000 B.C.","The Swiss physician (and alchemist) Paracelsus (1493-1541) popularized Opium/Morphine use in Europe with the introduction of laudanum, a tincture, or alcoholic solution, of opium.","Morphine has a pentacyclic structure with a benzylisoquinoline nucleus supporting ether, hydroxyl, and olefinic functions.","Morphine is extracted from opium in a series of extraction and purification steps involving water, organic solvents, and pH adjustments.","Opioid analgesics, including morphine and codeine, all have an aromatic ring and a quaternary carbon atom linked to a tertiary amine group by two other carbon atoms. This is known as the morphine rule.","Morphine is commercially available in a variety of products as the free base monohydrate and as hydrochloride, sulphate, tartrate, and other salts.","Investigators learned about morphine’s mode of action by applying it and other opiates to guinea-pig intestines (a case of nominative determinism perhaps).","In the late 1800s, hoping to come up with a non-addictive painkiller, the Bayer chemical company tried to acetylate both morphine’s hydroxyl groups (in a similar way to how salicylic acid was converted to into aspirin). Sadly, they invented heroin in the process.","Early attempts to unlock the mysteries of opium and morphine provided a major stimulus to the development of organic chemistry."]
 
@@ -150,7 +147,7 @@ enum LevelThreeQuestion:Int{
         }
     }
     
-    static func getQuestions() ->[LevelThreeQuestion]{
+    static func getQuestions() ->[LevelThreeQuestion] {
         return [QuestionOne, QuestionTwo, QuestionThree, QuestionFour, QuestionFive, QuestionSix,
                 QuestionSeven, QuestionEight, QuestionNine, QuestionTen, NilQuestion]
     }

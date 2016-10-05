@@ -8,7 +8,7 @@
         <attribute name="levelThreeScore" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="levelTwo" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="levelTwoBeat" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="levelTwoTrail" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="levelTwoTrial" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="rightHand" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="sound" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>

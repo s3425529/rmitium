@@ -21,53 +21,41 @@ class MedalInfo:SKNode{
         super.init()
         self.myView = myView
         
-        if modeName == "stand"{
-            
+        if modeName == "stand" {
             medalItem.append(medalStru(image: "Medal1-Diamond", text: "<20 seconds"))
             medalItem.append(medalStru(image: "Medal2-Gold", text: "20 - 29 seconds"))
             medalItem.append(medalStru(image: "Medal3-Silver", text: "30 - 39 seconds"))
             medalItem.append(medalStru(image: "Medal4-Bronze", text: "40 seconds - 1 minute"))
             medalItem.append(medalStru(image: "Medal5-Rust", text: "> 1 minute"))
-        
         }
-        
-        if modeName == "trial"{
-            
+        if modeName == "trial" {
             medalItem.append(medalStru(image: "Medal1-Diamond", text: ">= 150 seconds"))
             medalItem.append(medalStru(image: "Medal2-Gold", text: "120 - 149 seconds"))
             medalItem.append(medalStru(image: "Medal3-Silver", text: "90 -119 seconds"))
             medalItem.append(medalStru(image: "Medal4-Bronze", text: "60 - 89 seconds"))
             medalItem.append(medalStru(image: "Medal5-Rust", text: "< 59 seconds"))
         }
-        if modeName == "beat"{
-        
+        if modeName == "beat" {
             medalItem.append(medalStru(image: "Medal1-Diamond", text: ">= 150 seconds"))
             medalItem.append(medalStru(image: "Medal2-Gold", text: "120 - 149 seconds"))
             medalItem.append(medalStru(image: "Medal3-Silver", text: "90 -119 seconds"))
             medalItem.append(medalStru(image: "Medal4-Bronze", text: "60 - 89 seconds"))
             medalItem.append(medalStru(image: "Medal5-Rust", text: "< 59 seconds"))
-        
         }
-        if modeName == "level"{
-            
+        if modeName == "level" {
             medalItem.append(medalStru(image: "Medal1-Diamond", text: "100%"))
             medalItem.append(medalStru(image: "Medal2-Gold", text: "80-99%"))
             medalItem.append(medalStru(image: "Medal3-Silver", text: "70-89%"))
             medalItem.append(medalStru(image: "Medal4-Bronze", text: "50-69%"))
             medalItem.append(medalStru(image: "Medal5-Rust", text: "<50%"))
-        
         }
-        
-        
-
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupItem(){
-    
+    func setupItem() {
         myView.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/2 + UtilitiesPortal.screenWidth*0.1, y: -UtilitiesPortal.screenHeight/2 + UtilitiesPortal.screenHeight*0.1, width: UtilitiesPortal.screenWidth*0.8 , height: UtilitiesPortal.screenHeight*0.8), cornerRadius: 10).CGPath
         myView.fillColor = SKColor.blackColor()
         myView.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
@@ -75,8 +63,7 @@ class MedalInfo:SKNode{
         myView.alpha = 0.9
 
 
-        for i in 0..<medalItem.count{
-            
+        for i in 0..<medalItem.count {
             let size = CGSize(width: myView.frame.height / 5, height: myView.frame.height / 5 )
             let imageNode = SKSpriteNode(imageNamed: medalItem[i].image)
             imageNode.size = size
@@ -98,8 +85,6 @@ class MedalInfo:SKNode{
             myView.addChild(imageNode)
             
             myView.addChild(textNode)
-            
- 
         }
     }
 }
