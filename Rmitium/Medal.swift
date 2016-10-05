@@ -14,21 +14,22 @@ class medalClass {
     var score = 0
     
     func assignMedal(level: Int) -> (medalName:String , information:[String]) {
+        var score = 0.0
         percent = Float(UtilitiesPortal.score) / Float(UtilitiesPortal.totalQuestions)
         //percent = 1
         
         if level == UtilitiesPortal.levelOne {
-            score = DataHandler.getLevelOneScore() as Int
+            score = round(Double(DataHandler.getLevelOnePercentage()) * 100) / 100
         }
         else if level == UtilitiesPortal.levelThree {
-           score = DataHandler.getLevelThreeScore() as Int
+           score = round(Double(DataHandler.getLevelThreePercentage()) * 100) / 100
         }
    
         //let percentString = Int(percent*100)
         if percent == 1 {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
-            if score < UtilitiesPortal.score {
+            if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
                 words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(score)!")
             }
             else {
@@ -38,7 +39,7 @@ class medalClass {
         if percent >= 0.9 && percent < 1 {
             medalName = "Medal2-Gold"
             words = ["Well done!"]
-            if score < UtilitiesPortal.score {
+            if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
                 words.append("You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
@@ -48,7 +49,7 @@ class medalClass {
         if percent >= 0.7 && percent < 0.9 {
             medalName = "Medal3-Silver"
             words = ["Great work!"]
-            if score < UtilitiesPortal.score {
+            if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
                 words.append("With that sterling effort you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
@@ -58,7 +59,7 @@ class medalClass {
         if percent >= 0.5 && percent < 0.7 {
             medalName = "Medal4-Bronze"
             words = ["Nice try!"]
-            if score < UtilitiesPortal.score {
+            if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
                 words.append("You joined tin and you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
@@ -68,7 +69,7 @@ class medalClass {
         if percent < 0.5 {
             medalName = "Medal5-Rust"
             words = ["Good effort!"]
-            if score < UtilitiesPortal.score {
+            if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
                 words.append("But your chemistry is a little rusty. You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
             }
             else {
@@ -79,6 +80,7 @@ class medalClass {
     }
    
     func level2(mode:String) -> (medalName:String , information:[String]) {
+        var score = 0
         var message:String!
         var bestTime:String!
         let min = UtilitiesPortal.score/60

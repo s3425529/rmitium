@@ -32,22 +32,22 @@ class ResultPage2: SKScene {
         Dic = medalClass()
         switch String(self.userData!.valueForKey("gameMode")!) {
         case "Standard":
-            DataHandler.saveLevelTwoScore()
             print("Game mode: Standard!")
             medalDic = Dic.level2("stand")
             infoTable("stand")
+            DataHandler.saveLevelTwoScore()
             break
         case "Time Trial":
-            DataHandler.saveLevelTwoTrialScore()
             print("Game mode: Time Trial!")
              medalDic = Dic.level2("trial")
             infoTable("trial")
+            DataHandler.saveLevelTwoTrialScore()
             break
         case "Beat the Clock":
-            DataHandler.saveLevelTwoBeatScore()
             print("Game mode: Beat the Clock!")
              medalDic = Dic.level2("beat")
             infoTable("beat")
+            DataHandler.saveLevelTwoBeatScore()
             break
         default:
             break

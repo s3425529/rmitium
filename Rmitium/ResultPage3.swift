@@ -21,7 +21,6 @@ class ResultPage3: SKScene {
     var state = false
     
     override func didMoveToView(view: SKView) {
-        DataHandler.saveLevelThreeScore()
         socialData = SocialClass()
         socialData.initClass()
         socialData.getRecord()
@@ -29,6 +28,7 @@ class ResultPage3: SKScene {
         setupCusterButton()
         setupMedal()
         createHomeDialogue()
+        DataHandler.saveLevelThreeScore()
         
         if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
             do {
