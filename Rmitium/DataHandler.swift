@@ -28,7 +28,7 @@ class DataHandler {
             entity.setValue(-1, forKey: "levelOne")
             entity.setValue(-1, forKey: "levelTwo")
             entity.setValue(-1, forKey: "levelThree")
-            entity.setValue(-1, forKey: "levelTwoTrail")
+            entity.setValue(-1, forKey: "levelTwoTrial")
             entity.setValue(-1, forKey: "levelTwoBeat")
             entity.setValue(0, forKey: "levelOneScore")
             entity.setValue(0, forKey: "levelThreeScore")
@@ -53,7 +53,7 @@ class DataHandler {
             object.setValue(-1, forKey: "levelOne")
             object.setValue(-1, forKey: "levelTwo")
             object.setValue(-1, forKey: "levelThree")
-            object.setValue(-1, forKey: "levelTwoTrail")
+            object.setValue(-1, forKey: "levelTwoTrial")
             object.setValue(-1, forKey: "levelTwoBeat")
             object.setValue(0, forKey: "levelOneScore")
             object.setValue(0, forKey: "levelThreeScore")
@@ -74,7 +74,7 @@ class DataHandler {
             object.setValue(0, forKey: "levelOne")
             object.setValue(0, forKey: "levelTwo")
             object.setValue(0, forKey: "levelThree")
-            object.setValue(0, forKey: "levelTwoTrail")
+            object.setValue(0, forKey: "levelTwoTrial")
             object.setValue(0, forKey: "levelTwoBeat")
             object.setValue(0, forKey: "levelOneScore")
             object.setValue(0, forKey: "levelThreeScore")
@@ -99,6 +99,9 @@ class DataHandler {
             print("Lvl 1 Percent: \(result.first!.levelOneScore)")
             print("Lvl 3 Score: \(result.first!.levelThree)")
             print("Lvl 3 Percent: \(result.first!.levelThreeScore)")
+            print("Lvl 2 Standard: \(result.first!.levelTwo)")
+            print("Lvl 3 Trial: \(result.first!.levelTwoTrial)")
+            print("Lvl 3 Trial: \(result.first!.levelTwoBeat)")
             return result.first!
         }
         catch {
@@ -192,7 +195,7 @@ class DataHandler {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
-            return result.first!.levelTwoTrail!
+            return result.first!.levelTwoTrial!
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
@@ -204,7 +207,7 @@ class DataHandler {
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
-            let x = object.levelTwoTrail as! Int
+            let x = object.levelTwoTrial as! Int
             if  x < UtilitiesPortal.score{
                 object.setValue(UtilitiesPortal.score, forKey: "levelTwoTrail")
                 try settings.save()
@@ -370,13 +373,14 @@ class DataHandler {
             }
             else {
                 if mode == UtilitiesPortal.modeStandard {
-                    if UtilitiesPortal.score < 20 {
+                    score = Double((result.first?.levelTwo)!)
+                    if score < 20  && score > 0 {
                         return "Medal1-Diamond"
                     }
-                    else if UtilitiesPortal.score < 30 && UtilitiesPortal.score >= 20 {
+                    else if score < 30 && score >= 20 {
                         return "Medal2-Gold"
                     }
-                    else if UtilitiesPortal.score < 40 && UtilitiesPortal.score >= 30 {
+                    else if score < 40 && score >= 30 {
                         return "Medal3-Silver"
                     }
                     else if UtilitiesPortal.score < 60 && UtilitiesPortal.score >= 40 {
@@ -391,6 +395,7 @@ class DataHandler {
                     
                 }
                 else if mode == UtilitiesPortal.modeTrial {
+                    score = Double((result.first?.levelTwoTrial)!)
                     if UtilitiesPortal.score >= 150 {
                         return "Medal1-Diamond"
                     }
@@ -403,7 +408,7 @@ class DataHandler {
                     if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
                         return "Medal4-Bronze"
                     }
-                    if UtilitiesPortal.score < 60 {
+                    if UtilitiesPortal.score < 60 && score > 0 {
                         return "Medal5-Rust"
                     }
                     else {
@@ -411,6 +416,7 @@ class DataHandler {
                     }
                 }
                 else if mode == UtilitiesPortal.modeBeat {
+                    score = Double((result.first?.levelTwo)!)
                     if UtilitiesPortal.score >= 150 {
                         return "Medal1-Diamond"
                     }
@@ -423,7 +429,7 @@ class DataHandler {
                     if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
                         return "Medal4-Bronze"
                     }
-                    if UtilitiesPortal.score < 60 {
+                    if UtilitiesPortal.score < 60 && score > 0 {
                         return "Medal5-Rust"
                     }
                     else {
@@ -444,7 +450,7 @@ class DataHandler {
             else if score >= 0.5 && score < 0.7 {
                 return "Medal4-Bronze"
             }
-            else if score < 0.5 && score > 0{
+            else if score < 0.5 && score > 0 {
                 return "Medal5-Rust"
             }
             else {

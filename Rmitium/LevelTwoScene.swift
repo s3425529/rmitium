@@ -232,7 +232,7 @@ class LevelTwoScene: SKScene {
             info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25*2.2,
                                  height: UtilitiesPortal.screenHeight*0.15*1.49)
             info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.01,
-                                      y: UtilitiesPortal.screenHeight*(0))
+                                      y: UtilitiesPortal.screenHeight*(-0.4))
             break
         case UtilitiesPortal.modeLabelTexts[1]:
             info02.texture = SKTexture(image: UIImage(named: UtilitiesPortal.levelGameMode[1])!)
@@ -240,25 +240,26 @@ class LevelTwoScene: SKScene {
             info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25*2.2,
                                  height: UtilitiesPortal.screenHeight*0.15*1.49)
             info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.01,
-                                      y: UtilitiesPortal.screenHeight*(0))
+                                      y: UtilitiesPortal.screenHeight*(-0.4))
             break
-        case UtilitiesPortal.modeLabelTexts[2]:            info02.texture = SKTexture(image: UIImage(named: UtilitiesPortal.levelGameMode[2])!)
+        case UtilitiesPortal.modeLabelTexts[2]:
+            info02.texture = SKTexture(image: UIImage(named: UtilitiesPortal.levelGameMode[2])!)
             info02.zPosition = 1
             info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25*2.2,
                                  height: UtilitiesPortal.screenHeight*0.15*1.49)
             info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.01,
-                                      y: UtilitiesPortal.screenHeight*(0))
+                                      y: UtilitiesPortal.screenHeight*(-0.4))
             break
         default:
             break
         }
         
-        /*let info03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[2])
+        let info03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[6])
         info03.zPosition = 1
-        info03.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
-                             height: UtilitiesPortal.screenHeight*0.15)
-        info03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.3,
-                                  y: UtilitiesPortal.screenHeight * -0.3)*/
+        info03.size = CGSize(width: UtilitiesPortal.screenWidth*0.25*2.2,
+                             height: UtilitiesPortal.screenHeight*0.15*1.49)
+        info03.position = CGPoint(x: UtilitiesPortal.screenWidth*0.01,
+                                  y: UtilitiesPortal.screenHeight*(0))
         
         let info04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[3])
         info04.zPosition = 1
@@ -298,7 +299,7 @@ class LevelTwoScene: SKScene {
         
         infoOverlay.addChild(info01)
         infoOverlay.addChild(info02)
-        //infoOverlay.addChild(info03)
+        infoOverlay.addChild(info03)
         infoOverlay.addChild(info04)
         infoOverlay.addChild(info05)
         

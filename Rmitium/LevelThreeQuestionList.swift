@@ -32,7 +32,7 @@ class LevelThreeQuestionList {
         }
     }
     
-    static func random() -> Int{
+    static func random() -> Int {
         let randomQuestionIndex = Int(arc4random_uniform(UInt32(listOfQuestions.count-1)))
         return randomQuestionIndex
     }

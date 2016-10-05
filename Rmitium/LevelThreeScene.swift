@@ -850,7 +850,7 @@ class LevelThreeScene: SKScene {
     }
     
     //back to the home page,
-    func backHomePage(){
+    func backHomePage() {
         UtilitiesPortal.totalQuestions = 0
         UtilitiesPortal.score = 0
         cleanScene()
