@@ -184,6 +184,8 @@ class GameScene: SKScene {
             LevelOneModel.reset()
             
             let secondScene = LevelOneScene(size: self.size)
+            secondScene.userData = NSMutableDictionary()
+            secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[0], forKey: "levelName")
             //let secondScene = ResultPage(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
@@ -207,6 +209,8 @@ class GameScene: SKScene {
             cleanScene()
             LevelThreeModel.reset()
             let secondScene = LevelThreeScene(size: self.size)
+            secondScene.userData = NSMutableDictionary()
+            secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[2], forKey: "levelName")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
@@ -220,7 +224,8 @@ class GameScene: SKScene {
             let secondScene = LevelTwoScene(size: self.size)
             //let secondScene = ResultPage2(size: self.size)
             secondScene.userData = NSMutableDictionary()
-            secondScene.userData?.setValue(UtilitiesPortal.modeLabelTexts[0], forKey: "gameMode")
+            secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[1], forKey: "levelName")
+            secondScene.userData!.setValue(UtilitiesPortal.modeLabelTexts[0], forKey: "gameMode")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
@@ -234,7 +239,8 @@ class GameScene: SKScene {
             let secondScene = LevelTwoScene(size: self.size)
             //let secondScene = ResultPage2(size: self.size)
             secondScene.userData = NSMutableDictionary()
-            secondScene.userData?.setValue(UtilitiesPortal.modeLabelTexts[1], forKey: "gameMode")
+            secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[1], forKey: "levelName")
+            secondScene.userData!.setValue(UtilitiesPortal.modeLabelTexts[1], forKey: "gameMode")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
@@ -248,7 +254,8 @@ class GameScene: SKScene {
             let secondScene = LevelTwoScene(size: self.size)
             //let secondScene = ResultPage2(size: self.size)
             secondScene.userData = NSMutableDictionary()
-            secondScene.userData?.setValue(UtilitiesPortal.modeLabelTexts[2], forKey: "gameMode")
+            secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[1], forKey: "levelName")
+            secondScene.userData!.setValue(UtilitiesPortal.modeLabelTexts[2], forKey: "gameMode")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
