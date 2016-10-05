@@ -69,6 +69,9 @@ class SettingScene: SKScene {
             levelLabel.fontSize = UtilitiesPortal.levelLabelSize
             levelLabel.position = CGPointMake(UtilitiesPortal.screenWidth*0.27,
                                               UtilitiesPortal.screenHeight*(0.68-CGFloat(count)*0.15))
+            if count == 3 {
+                levelLabel.position.x = UtilitiesPortal.screenWidth/2.45
+            }
             self.addChild(levelLabel)
             
             let levelButton = SKSpriteNode(imageNamed: "offbutton")
@@ -87,8 +90,10 @@ class SettingScene: SKScene {
             levelButton.position = CGPointMake(UtilitiesPortal.screenWidth*0.68,
                                                UtilitiesPortal.screenHeight*(0.70-CGFloat(count)*0.15))
             levelButton.size = CGSize(width: 305/3,height: 143/3)
-            if count == UtilitiesPortal.settingLabelNames.count-1 {
-                levelButton.hidden = true
+            if count == 3 {
+                levelButton.texture = SKTexture(image: UIImage(named: "alertbox")!)
+                levelButton.position = CGPoint(x: levelLabel.frame.midX, y: levelLabel.frame.midY)
+                levelButton.size = CGSize(width: UtilitiesPortal.screenWidth/2, height: levelLabel.frame.size.height*2.5)
             }
             self.addChild(levelButton)
             settings.append(levelButton)
