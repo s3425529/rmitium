@@ -178,19 +178,17 @@ class DataHandler {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
             let x = object.levelTwo as! Int
-            if x > UtilitiesPortal.score || x == 0{
+            if x > UtilitiesPortal.score || x == 0 {
                 object.setValue(UtilitiesPortal.score, forKey: "levelTwo")
                 try settings.save()
             }
-            
-            
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
         }
     }
-    //level2  Trail
     
+    //level2  Trial
     static func getLevelTwoTrialScore() -> NSNumber {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -208,7 +206,7 @@ class DataHandler {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
             let x = object.levelTwoTrial as! Int
-            if  x < UtilitiesPortal.score{
+            if  x < UtilitiesPortal.score {
                 object.setValue(UtilitiesPortal.score, forKey: "levelTwoTrail")
                 try settings.save()
             }
