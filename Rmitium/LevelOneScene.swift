@@ -679,6 +679,10 @@ class LevelOneScene: SKScene {
             // Labels selected
             for x in 0...answers.count-1 {
                 if CGRectContainsPoint(answers[x].frame, point) {
+                    // Play sound only when drag labels
+                    if DataHandler.getSettings().getEffect {
+                        audioPlayer.play()
+                    }
                     chosenAnswer = CustomSKSpriteNode(imageNamed: answers[x].name!)
                     chosenAnswer.value = answers[x].name!
                     chosenAnswer.zPosition = 0.4
@@ -695,11 +699,6 @@ class LevelOneScene: SKScene {
             // Targets node selected
             for x in 0...questions.count-1 {
                 if CGRectContainsPoint(questions[x].frame, point) {
-                    // Play sound only when drag labels
-                    if DataHandler.getSettings().getEffect {
-                        audioPlayer.play()
-                    }
-                    
                     if answeredQuestions[x].hidden {
                         return
                     }
