@@ -224,12 +224,34 @@ class LevelTwoScene: SKScene {
         info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.38,
                                   y: UtilitiesPortal.screenHeight * 0.14)
         
-        let info02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[6])
-        info02.zPosition = 1
-        info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25*2.2,
-                             height: UtilitiesPortal.screenHeight*0.15*1.49)
-        info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.01,
-                                  y: UtilitiesPortal.screenHeight*(0))
+        let info02 = SKSpriteNode(imageNamed: UtilitiesPortal.levelGameMode[0])
+        switch String(self.userData!.valueForKey("gameMode")!) {
+        case UtilitiesPortal.modeLabelTexts[0]:
+            info02.texture = SKTexture(image: UIImage(named: UtilitiesPortal.levelGameMode[0])!)
+            info02.zPosition = 1
+            info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25*2.2,
+                                 height: UtilitiesPortal.screenHeight*0.15*1.49)
+            info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.01,
+                                      y: UtilitiesPortal.screenHeight*(0))
+            break
+        case UtilitiesPortal.modeLabelTexts[1]:
+            info02.texture = SKTexture(image: UIImage(named: UtilitiesPortal.levelGameMode[1])!)
+            info02.zPosition = 1
+            info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25*2.2,
+                                 height: UtilitiesPortal.screenHeight*0.15*1.49)
+            info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.01,
+                                      y: UtilitiesPortal.screenHeight*(0))
+            break
+        case UtilitiesPortal.modeLabelTexts[2]:            info02.texture = SKTexture(image: UIImage(named: UtilitiesPortal.levelGameMode[2])!)
+            info02.zPosition = 1
+            info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25*2.2,
+                                 height: UtilitiesPortal.screenHeight*0.15*1.49)
+            info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.01,
+                                      y: UtilitiesPortal.screenHeight*(0))
+            break
+        default:
+            break
+        }
         
         /*let info03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[2])
         info03.zPosition = 1

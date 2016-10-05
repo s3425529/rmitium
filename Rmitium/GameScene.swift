@@ -214,7 +214,8 @@ class GameScene: SKScene {
         }
         // Level 2 - Standard
         if (node.name == UtilitiesPortal.modeLabelNames[0]
-                                || node.name == UtilitiesPortal.modeButtonNames[0]) {
+                                || node.name == UtilitiesPortal.modeButtonNames[0]
+                                || node.name == UtilitiesPortal.modeMedalNames[0]) {
             //runAction(sfx)
             cleanScene()
             let secondScene = LevelTwoScene(size: self.size)
@@ -228,7 +229,8 @@ class GameScene: SKScene {
         }
         // Level 2 - Time Trial
         if (node.name == UtilitiesPortal.modeLabelNames[1]
-                                || node.name == UtilitiesPortal.modeButtonNames[1]) {
+                                || node.name == UtilitiesPortal.modeButtonNames[1]
+                                || node.name == UtilitiesPortal.modeMedalNames[1]) {
             //runAction(sfx)
             cleanScene()
             let secondScene = LevelTwoScene(size: self.size)
@@ -242,7 +244,8 @@ class GameScene: SKScene {
         }
         
         if (node.name == UtilitiesPortal.modeLabelNames[2]
-                                || node.name == UtilitiesPortal.modeButtonNames[2]) {
+                                || node.name == UtilitiesPortal.modeButtonNames[2]
+                                || node.name == UtilitiesPortal.modeMedalNames[2]) {
             //runAction(sfx)
             cleanScene()
             let secondScene = LevelTwoScene(size: self.size)

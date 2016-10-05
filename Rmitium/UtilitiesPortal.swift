@@ -36,6 +36,7 @@ class UtilitiesPortal {
     static let levelButtonNames = ["lvl01Btn", "lvl02Btn", "lvl03Btn", "settingBtn"]
     static let levelMedalNames = ["lvl01Medal", "lvl02Medal", "lvl03Medal", "lvl04Medal"]
     
+    static let levelGameMode = ["lvl2standard", "lvl2timetrial", "lvl2extreme"]
     static let modeLabelNames = ["mode01", "mode02", "mode03"]
     static let modeButtonNames = ["mode01Btn", "mode02Btn", "mode03Btn"]
     static let modeMedalNames = ["mode01Medal", "mode02Medal", "mode03Medal"]
