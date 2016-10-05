@@ -19,7 +19,9 @@ class ResultPage3: SKScene {
     var audioPlayer = AVAudioPlayer()
     var myView:SKShapeNode!
     var state = false
+    
     override func didMoveToView(view: SKView) {
+        DataHandler.saveLevelThreeScore()
         socialData = SocialClass()
         socialData.initClass()
         socialData.getRecord()
@@ -27,7 +29,6 @@ class ResultPage3: SKScene {
         setupCusterButton()
         setupMedal()
         createHomeDialogue()
-        
         
         if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
             do {
@@ -38,8 +39,6 @@ class ResultPage3: SKScene {
                 fatalError("Error loading sound: \(error)")
             }
         }
-        
-        DataHandler.saveLevelThreeScore()
     }
     
     func setupItem() {

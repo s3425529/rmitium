@@ -107,15 +107,15 @@ class medalClass {
         }
         
         if  scoreSec < 10 {
-            if scoreSec == -1{
+            if scoreSec == -1 {
             
                 bestTime = "\(scoreMin):00"
-            }else{
+            }
+            else {
                 bestTime = "\(scoreMin):0\(scoreSec)"
             }
-           
-            
-        }else{
+        }
+        else {
             bestTime = "\(scoreMin):\(scoreSec)"
         }
         if mode == "stand" {
@@ -175,7 +175,6 @@ class medalClass {
                     words.append("\(message)")
                 }
             }
-        
         }
         
         if mode == "trial" {
@@ -306,5 +305,4 @@ class medalClass {
         
         return (medalName, words)
     }
- 
 }

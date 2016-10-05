@@ -32,6 +32,7 @@ class ResultPage: SKScene{
             }
         }
         
+        DataHandler.saveLevelOneScore()
         socialData = SocialClass()
         socialData.initClass()
         socialData.getRecord()
@@ -39,7 +40,6 @@ class ResultPage: SKScene{
         setupItems()
         setupCustomerButton()
         createHomeDialogue()
-        DataHandler.saveLevelOneScore()
     }
     
     func setupMedal() {
