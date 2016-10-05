@@ -220,7 +220,7 @@ class GameScene: SKScene {
             let secondScene = LevelTwoScene(size: self.size)
             //let secondScene = ResultPage2(size: self.size)
             secondScene.userData = NSMutableDictionary()
-            secondScene.userData?.setValue("Standard", forKey: "gameMode")
+            secondScene.userData?.setValue(UtilitiesPortal.modeLabelTexts[0], forKey: "gameMode")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
@@ -234,7 +234,7 @@ class GameScene: SKScene {
             let secondScene = LevelTwoScene(size: self.size)
             //let secondScene = ResultPage2(size: self.size)
             secondScene.userData = NSMutableDictionary()
-            secondScene.userData?.setValue("Time Trial", forKey: "gameMode")
+            secondScene.userData?.setValue(UtilitiesPortal.modeLabelTexts[1], forKey: "gameMode")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
@@ -248,7 +248,7 @@ class GameScene: SKScene {
             let secondScene = LevelTwoScene(size: self.size)
             //let secondScene = ResultPage2(size: self.size)
             secondScene.userData = NSMutableDictionary()
-            secondScene.userData?.setValue("Beat the Clock", forKey: "gameMode")
+            secondScene.userData?.setValue(UtilitiesPortal.modeLabelTexts[2], forKey: "gameMode")
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)

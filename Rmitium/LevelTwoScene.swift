@@ -26,20 +26,20 @@ class LevelTwoScene: SKScene {
     override func didMoveToView(view: SKView) {
         //This is the template for implementing setting
         switch String(self.userData!.valueForKey("gameMode")!) {
-            case "Standard":
+            case UtilitiesPortal.modeLabelTexts[0]:
                 //code goes here
-                print("Game mode: Standard!")
+                print("Game mode: \(UtilitiesPortal.modeLabelTexts[0])")
                 
                 setupTimer()
             break
-            case "Time Trial":
+            case UtilitiesPortal.modeLabelTexts[1]:
                 //code goes here
-                print("Game mode: Time Trial!")
+                print("Game mode: \(UtilitiesPortal.modeLabelTexts[1])")
                 trialTimer()
             break
-            case "Beat the Clock":
+            case UtilitiesPortal.modeLabelTexts[2]:
                 //code goes here
-                print("Game mode: Beat the Clock!")
+                print("Game mode: \(UtilitiesPortal.modeLabelTexts[2])")
                 beatTimer()
             break
             default:
