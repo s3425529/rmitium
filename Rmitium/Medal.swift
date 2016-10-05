@@ -19,10 +19,10 @@ class medalClass {
         //percent = 1
         
         if level == UtilitiesPortal.levelOne {
-            score = round(Double(DataHandler.getLevelOnePercentage()) * 100) / 100
+            score = round(Double(DataHandler.getLevelOnePercentage()) * 10000) / 100
         }
         else if level == UtilitiesPortal.levelThree {
-           score = round(Double(DataHandler.getLevelThreePercentage()) * 100) / 100
+           score = round(Double(DataHandler.getLevelThreePercentage()) * 10000) / 100
         }
    
         //let percentString = Int(percent*100)
@@ -30,7 +30,7 @@ class medalClass {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
             if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
-                words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(score)!")
+                words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(score)%!")
             }
             else {
                 words.append("A perfect score. Your chemistry knowledge is obviously crystal clear.")
@@ -40,7 +40,7 @@ class medalClass {
             medalName = "Medal2-Gold"
             words = ["Well done!"]
             if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
-                words.append("You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
+                words.append("You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)%!")
             }
             else {
                 words.append("You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your chemistry prowess is gold standard.")
@@ -50,7 +50,7 @@ class medalClass {
             medalName = "Medal3-Silver"
             words = ["Great work!"]
             if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
-                words.append("With that sterling effort you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
+                words.append("With that sterling effort you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)%!")
             }
             else {
                 words.append("With that sterling effort you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions).")
@@ -60,7 +60,7 @@ class medalClass {
             medalName = "Medal4-Bronze"
             words = ["Nice try!"]
             if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
-                words.append("You joined tin and you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
+                words.append("You joined tin and you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)%!")
             }
             else {
                 words.append("You joined tin and you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions).")
@@ -70,7 +70,7 @@ class medalClass {
             medalName = "Medal5-Rust"
             words = ["Good effort!"]
             if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
-                words.append("But your chemistry is a little rusty. You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)!")
+                words.append("But your chemistry is a little rusty. You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)%!")
             }
             else {
                 words.append("But your chemistry is a little rusty. You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions).")
