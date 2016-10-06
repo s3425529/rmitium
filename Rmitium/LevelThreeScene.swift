@@ -10,6 +10,7 @@ import AVFoundation
 import SpriteKit
 
 class LevelThreeScene: LevelScene {
+    var answers: [CustomSKSpriteNode] = []
     var chosenAnswer: CustomSKSpriteNode!
     var resultImage: SKSpriteNode!
     var lvlThreeQuestion: LevelThreeQuestion!
@@ -484,7 +485,7 @@ class LevelThreeScene: LevelScene {
         let point = touch!.previousLocationInNode(self)
         super.touchesBegan(touches, withEvent: event)
         
-        if state == UtilitiesPortal.stateAnswer {
+        if state == UtilitiesPortal.stateAnswer && lvlThreeQuestion.positions.count > 0 {
             // Labels selected
             for x in 0...answers.count-1 {
                 if CGRectContainsPoint(answers[x].frame, point) {

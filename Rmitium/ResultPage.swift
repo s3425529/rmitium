@@ -262,6 +262,7 @@ class ResultPage: SKScene{
         UtilitiesPortal.totalQuestions = 0
         let secondScene = LevelTwoScene(size: self.size)
         secondScene.userData = NSMutableDictionary()
+        secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[1], forKey: "levelName")
         secondScene.userData?.setValue("Standard", forKey: "gameMode")
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill

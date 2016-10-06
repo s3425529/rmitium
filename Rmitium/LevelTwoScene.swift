@@ -11,6 +11,7 @@ import Foundation
 import SpriteKit
 
 class LevelTwoScene: LevelScene {
+    var answers: [CustomSKSpriteNode] = []
     var chosenAnswer: Int!
     var timeOutMessage: SKShapeNode!
     var modeLabel: SKLabelNode!

@@ -10,7 +10,7 @@ import AVFoundation
 import SpriteKit
 
 class LevelScene: SKScene {
-    var answers: [CustomSKSpriteNode] = []
+    //var answers: [CustomSKSpriteNode] = []
     var questions: [CustomSKSpriteNode] = []
     var answeredQuestions: [CustomSKSpriteNode] = []
     var positions = [Position]()

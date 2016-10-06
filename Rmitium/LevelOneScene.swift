@@ -10,6 +10,7 @@ import AVFoundation
 import SpriteKit
 
 class LevelOneScene: LevelScene {
+    var answers: [CustomSKSpriteNode] = []
     var lvlOneQuestion: LevelOneQuestion!
     var listOfQuestions:[LevelOneQuestion] = []
     var chosenAnswer: CustomSKSpriteNode!
@@ -495,7 +496,7 @@ class LevelOneScene: LevelScene {
         let point = touch!.previousLocationInNode(self)
         super.touchesBegan(touches, withEvent: event)
         
-        if state == UtilitiesPortal.stateAnswer {
+        if state == UtilitiesPortal.stateAnswer && lvlOneQuestion.positions.count > 0{
             // Labels selected
             for x in 0...answers.count-1 {
                 if CGRectContainsPoint(answers[x].frame, point) {
@@ -511,7 +512,6 @@ class LevelOneScene: LevelScene {
                     return
                 }
             }
-            
             
             // Targets node selected
             for x in 0...questions.count-1 {
