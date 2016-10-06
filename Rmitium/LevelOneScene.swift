@@ -45,7 +45,7 @@ class LevelOneScene: SKScene {
         if DataHandler.getLevelOneScore() == UtilitiesPortal.firstTime {
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo
-            //DataHandler.saveLevelOneScore()
+            DataHandler.saveLevelOneFirstTime()
         }
         else {
             state = UtilitiesPortal.stateAnswer

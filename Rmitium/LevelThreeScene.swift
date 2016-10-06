@@ -40,7 +40,7 @@ class LevelThreeScene: SKScene {
         if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstTime {
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo
-            //DataHandler.saveLevelThreeScore()
+            DataHandler.saveLevelThreeFirstTime()
         }
         else {
             state = UtilitiesPortal.stateAnswer

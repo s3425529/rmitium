@@ -17,6 +17,13 @@ class medalClass {
         percent = Double(UtilitiesPortal.score) / Double(UtilitiesPortal.totalQuestions)
         var scorePercent = round((percent) * 10000) / 100
         //percent = 1
+        var firstTime = -2
+        if level == UtilitiesPortal.levelOne {
+            firstTime = DataHandler.getLevelOneScore() as Int
+        }
+        else if level == UtilitiesPortal.levelThree {
+            firstTime = DataHandler.getLevelThreeScore() as Int
+        }
         
         if level == UtilitiesPortal.levelOne {
             score = round(Double(DataHandler.getLevelOnePercentage()) * 10000) / 100
@@ -33,7 +40,12 @@ class medalClass {
                 words.append("New record! A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(scorePercent)%.")
             }
             else {
-                words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(scorePercent)%. Your best was \(score)%!")
+                if firstTime < 0 {
+                    words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(scorePercent)%!")
+                }
+                else {
+                    words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(scorePercent)%. Your best was \(score)%!")
+                }
             }
         }
         if percent >= 0.9 && percent < 1 {
@@ -43,7 +55,12 @@ class medalClass {
                 words.append("New record! Your chemistry prowess is gold standard. You got \(scorePercent)%!")
             }
             else {
-                words.append("Your chemistry prowess is gold standard. You got \(scorePercent)%. Your best was \(score)%!")
+                if firstTime < 0 {
+                    words.append("Your chemistry prowess is gold standard. You got \(scorePercent)%!")
+                }
+                else {
+                    words.append("Your chemistry prowess is gold standard. You got \(scorePercent)%. Your best was \(score)%!")
+                }
             }
         }
         if percent >= 0.7 && percent < 0.9 {
@@ -53,7 +70,12 @@ class medalClass {
                 words.append("New record! With that sterling effort you got \(scorePercent)%!")
             }
             else {
-                words.append("With that sterling effort you got \(scorePercent)%. Your best was \(score)%!.")
+                if firstTime < 0 {
+                    words.append("With that sterling effort you got \(scorePercent)%!")
+                }
+                else {
+                    words.append("With that sterling effort you got \(scorePercent)%. Your best was \(score)%!.")
+                }
             }
         }
         if percent >= 0.5 && percent < 0.7 {
@@ -63,7 +85,12 @@ class medalClass {
                 words.append("New record! You joined in and got \(scorePercent)%!")
             }
             else {
-                words.append("You joined in and got \(scorePercent)%. Your best was \(score)%!")
+                if firstTime < 0 {
+                    words.append("You joined in and got \(scorePercent)%!")
+                }
+                else {
+                    words.append("You joined in and got \(scorePercent)%. Your best was \(score)%!")
+                }
             }
         }
         if percent < 0.5 {
@@ -73,7 +100,12 @@ class medalClass {
                 words.append("New record! But your chemistry is a little rusty. You got \(scorePercent)%!")
             }
             else {
-                words.append("But your chemistry is a little rusty. You got \(scorePercent)%. Your best was \(score)%!")
+                if firstTime < 0 {
+                    words.append("But your chemistry is a little rusty. You got \(scorePercent)%!")
+                }
+                else {
+                    words.append("But your chemistry is a little rusty. You got \(scorePercent)%. Your best was \(score)%!")
+                }
             }
         }
         return (medalName, words)

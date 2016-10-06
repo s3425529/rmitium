@@ -21,7 +21,6 @@ class ResultPage3: SKScene {
     var state = false
     
     override func didMoveToView(view: SKView) {
-        DataHandler.saveLevelThreeScore()
         socialData = SocialClass()
         socialData.initClass()
         socialData.getRecord()
@@ -39,6 +38,7 @@ class ResultPage3: SKScene {
                 fatalError("Error loading sound: \(error)")
             }
         }
+        DataHandler.saveLevelThreeScore()
     }
     
     func setupItem() {
