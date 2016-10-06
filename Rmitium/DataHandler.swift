@@ -207,7 +207,7 @@ class DataHandler {
             let object = result.first!
             let x = object.levelTwoTrial as! Int
             if  x < UtilitiesPortal.score {
-                object.setValue(UtilitiesPortal.score, forKey: "levelTwoTrail")
+                object.setValue(UtilitiesPortal.score, forKey: "levelTwoTrial")
                 try settings.save()
             }
             
@@ -381,10 +381,10 @@ class DataHandler {
                     else if score < 40 && score >= 30 {
                         return "Medal3-Silver"
                     }
-                    else if UtilitiesPortal.score < 60 && UtilitiesPortal.score >= 40 {
+                    else if score < 60 && score >= 40 {
                         return "Medal4-Bronze"
                     }
-                    else if UtilitiesPortal.score >= 60 {
+                    else if score >= 60 {
                         return "Medal5-Rust"
                     }
                     else {
@@ -394,19 +394,19 @@ class DataHandler {
                 }
                 else if mode == UtilitiesPortal.modeTrial {
                     score = Double((result.first?.levelTwoTrial)!)
-                    if UtilitiesPortal.score >= 150 {
+                    if score >= 150 {
                         return "Medal1-Diamond"
                     }
-                    if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
+                    if score >= 120 && score < 150 {
                         return "Medal2-Gold"
                     }
-                    if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
+                    if score >= 90 && score < 120 {
                         return "Medal3-Silver"
                     }
-                    if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
+                    if score >= 60 && score < 90 {
                         return "Medal4-Bronze"
                     }
-                    if UtilitiesPortal.score < 60 && score > 0 {
+                    if score < 60 && score > 0 {
                         return "Medal5-Rust"
                     }
                     else {
@@ -414,20 +414,20 @@ class DataHandler {
                     }
                 }
                 else if mode == UtilitiesPortal.modeBeat {
-                    score = Double((result.first?.levelTwo)!)
-                    if UtilitiesPortal.score >= 150 {
+                    score = Double((result.first?.levelTwoBeat)!)
+                    if score >= 150 {
                         return "Medal1-Diamond"
                     }
-                    if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
+                    if score >= 120 && score < 150 {
                         return "Medal2-Gold"
                     }
-                    if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
+                    if score >= 90 && score < 120 {
                         return "Medal3-Silver"
                     }
-                    if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
+                    if score >= 60 && score < 90 {
                         return "Medal4-Bronze"
                     }
-                    if UtilitiesPortal.score < 60 && score > 0 {
+                    if score < 60 && score > 0 {
                         return "Medal5-Rust"
                     }
                     else {

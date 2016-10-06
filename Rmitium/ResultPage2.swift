@@ -71,7 +71,7 @@ class ResultPage2: SKScene {
         createHomeDialogue()
     }
     
-    func setupMedal(){
+    func setupMedal() {
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
         
         
