@@ -232,6 +232,8 @@ class ResultPage3: SKScene {
         
         let secondScene = LevelThreeScene(size: self.size)
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
+        secondScene.userData = NSMutableDictionary()
+        secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[2], forKey: "levelName")
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)

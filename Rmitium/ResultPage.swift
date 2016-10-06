@@ -247,6 +247,8 @@ class ResultPage: SKScene{
         UtilitiesPortal.score = 0
         UtilitiesPortal.totalQuestions = 0
         let secondScene = LevelOneScene(size: self.size)
+        secondScene.userData = NSMutableDictionary()
+        secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[0], forKey: "levelName")
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill

@@ -279,6 +279,7 @@ class ResultPage2: SKScene {
         UtilitiesPortal.score = 0
         let secondScene = LevelTwoScene(size: self.size)
         secondScene.userData = NSMutableDictionary()
+        secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[1], forKey: "levelName")
         let mode = self.userData?.valueForKey("gameMode")
         secondScene.userData?.setValue(mode, forKey: "gameMode")
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
