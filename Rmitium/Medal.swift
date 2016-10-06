@@ -15,7 +15,7 @@ class medalClass {
     func assignMedal(level: Int) -> (medalName:String , information:[String]) {
         var score = 0.0
         percent = Double(UtilitiesPortal.score) / Double(UtilitiesPortal.totalQuestions)
-        var scorePercent = round((percent) * 10000) / 100
+        var scorePercent = round((percent) * 100) / 1
         //percent = 1
         var firstTime = -2
         if level == UtilitiesPortal.levelOne {
@@ -26,10 +26,10 @@ class medalClass {
         }
         
         if level == UtilitiesPortal.levelOne {
-            score = round(Double(DataHandler.getLevelOnePercentage()) * 10000) / 100
+            score = round(Double(DataHandler.getLevelOnePercentage()) * 100) / 1
         }
         else if level == UtilitiesPortal.levelThree {
-           score = round(Double(DataHandler.getLevelThreePercentage()) * 10000) / 100
+           score = round(Double(DataHandler.getLevelThreePercentage()) * 100) / 1
         }
    
         //let percentString = Int(percent*100)
@@ -37,14 +37,14 @@ class medalClass {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
             if score < percent {
-                words.append("New record! A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(scorePercent)%.")
+                words.append("New record! A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(Int(scorePercent))%.")
             }
             else {
                 if firstTime < 0 {
-                    words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(scorePercent)%!")
+                    words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(Int(scorePercent))%!")
                 }
                 else {
-                    words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(scorePercent)%. Your best was \(score)%!")
+                    words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
                 }
             }
         }
@@ -52,14 +52,14 @@ class medalClass {
             medalName = "Medal2-Gold"
             words = ["Well done!"]
             if score < percent {
-                words.append("New record! Your chemistry prowess is gold standard. You got \(scorePercent)%!")
+                words.append("New record! Your chemistry prowess is gold standard. You got \(Int(scorePercent))%!")
             }
             else {
                 if firstTime < 0 {
-                    words.append("Your chemistry prowess is gold standard. You got \(scorePercent)%!")
+                    words.append("Your chemistry prowess is gold standard. You got \(Int(scorePercent))%!")
                 }
                 else {
-                    words.append("Your chemistry prowess is gold standard. You got \(scorePercent)%. Your best was \(score)%!")
+                    words.append("Your chemistry prowess is gold standard. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
                 }
             }
         }
@@ -67,14 +67,14 @@ class medalClass {
             medalName = "Medal3-Silver"
             words = ["Great work!"]
             if score < percent {
-                words.append("New record! With that sterling effort you got \(scorePercent)%!")
+                words.append("New record! With that sterling effort you got \(Int(scorePercent))%!")
             }
             else {
                 if firstTime < 0 {
-                    words.append("With that sterling effort you got \(scorePercent)%!")
+                    words.append("With that sterling effort you got \(Int(scorePercent))%!")
                 }
                 else {
-                    words.append("With that sterling effort you got \(scorePercent)%. Your best was \(score)%!.")
+                    words.append("With that sterling effort you got \(Int(scorePercent))%. Your best was \(Int(score))%!.")
                 }
             }
         }
@@ -82,14 +82,14 @@ class medalClass {
             medalName = "Medal4-Bronze"
             words = ["Nice try!"]
             if score < percent {
-                words.append("New record! You joined in and got \(scorePercent)%!")
+                words.append("New record! You joined in and got \(Int(scorePercent))%!")
             }
             else {
                 if firstTime < 0 {
-                    words.append("You joined in and got \(scorePercent)%!")
+                    words.append("You joined in and got \(Int(scorePercent))%!")
                 }
                 else {
-                    words.append("You joined in and got \(scorePercent)%. Your best was \(score)%!")
+                    words.append("You joined in and got \(Int(scorePercent))%. Your best was \(Int(score))%!")
                 }
             }
         }
@@ -97,14 +97,14 @@ class medalClass {
             medalName = "Medal5-Rust"
             words = ["Good effort!"]
             if score < percent {
-                words.append("New record! But your chemistry is a little rusty. You got \(scorePercent)%!")
+                words.append("New record! But your chemistry is a little rusty. You got \(Int(scorePercent))%!")
             }
             else {
                 if firstTime < 0 {
-                    words.append("But your chemistry is a little rusty. You got \(scorePercent)%!")
+                    words.append("But your chemistry is a little rusty. You got \(Int(scorePercent))%!")
                 }
                 else {
-                    words.append("But your chemistry is a little rusty. You got \(scorePercent)%. Your best was \(score)%!")
+                    words.append("But your chemistry is a little rusty. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
                 }
             }
         }
