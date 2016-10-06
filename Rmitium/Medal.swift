@@ -29,8 +29,8 @@ class medalClass {
         if percent == 1 {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
-            if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
-                words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. Your best was \(score)%!")
+            if score < percent {
+                words.append("New record! A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(scorePercent)%.")
             }
             else {
                 words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(scorePercent)%. Your best was \(score)%!")
@@ -39,8 +39,8 @@ class medalClass {
         if percent >= 0.9 && percent < 1 {
             medalName = "Medal2-Gold"
             words = ["Well done!"]
-            if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
-                words.append("You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)%!")
+            if score < percent {
+                words.append("New record! Your chemistry prowess is gold standard. You got \(scorePercent)%!")
             }
             else {
                 words.append("Your chemistry prowess is gold standard. You got \(scorePercent)%. Your best was \(score)%!")
@@ -49,8 +49,8 @@ class medalClass {
         if percent >= 0.7 && percent < 0.9 {
             medalName = "Medal3-Silver"
             words = ["Great work!"]
-            if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
-                words.append("With that sterling effort you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)%!")
+            if score < percent {
+                words.append("New record! With that sterling effort you got \(scorePercent)%!")
             }
             else {
                 words.append("With that sterling effort you got \(scorePercent)%. Your best was \(score)%!.")
@@ -59,8 +59,8 @@ class medalClass {
         if percent >= 0.5 && percent < 0.7 {
             medalName = "Medal4-Bronze"
             words = ["Nice try!"]
-            if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
-                words.append("You joined tin and you got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)%!")
+            if score < percent {
+                words.append("New record! You joined in and got \(scorePercent)%!")
             }
             else {
                 words.append("You joined in and got \(scorePercent)%. Your best was \(score)%!")
@@ -69,8 +69,8 @@ class medalClass {
         if percent < 0.5 {
             medalName = "Medal5-Rust"
             words = ["Good effort!"]
-            if score < Double(UtilitiesPortal.score)/Double(UtilitiesPortal.totalQuestions) {
-                words.append("But your chemistry is a little rusty. You got \(UtilitiesPortal.score) out of \(UtilitiesPortal.totalQuestions). Your best was \(score)%!")
+            if score < percent {
+                words.append("New record! But your chemistry is a little rusty. You got \(scorePercent)%!")
             }
             else {
                 words.append("But your chemistry is a little rusty. You got \(scorePercent)%. Your best was \(score)%!")
