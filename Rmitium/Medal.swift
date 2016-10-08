@@ -74,7 +74,7 @@ class medalClass {
                     words.append("With that sterling effort you got \(Int(scorePercent))%!")
                 }
                 else {
-                    words.append("With that sterling effort you got \(Int(scorePercent))%. Your best was \(Int(score))%!.")
+                    words.append("With that sterling effort you got \(Int(scorePercent))%. Your best was \(Int(score))%!")
                 }
             }
         }
@@ -86,10 +86,10 @@ class medalClass {
             }
             else {
                 if firstTime < 0 {
-                    words.append("You joined in and got \(Int(scorePercent))%!")
+                    words.append("You joined tin and got \(Int(scorePercent))%!")
                 }
                 else {
-                    words.append("You joined in and got \(Int(scorePercent))%. Your best was \(Int(score))%!")
+                    words.append("You joined tin and got \(Int(scorePercent))%. Your best was \(Int(score))%!")
                 }
             }
         }
@@ -158,7 +158,7 @@ class medalClass {
                 
                 if score > UtilitiesPortal.score {
                     words = ["New record!"]
-                    words.append("A perfect score.  Your best was \(bestTime).")
+                    words.append("A perfect score. Your best was \(bestTime).")
                 }
                 else {
                     words = ["Congratulations!"]
@@ -173,7 +173,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
-                    words.append("\(message) Your chemistry prowess is gold standard.")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score < 40 && UtilitiesPortal.score >= 30 {
@@ -184,7 +184,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score < 60 && UtilitiesPortal.score >= 40 {
@@ -195,7 +195,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score >= 60 {
@@ -206,7 +206,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
         }
@@ -221,7 +221,7 @@ class medalClass {
                 }
                 else {
                     words = ["Congratulations!"]
-                    words.append("\(message) Your chemistry knowledge is obviously crystal clear.")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
@@ -233,7 +233,7 @@ class medalClass {
                 }
                 else {
                     words = ["Well done!"]
-                    words.append("\(message) Your chemistry prowess is gold standard.")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
@@ -245,7 +245,7 @@ class medalClass {
                 }
                 else {
                     words = ["Great work!"]
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
@@ -257,7 +257,7 @@ class medalClass {
                 }
                 else {
                     words = ["Nice try!"]
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if result < 60 {
@@ -269,7 +269,7 @@ class medalClass {
                 }
                 else {
                     words = ["Good effort!"]
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
         }
