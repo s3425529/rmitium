@@ -191,7 +191,7 @@ class DataHandler {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
             let x = object.levelTwo as! Int
-            if x > UtilitiesPortal.score || x == 0 {
+            if x < 0 || UtilitiesPortal.score < x {
                 object.setValue(UtilitiesPortal.score, forKey: "levelTwo")
                 try settings.save()
             }
