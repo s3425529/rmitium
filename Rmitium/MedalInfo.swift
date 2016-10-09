@@ -73,15 +73,11 @@ class MedalInfo:SKNode{
             let p = CGPoint(x:  myView.position.x - myView.frame.width/2 , y: (myView.position.y - myView.frame.height) + size.height * CGFloat(i+1))
             
             let textNode = SKMultilineLabel(text: medalItem[i].text, labelWidth: myView.frame.width - size.width*3, pos: p)
-            //textNode.alignment = .Left
-        //  let textNode = SKLabelNode(fontNamed: "ChalkboardSE-Regular")
-           // textNode.text = medalItem[i].text
-           // textNode.position = CGPoint(x:  myView.position.x - myView.frame.width + size.width , y: (myView.position.y - myView.frame.height) + size.height * CGFloat(i))
             textNode.zPosition = 0.9
             //textNode.horizontalAlignmentMode = .Left
             textNode.alignment = .Left
             textNode.leading = Int(UtilitiesPortal.screenHeight*0.05)
-            textNode.fontSize = UtilitiesPortal.screenHeight*0.05
+            textNode.fontSize = UtilitiesPortal.screenHeight*0.04
             myView.addChild(imageNode)
             
             myView.addChild(textNode)

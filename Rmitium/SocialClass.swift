@@ -12,28 +12,26 @@ import CoreData
 class SocialClass {
     var context = DataController().managedObjectContext
     var facebook, twitter:Bool!
-    func initClass(){
-        
+    func initClass() {
         if checkDataIsEmpty() == true {
-            
             let entity = NSEntityDescription.insertNewObjectForEntityForName("Social", inManagedObjectContext: context)
             entity.setValue(false, forKey: "facebook")
             entity.setValue(false, forKey: "twitter")
             entity.setValue(NSDate(), forKey: "time")
-            do{
+            do {
                 try context.save()
-            }catch{
+            }
+            catch {
                 print("Error!")
             }
         }
     }
     
-    func getRecord(){
+    func getRecord() {
         let request = NSFetchRequest(entityName: "Social")
-        do{
+        do {
             let results = try context.executeFetchRequest(request)
             for item in results as! [Social] {
-                print("2222222222222222222222")
                 print(item.facebook)
                 print(item.twitter)
                
@@ -42,31 +40,30 @@ class SocialClass {
             }
             
             
-        }catch{
+        }
+        catch {
             print("Error!")
         }
     }
-    func setValue(keyString: String){
-        
+    func setValue(keyString: String) {
         delCoreData()
         let entity = NSEntityDescription.insertNewObjectForEntityForName("Social", inManagedObjectContext: context)
-        if keyString == "facebook"{
+        if keyString == "facebook" {
             entity.setValue(true, forKey: "facebook")
             
             entity.setValue(twitter, forKey: "twitter")
         }
-        if keyString == "twitter"{
+        if keyString == "twitter" {
             entity.setValue(true, forKey: "twitter")
             entity.setValue(facebook, forKey: "facebook")
         }
-        do{
+        do {
             try context.save()
-        }catch{
+        }
+        catch {
             print("Error!")
         }
         getRecord()
-        
-        
     }
     
     func checkDataIsEmpty() -> Bool {
@@ -80,8 +77,7 @@ class SocialClass {
             fatalError("Failure reading from coredata: \(error)")
         }
     }
-    func delCoreData(){
-        
+    func delCoreData() {
         let setting = NSFetchRequest(entityName: "Social")
         do {
             let results = try context.executeFetchRequest(setting)
@@ -94,7 +90,6 @@ class SocialClass {
         catch {
             fatalError("Failure reading from coredata: \(error)")
         }
-
     }//func delCoreData
     
 }

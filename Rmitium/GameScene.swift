@@ -274,7 +274,7 @@ class GameScene: SKScene {
             modeLabel.name = UtilitiesPortal.modeLabelNames[count]
             modeLabel.text = UtilitiesPortal.modeLabelTexts[count]
             modeLabel.fontSize = UtilitiesPortal.levelLabelSize
-            modeLabel.position = CGPointMake(UtilitiesPortal.borderSize*3 + CGFloat(count)*UtilitiesPortal.screenWidth*0.3/*UtilitiesPortal.borderSize*/,
+            modeLabel.position = CGPointMake(UtilitiesPortal.borderSize*2.8 + CGFloat(count)*UtilitiesPortal.screenWidth*0.3/*UtilitiesPortal.borderSize*/,
                 UtilitiesPortal.screenHeight*(0.58-0.18))
             addChild(modeLabel)
             
