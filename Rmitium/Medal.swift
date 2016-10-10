@@ -15,7 +15,7 @@ class medalClass {
     func assignMedal(level: Int) -> (medalName:String , information:[String]) {
         var score = 0.0
         percent = Double(UtilitiesPortal.score) / Double(UtilitiesPortal.totalQuestions)
-        let scorePercent = round((percent) * 10000) / 100
+        var scorePercent = round((percent) * 100) / 1
         //percent = 1
         var firstTime = -2
         if level == UtilitiesPortal.levelOne {
