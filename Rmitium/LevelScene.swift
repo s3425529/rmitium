@@ -132,7 +132,13 @@ class LevelScene: SKScene {
     final func createHomeDialogue() {
         let yesBtn = SKSpriteNode()
         let noBtn = SKSpriteNode()
-        let alertMessage = SKLabelNode(text: "You sure you wanna quit?")
+        let alertLine1 = SKLabelNode(text: "Are you sure")
+        let alertMessage = SKLabelNode(text: "you want to quit?")
+        
+        alertLine1.position = CGPoint(x: 0, y: 0 + alertLine1.fontSize * 0.75)
+        alertLine1.zPosition = 0.9
+        alertLine1.fontName = UtilitiesPortal.navLabelFont
+        alertLine1.fontSize = UtilitiesPortal.factSize
         
         alertMessage.position = CGPoint(x: 0, y: 0)
         alertMessage.zPosition = 0.9
@@ -174,6 +180,7 @@ class LevelScene: SKScene {
         homeDialogue.addChild(yesBtn)
         homeDialogue.addChild(noBtn)
         homeDialogue.addChild(alertMessage)
+        homeDialogue.addChild(alertLine1)
         addChild(homeDialogue)
         addChild(homeView)
     }

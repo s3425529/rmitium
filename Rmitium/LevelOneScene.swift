@@ -167,29 +167,19 @@ class LevelOneScene: LevelScene {
     override func setupFactLabel() {
         let randomIndex = Int(arc4random_uniform(UInt32(lvlOneQuestion.facts.count)))
         let fact = lvlOneQuestion.facts[randomIndex]
-        let index = fact.startIndex.advancedBy(19)
-        let shortenFact = fact.substringToIndex(index)
-        
         factLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
         factLabel.name = UtilitiesPortal.factLabelName
-        factLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-        factLabel.fontSize = UtilitiesPortal.factSize
-        factLabel.text = "Did you know: " + shortenFact + "...(more)"
-        factLabel.hidden = true
-        factLabel.zPosition = 0.3
-        factLabel.position = CGPoint(x: UtilitiesPortal.screenWidth*0.20, y: UtilitiesPortal.borderSize/4)
+        factLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Center
+        factLabel.fontSize = UtilitiesPortal.navLabelSize
+        factLabel.text = "Did you know:"
+        factLabel.zPosition = 0.9
+        factLabel.position = CGPoint(x: 0, y: UtilitiesPortal.screenHeight/2 - factLabel.fontSize * 2)
         //addChild(factLabel)
         
-        factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth,
+        factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth*0.95,
                                            pos: CGPoint(x: 0, y: UtilitiesPortal.screenHeight/8),fontName: UtilitiesPortal.navLabelFont,
                                            fontSize: UtilitiesPortal.navLabelSize,
                                            leading: Int(UtilitiesPortal.navLabelSize))
-        
-        // If the fact is shorter than 3 lines, reduces the width of the label by 50
-        if factOverlayText.lineCount < 3{
-            
-            factOverlayText.labelWidth -= 50
-        }
         
         factOverlayText.name = UtilitiesPortal.factMultiLine
         //factOverlayText.alignment = .Left
@@ -200,10 +190,11 @@ class LevelOneScene: LevelScene {
         factOverlay.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         factOverlay.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
         factOverlay.color = SKColor.blackColor()
-        factOverlay.alpha = 0.7
+        factOverlay.alpha = 0.9
         factOverlay.zPosition = 0.9
         factOverlay.hidden = true
         factOverlay.addChild(factOverlayText)
+        factOverlay.addChild(factLabel)
         addChild(factOverlay)
     }
     
