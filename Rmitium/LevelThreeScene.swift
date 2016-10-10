@@ -158,7 +158,7 @@ class LevelThreeScene: SKScene {
         
         image.zPosition = 0.1
         image.alpha = 0.9
-        let current = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+        let current = CGPoint(x:UtilitiesPortal.imageBorderSize+UtilitiesPortal.imageWidth/2,
                               y:UtilitiesPortal.screenHeight/2)
         image.position = PositionHandler.convertTargetPoint(current)
         let currentSize = image.size
@@ -633,8 +633,6 @@ class LevelThreeScene: SKScene {
             return
         }
         
-        
-        
         if state == UtilitiesPortal.stateInfo {
             //infoOverlay.hidden = true
             infoOverlay.removeAllActions()
@@ -744,7 +742,7 @@ class LevelThreeScene: SKScene {
                 resultImage = SKSpriteNode(imageNamed: lvlThreeQuestion.imageSol)
                 resultImage.zPosition = 0.5
                 resultImage.alpha = 1
-                let current = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
+                let current = CGPoint(x:UtilitiesPortal.imageBorderSize + UtilitiesPortal.imageWidth/2,
                                       y:UtilitiesPortal.screenHeight/2 )
                 resultImage.position = PositionHandler.convertTargetPoint(current)
                 let currentSize = resultImage.size

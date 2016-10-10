@@ -267,17 +267,6 @@ class GameScene: SKScene {
     
     func setupLevelTwoModes() {
         for count in 0 ... 2 {
-            let modeLabel = SKLabelNode(fontNamed:UtilitiesPortal.levelLabelFont)
-            //levelLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-            modeLabel.zPosition = 0.4
-            modeLabel.hidden = true
-            modeLabel.name = UtilitiesPortal.modeLabelNames[count]
-            modeLabel.text = UtilitiesPortal.modeLabelTexts[count]
-            modeLabel.fontSize = UtilitiesPortal.levelLabelSize
-            modeLabel.position = CGPointMake(UtilitiesPortal.borderSize*2.8 + CGFloat(count)*UtilitiesPortal.screenWidth*0.3/*UtilitiesPortal.borderSize*/,
-                UtilitiesPortal.screenHeight*(0.58-0.18))
-            addChild(modeLabel)
-            
             let levelButton = SKSpriteNode(imageNamed: "menubar3")
             levelButton.name = UtilitiesPortal.modeButtonNames[count]
             levelButton.hidden = true
@@ -299,6 +288,30 @@ class GameScene: SKScene {
                 levelMedal.size = CGSize(width: UtilitiesPortal.hexImageSize*2/3,
                                          height: UtilitiesPortal.hexImageSize*2/3)
                 self.addChild(levelMedal)
+                
+                
+                let modeLabel = SKLabelNode(fontNamed:UtilitiesPortal.levelLabelFont)
+                //levelLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+                modeLabel.zPosition = 0.4
+                modeLabel.hidden = true
+                modeLabel.name = UtilitiesPortal.modeLabelNames[count]
+                modeLabel.text = UtilitiesPortal.modeLabelTexts[count]
+                modeLabel.fontSize = UtilitiesPortal.levelLabelSize
+                modeLabel.position = CGPointMake(UtilitiesPortal.borderSize*2.8 + CGFloat(count)*UtilitiesPortal.screenWidth*0.3/*UtilitiesPortal.borderSize*/,
+                    UtilitiesPortal.screenHeight*(0.58-0.18))
+                addChild(modeLabel)
+            }
+            else {
+                let modeLabel = SKLabelNode(fontNamed:UtilitiesPortal.levelLabelFont)
+                //levelLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
+                modeLabel.zPosition = 0.4
+                modeLabel.hidden = true
+                modeLabel.name = UtilitiesPortal.modeLabelNames[count]
+                modeLabel.text = UtilitiesPortal.modeLabelTexts[count]
+                modeLabel.fontSize = UtilitiesPortal.levelLabelSize
+                modeLabel.position = CGPointMake(UtilitiesPortal.borderSize*3.0 + CGFloat(count)*UtilitiesPortal.screenWidth*0.3/*UtilitiesPortal.borderSize*/,
+                    UtilitiesPortal.screenHeight*(0.58-0.18))
+                addChild(modeLabel)
             }
         }
     }

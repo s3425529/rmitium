@@ -22,7 +22,7 @@ class PositionHandler {
             return current
         }
         else {
-            return CGPoint(x: current.x + UtilitiesPortal.screenWidth*0.4 - UtilitiesPortal.borderSize,
+            return CGPoint(x: current.x + UtilitiesPortal.screenWidth*0.4 - UtilitiesPortal.imageBorderSize,
                            y: current.y)
         }
     }

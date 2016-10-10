@@ -168,7 +168,7 @@ class LevelOneScene: SKScene {
         let image = SKSpriteNode(imageNamed: lvlOneQuestion.imageName)
         image.zPosition = 0.1
         image.alpha = 0.9
-        let current = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
+        let current = CGPoint(x:UtilitiesPortal.imageBorderSize+UtilitiesPortal.imageWidth/2,
                        y:UtilitiesPortal.screenHeight/2)
         image.position = PositionHandler.convertTargetPoint(current)
         let currentSize = image.size
@@ -759,7 +759,7 @@ class LevelOneScene: SKScene {
                 resultImage = SKSpriteNode(imageNamed: lvlOneQuestion.imageSol)
                 resultImage.zPosition = 0.5
                 resultImage.alpha = 1
-                let current = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
+                let current = CGPoint(x:UtilitiesPortal.imageBorderSize + UtilitiesPortal.imageWidth/2,
                                 y:UtilitiesPortal.screenHeight/2)
                 resultImage.position = PositionHandler.convertTargetPoint(current)
                 let currentSize = resultImage.size
