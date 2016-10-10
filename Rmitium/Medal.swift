@@ -117,13 +117,13 @@ class medalClass {
         var bestTime:String!
         let min = UtilitiesPortal.score/60
         let sec = UtilitiesPortal.score%60
-        if mode == "stand"{
+        if mode == "stand" {
             score = DataHandler.getLevelTwoScore() as Int
         }
-        if mode == "trial"{
+        if mode == "trial" {
             score = DataHandler.getLevelTwoTrialScore() as Int
         }
-        if mode == "beat"{
+        if mode == "beat" {
             score = DataHandler.getLevelTwoBeatScore() as Int
         
         }
