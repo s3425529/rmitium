@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Rmitium.xcodeproj">
+      location = "self:/Users/thinh.q.tran/Desktop/Programming/Rmitium/Chirality.xcodeproj">
    </FileRef>
 </Workspace>

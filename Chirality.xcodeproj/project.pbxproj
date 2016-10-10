@@ -297,7 +297,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 508BB5071D5864CF00556CE3 /* Build configuration list for PBXProject "Rmitium" */;
+			buildConfigurationList = 508BB5071D5864CF00556CE3 /* Build configuration list for PBXProject "Chirality" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -526,7 +526,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		508BB5071D5864CF00556CE3 /* Build configuration list for PBXProject "Rmitium" */ = {
+		508BB5071D5864CF00556CE3 /* Build configuration list for PBXProject "Chirality" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				508BB5201D5864CF00556CE3 /* Debug */,
