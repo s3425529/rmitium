@@ -99,6 +99,22 @@ enum LevelOneQuestion:Int{
             }
         }
     }
+    var positionsIpad:[Position]{
+        get {
+            switch self {
+            case .NilQuestion: return []
+            case .QuestionOne: return [Position(x:0.30,y: 0.80),Position(x:0.160,y: 0.488), Position(x:0.551,y: 0.380),Position(x:0.127 ,y: 0.263),Position(x:0.405,y: 0.205)]//done1
+            case .QuestionTwo: return [Position(x:0.329,y: 0.804),Position(x:0.213,y: 0.729),Position(x:0.41,y: 0.649),Position(x:0.114,y: 0.440),Position(x:0.285,y: 0.404),Position(x:0.559,y: 0.457),Position(x:0.451,y: 0.185)]//done1
+            case .QuestionThree: return [Position(x:0.19,y: 0.73),Position(x:0.519,y: 0.782),Position(x:0.183,y: 0.221),Position(x:0.506,y: 0.31)]//done1
+            case .QuestionFour: return [Position(x:0.145,y: 0.78),Position(x:0.367,y: 0.669),Position(x:0.558,y: 0.223)]//done1
+            case .QuestionFive: return [Position(x:0.44,y: 0.815),Position(x:0.285,y: 0.63),Position(x:0.47,y: 0.55),Position(x:0.36,y: 0.34),Position(x:0.273,y: 0.192)]//done1
+            case .QuestionSix: return [Position(x:0.134,y: 0.80),Position(x:0.469,y: 0.760),Position(x:0.551,y: 0.667),Position(x:0.19,y: 0.51)]//done1
+            case .QuestionSeven: return [Position(x:0.218,y: 0.696),Position(x:0.387,y: 0.665),Position(x:0.492,y: 0.494),Position(x:0.079,y: 0.371),Position(x:0.441,y: 0.342)]//done1
+            case .QuestionEight: return [Position(x:0.259,y: 0.755),Position(x:0.141,y: 0.251),Position(x:0.548,y: 0.251)]//done1
+            case .QuestionNine: return [Position(x:0.220,y: 0.779),Position(x:0.431,y: 0.815),Position(x:0.145,y: 0.504),Position(x:0.372,y: 0.359)]//done1
+            }
+        }
+    }
     
     var positions:[Position]{
         get {
@@ -116,6 +132,8 @@ enum LevelOneQuestion:Int{
             }
         }
     }
+    
+
     
     var facts:[String]{
         get {

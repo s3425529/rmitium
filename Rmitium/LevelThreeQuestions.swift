@@ -100,6 +100,24 @@ enum LevelThreeQuestion:Int {
             }
         }
     }
+    
+    var positionsIpad:[Position] {
+        get {
+            switch self {
+            case .NilQuestion: return []
+            case .QuestionOne: return [Position(x: 0.214, y: 0.813), Position(x: 0.522, y: 0.627), Position(x: 0.565, y: 0.399)]//done1
+            case .QuestionTwo: return [Position(x:0.41, y:0.53)]//done1
+            case .QuestionThree: return [Position(x:0.479, y:0.586)]//done1
+            case .QuestionFour: return [Position(x:0.168, y:0.773), Position(x:0.573, y:0.252)]//done1
+            case .QuestionFive: return [Position(x:0.15, y:0.602), Position(x:0.591, y:0.401)]//dne1
+            case .QuestionSix: return [Position(x:0.311, y:0.649), Position(x:0.217, y:0.358)]//done1
+            case .QuestionSeven: return [Position(x:0.45, y:0.50)]//done1
+            case .QuestionEight: return [Position(x:0.165, y:0.726),Position(x:0.417, y:0.677),Position(x:0.554, y:0.288)]//done1
+            case .QuestionNine: return [Position(x:0.427, y:0.774),Position(x:0.609, y:0.751),Position(x:0.099, y:0.642),Position(x:0.37, y:0.50),Position(x:0.389, y:0.375)]//done1
+            case .QuestionTen: return [Position(x:0.36, y:0.38)]//done1
+            }
+        }
+    }
 
     
     var positions:[Position] {
