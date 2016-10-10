@@ -36,10 +36,12 @@ class medalClass {
         if percent == 1 {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
+            // New record - beating your previous best score
             if score < percent {
                 words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%.")
             }
             else {
+                // First time playing the level
                 if firstTime < 0 {
                     words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%!")
                 }
@@ -52,7 +54,7 @@ class medalClass {
             medalName = "Medal2-Gold"
             words = ["Well done!"]
             if score < percent {
-                words.append("New record! Your chemistry prowess is gold standard. You got \(Int(scorePercent))%!")
+                words.append("Your chemistry prowess is gold standard. You got \(Int(scorePercent))%!")
             }
             else {
                 if firstTime < 0 {
@@ -67,7 +69,7 @@ class medalClass {
             medalName = "Medal3-Silver"
             words = ["Great work!"]
             if score < percent {
-                words.append("New record! With that sterling effort you got \(Int(scorePercent))%!")
+                words.append(" With that sterling effort you got \(Int(scorePercent))%!")
             }
             else {
                 if firstTime < 0 {
@@ -82,7 +84,7 @@ class medalClass {
             medalName = "Medal4-Bronze"
             words = ["Nice try!"]
             if score < percent {
-                words.append("New record! You joined in and got \(Int(scorePercent))%!")
+                words.append("You joined in and got \(Int(scorePercent))%!")
             }
             else {
                 if firstTime < 0 {
@@ -97,7 +99,7 @@ class medalClass {
             medalName = "Medal5-Rust"
             words = ["Good effort!"]
             if score < percent {
-                words.append("New record! But your chemistry is a little rusty. You got \(Int(scorePercent))%!")
+                words.append("But your chemistry is a little rusty. You got \(Int(scorePercent))%!")
             }
             else {
                 if firstTime < 0 {
