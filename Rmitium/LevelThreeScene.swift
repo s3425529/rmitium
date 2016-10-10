@@ -278,7 +278,7 @@ class LevelThreeScene: SKScene {
         addChild(factOverlay)
     }
     
-    // Info layout
+    // Info layout result
     func setupInfoResult() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9
@@ -287,14 +287,14 @@ class LevelThreeScene: SKScene {
         arrow01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.30,
                                    y: UtilitiesPortal.screenHeight * -0.3)
         
-        let arrow02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[1])
-        arrow02.zPosition = 0.9
-        arrow02.size = CGSize(width: UtilitiesPortal.navImgSize*2,
-                              height: UtilitiesPortal.navImgSize*2)
-        arrow02.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.4,
-                                   y: UtilitiesPortal.screenHeight * 0.3)
-        
-        /*let arrow03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[2])
+        /*let arrow02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[1])
+         arrow02.zPosition = 0.9
+         arrow02.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+         height: UtilitiesPortal.navImgSize*2)
+         arrow02.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.4,
+         y: UtilitiesPortal.screenHeight * 0.3)
+         
+         let arrow03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[2])
          arrow03.zPosition = 0.9
          arrow03.size = CGSize(width: UtilitiesPortal.navImgSize*2,
          height: UtilitiesPortal.navImgSize*2)
@@ -309,42 +309,42 @@ class LevelThreeScene: SKScene {
         let arrow04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[6])
         arrow04.zPosition = 0.9
         arrow04.size = CGSize(width: UtilitiesPortal.navImgSize*2,
-                              height: UtilitiesPortal.navImgSize*2)
+                              height: UtilitiesPortal.navImgSize*4)
         arrow04.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.40,
-                                   y: UtilitiesPortal.screenHeight * -0.3)
+                                   y: UtilitiesPortal.screenHeight * -0.20)
         /*let action2_1 = SKAction.fadeInWithDuration(0.6)
          let action2_2 = SKAction.fadeOutWithDuration(0.6)
          let sequence2 = SKAction.sequence([action2_1, action2_2])
          let repeatAction2 = SKAction.repeatActionForever(sequence2)
          arrow04.runAction(repeatAction2)*/
         
-        let arrow05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[4])
-        arrow05.zPosition = 0.9
-        arrow05.size = CGSize(width: UtilitiesPortal.navImgSize*2,
-                              height: UtilitiesPortal.navImgSize*2)
-        arrow05.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.4,
-                                   y: UtilitiesPortal.screenHeight * 0.30)
+        /*let arrow05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[4])
+         arrow05.zPosition = 0.9
+         arrow05.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+         height: UtilitiesPortal.navImgSize*2)
+         arrow05.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.4,
+         y: UtilitiesPortal.screenHeight * 0.30)
+         
+         let arrow06 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[5])
+         arrow06.zPosition = 0.9
+         arrow06.size = CGSize(width: UtilitiesPortal.navImgSize*2,
+         height: UtilitiesPortal.navImgSize*2)
+         arrow06.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.4,
+         y: UtilitiesPortal.screenHeight * -0.30)*/
         
-        let arrow06 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[5])
-        arrow06.zPosition = 0.9
-        arrow06.size = CGSize(width: UtilitiesPortal.navImgSize*2,
-                              height: UtilitiesPortal.navImgSize*2)
-        arrow06.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.4,
-                                   y: UtilitiesPortal.screenHeight * -0.30)
-        
-        let info01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[0])
-        info01.zPosition = 1
-        info01.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
-                             height: UtilitiesPortal.screenHeight*0.15)
-        info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.38,
-                                  y: UtilitiesPortal.screenHeight * 0.14)
+        /*let info01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[0])
+         info01.zPosition = 1
+         info01.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+         height: UtilitiesPortal.screenHeight*0.15)
+         info01.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.38,
+         y: UtilitiesPortal.screenHeight * 0.14)*/
         
         let info02 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[7])
         info02.zPosition = 1
         info02.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
                              height: UtilitiesPortal.screenHeight*0.15)
-        info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.40,
-                                  y: UtilitiesPortal.screenHeight * -0.1)
+        info02.position = CGPoint(x: UtilitiesPortal.screenWidth*0.35,
+                                  y: UtilitiesPortal.screenHeight * 0.1)
         
         let info03 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[5])
         info03.zPosition = 1
@@ -353,19 +353,19 @@ class LevelThreeScene: SKScene {
         info03.position = CGPoint(x: UtilitiesPortal.screenWidth * 0.20,
                                   y: UtilitiesPortal.screenHeight * -0.3)
         
-        let info04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[3])
-        info04.zPosition = 1
-        info04.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
-                             height: UtilitiesPortal.screenHeight*0.15)
-        info04.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.35,
-                                  y: UtilitiesPortal.screenHeight * 0.15)
-        
-        let info05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[4])
-        info05.zPosition = 1
-        info05.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
-                             height: UtilitiesPortal.screenHeight*0.15)
-        info05.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.35,
-                                  y: UtilitiesPortal.screenHeight * -0.10)
+        /*let info04 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[3])
+         info04.zPosition = 1
+         info04.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+         height: UtilitiesPortal.screenHeight*0.15)
+         info04.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.35,
+         y: UtilitiesPortal.screenHeight * 0.15)
+         
+         let info05 = SKSpriteNode(imageNamed: UtilitiesPortal.infoLabelNames[4])
+         info05.zPosition = 1
+         info05.size = CGSize(width: UtilitiesPortal.screenWidth*0.25,
+         height: UtilitiesPortal.screenHeight*0.15)
+         info05.position = CGPoint(x: UtilitiesPortal.screenWidth * -0.35,
+         y: UtilitiesPortal.screenHeight * -0.10)*/
         
         infoOverlayResult = SKSpriteNode()
         infoOverlayResult.name = UtilitiesPortal.factOverlayName
@@ -383,17 +383,17 @@ class LevelThreeScene: SKScene {
         }
         
         infoOverlayResult.addChild(arrow01)
-        infoOverlayResult.addChild(arrow02)
+        //infoOverlayResult.addChild(arrow02)
         //infoOverlay.addChild(arrow03)
         infoOverlayResult.addChild(arrow04)
-        infoOverlayResult.addChild(arrow05)
-        infoOverlayResult.addChild(arrow06)
+        //infoOverlayResult.addChild(arrow05)
+        //infoOverlayResult.addChild(arrow06)
         
-        infoOverlayResult.addChild(info01)
+        //infoOverlayResult.addChild(info01)
         infoOverlayResult.addChild(info02)
         infoOverlayResult.addChild(info03)
-        infoOverlayResult.addChild(info04)
-        infoOverlayResult.addChild(info05)
+        //infoOverlayResult.addChild(info04)
+        //infoOverlayResult.addChild(info05)
         
         addChild(infoOverlayResult)
     }
@@ -716,7 +716,7 @@ class LevelThreeScene: SKScene {
         if node.name == UtilitiesPortal.tickButtonName {
             if state == UtilitiesPortal.stateAnswer && checkResult() {
                 displayResult()
-                if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstTime {
+                if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstResult {
                     infoOverlayResult.hidden = false
                     previousState = UtilitiesPortal.stateResult
                     state = UtilitiesPortal.stateInfoResult

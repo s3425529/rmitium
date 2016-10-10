@@ -71,11 +71,37 @@ class DataHandler {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
             print("Scores: \(object.levelOne), \(object.levelTwo), \(object.levelThree)")
+            object.setValue(0, forKey: "levelOne")
+            object.setValue(0, forKey: "levelTwo")
+            object.setValue(0, forKey: "levelThree")
+            object.setValue(0, forKey: "levelTwoTrial")
+            object.setValue(0, forKey: "levelTwoBeat")
+            object.setValue(0, forKey: "levelOneScore")
+            object.setValue(0, forKey: "levelThreeScore")
+            try settings.save()
+            
+            
+            let result1 = try settings.executeFetchRequest(setting) as! [Settings]
+            let object1 = result1.first!
+            print("Reset to: \(object1.levelOne), \(object1.levelTwo), \(object1.levelThree)")
+            //localSetting = result1.first!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func resetToDefault() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            print("Scores: \(object.levelOne), \(object.levelTwo), \(object.levelThree)")
             object.setValue(-2, forKey: "levelOne")
-            object.setValue(-1, forKey: "levelTwo")
+            object.setValue(-2, forKey: "levelTwo")
             object.setValue(-2, forKey: "levelThree")
-            object.setValue(-1, forKey: "levelTwoTrial")
-            object.setValue(-1, forKey: "levelTwoBeat")
+            object.setValue(-2, forKey: "levelTwoTrial")
+            object.setValue(-2, forKey: "levelTwoBeat")
             object.setValue(0, forKey: "levelOneScore")
             object.setValue(0, forKey: "levelThreeScore")
             try settings.save()
@@ -179,6 +205,34 @@ class DataHandler {
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             return result.first!.levelTwo!
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func saveLevelTwoFirstTime(mode: String) {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            
+            if mode == UtilitiesPortal.modeLabelTexts[0] {
+                if object.levelTwo == UtilitiesPortal.firstTime {
+                    object.setValue(UtilitiesPortal.firstResult, forKey: "levelTwo")
+                }
+            }
+            if mode == UtilitiesPortal.modeLabelTexts[1] {
+                if object.levelTwoTrial == UtilitiesPortal.firstTime {
+                    object.setValue(UtilitiesPortal.firstResult, forKey: "levelTwoTrial")
+                }
+            }
+            if mode == UtilitiesPortal.modeLabelTexts[2] {
+                if object.levelTwoBeat == UtilitiesPortal.firstTime {
+                    object.setValue(UtilitiesPortal.firstResult, forKey: "levelTwoBeat")
+                }
+            }
+            try settings.save()
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")

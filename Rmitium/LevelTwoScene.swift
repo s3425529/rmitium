@@ -13,7 +13,7 @@ import SpriteKit
 class LevelTwoScene: SKScene {
     var answers: [CustomSKSpriteNode] = []
     var chosenAnswer: Int!
-    var tick, infoOverlay, homeView: SKSpriteNode!
+    var /*tick, */infoOverlay, homeView: SKSpriteNode!
     var homeDialogue, timeOutMessage: SKShapeNode!
     var score, factLabel, timeNode, modeLabel: SKLabelNode!
     var state, previousState: Int!
@@ -29,16 +29,19 @@ class LevelTwoScene: SKScene {
             case UtilitiesPortal.modeLabelTexts[0]:
                 //code goes here
                 print("Game mode: \(UtilitiesPortal.modeLabelTexts[0])")
+                DataHandler.saveLevelTwoFirstTime(UtilitiesPortal.modeLabelTexts[0])
                 setupTimer()
             break
             case UtilitiesPortal.modeLabelTexts[1]:
                 //code goes here
                 print("Game mode: \(UtilitiesPortal.modeLabelTexts[1])")
+                DataHandler.saveLevelTwoFirstTime(UtilitiesPortal.modeLabelTexts[1])
                 trialTimer()
             break
             case UtilitiesPortal.modeLabelTexts[2]:
                 //code goes here
                 print("Game mode: \(UtilitiesPortal.modeLabelTexts[2])")
+                DataHandler.saveLevelTwoFirstTime(UtilitiesPortal.modeLabelTexts[2])
                 beatTimer()
             break
             default:
@@ -51,10 +54,9 @@ class LevelTwoScene: SKScene {
         answers.removeAll()
         self.removeAllChildren()
         
-        if DataHandler.getLevelTwoScore() == UtilitiesPortal.firstTime {
+        if DataHandler.getLevelTwoScore() == UtilitiesPortal.firstResult {
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo
-            DataHandler.saveLevelTwoScore()
         }
         else {
             state = UtilitiesPortal.stateAnswer
@@ -95,7 +97,7 @@ class LevelTwoScene: SKScene {
         addChild(home)
         
         // Tick button
-        tick = SKSpriteNode(imageNamed: "submit-grey")
+        /*tick = SKSpriteNode(imageNamed: "submit-grey")
         tick.name = UtilitiesPortal.tickButtonName
         tick.hidden = true
         tick.zPosition = 0.1
@@ -103,7 +105,7 @@ class LevelTwoScene: SKScene {
         tick.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y: UtilitiesPortal.navImgSize/2)
-        addChild(tick)
+        addChild(tick)*/
         
         // Info button
         let info = SKSpriteNode(imageNamed: "help3")
@@ -431,11 +433,11 @@ class LevelTwoScene: SKScene {
          print("y=\(y)")*/
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    /*override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if checkResult() {
             tick.hidden = false
         }
-    }
+    }*/
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
