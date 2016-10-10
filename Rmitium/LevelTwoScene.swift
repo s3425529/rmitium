@@ -690,6 +690,7 @@ class LevelTwoScene: SKScene {
         }
         timeNode.text = "Time:\(timerClass.timeLabel)"
         
+        /*
         if timerClass.timeLabel > 5{
         
             timeNode.removeAllActions()
@@ -711,6 +712,7 @@ class LevelTwoScene: SKScene {
          let action = SKAction.sequence([zoom,fade,fade1,zoom1])
          timeNode.runAction(action)
          }
+        */
         if checkResult() {
             UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
@@ -740,7 +742,7 @@ class LevelTwoScene: SKScene {
     }
     @objc func getTime3(timer:NSTimer) {
         timeNode.text = "Time:\(timerClass.timeLabel)"
-        
+        /*
          if timerClass.timeLabel >= 1 && timerClass.timeLabel < 5{
          timeNode.fontColor = SKColor.redColor()
          let zoom = SKAction.scaleTo(2, duration: 0.5)
@@ -750,7 +752,7 @@ class LevelTwoScene: SKScene {
          let action = SKAction.sequence([zoom,fade,fade1,zoom1])
          timeNode.runAction(action)
          }
-        
+        */
         if checkResult() {
             UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
