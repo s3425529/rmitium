@@ -185,7 +185,7 @@ class LevelThreeScene: LevelScene {
         factOverlay.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         factOverlay.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
         factOverlay.color = SKColor.blackColor()
-        factOverlay.alpha = 0.9
+        factOverlay.alpha = 0.7
         factOverlay.zPosition = 0.9
         factOverlay.hidden = true
         factOverlay.addChild(factOverlayText)

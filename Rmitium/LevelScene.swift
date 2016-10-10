@@ -252,7 +252,6 @@ class LevelScene: SKScene {
         score = SKLabelNode(fontNamed:UtilitiesPortal.factFont)
         score.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         score.zPosition = 0.1
-        //score.hidden = true
         score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
         score.fontSize = UtilitiesPortal.factSize
         score.position = CGPointMake(UtilitiesPortal.borderSize/4, UtilitiesPortal.borderSize/4)
