@@ -25,16 +25,19 @@ class LevelTwoScene: LevelScene {
             case UtilitiesPortal.modeLabelTexts[0]:
                 //code goes here
                 print("Game mode: \(UtilitiesPortal.modeLabelTexts[0])")
+                DataHandler.saveLevelTwoFirstTime(UtilitiesPortal.modeLabelTexts[0])
                 setupTimer()
             break
             case UtilitiesPortal.modeLabelTexts[1]:
                 //code goes here
                 print("Game mode: \(UtilitiesPortal.modeLabelTexts[1])")
+                DataHandler.saveLevelTwoFirstTime(UtilitiesPortal.modeLabelTexts[1])
                 trialTimer()
             break
             case UtilitiesPortal.modeLabelTexts[2]:
                 //code goes here
                 print("Game mode: \(UtilitiesPortal.modeLabelTexts[2])")
+                DataHandler.saveLevelTwoFirstTime(UtilitiesPortal.modeLabelTexts[2])
                 beatTimer()
             break
             default:
@@ -46,10 +49,9 @@ class LevelTwoScene: LevelScene {
     override func setupScene() {
         super.setupScene()
         
-        if DataHandler.getLevelTwoScore() == UtilitiesPortal.firstTime {
+        if DataHandler.getLevelTwoScore() == UtilitiesPortal.firstResult {
             previousState = UtilitiesPortal.stateAnswer
             state = UtilitiesPortal.stateInfo
-            DataHandler.saveLevelTwoScore()
         }
         else {
             state = UtilitiesPortal.stateAnswer

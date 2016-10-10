@@ -32,19 +32,19 @@ class ResultPage2: SKScene {
         Dic = medalClass()
         switch String(self.userData!.valueForKey("gameMode")!) {
         case UtilitiesPortal.modeLabelTexts[0]:
-            DataHandler.saveLevelTwoScore()
+            //DataHandler.saveLevelTwoScore()
             print("Game mode: Standard!")
             medalDic = Dic.level2("stand")
             infoTable("stand")
             break
         case UtilitiesPortal.modeLabelTexts[1]:
-            DataHandler.saveLevelTwoTrialScore()
+            //DataHandler.saveLevelTwoTrialScore()
             print("Game mode: Time Trial!")
              medalDic = Dic.level2("trial")
             infoTable("trial")
             break
         case UtilitiesPortal.modeLabelTexts[2]:
-            DataHandler.saveLevelTwoBeatScore()
+            //DataHandler.saveLevelTwoBeatScore()
             print("Game mode: Beat the Clock!")
              medalDic = Dic.level2("beat")
             infoTable("beat")
@@ -69,6 +69,20 @@ class ResultPage2: SKScene {
         setupMedal()
         setupCustomerButton()
         createHomeDialogue()
+        
+        switch String(self.userData!.valueForKey("gameMode")!) {
+        case UtilitiesPortal.modeLabelTexts[0]:
+            DataHandler.saveLevelTwoScore()
+            break
+        case UtilitiesPortal.modeLabelTexts[1]:
+            DataHandler.saveLevelTwoTrialScore()
+            break
+        case UtilitiesPortal.modeLabelTexts[2]:
+            DataHandler.saveLevelTwoBeatScore()
+            break
+        default:
+            break
+        }
     }
     
     func setupMedal() {
