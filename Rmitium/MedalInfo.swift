@@ -67,10 +67,10 @@ class MedalInfo:SKNode{
             let size = CGSize(width: myView.frame.height / 5, height: myView.frame.height / 5 )
             let imageNode = SKSpriteNode(imageNamed: medalItem[i].image)
             imageNode.size = size
-            imageNode.position = CGPoint(x: myView.position.x - myView.frame.width, y: (myView.position.y - myView.frame.height)*1.05 + size.height * CGFloat(medalItem.count - 1) - size.height * CGFloat(i))
+            imageNode.position = CGPoint(x: myView.position.x - myView.frame.width, y: (myView.position.y - myView.frame.height)*1.05 + size.height * CGFloat(i))
             imageNode.zPosition = 0.9
             
-            let p = CGPoint(x:  myView.position.x - myView.frame.width/2 , y: (myView.position.y - myView.frame.height) + size.height * CGFloat(medalItem.count + 1) - size.height * CGFloat(i+1))
+            let p = CGPoint(x:  myView.position.x - myView.frame.width/2 , y: (myView.position.y - myView.frame.height) + size.height * CGFloat(i+1))
             
             let textNode = SKMultilineLabel(text: medalItem[i].text, labelWidth: myView.frame.width - size.width*3, pos: p)
             textNode.zPosition = 0.9
