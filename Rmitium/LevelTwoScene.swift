@@ -13,7 +13,7 @@ import SpriteKit
 class LevelTwoScene: SKScene {
     var answers: [CustomSKSpriteNode] = []
     var chosenAnswer: Int!
-    var tick, infoOverlay, homeView: SKSpriteNode!
+    var /*tick, */infoOverlay, homeView: SKSpriteNode!
     var homeDialogue, timeOutMessage: SKShapeNode!
     var score, factLabel, timeNode, modeLabel: SKLabelNode!
     var state, previousState: Int!
@@ -95,7 +95,7 @@ class LevelTwoScene: SKScene {
         addChild(home)
         
         // Tick button
-        tick = SKSpriteNode(imageNamed: "submit-grey")
+        /*tick = SKSpriteNode(imageNamed: "submit-grey")
         tick.name = UtilitiesPortal.tickButtonName
         tick.hidden = true
         tick.zPosition = 0.1
@@ -103,7 +103,7 @@ class LevelTwoScene: SKScene {
         tick.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         tick.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
                                 y: UtilitiesPortal.navImgSize/2)
-        addChild(tick)
+        addChild(tick)*/
         
         // Info button
         let info = SKSpriteNode(imageNamed: "help3")
@@ -431,11 +431,11 @@ class LevelTwoScene: SKScene {
          print("y=\(y)")*/
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    /*override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if checkResult() {
             tick.hidden = false
         }
-    }
+    }*/
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
