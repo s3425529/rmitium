@@ -168,7 +168,7 @@ class LevelThreeScene: LevelScene {
         factLabel.position = CGPoint(x: 0, y: UtilitiesPortal.screenHeight/2 - factLabel.fontSize * 2)
         //addChild(factLabel)
         
-        factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth*0.95,
+        factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth*0.90,
                                            pos: CGPoint(x: 0, y: UtilitiesPortal.screenHeight/8),fontName: UtilitiesPortal.navLabelFont,
                                            fontSize: UtilitiesPortal.navLabelSize,
                                            leading: Int(UtilitiesPortal.navLabelSize))
