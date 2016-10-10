@@ -37,14 +37,14 @@ class medalClass {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
             if score < percent {
-                words.append("New record! A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(Int(scorePercent))%.")
+                words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%.")
             }
             else {
                 if firstTime < 0 {
-                    words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(Int(scorePercent))%!")
+                    words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%!")
                 }
                 else {
-                    words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
+                    words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
                 }
             }
         }
