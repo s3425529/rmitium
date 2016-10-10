@@ -72,9 +72,6 @@ class ResultPage2: SKScene {
     }
     
     func setupMedal() {
-        //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
-        
-        
         let medalName = medalDic.medalName
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
@@ -99,10 +96,12 @@ class ResultPage2: SKScene {
     
         if mins == 0 {
             labelText = "\(sec)sec"
-        }else{
-            if sec < 10{
+        }
+        else {
+            if sec < 10 {
                 labelText = "\(mins):0\(sec)"
-            }else{
+            }
+            else {
                 labelText = "\(mins):\(sec)"
             }
             
@@ -128,7 +127,7 @@ class ResultPage2: SKScene {
         addChild(text1)
     }
     
-    func setupItem(){
+    func setupItem() {
         let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = "Level 2: \(self.userData!.valueForKey("gameMode")!)"
@@ -191,7 +190,8 @@ class ResultPage2: SKScene {
         if socialData.facebook == true{
             
             activeFacebook()
-        }else{
+        }
+        else {
             facebookAlertMessage()
         }
         
@@ -288,7 +288,7 @@ class ResultPage2: SKScene {
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
     
-    func goToLevel3(){
+    func goToLevel3() {
         cleanScene()
         self.removeAllActions()
         self.removeAllChildren()

@@ -17,13 +17,21 @@ class PositionHandler {
         return rightHand
     }
     
-    static func convertTargetPoint(current: CGPoint) -> CGPoint {
+    static func convertTargetPointLevelOne(current: CGPoint) -> CGPoint {
         if rightHand {
             return current
         }
         else {
-            return CGPoint(x: current.x + UtilitiesPortal.screenWidth*0.4 - UtilitiesPortal.borderSize,
-                           y: current.y)
+            return CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.imageBorderSize - UtilitiesPortal.imageWidth/2, y: current.y)
+        }
+    }
+    
+    static func convertTargetPointLevelThree(current: CGPoint) -> CGPoint {
+        if rightHand {
+            return current
+        }
+        else {
+            return CGPoint(x:UtilitiesPortal.screenWidth - 2*UtilitiesPortal.borderSize - UtilitiesPortal.imageWidth + current.x, y: current.y)
         }
     }
     

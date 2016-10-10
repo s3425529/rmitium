@@ -25,7 +25,6 @@ class LevelTwoScene: LevelScene {
             case UtilitiesPortal.modeLabelTexts[0]:
                 //code goes here
                 print("Game mode: \(UtilitiesPortal.modeLabelTexts[0])")
-                
                 setupTimer()
             break
             case UtilitiesPortal.modeLabelTexts[1]:
@@ -629,7 +628,6 @@ class LevelTwoScene: LevelScene {
     
     func toResultScene() {
         cleanScene()
-        
         let secondScene = ResultPage2(size: self.size)
         secondScene.userData = NSMutableDictionary()
         let mode = self.userData?.valueForKey("gameMode")
@@ -637,9 +635,6 @@ class LevelTwoScene: LevelScene {
         let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        
-        
-        
     }
     
     override func willMoveFromView(view: SKView) {

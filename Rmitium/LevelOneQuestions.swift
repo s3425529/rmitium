@@ -104,15 +104,15 @@ enum LevelOneQuestion:Int{
         get {
             switch self {
             case .NilQuestion: return []
-            case .QuestionOne: return [Position(x:0.34,y: 0.80),Position(x:0.21,y: 0.48), Position(x:0.56,y: 0.37),Position(x:0.18 ,y: 0.25),Position(x:0.45,y: 0.19)]
-            case .QuestionTwo: return [Position(x:0.36,y: 0.81),Position(x:0.25,y: 0.74),Position(x:0.47,y: 0.62),Position(x:0.17,y: 0.43),Position(x:0.34,y: 0.40),Position(x:0.56,y: 0.46),Position(x:0.44,y: 0.18)]
-            case .QuestionThree: return [Position(x:0.21,y: 0.71),Position(x:0.51,y: 0.78),Position(x:0.24,y: 0.20),Position(x:0.48,y: 0.31)]
-            case .QuestionFour: return [Position(x:0.23,y: 0.78),Position(x:0.39,y: 0.67),Position(x:0.54,y: 0.22)]
-            case .QuestionFive: return [Position(x:0.45,y: 0.81),Position(x:0.30,y: 0.64),Position(x:0.50,y: 0.55),Position(x:0.40,y: 0.34),Position(x:0.33,y: 0.18)]
-            case .QuestionSix: return [Position(x:0.21,y: 0.80),Position(x:0.48,y: 0.77),Position(x:0.52,y: 0.68),Position(x:0.27,y: 0.54)]
-            case .QuestionSeven: return [Position(x:0.25,y: 0.74),Position(x:0.41,y: 0.72),Position(x:0.52,y: 0.51),Position(x:0.11,y: 0.33),Position(x:0.48,y: 0.29)]
-            case .QuestionEight: return [Position(x:0.30,y: 0.77),Position(x:0.18,y: 0.22),Position(x:0.54,y: 0.23)]
-            case .QuestionNine: return [Position(x:0.28,y: 0.78),Position(x:0.43,y: 0.82),Position(x:0.19,y: 0.50),Position(x:0.37,y: 0.36)]
+            case .QuestionOne: return [Position(x:0.30,y: 0.80),Position(x:0.19,y: 0.48), Position(x:0.505,y: 0.388),Position(x:0.168 ,y: 0.258),Position(x:0.384,y: 0.19)]//done
+            case .QuestionTwo: return [Position(x:0.329,y: 0.804),Position(x:0.23,y: 0.74),Position(x:0.41,y: 0.649),Position(x:0.14,y: 0.43),Position(x:0.30,y: 0.40),Position(x:0.52,y: 0.45),Position(x:0.41,y: 0.18)]//done
+            case .QuestionThree: return [Position(x:0.19,y: 0.73),Position(x:0.47,y: 0.785),Position(x:0.218,y: 0.217),Position(x:0.46,y: 0.30)]//done
+            case .QuestionFour: return [Position(x:0.19,y: 0.78),Position(x:0.36,y: 0.67),Position(x:0.51,y: 0.22)]//done
+            case .QuestionFive: return [Position(x:0.41,y: 0.81),Position(x:0.285,y: 0.63),Position(x:0.47,y: 0.55),Position(x:0.36,y: 0.34),Position(x:0.295,y: 0.18)]//done
+            case .QuestionSix: return [Position(x:0.17,y: 0.80),Position(x:0.43,y: 0.77),Position(x:0.49,y: 0.68),Position(x:0.226,y: 0.518)]//done
+            case .QuestionSeven: return [Position(x:0.218,y: 0.74),Position(x:0.386,y: 0.742),Position(x:0.492,y: 0.494),Position(x:0.08,y: 0.33),Position(x:0.44,y: 0.29)]//done
+            case .QuestionEight: return [Position(x:0.27,y: 0.77),Position(x:0.16,y: 0.23),Position(x:0.51,y: 0.23)]//done
+            case .QuestionNine: return [Position(x:0.249,y: 0.777),Position(x:0.406,y: 0.820),Position(x:0.177,y: 0.50),Position(x:0.35,y: 0.36)]//done
             }
         }
     }

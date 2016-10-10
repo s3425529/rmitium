@@ -22,32 +22,32 @@ class MedalInfo:SKNode{
         self.myView = myView
         
         if modeName == "stand" {
-            medalItem.append(medalStru(image: "Medal1-Diamond", text: "<20 seconds"))
-            medalItem.append(medalStru(image: "Medal2-Gold", text: "20 - 29 seconds"))
-            medalItem.append(medalStru(image: "Medal3-Silver", text: "30 - 39 seconds"))
-            medalItem.append(medalStru(image: "Medal4-Bronze", text: "40 seconds - 1 minute"))
             medalItem.append(medalStru(image: "Medal5-Rust", text: "> 1 minute"))
+            medalItem.append(medalStru(image: "Medal4-Bronze", text: "40 seconds - 1 minute"))
+            medalItem.append(medalStru(image: "Medal3-Silver", text: "30 - 39 seconds"))
+            medalItem.append(medalStru(image: "Medal2-Gold", text: "20 - 29 seconds"))
+            medalItem.append(medalStru(image: "Medal1-Diamond", text: "< 20 seconds"))
         }
         if modeName == "trial" {
-            medalItem.append(medalStru(image: "Medal1-Diamond", text: ">= 150 seconds"))
-            medalItem.append(medalStru(image: "Medal2-Gold", text: "120 - 149 seconds"))
-            medalItem.append(medalStru(image: "Medal3-Silver", text: "90 -119 seconds"))
-            medalItem.append(medalStru(image: "Medal4-Bronze", text: "60 - 89 seconds"))
             medalItem.append(medalStru(image: "Medal5-Rust", text: "< 59 seconds"))
+            medalItem.append(medalStru(image: "Medal4-Bronze", text: "60 - 89 seconds"))
+            medalItem.append(medalStru(image: "Medal3-Silver", text: "90 -119 seconds"))
+            medalItem.append(medalStru(image: "Medal2-Gold", text: "120 - 149 seconds"))
+            medalItem.append(medalStru(image: "Medal1-Diamond", text: ">= 150 seconds"))
         }
         if modeName == "beat" {
-            medalItem.append(medalStru(image: "Medal1-Diamond", text: ">= 150 seconds"))
-            medalItem.append(medalStru(image: "Medal2-Gold", text: "120 - 149 seconds"))
-            medalItem.append(medalStru(image: "Medal3-Silver", text: "90 -119 seconds"))
-            medalItem.append(medalStru(image: "Medal4-Bronze", text: "60 - 89 seconds"))
             medalItem.append(medalStru(image: "Medal5-Rust", text: "< 59 seconds"))
+            medalItem.append(medalStru(image: "Medal4-Bronze", text: "60 - 89 seconds"))
+            medalItem.append(medalStru(image: "Medal3-Silver", text: "90 -119 seconds"))
+            medalItem.append(medalStru(image: "Medal2-Gold", text: "120 - 149 seconds"))
+            medalItem.append(medalStru(image: "Medal1-Diamond", text: ">= 150 seconds"))
         }
         if modeName == "level" {
-            medalItem.append(medalStru(image: "Medal1-Diamond", text: "100%"))
-            medalItem.append(medalStru(image: "Medal2-Gold", text: "80-99%"))
-            medalItem.append(medalStru(image: "Medal3-Silver", text: "70-89%"))
+            medalItem.append(medalStru(image: "Medal5-Rust", text: "< 50%"))
             medalItem.append(medalStru(image: "Medal4-Bronze", text: "50-69%"))
-            medalItem.append(medalStru(image: "Medal5-Rust", text: "<50%"))
+            medalItem.append(medalStru(image: "Medal3-Silver", text: "70-89%"))
+            medalItem.append(medalStru(image: "Medal2-Gold", text: "90-99%"))
+            medalItem.append(medalStru(image: "Medal1-Diamond", text: "100%"))
         }
     }
     
@@ -73,10 +73,6 @@ class MedalInfo:SKNode{
             let p = CGPoint(x:  myView.position.x - myView.frame.width/2 , y: (myView.position.y - myView.frame.height) + size.height * CGFloat(medalItem.count + 1) - size.height * CGFloat(i+1))
             
             let textNode = SKMultilineLabel(text: medalItem[i].text, labelWidth: myView.frame.width - size.width*3, pos: p)
-            //textNode.alignment = .Left
-        //  let textNode = SKLabelNode(fontNamed: "ChalkboardSE-Regular")
-           // textNode.text = medalItem[i].text
-           // textNode.position = CGPoint(x:  myView.position.x - myView.frame.width + size.width , y: (myView.position.y - myView.frame.height) + size.height * CGFloat(i))
             textNode.zPosition = 0.9
             //textNode.horizontalAlignmentMode = .Left
             textNode.alignment = .Left

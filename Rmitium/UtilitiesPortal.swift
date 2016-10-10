@@ -26,7 +26,8 @@ class UtilitiesPortal {
     static let modeTrial = 1
     static let modeBeat = 2
     
-    static let firstTime = -1
+    static let firstTime = -2
+    static let firstResult = -1
     static let defaultScore = 0
     static let levelOne = 1
     static let levelTwo = 2
@@ -108,6 +109,8 @@ class UtilitiesPortal {
     static let levelLabelAnswerSize = CGFloat(screenWidth/40)
     
     static let borderSize = CGFloat(screenWidth/15)
+    static let imageBorderSize = CGFloat(screenWidth/30)
+
     
     static let imageWidth = screenWidth*0.6
     static let imageHeight = screenHeight*0.6

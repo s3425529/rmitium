@@ -17,63 +17,97 @@ class medalClass {
         percent = Double(UtilitiesPortal.score) / Double(UtilitiesPortal.totalQuestions)
         let scorePercent = round((percent) * 10000) / 100
         //percent = 1
-        
+        var firstTime = -2
         if level == UtilitiesPortal.levelOne {
-            score = round(Double(DataHandler.getLevelOnePercentage()) * 10000) / 100
+            firstTime = DataHandler.getLevelOneScore() as Int
         }
         else if level == UtilitiesPortal.levelThree {
-           score = round(Double(DataHandler.getLevelThreePercentage()) * 10000) / 100
+            firstTime = DataHandler.getLevelThreeScore() as Int
+        }
+        
+        if level == UtilitiesPortal.levelOne {
+            score = round(Double(DataHandler.getLevelOnePercentage()) * 100) / 1
+        }
+        else if level == UtilitiesPortal.levelThree {
+           score = round(Double(DataHandler.getLevelThreePercentage()) * 100) / 1
         }
    
         //let percentString = Int(percent*100)
         if percent == 1 {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
+            // New record - beating your previous best score
             if score < percent {
-                words.append("New record! A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(scorePercent)%.")
+                words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%.")
             }
             else {
-                words.append("A perfect score. Your chemistry knowledge is obviously crystal clear. You got \(scorePercent)%. Your best was \(score)%!")
+                // First time playing the level
+                if firstTime < 0 {
+                    words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%!")
+                }
+                else {
+                    words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
+                }
             }
         }
         if percent >= 0.9 && percent < 1 {
             medalName = "Medal2-Gold"
             words = ["Well done!"]
             if score < percent {
-                words.append("New record! Your chemistry prowess is gold standard. You got \(scorePercent)%!")
+                words.append("Your chemistry prowess is gold standard. You got \(Int(scorePercent))%!")
             }
             else {
-                words.append("Your chemistry prowess is gold standard. You got \(scorePercent)%. Your best was \(score)%!")
+                if firstTime < 0 {
+                    words.append("Your chemistry prowess is gold standard. You got \(Int(scorePercent))%!")
+                }
+                else {
+                    words.append("Your chemistry prowess is gold standard. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
+                }
             }
         }
         if percent >= 0.7 && percent < 0.9 {
             medalName = "Medal3-Silver"
             words = ["Great work!"]
             if score < percent {
-                words.append("New record! With that sterling effort you got \(scorePercent)%!")
+                words.append(" With that sterling effort you got \(Int(scorePercent))%!")
             }
             else {
-                words.append("With that sterling effort you got \(scorePercent)%. Your best was \(score)%!.")
+                if firstTime < 0 {
+                    words.append("With that sterling effort you got \(Int(scorePercent))%!")
+                }
+                else {
+                    words.append("With that sterling effort you got \(Int(scorePercent))%. Your best was \(Int(score))%!")
+                }
             }
         }
         if percent >= 0.5 && percent < 0.7 {
             medalName = "Medal4-Bronze"
             words = ["Nice try!"]
             if score < percent {
-                words.append("New record! You joined in and got \(scorePercent)%!")
+                words.append("You joined in and got \(Int(scorePercent))%!")
             }
             else {
-                words.append("You joined in and got \(scorePercent)%. Your best was \(score)%!")
+                if firstTime < 0 {
+                    words.append("You joined tin and got \(Int(scorePercent))%!")
+                }
+                else {
+                    words.append("You joined tin and got \(Int(scorePercent))%. Your best was \(Int(score))%!")
+                }
             }
         }
         if percent < 0.5 {
             medalName = "Medal5-Rust"
             words = ["Good effort!"]
             if score < percent {
-                words.append("New record! But your chemistry is a little rusty. You got \(scorePercent)%!")
+                words.append("But your chemistry is a little rusty. You got \(Int(scorePercent))%!")
             }
             else {
-                words.append("But your chemistry is a little rusty. You got \(scorePercent)%. Your best was \(score)%!")
+                if firstTime < 0 {
+                    words.append("But your chemistry is a little rusty. You got \(Int(scorePercent))%!")
+                }
+                else {
+                    words.append("But your chemistry is a little rusty. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
+                }
             }
         }
         return (medalName, words)
@@ -85,13 +119,13 @@ class medalClass {
         var bestTime:String!
         let min = UtilitiesPortal.score/60
         let sec = UtilitiesPortal.score%60
-        if mode == "stand"{
+        if mode == "stand" {
             score = DataHandler.getLevelTwoScore() as Int
         }
-        if mode == "trial"{
+        if mode == "trial" {
             score = DataHandler.getLevelTwoTrialScore() as Int
         }
-        if mode == "beat"{
+        if mode == "beat" {
             score = DataHandler.getLevelTwoBeatScore() as Int
         
         }
@@ -126,7 +160,7 @@ class medalClass {
                 
                 if score > UtilitiesPortal.score {
                     words = ["New record!"]
-                    words.append("A perfect score.  Your best was \(bestTime).")
+                    words.append("A perfect score. Your best was \(bestTime).")
                 }
                 else {
                     words = ["Congratulations!"]
@@ -141,7 +175,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
-                    words.append("\(message) Your chemistry prowess is gold standard.")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score < 40 && UtilitiesPortal.score >= 30 {
@@ -152,7 +186,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score < 60 && UtilitiesPortal.score >= 40 {
@@ -163,7 +197,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score >= 60 {
@@ -174,7 +208,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime).")
                 }
                 else {
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
         }
@@ -189,7 +223,7 @@ class medalClass {
                 }
                 else {
                     words = ["Congratulations!"]
-                    words.append("\(message) Your chemistry knowledge is obviously crystal clear.")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
@@ -201,7 +235,7 @@ class medalClass {
                 }
                 else {
                     words = ["Well done!"]
-                    words.append("\(message) Your chemistry prowess is gold standard.")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
@@ -213,7 +247,7 @@ class medalClass {
                 }
                 else {
                     words = ["Great work!"]
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
@@ -225,7 +259,7 @@ class medalClass {
                 }
                 else {
                     words = ["Nice try!"]
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
             if result < 60 {
@@ -237,7 +271,7 @@ class medalClass {
                 }
                 else {
                     words = ["Good effort!"]
-                    words.append("\(message)")
+                    words.append("\(message) Your best was \(bestTime).")
                 }
             }
         }

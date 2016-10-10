@@ -21,7 +21,6 @@ class ResultPage3: SKScene {
     var state = false
     
     override func didMoveToView(view: SKView) {
-        DataHandler.saveLevelThreeScore()
         socialData = SocialClass()
         socialData.initClass()
         socialData.getRecord()
@@ -39,6 +38,7 @@ class ResultPage3: SKScene {
                 fatalError("Error loading sound: \(error)")
             }
         }
+        DataHandler.saveLevelThreeScore()
     }
     
     func setupItem() {
@@ -132,11 +132,11 @@ class ResultPage3: SKScene {
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
         
-        let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*0.55)
+        let p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 0.50)
         text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
         text1.alignment = .Center
-        text1.leading =  Int(UtilitiesPortal.screenHeight*0.1)
-        text1.fontSize = UtilitiesPortal.screenHeight*0.05
+        text1.leading =  Int(UtilitiesPortal.screenHeight*0.08)
+        text1.fontSize = UtilitiesPortal.screenHeight*0.045
         addChild(text1)
     }
     
