@@ -77,7 +77,7 @@ class MedalInfo:SKNode{
             //textNode.horizontalAlignmentMode = .Left
             textNode.alignment = .Left
             textNode.leading = Int(UtilitiesPortal.screenHeight*0.05)
-            textNode.fontSize = UtilitiesPortal.screenHeight*0.04
+            textNode.fontSize = UtilitiesPortal.screenHeight*0.05
             myView.addChild(imageNode)
             
             myView.addChild(textNode)
