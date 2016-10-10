@@ -17,7 +17,7 @@
                BlueprintIdentifier = "508BB50B1D5864CF00556CE3"
                BuildableName = "Rmitium.app"
                BlueprintName = "Rmitium"
-               ReferencedContainer = "container:Chirality.xcodeproj">
+               ReferencedContainer = "container:Rmitium.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "508BB50B1D5864CF00556CE3"
             BuildableName = "Rmitium.app"
             BlueprintName = "Rmitium"
-            ReferencedContainer = "container:Chirality.xcodeproj">
+            ReferencedContainer = "container:Rmitium.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "508BB50B1D5864CF00556CE3"
             BuildableName = "Rmitium.app"
             BlueprintName = "Rmitium"
-            ReferencedContainer = "container:Chirality.xcodeproj">
+            ReferencedContainer = "container:Rmitium.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "508BB50B1D5864CF00556CE3"
             BuildableName = "Rmitium.app"
             BlueprintName = "Rmitium"
-            ReferencedContainer = "container:Chirality.xcodeproj">
+            ReferencedContainer = "container:Rmitium.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
