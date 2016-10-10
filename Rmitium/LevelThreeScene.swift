@@ -158,9 +158,9 @@ class LevelThreeScene: SKScene {
         
         image.zPosition = 0.1
         image.alpha = 0.9
-        let current = CGPoint(x:UtilitiesPortal.imageBorderSize+UtilitiesPortal.imageWidth/2,
+        let current = CGPoint(x:UtilitiesPortal.borderSize+UtilitiesPortal.imageWidth/2,
                               y:UtilitiesPortal.screenHeight/2)
-        image.position = PositionHandler.convertTargetPoint(current)
+        image.position = PositionHandler.convertTargetPointLevelThree(current)
         let currentSize = image.size
         let x = UtilitiesPortal.imageWidth/currentSize.width
         let y = UtilitiesPortal.imageHeight/currentSize.height
@@ -207,18 +207,21 @@ class LevelThreeScene: SKScene {
         
         for count in 0...positions.count-1 {
             let sprite = CustomSKSpriteNode()
-            sprite.color = UIColor.blueColor()
-            sprite.alpha = 0
+            sprite.texture = SKTexture(imageNamed: "\(count+1)")
+            sprite.color = UIColor.whiteColor()
+            sprite.alpha = 0.9
             sprite.name = "question\(count)"
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
             //sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.6, UtilitiesPortal.screenHeight*0.6)
             sprite.zPosition = 0.2
             let current = CGPoint(x:UtilitiesPortal.screenWidth * positions[count].x,
                                   y:UtilitiesPortal.screenHeight * positions[count].y)
-            sprite.position = PositionHandler.convertTargetPoint(current)
+            sprite.position = PositionHandler.convertTargetPointLevelThree(current)
             addChild(sprite)
             questions.append(sprite)
+            
             UtilitiesPortal.totalQuestions += 1
+            
             let answeredQuestion = CustomSKSpriteNode(imageNamed: UtilitiesPortal.levelOneAnswers[0])
             answeredQuestion.name = UtilitiesPortal.emptyString
             answeredQuestion.value = UtilitiesPortal.emptyString
@@ -573,7 +576,7 @@ class LevelThreeScene: SKScene {
         }
         
         chosenAnswer.position = touch!.locationInNode(self)
-        /*
+        
         print("+++++++++++++++++++++++++")
         
         let xPostion = chosenAnswer.position.x
@@ -582,7 +585,7 @@ class LevelThreeScene: SKScene {
         let y = yPostion / UtilitiesPortal.screenHeight
         print("x=\(x)")
         print("y=\(y)")
-         */
+        
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -742,9 +745,9 @@ class LevelThreeScene: SKScene {
                 resultImage = SKSpriteNode(imageNamed: lvlThreeQuestion.imageSol)
                 resultImage.zPosition = 0.5
                 resultImage.alpha = 1
-                let current = CGPoint(x:UtilitiesPortal.imageBorderSize + UtilitiesPortal.imageWidth/2,
+                let current = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
                                       y:UtilitiesPortal.screenHeight/2 )
-                resultImage.position = PositionHandler.convertTargetPoint(current)
+                resultImage.position = PositionHandler.convertTargetPointLevelThree(current)
                 let currentSize = resultImage.size
                 let x = UtilitiesPortal.imageWidth/currentSize.width
                 let y = UtilitiesPortal.imageHeight/currentSize.height

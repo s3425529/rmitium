@@ -60,7 +60,15 @@ class GameScene: SKScene {
         
         // App name logo
         let logo = SKSpriteNode(imageNamed: "logo")
-        logo.setScale(UtilitiesPortal.screenHeight/88*0.30)
+        let currentSize = logo.size
+        let x = UtilitiesPortal.screenWidth*0.6/currentSize.width
+        let y = UtilitiesPortal.screenHeight*0.2/currentSize.height
+        if x < y {
+            logo.setScale(x)
+        }
+        else {
+            logo.setScale(y)
+        }
         logo.position = CGPoint(x:frame.midX, y:UtilitiesPortal.screenHeight*0.85)
         logo.zPosition = 0.1
         addChild(logo)

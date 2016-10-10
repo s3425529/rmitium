@@ -170,7 +170,7 @@ class LevelOneScene: SKScene {
         image.alpha = 0.9
         let current = CGPoint(x:UtilitiesPortal.imageBorderSize+UtilitiesPortal.imageWidth/2,
                        y:UtilitiesPortal.screenHeight/2)
-        image.position = PositionHandler.convertTargetPoint(current)
+        image.position = PositionHandler.convertTargetPointLevelOne(current)
         let currentSize = image.size
         let x = UtilitiesPortal.imageWidth/currentSize.width
         let y = UtilitiesPortal.imageHeight/currentSize.height
@@ -221,9 +221,9 @@ class LevelOneScene: SKScene {
         
         for count in 0...positions.count-1 {
             let sprite = CustomSKSpriteNode()
-            sprite.color = UIColor.blueColor()
-            sprite.alpha = 0
-            sprite.texture = SKTexture(imageNamed: "\(count)")
+            sprite.color = UIColor.whiteColor()
+            sprite.alpha = 0.9
+            sprite.texture = SKTexture(imageNamed: "\(count+1)")
             sprite.name = "question\(count)"
             
            
@@ -231,7 +231,7 @@ class LevelOneScene: SKScene {
             sprite.zPosition = 0.2
             let x = CGPoint(x:UtilitiesPortal.screenWidth * positions[count].x,
                             y:UtilitiesPortal.screenHeight * positions[count].y)
-            sprite.position = PositionHandler.convertTargetPoint(x)
+            sprite.position = PositionHandler.convertTargetPointLevelOne(x)
             addChild(sprite)
             questions.append(sprite)
             
@@ -590,7 +590,7 @@ class LevelOneScene: SKScene {
         }
         
         chosenAnswer.position = touch!.locationInNode(self)
-        /*
+        
         print("+++++++++++++++++++++++++")
         
         let xPostion = chosenAnswer.position.x
@@ -599,7 +599,7 @@ class LevelOneScene: SKScene {
         let y = yPostion / UtilitiesPortal.screenHeight
         print("x=\(x)")
         print("y=\(y)")
-         */
+        
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -761,7 +761,7 @@ class LevelOneScene: SKScene {
                 resultImage.alpha = 1
                 let current = CGPoint(x:UtilitiesPortal.imageBorderSize + UtilitiesPortal.imageWidth/2,
                                 y:UtilitiesPortal.screenHeight/2)
-                resultImage.position = PositionHandler.convertTargetPoint(current)
+                resultImage.position = PositionHandler.convertTargetPointLevelOne(current)
                 let currentSize = resultImage.size
                 let x = UtilitiesPortal.imageWidth/currentSize.width
                 let y = UtilitiesPortal.imageHeight/currentSize.height
