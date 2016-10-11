@@ -350,7 +350,7 @@ class medalClass {
         if mode == "beat" {
             if UtilitiesPortal.score >= 150 {
                 medalName = "Medal1-Diamond"
-                
+                words = ["Congratulations!"]
                 if firstTime < 0 {
                     words.append(message)
                     //words.append("A perfect score. Your best was \(bestTime).")

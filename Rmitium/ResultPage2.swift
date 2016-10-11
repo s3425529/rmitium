@@ -27,6 +27,7 @@ class ResultPage2: SKScene {
     var medalDic:(medalName:String,information:[String])!
     var myView:SKShapeNode!
     var stateInfo = false
+    var modeName:String!
     override func didMoveToView(view: SKView) {
         
         Dic = medalClass()
@@ -35,19 +36,22 @@ class ResultPage2: SKScene {
             //DataHandler.saveLevelTwoScore()
             print("Game mode: Standard!")
             medalDic = Dic.level2("stand")
-            infoTable("stand")
+            modeName = "stand"
+            //infoTable("stand")
             break
         case UtilitiesPortal.modeLabelTexts[1]:
             //DataHandler.saveLevelTwoTrialScore()
             print("Game mode: Time Trial!")
              medalDic = Dic.level2("trial")
-            infoTable("trial")
+            modeName = "trial"
+            //infoTable("trial")
             break
         case UtilitiesPortal.modeLabelTexts[2]:
             //DataHandler.saveLevelTwoBeatScore()
             print("Game mode: Beat the Clock!")
-             medalDic = Dic.level2("beat")
-            infoTable("beat")
+            medalDic = Dic.level2("beat")
+            modeName = "beat"
+            //infoTable("beat")
             break
         default:
             break
@@ -377,9 +381,8 @@ class ResultPage2: SKScene {
         let node = self.nodeAtPoint(location)
         
         if stateInfo == true{
-            //myView.removeAllChildren()
-            //myView.removeFromParent()
-            myView.hidden = true
+            myView.removeAllChildren()
+            myView.removeFromParent()
             stateInfo = false
         }
         
@@ -405,7 +408,8 @@ class ResultPage2: SKScene {
         }
         
         if node.name == UtilitiesPortal.infoButonName{
-            myView.hidden = false
+            
+            infoTable(modeName)
             stateInfo = true
         }
 
@@ -444,7 +448,6 @@ class ResultPage2: SKScene {
         myView = SKShapeNode()
         let x = MedalInfo(myView: myView, modeName: mode)
         x.setupItem()
-        myView.hidden = true
         addChild(myView)
         
     }
