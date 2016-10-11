@@ -16,7 +16,7 @@ class LevelScene: SKScene {
     var positions = [Position]()
     var currentAnswerPostions: [CGPoint] = []
     var factOverlayText: SKMultilineLabel!
-    var infoOverlay, infoOverlayResult, factOverlay, homeView, show, tick: SKSpriteNode!
+    var infoOverlay, infoOverlayResult, factOverlay, homeView, factView, show, tick: SKSpriteNode!
     var homeDialogue: SKShapeNode!
     var score, factLabel, molecule, timeNode: SKLabelNode!
     var state, previousState: Int!
@@ -120,6 +120,7 @@ class LevelScene: SKScene {
         //Fact Overlay selected
         if node.name == UtilitiesPortal.factOverlayName {
             factOverlay.hidden = true
+            factView.hidden = true
             setupScene()
             return
         }

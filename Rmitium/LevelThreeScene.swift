@@ -168,7 +168,7 @@ class LevelThreeScene: LevelScene {
         factLabel.fontSize = UtilitiesPortal.navLabelSize
         factLabel.text = "Did you know:"
         factLabel.zPosition = 0.9
-        factLabel.position = CGPoint(x: 0, y: UtilitiesPortal.screenHeight/2 - factLabel.fontSize * 2)
+        factLabel.position = CGPoint(x: 0, y: UtilitiesPortal.screenHeight/2 - factLabel.fontSize * 4)
         //addChild(factLabel)
         
         factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth*0.90,
@@ -188,9 +188,19 @@ class LevelThreeScene: LevelScene {
         factOverlay.alpha = 0.7
         factOverlay.zPosition = 0.9
         factOverlay.hidden = true
+        
+        factView = SKSpriteNode()
+        factView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
+        factView.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
+        factView.color = SKColor.blackColor()
+        factView.alpha = 0.7
+        factView.zPosition = 0.8
+        factView.hidden = true
+        
         factOverlay.addChild(factOverlayText)
         factOverlay.addChild(factLabel)
         addChild(factOverlay)
+        addChild(factView)
     }
     
     // Info layout
@@ -548,6 +558,7 @@ class LevelThreeScene: LevelScene {
                 previousState = state
                 state = UtilitiesPortal.stateFact
                 factOverlay.hidden = false
+                factView.hidden = false
             }
             return
         }

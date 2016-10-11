@@ -259,6 +259,7 @@ class LevelTwoScene: LevelScene {
         
         homeDialogue.hidden = true
         homeView.hidden = true
+        infoOverlay.hidden = true
         
         backgroundNode.color = SKColor.blackColor()
         backgroundNode.alpha = 0.8
