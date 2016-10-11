@@ -175,6 +175,19 @@ class DataHandler {
         }
     }
     
+    static func saveLevelOneFirstResult() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelOne")
+            try settings.save()
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
     static func saveLevelOneScore() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -344,6 +357,19 @@ class DataHandler {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
             object.setValue(UtilitiesPortal.firstResult, forKey: "levelThree")
+            try settings.save()
+        }
+        catch {
+            fatalError("Failure reading from coredata: \(error)")
+        }
+    }
+    
+    static func saveLevelThreeFirstResult() {
+        let setting = NSFetchRequest(entityName: "Settings")
+        do {
+            let result = try settings.executeFetchRequest(setting) as! [Settings]
+            let object = result.first!
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThree")
             try settings.save()
         }
         catch {

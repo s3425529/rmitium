@@ -56,7 +56,7 @@ class LevelScene: SKScene {
         createHomeDialogue()
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    func touchesBeganSuper(touches: Set<UITouch>, withEvent event: UIEvent?) -> Bool {
         let touch = touches.first
         
         if state == UtilitiesPortal.stateHome {
@@ -65,44 +65,43 @@ class LevelScene: SKScene {
             for node in nodes {
                 if node.name == UtilitiesPortal.yesButtonName {
                     backHomePage()
-                    return
+                    return true
                 }
                 else if node.name == UtilitiesPortal.noButtonName {
                     homeDialogue.hidden = true
                     homeView.hidden = true
                     state = previousState
                     previousState = UtilitiesPortal.stateHome
-                    return
+                    return true
                 }
             }
-            return
+            return false
         }
         
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
-            infoOverlay.removeAllActions()
-            infoOverlay.removeAllChildren()
-            infoOverlay.removeFromParent()
+            //infoOverlay.removeAllActions()
+            //infoOverlay.removeAllChildren()
+            //infoOverlay.removeFromParent()
             state = previousState
             previousState = UtilitiesPortal.stateInfo
-            return
+            return true
         }
         
         if state == UtilitiesPortal.stateInfoResult {
             infoOverlayResult .hidden = true
-            infoOverlayResult .removeAllActions()
-            infoOverlayResult .removeAllChildren()
-            infoOverlayResult .removeFromParent()
+            //infoOverlayResult .removeAllActions()
+            //infoOverlayResult .removeAllChildren()
+            //infoOverlayResult .removeFromParent()
             state = previousState
             previousState = UtilitiesPortal.stateInfoResult
-            return
+            return true
         }
         
         if state == UtilitiesPortal.stateFact {
             setupScene()
-            return
+            return true
         }
-        
         
         // Home button selected
         let location = touch!.locationInNode(self)
@@ -113,17 +112,16 @@ class LevelScene: SKScene {
             previousState = state
             state = UtilitiesPortal.stateHome
         }
-
-        
-        
         
         //Fact Overlay selected
         if node.name == UtilitiesPortal.factOverlayName {
             factOverlay.hidden = true
             factView.hidden = true
             setupScene()
-            return
+            return true
         }
+        
+        return false
     }
     
     ////////////////////////////

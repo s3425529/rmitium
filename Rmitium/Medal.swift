@@ -140,7 +140,7 @@ class medalClass {
         if min == 0 {
             message = "You took \(sec) seconds."
         }
-        else if min == 1{
+        else if min == 1 {
             message = "You took \(min) minute \(sec) seconds."
         }
         else if min > 1 {

@@ -174,7 +174,7 @@ class ResultPage2: SKScene {
         addChild(info)
     }
     
-    func setupCustomerButton(){
+    func setupCustomerButton() {
         facebook = CustomButton(defaultButtonImage: "facebookbutton", activeButtonImage: "facebookbutton1", buttonAction: facebookAction,scale: 0.2)
         facebook.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
                                     y: UtilitiesPortal.screenHeight * 0.8)
@@ -231,8 +231,7 @@ class ResultPage2: SKScene {
     
     func twitterAction() {
         print("twitter")
-        if socialData.twitter == true{
-            
+        if socialData.twitter == true {
             activeTwitter()
         }
         else {
@@ -387,7 +386,6 @@ class ResultPage2: SKScene {
         }
         
         if node.name == UtilitiesPortal.homeButtonName {
-            print("Home!")
             homeView.hidden = false
             homeDialogue.hidden = false
             previousState = state
@@ -407,8 +405,7 @@ class ResultPage2: SKScene {
             return
         }
         
-        if node.name == UtilitiesPortal.infoButonName{
-            
+        if node.name == UtilitiesPortal.infoButonName {
             infoTable(modeName)
             stateInfo = true
         }
@@ -444,7 +441,7 @@ class ResultPage2: SKScene {
         return"\(hour):\(min):\(sec)"
     }
     
-    func infoTable(mode:String){
+    func infoTable(mode:String) {
         myView = SKShapeNode()
         let x = MedalInfo(myView: myView, modeName: mode)
         x.setupItem()

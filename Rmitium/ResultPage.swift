@@ -10,7 +10,7 @@ import AVFoundation
 import SpriteKit
 import Social
 
-class ResultPage: SKScene{
+class ResultPage: SKScene {
     var facebook, twitter, redo, next: CustomButton!
     var i = 0
     var homeDialogue: SKShapeNode!

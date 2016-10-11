@@ -333,7 +333,9 @@ class LevelTwoScene: LevelScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
-        super.touchesBegan(touches, withEvent: event)
+        if super.touchesBeganSuper(touches, withEvent: event) {
+            return
+        }
         
         // Home button selected
         let location = touch!.locationInNode(self)

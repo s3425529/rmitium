@@ -126,12 +126,19 @@ class LevelOneScene: LevelScene {
     }
     
     override func setupTargets() {
-        for x in 0...lvlOneQuestion.positions.count-1 {
-            positions.append(lvlOneQuestion.positions[x])
+        switch UIDevice.currentDevice().userInterfaceIdiom {
+        case .Pad:
+            for x in 0...lvlOneQuestion.positionsIpad.count-1 {
+                positions.append(lvlOneQuestion.positionsIpad[x])
+            }
+            break;
+        default:
+            for x in 0...lvlOneQuestion.positions.count-1 {
+                positions.append(lvlOneQuestion.positions[x])
+            }
+            break;
         }
         UtilitiesPortal.totalQuestions += positions.count
-        
-    
         
         for count in 0...positions.count-1 {
             let sprite = CustomSKSpriteNode()
@@ -492,9 +499,11 @@ class LevelOneScene: LevelScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
-        super.touchesBegan(touches, withEvent: event)
+        if super.touchesBeganSuper(touches, withEvent: event) {
+            return
+        }
         
-        if state == UtilitiesPortal.stateAnswer && lvlOneQuestion.positions.count > 0{
+        if state == UtilitiesPortal.stateAnswer {
             // Labels selected
             for x in 0...answers.count-1 {
                 if CGRectContainsPoint(answers[x].frame, point) {
@@ -546,14 +555,14 @@ class LevelOneScene: LevelScene {
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
             if state == UtilitiesPortal.stateAnswer {
-                setupInfo()
+                //setupInfo()
                 previousState = state
                 state = UtilitiesPortal.stateInfo
                 infoOverlay.hidden = false
                 return
             }
             else {
-                setupInfoResult()
+                //setupInfoResult()
                 previousState = state
                 state = UtilitiesPortal.stateInfoResult
                 infoOverlayResult.hidden = false
@@ -569,7 +578,7 @@ class LevelOneScene: LevelScene {
                     infoOverlayResult.hidden = false
                     previousState = UtilitiesPortal.stateResult
                     state = UtilitiesPortal.stateInfoResult
-                    DataHandler.saveLevelOneScore()
+                    DataHandler.saveLevelOneFirstResult()
                 }
                 return
             }

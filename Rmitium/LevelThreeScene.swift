@@ -123,8 +123,17 @@ class LevelThreeScene: LevelScene {
     }
     
     override func setupTargets() {
-        for x in 0...lvlThreeQuestion.positions.count-1 {
-            positions.append(lvlThreeQuestion.positions[x])
+        switch UIDevice.currentDevice().userInterfaceIdiom {
+        case .Pad:
+            for x in 0...lvlThreeQuestion.positionsIpad.count-1 {
+                positions.append(lvlThreeQuestion.positionsIpad[x])
+            }
+            break;
+        default:
+            for x in 0...lvlThreeQuestion.positions.count-1 {
+                positions.append(lvlThreeQuestion.positions[x])
+            }
+            break;
         }
         
         for count in 0...positions.count-1 {
@@ -490,9 +499,11 @@ class LevelThreeScene: LevelScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
-        super.touchesBegan(touches, withEvent: event)
+        if super.touchesBeganSuper(touches, withEvent: event) {
+            return
+        }
         
-        if state == UtilitiesPortal.stateAnswer && lvlThreeQuestion.positions.count > 0 {
+        if state == UtilitiesPortal.stateAnswer {
             // Labels selected
             for x in 0...answers.count-1 {
                 if CGRectContainsPoint(answers[x].frame, point) {
@@ -549,7 +560,7 @@ class LevelThreeScene: LevelScene {
                     infoOverlayResult.hidden = false
                     previousState = UtilitiesPortal.stateResult
                     state = UtilitiesPortal.stateInfoResult
-                    DataHandler.saveLevelThreeScore()
+                    DataHandler.saveLevelThreeFirstResult()
                 }
                 return
             }
