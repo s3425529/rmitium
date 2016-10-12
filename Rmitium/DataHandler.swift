@@ -316,6 +316,7 @@ class DataHandler {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
             let x = object.levelTwoBeat as! Int
+            print("Extreme: old: \(x), current: \(UtilitiesPortal.score)")
             if x < UtilitiesPortal.score {
                 object.setValue(UtilitiesPortal.score, forKey: "levelTwoBeat")
                 try settings.save()

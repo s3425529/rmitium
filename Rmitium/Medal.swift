@@ -356,7 +356,7 @@ class medalClass {
                     //words.append("A perfect score. Your best was \(bestTime).")
                 }
                 else {
-                    if score > UtilitiesPortal.score {
+                    if score < UtilitiesPortal.score {
                         words.append(message)
                     }
                     else {
@@ -374,7 +374,7 @@ class medalClass {
                     //words.append("A perfect score. Your best was \(bestTime).")
                 }
                 else {
-                    if score > UtilitiesPortal.score {
+                    if score < UtilitiesPortal.score {
                         words.append(message)
                     }
                     else {
@@ -392,7 +392,7 @@ class medalClass {
                     //words.append("A perfect score. Your best was \(bestTime).")
                 }
                 else {
-                    if score > UtilitiesPortal.score {
+                    if score < UtilitiesPortal.score {
                         words.append(message)
                     }
                     else {
@@ -410,7 +410,7 @@ class medalClass {
                     //words.append("A perfect score. Your best was \(bestTime).")
                 }
                 else {
-                    if score > UtilitiesPortal.score {
+                    if score < UtilitiesPortal.score {
                         words.append(message)
                     }
                     else {
@@ -428,7 +428,7 @@ class medalClass {
                     //words.append("A perfect score. Your best was \(bestTime).")
                 }
                 else {
-                    if score > UtilitiesPortal.score {
+                    if score < UtilitiesPortal.score {
                         words.append(message)
                     }
                     else {
