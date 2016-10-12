@@ -171,7 +171,7 @@ class medalClass {
                 }
                 else {
                     if score > UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -189,7 +189,7 @@ class medalClass {
                 }
                 else {
                     if score > UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -207,7 +207,7 @@ class medalClass {
                 }
                 else {
                     if score > UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -225,7 +225,7 @@ class medalClass {
                 }
                 else {
                     if score > UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -243,7 +243,7 @@ class medalClass {
                 }
                 else {
                     if score > UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -265,7 +265,7 @@ class medalClass {
                 }
                 else {
                     if score < UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -283,7 +283,7 @@ class medalClass {
                 }
                 else {
                     if score < UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -301,7 +301,7 @@ class medalClass {
                 }
                 else {
                     if score < UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -319,7 +319,7 @@ class medalClass {
                 }
                 else {
                     if score < UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -337,7 +337,7 @@ class medalClass {
                 }
                 else {
                     if score < UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -357,7 +357,7 @@ class medalClass {
                 }
                 else {
                     if score < UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -375,7 +375,7 @@ class medalClass {
                 }
                 else {
                     if score < UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -393,7 +393,7 @@ class medalClass {
                 }
                 else {
                     if score < UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -411,7 +411,7 @@ class medalClass {
                 }
                 else {
                     if score < UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
@@ -429,7 +429,7 @@ class medalClass {
                 }
                 else {
                     if score < UtilitiesPortal.score {
-                        words.append(message)
+                        words.append("\(message) Your best was \(bestTime)!")
                     }
                     else {
                         words.append("\(message) Your best was \(bestTime)!")
