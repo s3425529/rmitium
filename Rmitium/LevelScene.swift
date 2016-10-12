@@ -89,7 +89,7 @@ class LevelScene: SKScene {
         }
         
         if state == UtilitiesPortal.stateInfoResult {
-            infoOverlayResult .hidden = true
+            infoOverlayResult.hidden = true
             //infoOverlayResult .removeAllActions()
             //infoOverlayResult .removeAllChildren()
             //infoOverlayResult .removeFromParent()

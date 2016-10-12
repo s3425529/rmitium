@@ -432,12 +432,15 @@ class LevelTwoScene: LevelScene {
     }
     
     func checkResult() -> Bool {
-        for x in 0...answers.count-1 {
-            if answers[x].hidden == false {
-                return false
+        if answers.count > 0 {
+            for x in 0...answers.count-1 {
+                if answers[x].hidden == false {
+                    return false
+                }
             }
+            return true
         }
-        return true
+        return false
     }
     
     // retry level 2
