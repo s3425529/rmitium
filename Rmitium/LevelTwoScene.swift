@@ -343,20 +343,11 @@ class LevelTwoScene: LevelScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
-            if state == UtilitiesPortal.stateAnswer {
-                setupInfo()
-                previousState = state
-                state = UtilitiesPortal.stateInfo
-                infoOverlay.hidden = false
-                return
-            }
-            else {
-                setupInfoResult()
-                previousState = state
-                state = UtilitiesPortal.stateInfoResult
-                infoOverlayResult.hidden = false
-                return
-            }
+            setupInfo()
+            previousState = state
+            state = UtilitiesPortal.stateInfo
+            infoOverlay.hidden = false
+            return
         }
         
         if node.name == UtilitiesPortal.timeOutHomeName {
