@@ -72,10 +72,10 @@ class DataHandler {
             let object = result.first!
             print("Scores: \(object.levelOne), \(object.levelTwo), \(object.levelThree)")
             object.setValue(0, forKey: "levelOne")
-            object.setValue(0, forKey: "levelTwo")
+            object.setValue(-1, forKey: "levelTwo")
             object.setValue(0, forKey: "levelThree")
-            object.setValue(0, forKey: "levelTwoTrial")
-            object.setValue(0, forKey: "levelTwoBeat")
+            object.setValue(-1, forKey: "levelTwoTrial")
+            object.setValue(-1, forKey: "levelTwoBeat")
             object.setValue(0, forKey: "levelOneScore")
             object.setValue(0, forKey: "levelThreeScore")
             try settings.save()
