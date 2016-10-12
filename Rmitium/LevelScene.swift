@@ -184,7 +184,7 @@ class LevelScene: SKScene {
         addChild(homeView)
     }
 
-    final func backHomePage() {
+    func backHomePage() {
         UtilitiesPortal.score = 0
         UtilitiesPortal.totalQuestions = 0
         cleanScene()

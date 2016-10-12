@@ -308,6 +308,10 @@ class LevelTwoScene: LevelScene {
         addChild(timeOutMessage)
     }
     
+    override func backHomePage() {
+        timeOut()
+        super.backHomePage()
+    }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /*let touch = touches.first
@@ -343,20 +347,11 @@ class LevelTwoScene: LevelScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
-            if state == UtilitiesPortal.stateAnswer {
-                setupInfo()
-                previousState = state
-                state = UtilitiesPortal.stateInfo
-                infoOverlay.hidden = false
-                return
-            }
-            else {
-                setupInfoResult()
-                previousState = state
-                state = UtilitiesPortal.stateInfoResult
-                infoOverlayResult.hidden = false
-                return
-            }
+            //setupInfo()
+            previousState = state
+            state = UtilitiesPortal.stateInfo
+            infoOverlay.hidden = false
+            return
         }
         
         if node.name == UtilitiesPortal.timeOutHomeName {
@@ -566,7 +561,7 @@ class LevelTwoScene: LevelScene {
         
     }
 
-    func beatTimer(){
+    func beatTimer() {
         LIMITTIME = 300
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
         timerClass.startTimer()
@@ -607,7 +602,7 @@ class LevelTwoScene: LevelScene {
     }
 
     
-    func alertMessage(){
+    func alertMessage() {
         let controller = self.view?.window?.rootViewController as! GameViewController
         let alert = UIAlertController(title: "Time Out!", message: "Try Again or Back Home?", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Try again", style: .Destructive, handler: {action in
