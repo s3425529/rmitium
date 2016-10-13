@@ -453,7 +453,7 @@ class DataHandler {
             else {
                 if mode == UtilitiesPortal.modeStandard {
                     score = Double((result.first?.levelTwo)!)
-                    if score < 20  && score > 0 {
+                    if score < 20  && score >= 0 {
                         return "Medal1-Diamond"
                     }
                     else if score < 30 && score >= 20 {
@@ -487,7 +487,7 @@ class DataHandler {
                     if score >= 60 && score < 90 {
                         return "Medal4-Bronze"
                     }
-                    if score < 60 && score > 0 {
+                    if score < 60 && score >= 0 {
                         return "Medal5-Rust"
                     }
                     else {
@@ -508,7 +508,7 @@ class DataHandler {
                     if score >= 60 && score < 90 {
                         return "Medal4-Bronze"
                     }
-                    if score < 60 && score > 0 {
+                    if score < 60 && score >= 0 {
                         return "Medal5-Rust"
                     }
                     else {
@@ -529,7 +529,7 @@ class DataHandler {
             else if score >= 0.5 && score < 0.7 {
                 return "Medal4-Bronze"
             }
-            else if score < 0.5 && score > 0 {
+            else if score < 0.5 && score >= 0 {
                 return "Medal5-Rust"
             }
             else {
