@@ -84,7 +84,7 @@ class medalClass {
                 words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
             }
         }
-        if scorePercent > score {
+        if scorePercent > score && firstTime < 0 {
             newRecord = true
         }
         else {
@@ -232,8 +232,11 @@ class medalClass {
                 }
             }
             //New record check goes here
-            if UtilitiesPortal.score < score {
-                
+            if UtilitiesPortal.score < score && firstTime < 0{
+                newRecord = true
+            }
+            else {
+                newRecord = false
             }
         }
         
@@ -330,6 +333,12 @@ class medalClass {
                 }
             }
             //New record check goes here
+            if UtilitiesPortal.score > score && firstTime < 0 {
+                newRecord = true
+            }
+            else {
+                newRecord = false
+            }
         }
         
         if mode == "beat" {
@@ -423,6 +432,12 @@ class medalClass {
                 }
             }
             //New record check goes here.
+            if UtilitiesPortal.score > score && firstTime < 0{
+                newRecord = true
+            }
+            else {
+                newRecord = false
+            }
         }
         
         return (medalName, words, newRecord)
