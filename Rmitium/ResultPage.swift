@@ -378,6 +378,12 @@ class ResultPage: SKScene {
         }))
         controller.presentViewController(alert, animated: true, completion: nil)
     }
+    
+    func addNewRecordLabel(){
+        let newRecord = SKLabelNode()
+        newRecord.text = "NEW RECORD!"
+        
+    }
 
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
