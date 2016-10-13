@@ -25,11 +25,11 @@ class DataHandler {
             entity.setValue(true, forKey: "sound")
             entity.setValue(true, forKey: "rightHand")
             entity.setValue(true, forKey: "effect")
-            entity.setValue(-2, forKey: "levelOne")
-            entity.setValue(-2, forKey: "levelTwo")
-            entity.setValue(-2, forKey: "levelThree")
-            entity.setValue(-2, forKey: "levelTwoTrial")
-            entity.setValue(-2, forKey: "levelTwoBeat")
+            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelOne")
+            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwo")
+            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelThree")
+            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoTrial")
+            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoBeat")
             entity.setValue(0, forKey: "levelOneScore")
             entity.setValue(0, forKey: "levelThreeScore")
             do {
@@ -50,11 +50,11 @@ class DataHandler {
             object.setValue(true, forKey: "sound")
             object.setValue(true, forKey: "rightHand")
             object.setValue(true, forKey: "effect")
-            object.setValue(-2, forKey: "levelOne")
-            object.setValue(-2, forKey: "levelTwo")
-            object.setValue(-2, forKey: "levelThree")
-            object.setValue(-2, forKey: "levelTwoTrial")
-            object.setValue(-2, forKey: "levelTwoBeat")
+            object.setValue(UtilitiesPortal.firstTime, forKey: "levelOne")
+            object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwo")
+            object.setValue(UtilitiesPortal.firstTime, forKey: "levelThree")
+            object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoTrial")
+            object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoBeat")
             object.setValue(0, forKey: "levelOneScore")
             object.setValue(0, forKey: "levelThreeScore")
             try settings.save()
@@ -71,37 +71,11 @@ class DataHandler {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
             print("Scores: \(object.levelOne), \(object.levelTwo), \(object.levelThree)")
-            object.setValue(-1, forKey: "levelOne")
-            object.setValue(-1, forKey: "levelTwo")
-            object.setValue(-1, forKey: "levelThree")
-            object.setValue(-1, forKey: "levelTwoTrial")
-            object.setValue(-1, forKey: "levelTwoBeat")
-            object.setValue(0, forKey: "levelOneScore")
-            object.setValue(0, forKey: "levelThreeScore")
-            try settings.save()
-            
-            
-            let result1 = try settings.executeFetchRequest(setting) as! [Settings]
-            let object1 = result1.first!
-            print("Reset to: \(object1.levelOne), \(object1.levelTwo), \(object1.levelThree)")
-            //localSetting = result1.first!
-        }
-        catch {
-            fatalError("Failure reading from coredata: \(error)")
-        }
-    }
-    
-    static func resetToDefault() {
-        let setting = NSFetchRequest(entityName: "Settings")
-        do {
-            let result = try settings.executeFetchRequest(setting) as! [Settings]
-            let object = result.first!
-            print("Scores: \(object.levelOne), \(object.levelTwo), \(object.levelThree)")
-            object.setValue(-2, forKey: "levelOne")
-            object.setValue(-2, forKey: "levelTwo")
-            object.setValue(-2, forKey: "levelThree")
-            object.setValue(-2, forKey: "levelTwoTrial")
-            object.setValue(-2, forKey: "levelTwoBeat")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelOne")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwo")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThree")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwoTrial")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwoBeat")
             object.setValue(0, forKey: "levelOneScore")
             object.setValue(0, forKey: "levelThreeScore")
             try settings.save()

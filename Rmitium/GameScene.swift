@@ -156,7 +156,7 @@ class GameScene: SKScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
-            DataHandler.resetToDefault()
+            DataHandler.resetSettings()
             previousState = state
             state = UtilitiesPortal.stateInfo
             infoOverlay!.hidden = false

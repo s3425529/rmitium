@@ -138,9 +138,9 @@ class LevelThreeScene: LevelScene {
         
         for count in 0...positions.count-1 {
             let sprite = CustomSKSpriteNode()
-            sprite.texture = SKTexture(imageNamed: "\(count+1)")
+            //sprite.texture = SKTexture(imageNamed: "\(count+1)")
             sprite.color = UIColor.whiteColor()
-            sprite.alpha = 0.9
+            sprite.alpha = 0
             sprite.name = "question\(count)"
             sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.25, UtilitiesPortal.screenHeight*0.15)
             //sprite.size = CGSizeMake(UtilitiesPortal.screenWidth*0.6, UtilitiesPortal.screenHeight*0.6)
