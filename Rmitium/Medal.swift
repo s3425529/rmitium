@@ -11,8 +11,8 @@ class medalClass {
     var percent: Double!
     var medalName: String!
     var words = [String]()
-    
-    func assignMedal(level: Int) -> (medalName:String , information:[String]) {
+    var newRecord = Bool()
+    func assignMedal(level: Int) -> (medalName:String , information:[String], newRecord: Bool) {
         var score = 0.0
         percent = Double(UtilitiesPortal.score) / Double(UtilitiesPortal.totalQuestions)
         let scorePercent = round((percent) * 100) / 1
@@ -110,10 +110,16 @@ class medalClass {
                 }
             }
         }
-        return (medalName, words)
+        if scorePercent > score {
+            newRecord = true
+        }
+        else {
+            newRecord = false
+        }
+        return (medalName, words, newRecord)
     }
    
-    func level2(mode:String) -> (medalName:String , information:[String]) {
+    func level2(mode:String) -> (medalName:String , information:[String], newRecord: Bool) {
         var score = 0
         var message:String!
         var bestTime:String!
@@ -439,6 +445,6 @@ class medalClass {
             }
         }
         
-        return (medalName, words)
+        return (medalName, words, newRecord)
     }
 }

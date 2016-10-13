@@ -13,8 +13,9 @@ import Social
 class ResultPage: SKScene {
     var facebook, twitter, redo, next: CustomButton!
     var i = 0
+    var levelLabel: SKLabelNode!
     var homeDialogue: SKShapeNode!
-    var homeView :SKSpriteNode!
+    var homeView, newRecordBox :SKSpriteNode!
     var text,text1: SKMultilineLabel!
     var socialData:SocialClass!
     var audioPlayer = AVAudioPlayer()
@@ -35,10 +36,10 @@ class ResultPage: SKScene {
         socialData = SocialClass()
         socialData.initClass()
         socialData.getRecord()
+        addNewRecordLabel()
         setupMedal()
         setupItems()
         setupCustomerButton()
-        createHomeDialogue()
         DataHandler.saveLevelOneScore()
     }
     
@@ -49,6 +50,7 @@ class ResultPage: SKScene {
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
         let medalNode = SKSpriteNode(imageNamed: medalName)
+        newRecordBox.hidden = !medalDic.newRecord
         medalNode.color = SKColor.blueColor()
         medalNode.name = "medal"
         medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
@@ -87,7 +89,7 @@ class ResultPage: SKScene {
     }
     
     func setupItems() {
-        let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
+        levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
         levelLabel.fontSize = UtilitiesPortal.navLabelSize
@@ -209,7 +211,7 @@ class ResultPage: SKScene {
     
     func nextAction() {
         print("next")
-        goToLevel2()
+        backHomePage()
     }
     
     // Share the score to any social media!
@@ -270,53 +272,23 @@ class ResultPage: SKScene {
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
     
-    func createHomeDialogue() {
-        let yesBtn = SKSpriteNode()
-        let noBtn = SKSpriteNode()
-        let alertMessage = SKLabelNode(text: "You sure you wanna quit?")
-        
-        alertMessage.position = CGPoint(x: 0, y: 0)
-        alertMessage.zPosition = 0.9
-        alertMessage.fontName = UtilitiesPortal.navLabelFont
-        alertMessage.fontSize = UtilitiesPortal.factSize
-        
-        homeView = SKSpriteNode()
-        homeView.color = SKColor.blackColor()
-        homeView.alpha = 0.8
-        homeView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
-        homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
-        homeView.zPosition = 0.8
-        homeView.hidden = true
-        
-        
-        homeDialogue = SKShapeNode()
-        homeDialogue.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
-        homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
-        homeDialogue.fillColor = SKColor.blackColor()
-        
-        homeDialogue.alpha = 0.9
-        homeDialogue.zPosition = 0.9
-        homeDialogue.hidden = true
-        
-        yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        yesBtn.color = SKColor.grayColor()
-        yesBtn.name = UtilitiesPortal.yesButtonName
-        yesBtn.texture = SKTexture(image: UIImage(named: "tick-white")!)
-        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.2)
-        yesBtn.zPosition = 0.9
-        
-        noBtn.size = yesBtn.size
-        noBtn.color = yesBtn.color
-        noBtn.name = UtilitiesPortal.noButtonName
-        noBtn.texture = SKTexture(image: UIImage(named: "cross-white")!)
-        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.2)
-        noBtn.zPosition = 0.9
-        
-        homeDialogue.addChild(yesBtn)
-        homeDialogue.addChild(noBtn)
-        homeDialogue.addChild(alertMessage)
-        addChild(homeDialogue)
-        addChild(homeView)
+    func addNewRecordLabel(){
+        let newRecord = SKLabelNode()
+        newRecordBox = SKSpriteNode()
+        newRecordBox.size = CGSize(width: UtilitiesPortal.screenWidth/3, height: newRecord.fontSize*1.5)
+        newRecordBox.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 3)
+        newRecordBox.zPosition = 0.2
+        newRecordBox.color = SKColor.redColor()
+        newRecordBox.alpha = 0.8
+        newRecordBox.hidden = true
+        newRecord.verticalAlignmentMode = .Center
+        newRecord.horizontalAlignmentMode = .Center
+        newRecord.text = "NEW RECORD!"
+        newRecord.fontSize = UtilitiesPortal.navLabelSize
+        newRecord.fontName = UtilitiesPortal.navLabelFont
+        newRecord.fontColor = SKColor.whiteColor()
+        newRecordBox.addChild(newRecord)
+        addChild(newRecordBox)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -337,18 +309,7 @@ class ResultPage: SKScene {
         }
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home!")
-            homeView.hidden = false
-            homeDialogue.hidden = false
-        }
-        if node.name == UtilitiesPortal.yesButtonName {
             backHomePage()
-            return
-          
-        }
-        if node.name == UtilitiesPortal.noButtonName {
-            homeDialogue.hidden = true
-            homeView.hidden = true
-            return
         }
         if node.name == UtilitiesPortal.infoButonName{
             infoTable()
@@ -379,12 +340,6 @@ class ResultPage: SKScene {
         controller.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func addNewRecordLabel(){
-        let newRecord = SKLabelNode()
-        newRecord.text = "NEW RECORD!"
-        
-    }
-
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
