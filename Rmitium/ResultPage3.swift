@@ -26,6 +26,7 @@ class ResultPage3: ResultPage {
         socialData.getRecord()
         setupItems()
         setupCustomerButton()
+        addNewRecordLabel()
         setupMedal()
         
         if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
@@ -49,6 +50,7 @@ class ResultPage3: ResultPage {
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
         let medalDic = medalClass().assignMedal(UtilitiesPortal.levelThree)
         let medalName = medalDic.medalName
+        newRecordBox.hidden = !medalDic.newRecord
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
         let medalNode = SKSpriteNode(imageNamed: medalName)

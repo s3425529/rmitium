@@ -29,7 +29,6 @@ class ResultPage2: ResultPage {
     var stateInfo = false
     var modeName:String!
     override func didMoveToView(view: SKView) {
-        
         Dic = medalClass()
         switch String(self.userData!.valueForKey("gameMode")!) {
         case UtilitiesPortal.modeLabelTexts[0]:
@@ -42,7 +41,7 @@ class ResultPage2: ResultPage {
         case UtilitiesPortal.modeLabelTexts[1]:
             //DataHandler.saveLevelTwoTrialScore()
             print("Game mode: Time Trial!")
-             medalDic = Dic.level2("trial")
+            medalDic = Dic.level2("trial")
             modeName = "trial"
             //infoTable("trial")
             break
@@ -69,9 +68,11 @@ class ResultPage2: ResultPage {
         socialData = SocialClass()
         socialData.initClass()
         socialData.getRecord()
+        addNewRecordLabel()
         setupItems()
         setupMedal()
         setupCustomerButton()
+        newRecordBox.hidden = !medalDic.newRecord
         
         switch String(self.userData!.valueForKey("gameMode")!) {
         case UtilitiesPortal.modeLabelTexts[0]:

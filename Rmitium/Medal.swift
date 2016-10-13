@@ -84,7 +84,7 @@ class medalClass {
                 words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
             }
         }
-        if scorePercent > score {
+        if scorePercent > score && firstTime < 0 {
             newRecord = true
         }
         else {
@@ -94,7 +94,7 @@ class medalClass {
     }
    
     func level2(mode:String) -> (medalName:String , information:[String], newRecord: Bool) {
-        var score = 0
+        var score = 0 // Current Record
         var message:String!
         var bestTime:String!
         let min = UtilitiesPortal.score/60
@@ -231,6 +231,13 @@ class medalClass {
                     //words.append("\(message) Your chemistry knowledge is obviously crystal clear.")
                 }
             }
+            //New record check goes here
+            if UtilitiesPortal.score < score && firstTime < 0{
+                newRecord = true
+            }
+            else {
+                newRecord = false
+            }
         }
         
         if mode == "trial" {
@@ -325,6 +332,13 @@ class medalClass {
                     //words.append("\(message) Your chemistry knowledge is obviously crystal clear.")
                 }
             }
+            //New record check goes here
+            if UtilitiesPortal.score > score && firstTime < 0 {
+                newRecord = true
+            }
+            else {
+                newRecord = false
+            }
         }
         
         if mode == "beat" {
@@ -416,6 +430,13 @@ class medalClass {
                     }
                     //words.append("\(message) Your chemistry knowledge is obviously crystal clear.")
                 }
+            }
+            //New record check goes here.
+            if UtilitiesPortal.score > score && firstTime < 0{
+                newRecord = true
+            }
+            else {
+                newRecord = false
             }
         }
         
