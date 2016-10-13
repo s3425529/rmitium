@@ -13,6 +13,7 @@ import Social
 class ResultPage: SKScene {
     var facebook, twitter, redo, next: CustomButton!
     var i = 0
+    var levelLabel: SKLabelNode!
     var homeDialogue: SKShapeNode!
     var homeView, newRecordBox :SKSpriteNode!
     var text,text1: SKMultilineLabel!
@@ -39,7 +40,6 @@ class ResultPage: SKScene {
         setupMedal()
         setupItems()
         setupCustomerButton()
-        createHomeDialogue()
         DataHandler.saveLevelOneScore()
     }
     
@@ -89,7 +89,7 @@ class ResultPage: SKScene {
     }
     
     func setupItems() {
-        let levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
+        levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = UtilitiesPortal.levelLabelTexts[0]
         levelLabel.fontSize = UtilitiesPortal.navLabelSize
@@ -211,7 +211,7 @@ class ResultPage: SKScene {
     
     func nextAction() {
         print("next")
-        goToLevel2()
+        backHomePage()
     }
     
     // Share the score to any social media!
@@ -272,62 +272,6 @@ class ResultPage: SKScene {
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
     
-    func createHomeDialogue() {
-        let yesBtn = SKSpriteNode()
-        let noBtn = SKSpriteNode()
-        let alertLine1 = SKLabelNode(text: "Are you sure")
-        let alertMessage = SKLabelNode(text: "you want to quit?")
-        
-        alertLine1.position = CGPoint(x: 0, y: 0 + alertLine1.fontSize * 0.75)
-        alertLine1.zPosition = 0.9
-        alertLine1.fontName = UtilitiesPortal.navLabelFont
-        alertLine1.fontSize = UtilitiesPortal.factSize
-        
-        alertMessage.position = CGPoint(x: 0, y: 0)
-        alertMessage.zPosition = 0.9
-        alertMessage.fontName = UtilitiesPortal.navLabelFont
-        alertMessage.fontSize = UtilitiesPortal.factSize
-        
-        homeView = SKSpriteNode()
-        homeView.color = SKColor.blackColor()
-        homeView.alpha = 0.8
-        homeView.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
-        homeView.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
-        homeView.zPosition = 0.8
-        homeView.hidden = true
-        
-        
-        homeDialogue = SKShapeNode()
-        homeDialogue.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/5, y: -UtilitiesPortal.screenHeight/5, width: UtilitiesPortal.screenWidth/2.5, height: UtilitiesPortal.screenHeight/2.5), cornerRadius: 5).CGPath
-        homeDialogue.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
-        homeDialogue.fillColor = SKColor.blackColor()
-        
-        homeDialogue.alpha = 0.9
-        homeDialogue.zPosition = 0.9
-        homeDialogue.hidden = true
-        
-        yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
-        yesBtn.color = SKColor.grayColor()
-        yesBtn.name = UtilitiesPortal.yesButtonName
-        yesBtn.texture = SKTexture(image: UIImage(named: "tick-white")!)
-        yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.2)
-        yesBtn.zPosition = 0.9
-        
-        noBtn.size = yesBtn.size
-        noBtn.color = yesBtn.color
-        noBtn.name = UtilitiesPortal.noButtonName
-        noBtn.texture = SKTexture(image: UIImage(named: "cross-white")!)
-        noBtn.position = CGPoint(x: yesBtn.size.width, y: (0 - yesBtn.size.height)*1.2)
-        noBtn.zPosition = 0.9
-        
-        homeDialogue.addChild(yesBtn)
-        homeDialogue.addChild(noBtn)
-        homeDialogue.addChild(alertMessage)
-        homeDialogue.addChild(alertLine1)
-        addChild(homeDialogue)
-        addChild(homeView)
-    }
-    
     func addNewRecordLabel(){
         let newRecord = SKLabelNode()
         newRecordBox = SKSpriteNode()
@@ -365,18 +309,7 @@ class ResultPage: SKScene {
         }
         if node.name == UtilitiesPortal.homeButtonName {
             print("Home!")
-            homeView.hidden = false
-            homeDialogue.hidden = false
-        }
-        if node.name == UtilitiesPortal.yesButtonName {
             backHomePage()
-            return
-          
-        }
-        if node.name == UtilitiesPortal.noButtonName {
-            homeDialogue.hidden = true
-            homeView.hidden = true
-            return
         }
         if node.name == UtilitiesPortal.infoButonName{
             infoTable()

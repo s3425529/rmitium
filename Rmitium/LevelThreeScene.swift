@@ -180,7 +180,7 @@ class LevelThreeScene: LevelScene {
         factLabel.position = CGPoint(x: 0, y: UtilitiesPortal.screenHeight/2 - factLabel.fontSize * 4)
         //addChild(factLabel)
         
-        factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth*0.90,
+        factOverlayText = SKMultilineLabel(text: fact, labelWidth: UtilitiesPortal.screenWidth*0.9,
                                            pos: CGPoint(x: 0, y: UtilitiesPortal.screenHeight/8),fontName: UtilitiesPortal.navLabelFont,
                                            fontSize: UtilitiesPortal.navLabelSize,
                                            leading: Int(UtilitiesPortal.navLabelSize))
@@ -193,9 +193,6 @@ class LevelThreeScene: LevelScene {
         factOverlay.name = UtilitiesPortal.factOverlayName
         factOverlay.size = CGSize(width: UtilitiesPortal.screenWidth, height: UtilitiesPortal.screenHeight)
         factOverlay.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
-        factOverlay.color = SKColor.blackColor()
-        factOverlay.alpha = 0.7
-        factOverlay.zPosition = 0.9
         factOverlay.hidden = true
         
         factView = SKSpriteNode()
@@ -211,7 +208,6 @@ class LevelThreeScene: LevelScene {
         addChild(factOverlay)
         addChild(factView)
     }
-    
     // Info layout
     override func setupInfoResult() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
