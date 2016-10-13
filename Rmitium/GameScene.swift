@@ -52,7 +52,7 @@ class GameScene: SKScene {
         let info = SKSpriteNode(imageNamed: "help3")
         info.name = UtilitiesPortal.infoButonName
         info.zPosition = 0.1
-        info.alpha = 0.9
+        info.alpha = 1
         info.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         info.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize/2,
             y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
