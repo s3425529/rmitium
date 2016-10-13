@@ -30,8 +30,8 @@ class DataHandler {
             entity.setValue(UtilitiesPortal.firstTime, forKey: "levelThree")
             entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoTrial")
             entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoBeat")
-            entity.setValue(0, forKey: "levelOneScore")
-            entity.setValue(0, forKey: "levelThreeScore")
+            entity.setValue(UtilitiesPortal.defaultScore, forKey: "levelOneScore")
+            entity.setValue(UtilitiesPortal.defaultScore, forKey: "levelThreeScore")
             do {
                 try settings.save()
                 //localSetting = entity
@@ -55,8 +55,8 @@ class DataHandler {
             object.setValue(UtilitiesPortal.firstTime, forKey: "levelThree")
             object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoTrial")
             object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoBeat")
-            object.setValue(0, forKey: "levelOneScore")
-            object.setValue(0, forKey: "levelThreeScore")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelOneScore")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThreeScore")
             try settings.save()
             //localSetting = object
         }
@@ -76,8 +76,8 @@ class DataHandler {
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThree")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwoTrial")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwoBeat")
-            object.setValue(0, forKey: "levelOneScore")
-            object.setValue(0, forKey: "levelThreeScore")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelOneScore")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThreeScore")
             try settings.save()
             
             
