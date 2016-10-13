@@ -25,13 +25,13 @@ class DataHandler {
             entity.setValue(true, forKey: "sound")
             entity.setValue(true, forKey: "rightHand")
             entity.setValue(true, forKey: "effect")
-            entity.setValue(-2, forKey: "levelOne")
-            entity.setValue(-1, forKey: "levelTwo")
-            entity.setValue(-2, forKey: "levelThree")
-            entity.setValue(-1, forKey: "levelTwoTrial")
-            entity.setValue(-1, forKey: "levelTwoBeat")
-            entity.setValue(0, forKey: "levelOneScore")
-            entity.setValue(0, forKey: "levelThreeScore")
+            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelOne")
+            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwo")
+            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelThree")
+            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoTrial")
+            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoBeat")
+            entity.setValue(UtilitiesPortal.defaultScore, forKey: "levelOneScore")
+            entity.setValue(UtilitiesPortal.defaultScore, forKey: "levelThreeScore")
             do {
                 try settings.save()
                 //localSetting = entity
@@ -50,13 +50,13 @@ class DataHandler {
             object.setValue(true, forKey: "sound")
             object.setValue(true, forKey: "rightHand")
             object.setValue(true, forKey: "effect")
-            object.setValue(-2, forKey: "levelOne")
-            object.setValue(-1, forKey: "levelTwo")
-            object.setValue(-2, forKey: "levelThree")
-            object.setValue(-1, forKey: "levelTwoTrial")
-            object.setValue(-1, forKey: "levelTwoBeat")
-            object.setValue(0, forKey: "levelOneScore")
-            object.setValue(0, forKey: "levelThreeScore")
+            object.setValue(UtilitiesPortal.firstTime, forKey: "levelOne")
+            object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwo")
+            object.setValue(UtilitiesPortal.firstTime, forKey: "levelThree")
+            object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoTrial")
+            object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoBeat")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelOneScore")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThreeScore")
             try settings.save()
             //localSetting = object
         }
@@ -71,39 +71,13 @@ class DataHandler {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
             print("Scores: \(object.levelOne), \(object.levelTwo), \(object.levelThree)")
-            object.setValue(0, forKey: "levelOne")
-            object.setValue(-1, forKey: "levelTwo")
-            object.setValue(0, forKey: "levelThree")
-            object.setValue(-1, forKey: "levelTwoTrial")
-            object.setValue(-1, forKey: "levelTwoBeat")
-            object.setValue(0, forKey: "levelOneScore")
-            object.setValue(0, forKey: "levelThreeScore")
-            try settings.save()
-            
-            
-            let result1 = try settings.executeFetchRequest(setting) as! [Settings]
-            let object1 = result1.first!
-            print("Reset to: \(object1.levelOne), \(object1.levelTwo), \(object1.levelThree)")
-            //localSetting = result1.first!
-        }
-        catch {
-            fatalError("Failure reading from coredata: \(error)")
-        }
-    }
-    
-    static func resetToDefault() {
-        let setting = NSFetchRequest(entityName: "Settings")
-        do {
-            let result = try settings.executeFetchRequest(setting) as! [Settings]
-            let object = result.first!
-            print("Scores: \(object.levelOne), \(object.levelTwo), \(object.levelThree)")
-            object.setValue(-2, forKey: "levelOne")
-            object.setValue(-2, forKey: "levelTwo")
-            object.setValue(-2, forKey: "levelThree")
-            object.setValue(-2, forKey: "levelTwoTrial")
-            object.setValue(-2, forKey: "levelTwoBeat")
-            object.setValue(0, forKey: "levelOneScore")
-            object.setValue(0, forKey: "levelThreeScore")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelOne")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwo")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThree")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwoTrial")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwoBeat")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelOneScore")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThreeScore")
             try settings.save()
             
             
@@ -479,7 +453,7 @@ class DataHandler {
             else {
                 if mode == UtilitiesPortal.modeStandard {
                     score = Double((result.first?.levelTwo)!)
-                    if score < 20  && score > 0 {
+                    if score < 20  && score >= 0 {
                         return "Medal1-Diamond"
                     }
                     else if score < 30 && score >= 20 {
@@ -513,7 +487,7 @@ class DataHandler {
                     if score >= 60 && score < 90 {
                         return "Medal4-Bronze"
                     }
-                    if score < 60 && score > 0 {
+                    if score < 60 && score >= 0 {
                         return "Medal5-Rust"
                     }
                     else {
@@ -534,7 +508,7 @@ class DataHandler {
                     if score >= 60 && score < 90 {
                         return "Medal4-Bronze"
                     }
-                    if score < 60 && score > 0 {
+                    if score < 60 && score >= 0 {
                         return "Medal5-Rust"
                     }
                     else {
@@ -555,7 +529,7 @@ class DataHandler {
             else if score >= 0.5 && score < 0.7 {
                 return "Medal4-Bronze"
             }
-            else if score < 0.5 && score > 0 {
+            else if score < 0.5 && score >= 0 {
                 return "Medal5-Rust"
             }
             else {

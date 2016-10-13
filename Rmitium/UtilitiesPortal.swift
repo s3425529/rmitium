@@ -26,9 +26,9 @@ class UtilitiesPortal {
     static let modeTrial = 1
     static let modeBeat = 2
     
-    static let firstTime = -2
-    static let firstResult = -1
-    static let defaultScore = 0
+    static let firstTime = -3
+    static let firstResult = -2
+    static let defaultScore = -1
     static let levelOne = 1
     static let levelTwo = 2
     static let levelThree = 3

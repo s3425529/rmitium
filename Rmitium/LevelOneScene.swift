@@ -143,8 +143,8 @@ class LevelOneScene: LevelScene {
         for count in 0...positions.count-1 {
             let sprite = CustomSKSpriteNode()
             sprite.color = UIColor.whiteColor()
-            sprite.alpha = 0.9
-            sprite.texture = SKTexture(imageNamed: "\(count+1)")
+            sprite.alpha = 0
+            //sprite.texture = SKTexture(imageNamed: "\(count+1)")
             sprite.name = "question\(count)"
             
            
