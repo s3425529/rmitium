@@ -16,6 +16,7 @@ class LevelThreeScene: LevelScene {
     var resultImage: SKSpriteNode!
     var lvlThreeQuestion: LevelThreeQuestion!
     var listOfQuestions:[LevelThreeQuestion] = []
+    var isFirstTouch: Bool!
     
     override func didMoveToView(view: SKView) {
         //initRecord()
@@ -24,6 +25,7 @@ class LevelThreeScene: LevelScene {
     }
     
     override func setupScene() {
+        isFirstTouch = false
         super.setupScene()
         
         if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstTime {
@@ -490,141 +492,145 @@ class LevelThreeScene: LevelScene {
         else {
             tick.texture = SKTexture(image: UIImage(named: "submit-grey")!)
         }
+        isFirstTouch = false
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let touch = touches.first
-        let point = touch!.previousLocationInNode(self)
-        if super.touchesBeganSuper(touches, withEvent: event) {
-            return
-        }
-        
-        if state == UtilitiesPortal.stateAnswer {
-            // Labels selected
-            for x in 0...answers.count-1 {
-                if CGRectContainsPoint(answers[x].frame, point) {
-                    // Play sound only when drag labels
-                    if DataHandler.getSettings().getEffect {
-                        audioPlayer.play()
+        if !isFirstTouch {
+            let touch = touches.first
+            let point = touch!.previousLocationInNode(self)
+            if super.touchesBeganSuper(touches, withEvent: event) {
+                return
+            }
+            
+            if state == UtilitiesPortal.stateAnswer {
+                // Labels selected
+                for x in 0...answers.count-1 {
+                    if CGRectContainsPoint(answers[x].frame, point) {
+                        // Play sound only when drag labels
+                        if DataHandler.getSettings().getEffect {
+                            audioPlayer.play()
+                        }
+                        
+                        chosenAnswer = CustomSKSpriteNode(imageNamed: answers[x].name!)
+                        chosenAnswer.value = answers[x].name!
+                        chosenAnswer.zPosition = 0.4
+                        chosenAnswer.alpha = 0.9
+                        chosenAnswer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
+                                                   height: UtilitiesPortal.screenHeight*0.1)
+                        chosenAnswer.zPosition = 1
+                        chosenAnswer.position = answers[x].position
+                        addChild(chosenAnswer)
+                        isFirstTouch = true
+                        return
                     }
-                    
-                    chosenAnswer = CustomSKSpriteNode(imageNamed: answers[x].name!)
-                    chosenAnswer.value = answers[x].name!
-                    chosenAnswer.zPosition = 0.4
-                    chosenAnswer.alpha = 0.9
-                    chosenAnswer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
-                                               height: UtilitiesPortal.screenHeight*0.1)
-                    chosenAnswer.zPosition = 1
-                    chosenAnswer.position = answers[x].position
-                    addChild(chosenAnswer)
-                    return
+                }
+                
+                // Targets node selected
+                for x in 0...questions.count-1 {
+                    if CGRectContainsPoint(questions[x].frame, point) {
+                        if answeredQuestions[x].hidden {
+                            return
+                        }
+                        answeredQuestions[x].hidden = true
+                        
+                        chosenAnswer = CustomSKSpriteNode(imageNamed: answeredQuestions[x].value)
+                        chosenAnswer.value = answeredQuestions[x].value
+                        chosenAnswer.zPosition = 0.4
+                        chosenAnswer.alpha = 0.9
+                        chosenAnswer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
+                                                   height: UtilitiesPortal.screenHeight*0.1)
+                        chosenAnswer.zPosition = 1
+                        chosenAnswer.position = questions[x].position
+                        addChild(chosenAnswer)
+                        
+                        answeredQuestions[x].value = UtilitiesPortal.emptyString
+                        return
+                    }
                 }
             }
             
-            // Targets node selected
-            for x in 0...questions.count-1 {
-                if CGRectContainsPoint(questions[x].frame, point) {
-                    if answeredQuestions[x].hidden {
-                        return
+            let location = touch!.locationInNode(self)
+            let node = self.nodeAtPoint(location)
+            
+            // Tick button selected
+            if node.name == UtilitiesPortal.tickButtonName {
+                if state == UtilitiesPortal.stateAnswer && checkResult() {
+                    displayResult()
+                    if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstResult {
+                        infoOverlayResult.hidden = false
+                        previousState = UtilitiesPortal.stateResult
+                        state = UtilitiesPortal.stateInfoResult
+                        DataHandler.saveLevelThreeFirstResult()
                     }
-                    answeredQuestions[x].hidden = true
-                    
-                    chosenAnswer = CustomSKSpriteNode(imageNamed: answeredQuestions[x].value)
-                    chosenAnswer.value = answeredQuestions[x].value
-                    chosenAnswer.zPosition = 0.4
-                    chosenAnswer.alpha = 0.9
-                    chosenAnswer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
-                                               height: UtilitiesPortal.screenHeight*0.1)
-                    chosenAnswer.zPosition = 1
-                    chosenAnswer.position = questions[x].position
-                    addChild(chosenAnswer)
-                    
-                    answeredQuestions[x].value = UtilitiesPortal.emptyString
                     return
                 }
-            }
-        }
-        
-        let location = touch!.locationInNode(self)
-        let node = self.nodeAtPoint(location)
-        
-        // Tick button selected
-        if node.name == UtilitiesPortal.tickButtonName {
-            if state == UtilitiesPortal.stateAnswer && checkResult() {
-                displayResult()
-                if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstResult {
-                    infoOverlayResult.hidden = false
-                    previousState = UtilitiesPortal.stateResult
-                    state = UtilitiesPortal.stateInfoResult
-                    DataHandler.saveLevelThreeFirstResult()
+                
+                if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
+                    previousState = state
+                    state = UtilitiesPortal.stateFact
+                    factOverlay.hidden = false
+                    factView.hidden = false
                 }
                 return
             }
-             
-            if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
-                previousState = state
-                state = UtilitiesPortal.stateFact
-                factOverlay.hidden = false
-                factView.hidden = false
+            
+            if state == UtilitiesPortal.stateFact {
+                setupScene()
+                return
             }
-            return
-        }
-        
-        if state == UtilitiesPortal.stateFact {
-            setupScene()
-            return
-        }
-        
-        // Show button selected
-        if node.name == UtilitiesPortal.showButtonName {
-            if state == UtilitiesPortal.stateResult {
-                displayAnswers(true)
-                resultImage = SKSpriteNode(imageNamed: lvlThreeQuestion.imageSol)
-                resultImage.zPosition = 0.5
-                resultImage.alpha = 1
-                let current = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
-                                      y:UtilitiesPortal.screenHeight/2 )
-                resultImage.position = PositionHandler.convertTargetPointLevelThree(current)
-                let currentSize = resultImage.size
-                let x = UtilitiesPortal.imageWidth/currentSize.width
-                let y = UtilitiesPortal.imageHeight/currentSize.height
-                if x < y {
-                    resultImage.setScale(x)
+            
+            // Show button selected
+            if node.name == UtilitiesPortal.showButtonName {
+                if state == UtilitiesPortal.stateResult {
+                    displayAnswers(true)
+                    resultImage = SKSpriteNode(imageNamed: lvlThreeQuestion.imageSol)
+                    resultImage.zPosition = 0.5
+                    resultImage.alpha = 1
+                    let current = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
+                                          y:UtilitiesPortal.screenHeight/2 )
+                    resultImage.position = PositionHandler.convertTargetPointLevelThree(current)
+                    let currentSize = resultImage.size
+                    let x = UtilitiesPortal.imageWidth/currentSize.width
+                    let y = UtilitiesPortal.imageHeight/currentSize.height
+                    if x < y {
+                        resultImage.setScale(x)
+                    }
+                    else {
+                        resultImage.setScale(y)
+                    }
+                    //resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
+                    addChild(resultImage)
+                    state = UtilitiesPortal.stateReview
+                    return
+                }
+                    
+                else if state == UtilitiesPortal.stateReview {
+                    displayAnswers(false)
+                    resultImage.removeFromParent()
+                    self.resultImage = nil
+                    state = UtilitiesPortal.stateResult
+                    return
+                }
+                return
+            }
+            
+            // Info selected
+            if node.name == UtilitiesPortal.infoButonName {
+                if state == UtilitiesPortal.stateAnswer {
+                    setupInfo()
+                    previousState = state
+                    state = UtilitiesPortal.stateInfo
+                    infoOverlay.hidden = false
+                    return
                 }
                 else {
-                    resultImage.setScale(y)
+                    setupInfoResult()
+                    previousState = state
+                    state = UtilitiesPortal.stateInfoResult
+                    infoOverlayResult.hidden = false
+                    return
                 }
-                //resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
-                addChild(resultImage)
-                state = UtilitiesPortal.stateReview
-                return
-            }
-                
-            else if state == UtilitiesPortal.stateReview {
-                displayAnswers(false)
-                resultImage.removeFromParent()
-                self.resultImage = nil
-                state = UtilitiesPortal.stateResult
-                return
-            }
-            return
-        }
-        
-        // Info selected
-        if node.name == UtilitiesPortal.infoButonName {
-            if state == UtilitiesPortal.stateAnswer {
-                setupInfo()
-                previousState = state
-                state = UtilitiesPortal.stateInfo
-                infoOverlay.hidden = false
-                return
-            }
-            else {
-                setupInfoResult()
-                previousState = state
-                state = UtilitiesPortal.stateInfoResult
-                infoOverlayResult.hidden = false
-                return
             }
         }
     }
