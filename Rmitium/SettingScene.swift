@@ -16,6 +16,7 @@ class SettingScene: SKScene {
     var state: Int?
     weak var model: Settings!
     var audioPlayer = AVAudioPlayer()
+    //var resetButton: SKSpriteNode
     
     override func didMoveToView(view: SKView) {
         settings.removeAll()
@@ -91,12 +92,14 @@ class SettingScene: SKScene {
                                                UtilitiesPortal.screenHeight*(0.70-CGFloat(count)*0.15))
             levelButton.size = CGSize(width: 305/3,height: 143/3)
             if count == 3 {
+                levelButton.name = UtilitiesPortal.settingLabelButtons[count]
                 levelButton.texture = SKTexture(image: UIImage(named: "alertbox")!)
                 levelButton.position = CGPoint(x: levelLabel.frame.midX, y: levelLabel.frame.midY)
                 levelButton.size = CGSize(width: UtilitiesPortal.screenWidth/2, height: levelLabel.frame.size.height*2.5)
             }
             self.addChild(levelButton)
             settings.append(levelButton)
+            print("settings: \(settings.count)")
         }
     }
     
