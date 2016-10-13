@@ -129,6 +129,7 @@ class SettingScene: SKScene {
                 node.name == UtilitiesPortal.settingLabelButtons[count]) {
                 if count == UtilitiesPortal.settingLabelNames.count-1 {
                     DataHandler.resetScores()
+                    settings[count].texture = SKTexture(image: UIImage(named: "alertbox2")!)
                     return
                 }
                 else if count == UtilitiesPortal.settingLabelNames.count-2 {
@@ -157,6 +158,10 @@ class SettingScene: SKScene {
                 }
             }
         }
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        settings[3].texture = SKTexture(image: UIImage(named: "alertbox")!)
     }
     
     override func update(currentTime: CFTimeInterval) {
