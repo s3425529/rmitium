@@ -14,7 +14,7 @@ class ResultPage: SKScene {
     var facebook, twitter, redo, next: CustomButton!
     var i = 0
     var homeDialogue: SKShapeNode!
-    var homeView :SKSpriteNode!
+    var homeView, newRecordBox :SKSpriteNode!
     var text,text1: SKMultilineLabel!
     var socialData:SocialClass!
     var audioPlayer = AVAudioPlayer()
@@ -35,6 +35,7 @@ class ResultPage: SKScene {
         socialData = SocialClass()
         socialData.initClass()
         socialData.getRecord()
+        addNewRecordLabel()
         setupMedal()
         setupItems()
         setupCustomerButton()
@@ -49,6 +50,7 @@ class ResultPage: SKScene {
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
         let medalNode = SKSpriteNode(imageNamed: medalName)
+        newRecordBox.hidden = !medalDic.newRecord
         medalNode.color = SKColor.blueColor()
         medalNode.name = "medal"
         medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
@@ -273,7 +275,13 @@ class ResultPage: SKScene {
     func createHomeDialogue() {
         let yesBtn = SKSpriteNode()
         let noBtn = SKSpriteNode()
-        let alertMessage = SKLabelNode(text: "You sure you wanna quit?")
+        let alertLine1 = SKLabelNode(text: "Are you sure")
+        let alertMessage = SKLabelNode(text: "you want to quit?")
+        
+        alertLine1.position = CGPoint(x: 0, y: 0 + alertLine1.fontSize * 0.75)
+        alertLine1.zPosition = 0.9
+        alertLine1.fontName = UtilitiesPortal.navLabelFont
+        alertLine1.fontSize = UtilitiesPortal.factSize
         
         alertMessage.position = CGPoint(x: 0, y: 0)
         alertMessage.zPosition = 0.9
@@ -315,8 +323,28 @@ class ResultPage: SKScene {
         homeDialogue.addChild(yesBtn)
         homeDialogue.addChild(noBtn)
         homeDialogue.addChild(alertMessage)
+        homeDialogue.addChild(alertLine1)
         addChild(homeDialogue)
         addChild(homeView)
+    }
+    
+    func addNewRecordLabel(){
+        let newRecord = SKLabelNode()
+        newRecordBox = SKSpriteNode()
+        newRecordBox.size = CGSize(width: UtilitiesPortal.screenWidth/3, height: newRecord.fontSize*1.5)
+        newRecordBox.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 3)
+        newRecordBox.zPosition = 0.2
+        newRecordBox.color = SKColor.redColor()
+        newRecordBox.alpha = 0.8
+        newRecordBox.hidden = true
+        newRecord.verticalAlignmentMode = .Center
+        newRecord.horizontalAlignmentMode = .Center
+        newRecord.text = "NEW RECORD!"
+        newRecord.fontSize = UtilitiesPortal.navLabelSize
+        newRecord.fontName = UtilitiesPortal.navLabelFont
+        newRecord.fontColor = SKColor.whiteColor()
+        newRecordBox.addChild(newRecord)
+        addChild(newRecordBox)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -379,12 +407,6 @@ class ResultPage: SKScene {
         controller.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func addNewRecordLabel(){
-        let newRecord = SKLabelNode()
-        newRecord.text = "NEW RECORD!"
-        
-    }
-
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
