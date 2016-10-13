@@ -70,6 +70,7 @@ class ResultPage2: ResultPage {
         socialData.initClass()
         socialData.getRecord()
         setupItems()
+        addNewRecordLabel()
         setupMedal()
         setupCustomerButton()
         

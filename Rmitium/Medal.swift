@@ -120,7 +120,7 @@ class medalClass {
     }
    
     func level2(mode:String) -> (medalName:String , information:[String], newRecord: Bool) {
-        var score = 0
+        var score = 0 // Current Record
         var message:String!
         var bestTime:String!
         let min = UtilitiesPortal.score/60
@@ -257,6 +257,10 @@ class medalClass {
                     //words.append("\(message) Your chemistry knowledge is obviously crystal clear.")
                 }
             }
+            //New record check goes here
+            if UtilitiesPortal.score < score {
+                
+            }
         }
         
         if mode == "trial" {
@@ -351,6 +355,7 @@ class medalClass {
                     //words.append("\(message) Your chemistry knowledge is obviously crystal clear.")
                 }
             }
+            //New record check goes here
         }
         
         if mode == "beat" {
@@ -443,6 +448,7 @@ class medalClass {
                     //words.append("\(message) Your chemistry knowledge is obviously crystal clear.")
                 }
             }
+            //New record check goes here.
         }
         
         return (medalName, words, newRecord)
