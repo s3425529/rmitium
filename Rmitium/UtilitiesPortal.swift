@@ -41,7 +41,7 @@ class UtilitiesPortal {
     static let modeLabelNames = ["mode01", "mode02", "mode03"]
     static let modeButtonNames = ["mode01Btn", "mode02Btn", "mode03Btn"]
     static let modeMedalNames = ["mode01Medal", "mode02Medal", "mode03Medal"]
-    static let levelOneAnswers = ["acid", "amine", "amide", "alcohol", "aldehyde", "alkene", "ether", "ester", "phenol" ,"thioether"]
+    static let levelOneAnswers = ["acid", "alcohol", "aldehyde", "alkene", "amide", "amine", "ester", "ether", "phenol" ,"thioether"]
     static let levelTwoWidth = 10
     static let levelTwoHeight = 6
     static let levelTwoImageWidth: CGFloat = 0.09
