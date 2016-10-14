@@ -167,7 +167,7 @@ class ResultPage2: ResultPage {
                                 y: UtilitiesPortal.screenHeight * 0.4)
         redo.name = "redo"
         
-        next = CustomButton(defaultButtonImage: "nextbutton", activeButtonImage: "nextbutton1", buttonAction: nextAction, scale: 0.2)
+        next = CustomButton(defaultButtonImage: "finishbutton", activeButtonImage: "finishbutton1", buttonAction: nextAction, scale: 0.2)
         next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
                                 y: UtilitiesPortal.screenHeight * 0.2)
         next.name = "next"

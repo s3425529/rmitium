@@ -137,7 +137,7 @@ class ResultPage: SKScene {
         redo.name = "redo"
         //redo.setScale(scale1)
         
-        next = CustomButton(defaultButtonImage: "nextbutton", activeButtonImage: "nextbutton1", buttonAction: nextAction, scale: 0.2)
+        next = CustomButton(defaultButtonImage: "finishbutton", activeButtonImage: "finishbutton1", buttonAction: nextAction, scale: 0.2)
         next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
                                 y: UtilitiesPortal.screenHeight * 0.2)
         next.name = "next"
