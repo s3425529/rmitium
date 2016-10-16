@@ -37,7 +37,6 @@ class LevelTwoScene: LevelScene {
                 if DataHandler.getLevelTwoTrialScore() == UtilitiesPortal.firstTime {
                     timerStop = true
                 }
-                
                 trialTimer()
             break
             case UtilitiesPortal.modeLabelTexts[2]:
@@ -46,7 +45,6 @@ class LevelTwoScene: LevelScene {
                 if DataHandler.getLevelTwoBeatScore() == UtilitiesPortal.firstTime {
                     timerStop = true
                 }
-                
                 beatTimer()
 
             break
@@ -378,11 +376,10 @@ class LevelTwoScene: LevelScene {
         let point = touch!.previousLocationInNode(self)
         if super.touchesBeganSuper(touches, withEvent: event) {
             //the info table of medal will disappear after a click
-            if timerStop == true{
+            if timerStop == true {
                 timerClass.pause(false)
                 timerStop = false
             }
-
             return
         }
         
@@ -486,6 +483,7 @@ class LevelTwoScene: LevelScene {
         return false
     }
     
+    // Check if there is no more tiles to chose
     func checkResult() -> Bool {
         if answers.count > 0 {
             for x in 0...answers.count-1 {
@@ -531,65 +529,39 @@ class LevelTwoScene: LevelScene {
             timerClass.startTimer()
             timerClass.pause(true)
             
-        }else{
-            timerClass.startTimer()
-            
         }
-        
-       // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
+        else {
+            timerClass.startTimer()
+        }
         timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
     }
     
     @objc func getTime(timer:NSTimer) {
         timeNode.text = "Time:\(timerClass.timeLabel)"
-        /*
-        if timerClass.timeLabel >= LIMITTIME-4 && timerClass.timeLabel < LIMITTIME{
-            timeNode.fontColor = SKColor.redColor()
-            let zoom = SKAction.scaleTo(2, duration: 0.5)
-            let fade = SKAction.fadeAlphaTo(0.1, duration: 0.5)
-            let zoom1 = SKAction.scaleTo(1, duration: 0.1)
-            let fade1 = SKAction.fadeAlphaTo(1, duration: 0.1)
-            let action = SKAction.sequence([zoom,fade,fade1,zoom1])
-            timeNode.runAction(action)
-        }
-        */
         // if user completes the game, the timer will be stop and go to result page
         if checkResult() {
             UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
             toResultScene()
         }
-        /*
-        if timerClass.timeLabel >= LIMITTIME {
-            timeNode.text = "Time Out!"
-            
-            //block the game scene
-            state = UtilitiesPortal.stateResult
-            
-            timeOut()
-            //alertMessage()
-        }
-        */
     }
     
     //trial mode timer
-    func trialTimer(){
+    func trialTimer() {
         LIMITTIME = 15
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
         
         //if it is first time playing the game, to pause the timer
-        if timerStop == true{
+        if timerStop == true {
             timerClass.startTimer()
             timerClass.pause(true)
-            
-        }else{
-            timerClass.startTimer()
-            
         }
-        
-        // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
+        else {
+            timerClass.startTimer()
+        }
         timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime2(_:)), userInfo: nil, repeats: true)
     }
+    
     @objc func getTime2(timer:NSTimer) {
         if plus == true{
             if timerClass.remainSecond != 0{
@@ -601,29 +573,6 @@ class LevelTwoScene: LevelScene {
             plus = false
         }
         timeNode.text = "Time:\(timerClass.timeLabel)"
-        /*
-        if timerClass.timeLabel > 5{
-        
-            timeNode.removeAllActions()
-            timeNode.fontSize = UtilitiesPortal.factSize
-            timeNode.fontColor = SKColor.whiteColor()
-            let zoom1 = SKAction.scaleTo(1, duration: 0.1)
-            let fade1 = SKAction.fadeAlphaTo(1, duration: 0.1)
-            let action = SKAction.sequence([fade1,zoom1])
-            timeNode.runAction(action)
-            
-        }
-        
-         if timerClass.timeLabel >= 0 && timerClass.timeLabel <= 4{
-         timeNode.fontColor = SKColor.redColor()
-         let zoom = SKAction.scaleTo(2, duration: 0.5)
-         let fade = SKAction.fadeAlphaTo(0.1, duration: 0.5)
-         let zoom1 = SKAction.scaleTo(1, duration: 0.1)
-         let fade1 = SKAction.fadeAlphaTo(1, duration: 0.1)
-         let action = SKAction.sequence([zoom,fade,fade1,zoom1])
-         timeNode.runAction(action)
-         }
-         */
         
         // if user completes the game, the timer will be stop and go to result page
         if checkResult() {
@@ -650,34 +599,18 @@ class LevelTwoScene: LevelScene {
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
         
         //if it is first time playing the game, to pause the timer
-        if timerStop == true{
+        if timerStop == true {
             timerClass.startTimer()
             timerClass.pause(true)
-            
-        }else{
-            timerClass.startTimer()
-            
         }
-        
-        // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
+        else {
+            timerClass.startTimer()
+        }
         timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime3(_:)), userInfo: nil, repeats: true)
         
     }
     @objc func getTime3(timer:NSTimer) {
         timeNode.text = "Time:\(timerClass.timeLabel)"
-        
-        //timer effect
-        /*
-         if timerClass.timeLabel >= 1 && timerClass.timeLabel < 5{
-         timeNode.fontColor = SKColor.redColor()
-         let zoom = SKAction.scaleTo(2, duration: 0.5)
-         let fade = SKAction.fadeAlphaTo(0.1, duration: 0.5)
-         let zoom1 = SKAction.scaleTo(1, duration: 0.1)
-         let fade1 = SKAction.fadeAlphaTo(1, duration: 0.1)
-         let action = SKAction.sequence([zoom,fade,fade1,zoom1])
-         timeNode.runAction(action)
-         }
-        */
         
         // if user completes the game, the timer will be stop and go to result page
         if checkResult() {
@@ -695,9 +628,7 @@ class LevelTwoScene: LevelScene {
          timeOut()
          addTimeOutMessage()
         }
-
     }
-
     
     func alertMessage() {
         let controller = self.view?.window?.rootViewController as! GameViewController
