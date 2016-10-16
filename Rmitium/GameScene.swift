@@ -14,6 +14,7 @@ class GameScene: SKScene {
     var infoOverlay: SKSpriteNode!
     var state, previousState: Int!
     var audioPlayer = AVAudioPlayer()
+    var isFirstTouch = true
     
     override func didMoveToView(view: SKView) {
         //UtilitiesPortal.score = 0
@@ -139,15 +140,117 @@ class GameScene: SKScene {
         addChild(infoOverlay!)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if DataHandler.getSettings().getEffect {
-            audioPlayer.play()
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if isFirstTouch {
+            let location = touches.first!.locationInNode(self)
+            let node = self.nodeAtPoint(location)
+            
+            if (node.name == UtilitiesPortal.levelLabelNames[0]
+                            || node.name == UtilitiesPortal.levelButtonNames[0]) {
+                cleanScene()
+                LevelOneModel.reset()
+                
+                let secondScene = LevelOneScene(size: self.size)
+                secondScene.userData = NSMutableDictionary()
+                secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[0], forKey: "levelName")
+                //let secondScene = ResultPage(size: self.size)
+                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+                //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+                secondScene.scaleMode = SKSceneScaleMode.AspectFill
+                self.scene!.view?.presentScene(secondScene, transition: transition)
+                return
+            }
+            
+            if (node.name == UtilitiesPortal.levelLabelNames[1]
+                            || node.name == UtilitiesPortal.levelButtonNames[1]) {
+                showLevelTwoModes()
+                previousState = state
+                state = UtilitiesPortal.stateResult
+                return
+            }
+            
+            if (node.name == UtilitiesPortal.levelLabelNames[2]
+                || node.name == UtilitiesPortal.levelButtonNames[2]) {
+                cleanScene()
+                LevelThreeModel.reset()
+                let secondScene = LevelThreeScene(size: self.size)
+                secondScene.userData = NSMutableDictionary()
+                secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[2], forKey: "levelName")
+                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
+                secondScene.scaleMode = SKSceneScaleMode.AspectFill
+                self.scene!.view?.presentScene(secondScene, transition: transition)
+                return
+            }
+            // Level 2 - Standard
+            if (node.name == UtilitiesPortal.modeLabelNames[0]
+                            || node.name == UtilitiesPortal.modeButtonNames[0]
+                            || node.name == UtilitiesPortal.modeMedalNames[0]) {
+                cleanScene()
+                let secondScene = LevelTwoScene(size: self.size)
+                secondScene.userData = NSMutableDictionary()
+                secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[1], forKey: "levelName")
+                secondScene.userData!.setValue(UtilitiesPortal.modeLabelTexts[0], forKey: "gameMode")
+                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
+                secondScene.scaleMode = SKSceneScaleMode.AspectFill
+                self.scene!.view?.presentScene(secondScene, transition: transition)
+                return
+            }
+            // Level 2 - Time Trial
+            if (node.name == UtilitiesPortal.modeLabelNames[1]
+                            || node.name == UtilitiesPortal.modeButtonNames[1]
+                            || node.name == UtilitiesPortal.modeMedalNames[1]) {
+                cleanScene()
+                let secondScene = LevelTwoScene(size: self.size)
+                secondScene.userData = NSMutableDictionary()
+                secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[1], forKey: "levelName")
+                secondScene.userData!.setValue(UtilitiesPortal.modeLabelTexts[1], forKey: "gameMode")
+                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
+                secondScene.scaleMode = SKSceneScaleMode.AspectFill
+                self.scene!.view?.presentScene(secondScene, transition: transition)
+                return
+            }
+            
+            if (node.name == UtilitiesPortal.modeLabelNames[2]
+                            || node.name == UtilitiesPortal.modeButtonNames[2]
+                            || node.name == UtilitiesPortal.modeMedalNames[2]) {
+                cleanScene()
+                let secondScene = LevelTwoScene(size: self.size)
+                secondScene.userData = NSMutableDictionary()
+                secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[1], forKey: "levelName")
+                secondScene.userData!.setValue(UtilitiesPortal.modeLabelTexts[2], forKey: "gameMode")
+                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
+                secondScene.scaleMode = SKSceneScaleMode.AspectFill
+                self.scene!.view?.presentScene(secondScene, transition: transition)
+                return
+            }
+            
+            if state == UtilitiesPortal.stateResult {
+                if DataHandler.getSettings().getEffect {
+                    audioPlayer.play()
+                }
+                previousState = UtilitiesPortal.stateResult
+                state = UtilitiesPortal.stateAnswer
+                
+                childNodeWithName(UtilitiesPortal.levelLabelNames[1])?.hidden = false
+                childNodeWithName(UtilitiesPortal.levelButtonNames[1])?.hidden = false
+                
+                for x in 0..<UtilitiesPortal.modeLabelNames.count {
+                    childNodeWithName(UtilitiesPortal.modeLabelNames[x])?.hidden = true
+                    childNodeWithName(UtilitiesPortal.modeButtonNames[x])?.hidden = true
+                    childNodeWithName(UtilitiesPortal.modeMedalNames[x])?.hidden = true
+                }
+            }
         }
+        isFirstTouch = true
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         if state == UtilitiesPortal.stateInfo {
             infoOverlay!.hidden = true
             state = previousState
             previousState = UtilitiesPortal.stateInfo
+            isFirstTouch = false
             return
         }
         
@@ -156,117 +259,81 @@ class GameScene: SKScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
+            if DataHandler.getSettings().getEffect {
+                audioPlayer.play()
+            }
             DataHandler.resetSettings()
             previousState = state
             state = UtilitiesPortal.stateInfo
             infoOverlay!.hidden = false
+            isFirstTouch = false
             return
         }
         
         // Setting selected
         if node.name == UtilitiesPortal.settingButtonName {
+            if DataHandler.getSettings().getEffect {
+                audioPlayer.play()
+            }
             cleanScene()
             let secondScene = SettingScene(size: self.size)
             let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)
+            isFirstTouch = false
             return
         }
 
         if (node.name == UtilitiesPortal.levelLabelNames[0]
                                 || node.name == UtilitiesPortal.levelButtonNames[0]) {
-            cleanScene()
-            LevelOneModel.reset()
-            
-            let secondScene = LevelOneScene(size: self.size)
-            secondScene.userData = NSMutableDictionary()
-            secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[0], forKey: "levelName")
-            //let secondScene = ResultPage(size: self.size)
-            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
-            //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
-            secondScene.scaleMode = SKSceneScaleMode.AspectFill
-            self.scene!.view?.presentScene(secondScene, transition: transition)
-            return
+            if DataHandler.getSettings().getEffect {
+                audioPlayer.play()
+            }
         }
         
         if (node.name == UtilitiesPortal.levelLabelNames[1]
                                 || node.name == UtilitiesPortal.levelButtonNames[1]) {
-            showLevelTwoModes()
-            previousState = state
-            state = UtilitiesPortal.stateResult
-            return
+            if DataHandler.getSettings().getEffect {
+                audioPlayer.play()
+            }
         }
         
         if (node.name == UtilitiesPortal.levelLabelNames[2]
                                 || node.name == UtilitiesPortal.levelButtonNames[2]) {
-            cleanScene()
-            LevelThreeModel.reset()
-            let secondScene = LevelThreeScene(size: self.size)
-            secondScene.userData = NSMutableDictionary()
-            secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[2], forKey: "levelName")
-            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
-            secondScene.scaleMode = SKSceneScaleMode.AspectFill
-            self.scene!.view?.presentScene(secondScene, transition: transition)
-            return
+            if DataHandler.getSettings().getEffect {
+                audioPlayer.play()
+            }
         }
         // Level 2 - Standard
         if (node.name == UtilitiesPortal.modeLabelNames[0]
                                 || node.name == UtilitiesPortal.modeButtonNames[0]
                                 || node.name == UtilitiesPortal.modeMedalNames[0]) {
-            cleanScene()
-            let secondScene = LevelTwoScene(size: self.size)
-            //let secondScene = ResultPage2(size: self.size)
-            secondScene.userData = NSMutableDictionary()
-            secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[1], forKey: "levelName")
-            secondScene.userData!.setValue(UtilitiesPortal.modeLabelTexts[0], forKey: "gameMode")
-            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
-            secondScene.scaleMode = SKSceneScaleMode.AspectFill
-            self.scene!.view?.presentScene(secondScene, transition: transition)
-            return
+            if DataHandler.getSettings().getEffect {
+                audioPlayer.play()
+            }
         }
+        
         // Level 2 - Time Trial
         if (node.name == UtilitiesPortal.modeLabelNames[1]
                                 || node.name == UtilitiesPortal.modeButtonNames[1]
                                 || node.name == UtilitiesPortal.modeMedalNames[1]) {
-            cleanScene()
-            let secondScene = LevelTwoScene(size: self.size)
-            //let secondScene = ResultPage2(size: self.size)
-            secondScene.userData = NSMutableDictionary()
-            secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[1], forKey: "levelName")
-            secondScene.userData!.setValue(UtilitiesPortal.modeLabelTexts[1], forKey: "gameMode")
-            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
-            secondScene.scaleMode = SKSceneScaleMode.AspectFill
-            self.scene!.view?.presentScene(secondScene, transition: transition)
-            return
+            if DataHandler.getSettings().getEffect {
+                audioPlayer.play()
+            }
         }
         
         if (node.name == UtilitiesPortal.modeLabelNames[2]
                                 || node.name == UtilitiesPortal.modeButtonNames[2]
                                 || node.name == UtilitiesPortal.modeMedalNames[2]) {
-            cleanScene()
-            let secondScene = LevelTwoScene(size: self.size)
-            //let secondScene = ResultPage2(size: self.size)
-            secondScene.userData = NSMutableDictionary()
-            secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[1], forKey: "levelName")
-            secondScene.userData!.setValue(UtilitiesPortal.modeLabelTexts[2], forKey: "gameMode")
-            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
-            secondScene.scaleMode = SKSceneScaleMode.AspectFill
-            self.scene!.view?.presentScene(secondScene, transition: transition)
-            return
+            if DataHandler.getSettings().getEffect {
+                audioPlayer.play()
+            }
         }
         
         if state == UtilitiesPortal.stateResult {
-            previousState = UtilitiesPortal.stateResult
-            state = UtilitiesPortal.stateAnswer
-            
-            childNodeWithName(UtilitiesPortal.levelLabelNames[1])?.hidden = false
-            childNodeWithName(UtilitiesPortal.levelButtonNames[1])?.hidden = false
-            
-            for x in 0..<UtilitiesPortal.modeLabelNames.count {
-                childNodeWithName(UtilitiesPortal.modeLabelNames[x])?.hidden = true
-                childNodeWithName(UtilitiesPortal.modeButtonNames[x])?.hidden = true
-                childNodeWithName(UtilitiesPortal.modeMedalNames[x])?.hidden = true
+            if DataHandler.getSettings().getEffect {
+                audioPlayer.play()
             }
         }
     }
