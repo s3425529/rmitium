@@ -56,13 +56,15 @@ class MedalInfo:SKNode{
     }
     
     func setupItem() {
+        
+        // add border
         myView.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/2 + UtilitiesPortal.screenWidth*0.1, y: -UtilitiesPortal.screenHeight/2 + UtilitiesPortal.screenHeight*0.1, width: UtilitiesPortal.screenWidth*0.8 , height: UtilitiesPortal.screenHeight*0.8), cornerRadius: 10).CGPath
         myView.fillColor = SKColor.blackColor()
         myView.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
         myView.zPosition = 0.9
         myView.alpha = 0.9
 
-
+        // add medal images and relevant information 
         for i in 0..<medalItem.count {
             let size = CGSize(width: myView.frame.height / 5, height: myView.frame.height / 5 )
             let imageNode = SKSpriteNode(imageNamed: medalItem[i].image)

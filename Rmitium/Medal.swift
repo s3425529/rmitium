@@ -12,12 +12,16 @@ class medalClass {
     var medalName: String!
     var words = [String]()
     var newRecord = Bool()
+    
+    //assign medal and messages for level1 and level3
     func assignMedal(level: Int) -> (medalName:String , information:[String], newRecord: Bool) {
         var score = 0.0
         percent = Double(UtilitiesPortal.score) / Double(UtilitiesPortal.totalQuestions)
         let scorePercent = round((percent) * 100) / 1
         //percent = 1
         var firstTime = -2
+        
+        //to check level1 or level3 whether the game is the first time
         if level == UtilitiesPortal.levelOne {
             firstTime = DataHandler.getLevelOneScore() as Int
         }
@@ -32,7 +36,7 @@ class medalClass {
            score = round(Double(DataHandler.getLevelThreePercentage()) * 100) / 1
         }
    
-        //let percentString = Int(percent*100)
+        // assign the reward medal that is based on different score
         if percent == 1 {
             medalName = "Medal1-Diamond"
             words = ["Congratulations!"]
@@ -93,6 +97,7 @@ class medalClass {
         return (medalName, words, newRecord)
     }
    
+    //assign medal image and messages for level2
     func level2(mode:String) -> (medalName:String , information:[String], newRecord: Bool) {
         var score = 0 // Current Record
         var message:String!
@@ -100,6 +105,8 @@ class medalClass {
         let min = UtilitiesPortal.score/60
         let sec = UtilitiesPortal.score%60
         var firstTime = -2
+        
+        // to check whether is the first time of this level2
         if mode == "stand" {
             score = DataHandler.getLevelTwoScore() as Int
             firstTime = DataHandler.getLevelTwoScore() as Int
@@ -117,6 +124,7 @@ class medalClass {
         let scoreSec = score%60
         let result = UtilitiesPortal.score
         
+        //format the output of time
         if min == 0 {
             message = "You took \(sec) seconds."
         }

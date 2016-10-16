@@ -13,7 +13,7 @@ class CustomButton: SKNode {
     var activeButton: SKSpriteNode
     var action: () -> Void
     
-    
+    //initial the button with two images and a function
     init(defaultButtonImage: String, activeButtonImage: String, buttonAction:() -> Void, scale:CGFloat) {
         self.defaultButton = SKSpriteNode(imageNamed: defaultButtonImage)
         self.defaultButton.size = CGSize(width: UtilitiesPortal.screenWidth*scale, height: UtilitiesPortal.screenWidth*scale/2.48)
@@ -42,7 +42,7 @@ class CustomButton: SKNode {
         activeButton.hidden = false
         defaultButton.hidden = true
     }
-    
+    //default image change to other image
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         //var touch: UITouch = touches.allObjects[0] as UITouch
         
@@ -58,7 +58,7 @@ class CustomButton: SKNode {
         }
         
     }
-    
+    //active the new image and hide the default image
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch: UITouch = touches.first! as UITouch
         let location: CGPoint = touch.locationInNode(self)

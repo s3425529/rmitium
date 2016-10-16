@@ -40,12 +40,13 @@ class ResultPage3: ResultPage {
         }
         DataHandler.saveLevelThreeScore()
     }
-    
+    //creat level name node
     override func setupItems() {
         super.setupItems()
         levelLabel.text = UtilitiesPortal.levelLabelTexts[2]
     }
     
+    // creat medal node
     override func setupMedal() {
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
         let medalDic = medalClass().assignMedal(UtilitiesPortal.levelThree)
