@@ -405,13 +405,16 @@ class LevelTwoScene: LevelScene {
         if node.name == UtilitiesPortal.timeOutRetryName {
             retryLvl()
         }
+        
+        // First tiles selected
         if state == UtilitiesPortal.stateAnswer {
-            // Labels selected
             for x in 0...answers.count-1 {
                 if CGRectContainsPoint(answers[x].frame, point) {
+                    // Change selected tiles texture
                     if answers[x].hidden == false {
                         chosenAnswer = x
-                        answers[x].texture = SKTexture(image: UIImage(named: "\(answers[chosenAnswer].value)-selected")!)
+                        //answers[x].texture = SKTexture(image: UIImage(named: "\(answers[chosenAnswer].value)-selected")!)
+                        answers[x].texture = SKTexture(imageNamed: "\(answers[chosenAnswer].value)-selected")
                         state = UtilitiesPortal.stateReview
                     }
                     return
@@ -419,26 +422,33 @@ class LevelTwoScene: LevelScene {
             }
             return
         }
+        // Second tile selected
         else if state == UtilitiesPortal.stateReview {
             for x in 0...answers.count-1 {
                 if CGRectContainsPoint(answers[x].frame, point) {
+                    // Second tiles is first tiles, change its back to normal
                     if x == chosenAnswer {
-                        answers[x].texture = SKTexture(image: UIImage(named: "\(answers[x].value)")!)
+                        //answers[x].texture = SKTexture(image: UIImage(named: "\(answers[x].value)")!)
+                        answers[x].texture = SKTexture(imageNamed: "\(answers[x].value)")
                     }
+                    
+                    // Second tile is not the first tile
                     else if answers[x].hidden == false {
                         if compareTiles(x, b: chosenAnswer) {
                             // Play sound when two tiles are matched only
                             if DataHandler.getSettings().getEffect {
                                 audioPlayer.play()
                             }
-                            
+                            // Hide all tiles
                             answers[chosenAnswer].hidden = true
                             answers[x].hidden = true
                             plus = true
                         }
+                            
+                        // Tiles not match, change the first one back to normal
                         else {
-                            answers[chosenAnswer].texture =
-                                SKTexture(image: UIImage(named: "\(answers[chosenAnswer].value)")!)
+                            answers[chosenAnswer].texture = SKTexture(imageNamed: "\(answers[chosenAnswer].value)")
+                            //answers[chosenAnswer].texture = SKTexture(image: UIImage(named: "\(answers[chosenAnswer].value)")!)
                         }
                     }
                     else {
