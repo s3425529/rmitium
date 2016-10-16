@@ -145,6 +145,7 @@ class GameScene: SKScene {
             let location = touches.first!.locationInNode(self)
             let node = self.nodeAtPoint(location)
             
+            // Level 1
             if (node.name == UtilitiesPortal.levelLabelNames[0]
                             || node.name == UtilitiesPortal.levelButtonNames[0]) {
                 cleanScene()
@@ -161,6 +162,7 @@ class GameScene: SKScene {
                 return
             }
             
+            // Level 2
             if (node.name == UtilitiesPortal.levelLabelNames[1]
                             || node.name == UtilitiesPortal.levelButtonNames[1]) {
                 showLevelTwoModes()
@@ -169,8 +171,9 @@ class GameScene: SKScene {
                 return
             }
             
+            // Level 3
             if (node.name == UtilitiesPortal.levelLabelNames[2]
-                || node.name == UtilitiesPortal.levelButtonNames[2]) {
+                            || node.name == UtilitiesPortal.levelButtonNames[2]) {
                 cleanScene()
                 LevelThreeModel.reset()
                 let secondScene = LevelThreeScene(size: self.size)
@@ -210,6 +213,7 @@ class GameScene: SKScene {
                 return
             }
             
+            // Level 2 - Extreme
             if (node.name == UtilitiesPortal.modeLabelNames[2]
                             || node.name == UtilitiesPortal.modeButtonNames[2]
                             || node.name == UtilitiesPortal.modeMedalNames[2]) {
@@ -224,10 +228,8 @@ class GameScene: SKScene {
                 return
             }
             
+            // Level 2 sub levels click out
             if state == UtilitiesPortal.stateResult {
-                if DataHandler.getSettings().getEffect {
-                    audioPlayer.play()
-                }
                 previousState = UtilitiesPortal.stateResult
                 state = UtilitiesPortal.stateAnswer
                 
@@ -245,7 +247,7 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        
+        // Info click out
         if state == UtilitiesPortal.stateInfo {
             infoOverlay!.hidden = true
             state = previousState
@@ -285,6 +287,7 @@ class GameScene: SKScene {
             return
         }
 
+        // Level 1 selected
         if (node.name == UtilitiesPortal.levelLabelNames[0]
                                 || node.name == UtilitiesPortal.levelButtonNames[0]) {
             if DataHandler.getSettings().getEffect {
@@ -292,6 +295,7 @@ class GameScene: SKScene {
             }
         }
         
+        // Level 2 selected
         if (node.name == UtilitiesPortal.levelLabelNames[1]
                                 || node.name == UtilitiesPortal.levelButtonNames[1]) {
             if DataHandler.getSettings().getEffect {
@@ -299,6 +303,7 @@ class GameScene: SKScene {
             }
         }
         
+        // Level 3 selected
         if (node.name == UtilitiesPortal.levelLabelNames[2]
                                 || node.name == UtilitiesPortal.levelButtonNames[2]) {
             if DataHandler.getSettings().getEffect {
@@ -323,6 +328,7 @@ class GameScene: SKScene {
             }
         }
         
+        // Level 2 - Extreme
         if (node.name == UtilitiesPortal.modeLabelNames[2]
                                 || node.name == UtilitiesPortal.modeButtonNames[2]
                                 || node.name == UtilitiesPortal.modeMedalNames[2]) {
@@ -331,11 +337,11 @@ class GameScene: SKScene {
             }
         }
         
-        if state == UtilitiesPortal.stateResult {
+        /*if state == UtilitiesPortal.stateResult {
             if DataHandler.getSettings().getEffect {
                 audioPlayer.play()
             }
-        }
+        }*/
     }
    
     override func update(currentTime: CFTimeInterval) {
@@ -348,6 +354,7 @@ class GameScene: SKScene {
         print("Remove all nodes Game Scene")
     }
     
+    // Set up level 2 modes
     func setupLevelTwoModes() {
         for count in 0 ... 2 {
             let levelButton = SKSpriteNode(imageNamed: "menubar3")
@@ -399,6 +406,7 @@ class GameScene: SKScene {
         }
     }
     
+    // Display level 2 sub modes
     func showLevelTwoModes() {
         childNodeWithName(UtilitiesPortal.levelLabelNames[1])?.hidden = true
         childNodeWithName(UtilitiesPortal.levelButtonNames[1])?.hidden = true
@@ -411,6 +419,7 @@ class GameScene: SKScene {
         previousState = UtilitiesPortal.stateAnswer
     }
 
+    // Clear scene
     func cleanScene() {
         if let s = self.view?.scene {
             NSNotificationCenter.defaultCenter().removeObserver(self)

@@ -46,6 +46,7 @@ class LevelTwoScene: LevelScene {
     override func setupScene() {
         super.setupScene()
         
+        // Save the first time enter each sub mode
         switch String(self.userData!.valueForKey("gameMode")!) {
         case UtilitiesPortal.modeLabelTexts[0]:
             if DataHandler.getLevelTwoScore() == UtilitiesPortal.firstTime {
@@ -111,6 +112,7 @@ class LevelTwoScene: LevelScene {
         self.addChild(timeNode)
     }
     
+    // Drag tiles
     override func setupDragLabel() {
         answers.removeAll()
         var list = LevelTwoQuestionList.getQuestionsList()
@@ -432,6 +434,7 @@ class LevelTwoScene: LevelScene {
         }
     }
     
+    // Compare tiles based on their names
     func compareTiles(a: Int, b: Int) -> Bool {
         print("Compare: \(answers[a].value) and \(answers[b].value)")
         let string: String = answers[a].value
