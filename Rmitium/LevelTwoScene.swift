@@ -18,24 +18,37 @@ class LevelTwoScene: LevelScene {
     var timerClass:TimeControl!
     var LIMITTIME :Int!
     var plus = false
-    
+    var timerStop = false
     override func didMoveToView(view: SKView) {
         //This is the template for implementing setting
         switch String(self.userData!.valueForKey("gameMode")!) {
             case UtilitiesPortal.modeLabelTexts[0]:
                 //code goes here
                 print("Game mode: \(UtilitiesPortal.modeLabelTexts[0])")
+                //if it is first time of play the game, to set timerStop with true
+                if DataHandler.getLevelTwoScore() == UtilitiesPortal.firstTime {
+                    timerStop = true
+                }
                 setupTimer()
             break
             case UtilitiesPortal.modeLabelTexts[1]:
                 //code goes here
                 print("Game mode: \(UtilitiesPortal.modeLabelTexts[1])")
+                if DataHandler.getLevelTwoTrialScore() == UtilitiesPortal.firstTime {
+                    timerStop = true
+                }
+                
                 trialTimer()
             break
             case UtilitiesPortal.modeLabelTexts[2]:
                 //code goes here
                 print("Game mode: \(UtilitiesPortal.modeLabelTexts[2])")
+                if DataHandler.getLevelTwoBeatScore() == UtilitiesPortal.firstTime {
+                    timerStop = true
+                }
+                
                 beatTimer()
+
             break
             default:
             break
@@ -364,6 +377,12 @@ class LevelTwoScene: LevelScene {
         let touch = touches.first
         let point = touch!.previousLocationInNode(self)
         if super.touchesBeganSuper(touches, withEvent: event) {
+            //the info table of medal will disappear after a click
+            if timerStop == true{
+                timerClass.pause(false)
+                timerStop = false
+            }
+
             return
         }
         
@@ -491,10 +510,21 @@ class LevelTwoScene: LevelScene {
     }
     
     //MARK------- Timer
+    
+    //stand mode timer
     func setupTimer() {
         LIMITTIME = 100000
         timerClass = TimeControl(limitTime: LIMITTIME, tag: true)
-        timerClass.startTimer()
+        
+        //if it is first time playing the game, to pause the timer
+        if timerStop == true{
+            timerClass.startTimer()
+            timerClass.pause(true)
+            
+        }else{
+            timerClass.startTimer()
+            
+        }
         
        // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
         timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
@@ -513,6 +543,7 @@ class LevelTwoScene: LevelScene {
             timeNode.runAction(action)
         }
         */
+        // if user completes the game, the timer will be stop and go to result page
         if checkResult() {
             UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
@@ -531,10 +562,20 @@ class LevelTwoScene: LevelScene {
         */
     }
     
+    //trial mode timer
     func trialTimer(){
         LIMITTIME = 15
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
-        timerClass.startTimer()
+        
+        //if it is first time playing the game, to pause the timer
+        if timerStop == true{
+            timerClass.startTimer()
+            timerClass.pause(true)
+            
+        }else{
+            timerClass.startTimer()
+            
+        }
         
         // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
         timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime2(_:)), userInfo: nil, repeats: true)
@@ -573,6 +614,8 @@ class LevelTwoScene: LevelScene {
          timeNode.runAction(action)
          }
          */
+        
+        // if user completes the game, the timer will be stop and go to result page
         if checkResult() {
             UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
@@ -591,10 +634,20 @@ class LevelTwoScene: LevelScene {
         
     }
 
+    //beat mode timer
     func beatTimer() {
         LIMITTIME = 300
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
-        timerClass.startTimer()
+        
+        //if it is first time playing the game, to pause the timer
+        if timerStop == true{
+            timerClass.startTimer()
+            timerClass.pause(true)
+            
+        }else{
+            timerClass.startTimer()
+            
+        }
         
         // timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime(_:)), userInfo: nil, repeats: true)
         timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(LevelTwoScene.getTime3(_:)), userInfo: nil, repeats: true)
@@ -602,6 +655,8 @@ class LevelTwoScene: LevelScene {
     }
     @objc func getTime3(timer:NSTimer) {
         timeNode.text = "Time:\(timerClass.timeLabel)"
+        
+        //timer effect
         /*
          if timerClass.timeLabel >= 1 && timerClass.timeLabel < 5{
          timeNode.fontColor = SKColor.redColor()
@@ -613,6 +668,8 @@ class LevelTwoScene: LevelScene {
          timeNode.runAction(action)
          }
         */
+        
+        // if user completes the game, the timer will be stop and go to result page
         if checkResult() {
             UtilitiesPortal.score = timerClass.timeLabel
             timeOut()
@@ -651,12 +708,14 @@ class LevelTwoScene: LevelScene {
         controller.presentViewController(alert, animated: true, completion: nil)
     }
     
+    //release the timer
     func timeOut() {
         timerClass.stopTimer()
         timeNsNode.invalidate()
         timeNsNode = nil
     }
     
+    //go the result page
     func toResultScene() {
         cleanScene()
         let secondScene = ResultPage2(size: self.size)
