@@ -679,27 +679,6 @@ class LevelOneScene: LevelScene {
         }
     }
     
-    func alertMessage() {
-    
-        let controller = self.view?.window?.rootViewController as! GameViewController
-        let alert = UIAlertController(title: "Time Out!", message: "Try Again or Back Home?", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Try again", style: .Destructive, handler: {action in
-            self.didMoveToView(self.view!)
-            
-        }))
-        alert.addAction(UIAlertAction(title: "Home", style: .Destructive, handler: {action in
-             self.backHomePage()
-        }))
-        controller.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func timeOut(){
-        timeNsNode.invalidate()
-        timeNsNode = nil
-        LevelOneModel.index = 0
-        alertMessage()
-    }
-    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }

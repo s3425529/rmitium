@@ -15,7 +15,7 @@ class ResultPage: SKScene {
     var i = 0
     var levelLabel: SKLabelNode!
     var homeDialogue: SKShapeNode!
-    var homeView, newRecordBox :SKSpriteNode!
+    var homeView, newRecordLabel :SKSpriteNode!
     var text,text1: SKMultilineLabel!
     var socialData:SocialClass!
     var audioPlayer = AVAudioPlayer()
@@ -52,16 +52,16 @@ class ResultPage: SKScene {
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
         
-        //creat medalNode
+        //create medalNode
         let medalNode = SKSpriteNode(imageNamed: medalName)
-        newRecordBox.hidden = !medalDic.newRecord
+        newRecordLabel.hidden = !medalDic.newRecord
         medalNode.color = SKColor.blueColor()
         medalNode.name = "medal"
         medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
         medalNode.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
         medalNode.zPosition = 0.1
         
-        //make medal image to raotate
+        //make medal image to rotate
         let action = SKAction.rotateToAngle(CGFloat(M_PI/2), duration: 5)
         let action1 = SKAction.rotateToAngle(CGFloat(-M_PI/2), duration: 5)
         let sequen = SKAction.sequence([action,action1])
@@ -70,7 +70,7 @@ class ResultPage: SKScene {
         medalNode.runAction(repeatAction)
         
         
-        // creat scoreNode to display the current score
+        // create scoreNode to display the current score
         let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         scoreNode.text = "\(UtilitiesPortal.score)"
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
@@ -78,7 +78,7 @@ class ResultPage: SKScene {
         scoreNode.fontSize = UtilitiesPortal.screenHeight*0.07
         addChild(scoreNode)
         
-        //creat title message
+        //create title message
         let p1 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 1.2)
         text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
         text.alignment = .Center
@@ -86,7 +86,7 @@ class ResultPage: SKScene {
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
         
-        //craat encourage message node
+        //create encourage message node
         let p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 0.50)
         text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
         text1.alignment = .Center
@@ -127,7 +127,7 @@ class ResultPage: SKScene {
     }
     
     
-    // creat facebook, twitter, redo, and next buttons
+    // create facebook, twitter, redo, and next buttons
     func setupCustomerButton() {
         facebook = CustomButton(defaultButtonImage: "facebookbutton", activeButtonImage: "facebookbutton1", buttonAction: facebookAction,scale: 0.2)
         facebook.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
@@ -295,22 +295,12 @@ class ResultPage: SKScene {
     
     // creat home  dialogue
     func addNewRecordLabel(){
-        let newRecord = SKLabelNode()
-        newRecordBox = SKSpriteNode(imageNamed: "new record")
-        newRecordBox.size = CGSize(width: UtilitiesPortal.screenWidth/3, height: newRecord.fontSize*1.5)
-        newRecordBox.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 3)
-        newRecordBox.zPosition = 0.2
-        //newRecordBox.color = SKColor.redColor()
-        newRecordBox.alpha = 0.8
-        newRecordBox.hidden = true
-        /*newRecord.verticalAlignmentMode = .Center
-        newRecord.horizontalAlignmentMode = .Center
-        newRecord.text = "NEW RECORD!"
-        newRecord.fontSize = UtilitiesPortal.navLabelSize
-        newRecord.fontName = UtilitiesPortal.navLabelFont
-        newRecord.fontColor = SKColor.whiteColor()
-        newRecordBox.addChild(newRecord)*/
-        addChild(newRecordBox)
+        newRecordLabel = SKSpriteNode(imageNamed: "new record")
+        newRecordLabel.size = CGSize(width: UtilitiesPortal.screenWidth/10, height: UtilitiesPortal.screenHeight/12)
+        newRecordLabel.position = CGPoint(x: UtilitiesPortal.screenWidth / 2, y: UtilitiesPortal.screenHeight * 0.75)
+        newRecordLabel.zPosition = 0.2
+        newRecordLabel.hidden = true
+        addChild(newRecordLabel)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -370,7 +360,7 @@ class ResultPage: SKScene {
         /* Called before each frame is rendered */
     }
     
-     // creat info table
+     // create info table
     func infoTable(){
         myView = SKShapeNode()
         let x = MedalInfo(myView: myView, modeName: "level")
