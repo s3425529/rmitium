@@ -104,6 +104,20 @@ class SettingScene: SKScene {
         }
     }
     
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let location = touches.first!.locationInNode(self)
+        let node = self.nodeAtPoint(location)
+        
+        // Reset score selected
+        let reset = UtilitiesPortal.settingLabelNames.count-1
+        if (node.name == UtilitiesPortal.settingLabelNames[reset] ||
+                        node.name == UtilitiesPortal.settingLabelButtons[reset]) {
+            DataHandler.resetScores()
+        }
+        // Change reset score image back to default
+        settings[3].texture = SKTexture(image: UIImage(named: "alertbox")!)
+    }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if values[1] {
             audioPlayer.play()
@@ -132,7 +146,7 @@ class SettingScene: SKScene {
                             node.name == UtilitiesPortal.settingLabelButtons[count]) {
                 // Reset score
                 if count == UtilitiesPortal.settingLabelNames.count-1 {
-                    DataHandler.resetScores()
+                    //DataHandler.resetScores()
                     settings[count].texture = SKTexture(image: UIImage(named: "alertbox2")!)
                     return
                 }
@@ -164,10 +178,6 @@ class SettingScene: SKScene {
                 }
             }
         }
-    }
-    
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        settings[3].texture = SKTexture(image: UIImage(named: "alertbox")!)
     }
     
     override func update(currentTime: CFTimeInterval) {
