@@ -97,6 +97,9 @@ class SKMultilineLabel: SKNode {
             if lineLength > 0 {
                 wordCount -= 1
                 if (!finalLine) {
+                    if lineStringBeforeAddingWord == "" {
+                        break
+                    }
                     lineString = lineStringBeforeAddingWord
                 }
                 label.text = lineString
