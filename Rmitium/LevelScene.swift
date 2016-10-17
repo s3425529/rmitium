@@ -126,6 +126,7 @@ class LevelScene: SKScene {
     // List of final fuctions //
     ////////////////////////////
     
+    // Alert box when a user clicks home to exit mid-level
     final func createHomeDialogue() {
         let yesBtn = SKSpriteNode()
         let noBtn = SKSpriteNode()
@@ -160,6 +161,7 @@ class LevelScene: SKScene {
         homeDialogue.zPosition = 0.9
         homeDialogue.hidden = true
         
+        // Tick button to return home
         yesBtn.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
         yesBtn.color = SKColor.grayColor()
         yesBtn.name = UtilitiesPortal.yesButtonName
@@ -167,6 +169,7 @@ class LevelScene: SKScene {
         yesBtn.position = CGPoint(x: (0 - yesBtn.size.width), y: (0 - yesBtn.size.height)*1.2)
         yesBtn.zPosition = 0.9
         
+        // Cross button to stay and continue
         noBtn.size = yesBtn.size
         noBtn.color = yesBtn.color
         noBtn.name = UtilitiesPortal.noButtonName
@@ -182,6 +185,7 @@ class LevelScene: SKScene {
         addChild(homeView)
     }
 
+    // Return to the home screen
     func backHomePage() {
         UtilitiesPortal.score = 0
         UtilitiesPortal.totalQuestions = 0
@@ -215,7 +219,7 @@ class LevelScene: SKScene {
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(home)
         
-        // Tick button
+        // Arrow button (grey before all answers are filled)
         tick = SKSpriteNode(imageNamed: "submit-grey")
         tick.name = UtilitiesPortal.tickButtonName
         tick.zPosition = 0.1
@@ -225,7 +229,7 @@ class LevelScene: SKScene {
                                 y: UtilitiesPortal.navImgSize/2)
         addChild(tick)
         
-        // Show button
+        // Show answer button
         show = SKSpriteNode(imageNamed: "show")
         show.name = UtilitiesPortal.showButtonName
         show.zPosition = 0.1

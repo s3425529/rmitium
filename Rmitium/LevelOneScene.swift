@@ -22,6 +22,7 @@ class LevelOneScene: LevelScene {
         setupScene()
     }
     
+    // A general set up function for declaring elements of a scene
     override func setupScene() {
         super.setupScene()
         
@@ -57,9 +58,9 @@ class LevelOneScene: LevelScene {
         setupInfoResult()
     }
     
+    // Molecule name label
     override func setupItems() {
         super.setupItems()
-        // Molecule name label
         molecule = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
         molecule.text = "\(lvlOneQuestion.itemName)"
         molecule.fontSize = UtilitiesPortal.factSize
@@ -69,8 +70,8 @@ class LevelOneScene: LevelScene {
         self.addChild(molecule)
     }
     
+    // Molecule image
     override func setupImage() {
-        // Image
         let image = SKSpriteNode(imageNamed: lvlOneQuestion.imageName)
         image.zPosition = 0.1
         image.alpha = 0.9
@@ -90,6 +91,7 @@ class LevelOneScene: LevelScene {
         addChild(image)
     }
     
+    // Answer tiles - where the tiles are dragged from
     override func setupDragLabel() {
         for count in 0...UtilitiesPortal.levelOneAnswers.count-1 {
             let answer = CustomSKSpriteNode(imageNamed: "\(UtilitiesPortal.levelOneAnswers[count])-border")
@@ -117,6 +119,7 @@ class LevelOneScene: LevelScene {
         }
     }
     
+    // Setting up the positions where the tiles can be dropped onto the molecule image
     override func setupTargets() {
         switch UIDevice.currentDevice().userInterfaceIdiom {
         case .Pad:
@@ -204,7 +207,7 @@ class LevelOneScene: LevelScene {
         addChild(factView)
     }
     
-    // Info layout
+    // Info layout - arrows and text images while the user is completing a question
     override func setupInfo() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9
@@ -324,7 +327,7 @@ class LevelOneScene: LevelScene {
         addChild(infoOverlay)
     }
     
-    // Info layout
+    // Info layout - after the user has completed the question i.e. on the individual solution page
     override func setupInfoResult() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9

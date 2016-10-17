@@ -40,13 +40,13 @@ class ResultPage3: ResultPage {
         }
         DataHandler.saveLevelThreeScore()
     }
-    //creat level name node
+    // Create level name node
     override func setupItems() {
         super.setupItems()
         levelLabel.text = UtilitiesPortal.levelLabelTexts[2]
     }
     
-    // creat medal node
+    // Create medal node
     override func setupMedal() {
         //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
         let medalDic = medalClass().assignMedal(UtilitiesPortal.levelThree)
@@ -104,7 +104,7 @@ class ResultPage3: ResultPage {
         controller.presentViewController(activityVC, animated: true, completion: nil)
     }*/
     
-    //back to the home page,
+    // Back to the home page
     func backLevel3() {
         UtilitiesPortal.score = 0
         UtilitiesPortal.totalQuestions = 0

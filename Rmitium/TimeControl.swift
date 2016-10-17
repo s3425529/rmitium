@@ -55,18 +55,20 @@ class TimeControl {
         }
     }
     
-    //initial the timer. when the tag is true, the timer will increase 1 each second. When the tag is false, the timer will reduce 1 each second form limitTime.
+    // Initialize the timer. 
+    // When the tag is true, the timer will increase 1 each second.
+    // When the tag is false, the timer will reduce 1 each second form limitTime.
     init(limitTime:Int, tag:Bool) {
         self.limitTime = limitTime
         self.tag = tag
     }
     
-    //start the timer
+    // Start the timer
     func startTimer() {
         isCount = true
     }
     
-    //stop the timer
+    // Stop the timer
     func stopTimer() {
         isCount = false
     }
@@ -80,7 +82,7 @@ class TimeControl {
         
     }
     
-    //pause the timer
+    // Pause the timer
     func pause(isTrue: Bool ){
         if isTrue {
             pauseTime = remainSecond

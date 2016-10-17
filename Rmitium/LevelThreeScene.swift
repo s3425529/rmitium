@@ -24,6 +24,7 @@ class LevelThreeScene: LevelScene {
         setupScene()
     }
     
+    // A general set up function for declaring elements of a scene
     override func setupScene() {
         isFirstTouch = false
         super.setupScene()
@@ -56,6 +57,8 @@ class LevelThreeScene: LevelScene {
         setupInfoResult()
         
     }
+    
+    // Molecule name label
     override func setupItems() {
         super.setupItems()
         // Molecule name label
@@ -77,6 +80,8 @@ class LevelThreeScene: LevelScene {
         molecule.position = CGPoint(x:UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.borderSize/4)
         self.addChild(molecule)
     }
+    
+    // Molecule image
     override func setupImage() {
         let image = SKSpriteNode(imageNamed: lvlThreeQuestion.imageName)
         
@@ -98,6 +103,7 @@ class LevelThreeScene: LevelScene {
         
     }
     
+    // Answer tiles - where the tiles are dragged from
     override func setupDragLabel() {
         for count in 0...UtilitiesPortal.levelThreeAnswers.count-1 {
             let answer = CustomSKSpriteNode(imageNamed:
@@ -124,6 +130,7 @@ class LevelThreeScene: LevelScene {
         }
     }
     
+    // Setting up the positions where the tiles can be dropped onto the molecule image
     override func setupTargets() {
         switch UIDevice.currentDevice().userInterfaceIdiom {
         case .Pad:
@@ -210,7 +217,7 @@ class LevelThreeScene: LevelScene {
         addChild(factOverlay)
         addChild(factView)
     }
-    // Info layout
+    // Info layout - arrows and text images while the user is completing a question
     override func setupInfoResult() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9
@@ -330,7 +337,7 @@ class LevelThreeScene: LevelScene {
         addChild(infoOverlayResult)
     }
     
-    // Info layout
+    // Info layout - after the user has completed the question i.e. on the individual solution page
     override func setupInfo() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9
@@ -556,7 +563,7 @@ class LevelThreeScene: LevelScene {
             let location = touch!.locationInNode(self)
             let node = self.nodeAtPoint(location)
             
-            // Tick button selected
+            // Arrow button selected
             if node.name == UtilitiesPortal.tickButtonName {
                 // Display result
                 if state == UtilitiesPortal.stateAnswer && checkResult() {

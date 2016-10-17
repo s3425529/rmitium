@@ -11,7 +11,7 @@ import SpriteKit
 import Social
 
 class ResultPage: SKScene {
-    var facebook, twitter, redo, next: CustomButton!
+    var facebook, twitter, redo, finish: CustomButton!
     var i = 0
     var levelLabel: SKLabelNode!
     var homeDialogue: SKShapeNode!
@@ -22,6 +22,7 @@ class ResultPage: SKScene {
     var myTable:UITableView!
     var state = false
     var myView:SKShapeNode!
+    
     override func didMoveToView(view: SKView) {
         if let clickSound = NSBundle.mainBundle().URLForResource("clickSound", withExtension: "wav") {
             do {
@@ -43,16 +44,16 @@ class ResultPage: SKScene {
         DataHandler.saveLevelOneScore()
     }
     
-    //creat medal node
+    // Create medal node
     func setupMedal() {
         
-        //call the medalClass  to get the relevant medal image and messages.
+        // Call the medalClass to get the relevant medal image and messages
         let medalDic = medalClass().assignMedal(UtilitiesPortal.levelOne)
         let medalName = medalDic.medalName
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
         
-        //creat medalNode
+        // Create medalNode
         let medalNode = SKSpriteNode(imageNamed: medalName)
         newRecordBox.hidden = !medalDic.newRecord
         medalNode.color = SKColor.blueColor()
@@ -61,7 +62,7 @@ class ResultPage: SKScene {
         medalNode.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
         medalNode.zPosition = 0.1
         
-        //make medal image to raotate
+        // Make medal image to rotate
         let action = SKAction.rotateToAngle(CGFloat(M_PI/2), duration: 5)
         let action1 = SKAction.rotateToAngle(CGFloat(-M_PI/2), duration: 5)
         let sequen = SKAction.sequence([action,action1])
@@ -70,7 +71,7 @@ class ResultPage: SKScene {
         medalNode.runAction(repeatAction)
         
         
-        // creat scoreNode to display the current score
+        // Create scoreNode to display the current score
         let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         scoreNode.text = "\(UtilitiesPortal.score)"
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
@@ -78,7 +79,7 @@ class ResultPage: SKScene {
         scoreNode.fontSize = UtilitiesPortal.screenHeight*0.07
         addChild(scoreNode)
         
-        //creat title message
+        // Create title message e.g. 'Congratulations!' or 'Well done!'
         let p1 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 1.2)
         text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
         text.alignment = .Center
@@ -86,7 +87,7 @@ class ResultPage: SKScene {
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
         
-        //craat encourage message node
+        // Create encourage message node
         let p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 0.50)
         text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
         text1.alignment = .Center
@@ -96,7 +97,7 @@ class ResultPage: SKScene {
     }
     
     
-    // add home and info button
+    // Add home and info button
     func setupItems() {
         levelLabel = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
@@ -127,7 +128,7 @@ class ResultPage: SKScene {
     }
     
     
-    // creat facebook, twitter, redo, and next buttons
+    // Create Facebook, Twitter, redo, and finish buttons
     func setupCustomerButton() {
         facebook = CustomButton(defaultButtonImage: "facebookbutton", activeButtonImage: "facebookbutton1", buttonAction: facebookAction,scale: 0.2)
         facebook.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
@@ -148,20 +149,21 @@ class ResultPage: SKScene {
         redo.name = "redo"
         //redo.setScale(scale1)
         
-        next = CustomButton(defaultButtonImage: "finishbutton", activeButtonImage: "finishbutton1", buttonAction: nextAction, scale: 0.2)
-        next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
+        finish = CustomButton(defaultButtonImage: "finishbutton", activeButtonImage: "finishbutton1", buttonAction: backHomePage, scale: 0.2)
+        finish.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
                                 y: UtilitiesPortal.screenHeight * 0.2)
-        next.name = "next"
-        //next.setScale(scale1)
+        finish.name = "finish"
+        //finish.setScale(scale1)
         
         addChild(facebook)
         addChild(twitter)
         addChild(redo)
-        addChild(next)
+        addChild(finish)
     }
     
     
-    // if facebook is used at the fist time, the alert message will display. if not, the facebook dialog box will display
+    // If Facebook is used at the fist time, the permissions alert message will display.
+    // If not, the Facebook dialog box will display
     func facebookAction() {
         print("facebook")
         if socialData.facebook == true{
@@ -174,7 +176,7 @@ class ResultPage: SKScene {
         
     }
     
-    //display facebook
+    // Display Facebook
     func activeFacebook() {
         print("facebook")
         let controller = self.view?.window?.rootViewController as! GameViewController
@@ -191,7 +193,8 @@ class ResultPage: SKScene {
         }
     }
     
-    // if twitter is used at the fist time, the alert message will display. if not, the twitter dialog box will display
+    // If Twitter is used at the fist time, the permissions alert message will display.
+    // If not, the twitter dialog box will display
     func twitterAction() {
         print("twitter")
         if socialData.twitter == true{
@@ -202,7 +205,7 @@ class ResultPage: SKScene {
         }
     }
     
-    //display twitter
+    // Display Twitter
     func activeTwitter() {
         print("twitter")
         let controller = self.view?.window?.rootViewController as! GameViewController
@@ -219,19 +222,14 @@ class ResultPage: SKScene {
         }
     }
     
-    // retry level 1
+    // Retry level 1
     func redoAction() {
         print("redo")
         print(UtilitiesPortal.totalQuestions)
         backLevel1()
         return
     }
-    
-    //go to level 2
-    func nextAction() {
-        print("next")
-        backHomePage()
-    }
+
     
     // Share the score to any social media!
     func displayShareSheet(shareContent:String) {
@@ -243,7 +241,7 @@ class ResultPage: SKScene {
         controller.presentViewController(activityVC, animated: true, completion: nil)
     }
     
-    //back to the home page,
+    // Back to the home page
     func backHomePage() {
         cleanScene()
         self.removeAllActions()
@@ -259,7 +257,7 @@ class ResultPage: SKScene {
         removeAllChildren()
     }
     
-    // to go to level1 sence
+    // to go to Level 1 sence
     func backLevel1() {
         cleanScene()
         self.removeAllActions()
@@ -277,7 +275,7 @@ class ResultPage: SKScene {
         
     }
     
-    // to go to level2 stand sense
+    // to go to Level 2 standard sense
     func goToLevel2() {
         cleanScene()
         self.removeAllActions()
@@ -293,7 +291,7 @@ class ResultPage: SKScene {
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
     
-    // creat home  dialogue
+    // Create home dialogue
     func addNewRecordLabel(){
         let newRecord = SKLabelNode()
         newRecordBox = SKSpriteNode(imageNamed: "new record")
@@ -341,10 +339,10 @@ class ResultPage: SKScene {
         }
     }
     
-    //alert message appear in the first time of using facebook
+    // Alert message appears the first time using Facebook
     func facebookAlertMessage() {
         let controller = self.view?.window?.rootViewController as! GameViewController
-        let alert = UIAlertController(title: "Facebook", message: "FacebookLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Facebook", message: "Chirality would like to access your Facebook", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("facebook")
@@ -354,10 +352,10 @@ class ResultPage: SKScene {
         
     }
     
-    //alert message appear in the first time of using twitter
+    // Alert message appears the first time using Twitter
     func twitterAlertMessage() {
         let controller = self.view?.window?.rootViewController as! GameViewController
-        let alert = UIAlertController(title: "Twitter", message: "TwitterLogin would like to access your iphone", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Twitter", message: "Chirality would like to access your Twitter", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Don't Allow", style: .Default, handler:nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
             self.socialData.setValue("twitter")
@@ -370,7 +368,7 @@ class ResultPage: SKScene {
         /* Called before each frame is rendered */
     }
     
-     // creat info table
+     // Create info overlay table
     func infoTable(){
         myView = SKShapeNode()
         let x = MedalInfo(myView: myView, modeName: "level")

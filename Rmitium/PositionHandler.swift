@@ -6,6 +6,10 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
+// ***********
+// Converting Level 1 and Level 3 display mode (default as right-hand mode) to left-hand mode
+// ***********
+
 import Foundation
 import SpriteKit
 

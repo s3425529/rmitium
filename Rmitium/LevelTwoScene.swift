@@ -42,7 +42,7 @@ class LevelTwoScene: LevelScene {
             case UtilitiesPortal.modeLabelTexts[2]:
                 //code goes here
                 print("Game mode: \(UtilitiesPortal.modeLabelTexts[2])")
-                if DataHandler.getLevelTwoBeatScore() == UtilitiesPortal.firstTime {
+                if DataHandler.getLevelTwoExtremeScore() == UtilitiesPortal.firstTime {
                     timerStop = true
                 }
                 beatTimer()
@@ -54,6 +54,7 @@ class LevelTwoScene: LevelScene {
         setupScene()
     }
     
+    // A general set up function for declaring elements of a scene
     override func setupScene() {
         super.setupScene()
         
@@ -80,7 +81,7 @@ class LevelTwoScene: LevelScene {
             }
             break
         case UtilitiesPortal.modeLabelTexts[2]:
-            if DataHandler.getLevelTwoBeatScore() == UtilitiesPortal.firstTime {
+            if DataHandler.getLevelTwoExtremeScore() == UtilitiesPortal.firstTime {
                 previousState = UtilitiesPortal.stateAnswer
                 state = UtilitiesPortal.stateInfo
                 DataHandler.saveLevelTwoFirstTime(UtilitiesPortal.modeLabelTexts[2])
@@ -101,7 +102,7 @@ class LevelTwoScene: LevelScene {
     override func setupItems() {
         super.setupItems()
         
-        //Hide score and tick
+        // Hide score and arrow
         tick.hidden = true
         score.hidden = true
         
@@ -143,7 +144,7 @@ class LevelTwoScene: LevelScene {
         }
     }
     
-    // Info layout
+    // Info layout - arrows and text images 
     override func setupInfo() {
         /*let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
         arrow01.zPosition = 0.9
@@ -286,7 +287,7 @@ class LevelTwoScene: LevelScene {
         addChild(infoOverlay)
     }
     
-    
+    // Alert box when the time runs out - try again or go home
     func addTimeOutMessage() {
         let retryBtn = SKSpriteNode()
         let backHomebtn = SKSpriteNode()
@@ -483,7 +484,7 @@ class LevelTwoScene: LevelScene {
         return false
     }
     
-    // Check if there is no more tiles to chose
+    // Check if there is no more tiles to choose
     func checkResult() -> Bool {
         if answers.count > 0 {
             for x in 0...answers.count-1 {
@@ -496,7 +497,7 @@ class LevelTwoScene: LevelScene {
         return false
     }
     
-    // retry level 2
+    // Retry level 2
     func retryLvl() {
         self.removeAllActions()
         self.removeAllChildren()
@@ -519,7 +520,7 @@ class LevelTwoScene: LevelScene {
     
     //MARK------- Timer
     
-    //stand mode timer
+    // Standard mode timer
     func setupTimer() {
         LIMITTIME = 100000
         timerClass = TimeControl(limitTime: LIMITTIME, tag: true)
@@ -546,7 +547,7 @@ class LevelTwoScene: LevelScene {
         }
     }
     
-    //trial mode timer
+    // Time Trial mode timer
     func trialTimer() {
         LIMITTIME = 15
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
@@ -593,8 +594,9 @@ class LevelTwoScene: LevelScene {
         
     }
 
-    //beat mode timer
+    // Extreme mode timer
     func beatTimer() {
+        // timer is set to start from 300 seconds
         LIMITTIME = 300
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
         
@@ -649,14 +651,14 @@ class LevelTwoScene: LevelScene {
         controller.presentViewController(alert, animated: true, completion: nil)
     }
     
-    //release the timer
+    // Release the timer
     func timeOut() {
         timerClass.stopTimer()
         timeNsNode.invalidate()
         timeNsNode = nil
     }
     
-    //go the result page
+    // Go the result page
     func toResultScene() {
         cleanScene()
         let secondScene = ResultPage2(size: self.size)

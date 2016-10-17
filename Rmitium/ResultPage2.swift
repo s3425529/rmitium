@@ -16,7 +16,7 @@ import Social
 
 class ResultPage2: ResultPage {
     
-    /*var facebook, twitter, redo, next: CustomButton!
+    /*var facebook, twitter, redo, finish: CustomButton!
     var state, previousState: Int!
     var homeView: SKSpriteNode!
     var homeDialogue: SKShapeNode!
@@ -30,7 +30,7 @@ class ResultPage2: ResultPage {
     var modeName:String!
     override func didMoveToView(view: SKView) {
         
-        //get medal image and messages according current socre
+        // Get medal image and messages according current socre
         Dic = medalClass()
         switch String(self.userData!.valueForKey("gameMode")!) {
         case UtilitiesPortal.modeLabelTexts[0]:
@@ -48,11 +48,11 @@ class ResultPage2: ResultPage {
             //infoTable("trial")
             break
         case UtilitiesPortal.modeLabelTexts[2]:
-            //DataHandler.saveLevelTwoBeatScore()
-            print("Game mode: Beat the Clock!")
-            medalDic = Dic.level2("beat")
-            modeName = "beat"
-            //infoTable("beat")
+            //DataHandler.saveLevelTwoExtremeScore()
+            print("Game mode: Extreme!")
+            medalDic = Dic.level2("extreme")
+            modeName = "extreme"
+            //infoTable("extreme")
             break
         default:
             break
@@ -76,7 +76,7 @@ class ResultPage2: ResultPage {
         setupCustomerButton()
         newRecordBox.hidden = !medalDic.newRecord
         
-        // save the score
+        // Save the score
         switch String(self.userData!.valueForKey("gameMode")!) {
         case UtilitiesPortal.modeLabelTexts[0]:
             DataHandler.saveLevelTwoScore()
@@ -85,7 +85,7 @@ class ResultPage2: ResultPage {
             DataHandler.saveLevelTwoTrialScore()
             break
         case UtilitiesPortal.modeLabelTexts[2]:
-            DataHandler.saveLevelTwoBeatScore()
+            DataHandler.saveLevelTwoExtremeScore()
             break
         default:
             break
@@ -94,12 +94,12 @@ class ResultPage2: ResultPage {
     
     override func setupMedal() {
         
-        // get the image and messages from medalClass
+        // Get the image and messages from medalClass
         let medalName = medalDic.medalName
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
         
-        //creat medal image node
+        // Create medal image node
         let medalNode = SKSpriteNode(imageNamed: medalName)
         let mins = UtilitiesPortal.score/60
         let sec = UtilitiesPortal.score%60
@@ -110,7 +110,7 @@ class ResultPage2: ResultPage {
         medalNode.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
         medalNode.zPosition = 0.1
         
-        //make the medal ratation
+        // Make the medal rotate
         let action = SKAction.rotateToAngle(CGFloat(M_PI/2), duration: 5)
         let action1 = SKAction.rotateToAngle(CGFloat(-M_PI/2), duration: 5)
         let sequen = SKAction.sequence([action,action1])
@@ -118,7 +118,7 @@ class ResultPage2: ResultPage {
         addChild(medalNode)
         medalNode.runAction(repeatAction)
         
-        //creat node to display the current time of score
+        // Create node to display the current time of score
         let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         // if minute is zero, it will not display.
         if mins == 0 {
@@ -139,7 +139,7 @@ class ResultPage2: ResultPage {
         scoreNode.fontSize = UtilitiesPortal.screenHeight*0.04
         addChild(scoreNode)
         
-        // creat title node
+        // Create title node
         let p1 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*1.2)
         text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
         text.alignment = .Center
@@ -202,7 +202,7 @@ class ResultPage2: ResultPage {
         
     }*/
     
-    // retry level 2
+    // Retry level 2
     override func redoAction() {
         print("redo")
         UtilitiesPortal.score = 0
@@ -220,7 +220,7 @@ class ResultPage2: ResultPage {
         controller.presentViewController(activityVC, animated: true, completion: nil)
     }*/
     
-    // to go to level2 sence
+    // to go to Level 2 sence
     func backLevel2() {
         cleanScene()
         self.removeAllActions()
@@ -262,6 +262,7 @@ class ResultPage2: ResultPage {
 
     }
     
+    // Formating the time to display as seconds, minutes etc
     func  timeFormat() -> String {
         let hour = UtilitiesPortal.score/3600
         let min = UtilitiesPortal.score/60

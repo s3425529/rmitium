@@ -51,7 +51,6 @@
 		50EEF2721D8ED87A00B8F0E1 /* LevelTwoQuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EEF2711D8ED87A00B8F0E1 /* LevelTwoQuestionList.swift */; };
 		50F34EBA1D642D6E00FC46B5 /* LevelOneQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */; };
 		50FD70921D61617B0090CDAD /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70911D61617B0090CDAD /* CustomButton.swift */; };
-		50FD70941D6175360090CDAD /* textFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD70931D6175360090CDAD /* textFiled.swift */; };
 		50FFAC391D8AE04100CDF215 /* LevelTwoQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FFAC381D8AE04100CDF215 /* LevelTwoQuestions.swift */; };
 /* End PBXBuildFile section */
 
@@ -102,7 +101,6 @@
 		50EEF2711D8ED87A00B8F0E1 /* LevelTwoQuestionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTwoQuestionList.swift; sourceTree = "<group>"; };
 		50F34EB91D642D6E00FC46B5 /* LevelOneQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelOneQuestions.swift; sourceTree = "<group>"; };
 		50FD70911D61617B0090CDAD /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		50FD70931D6175360090CDAD /* textFiled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFiled.swift; sourceTree = "<group>"; };
 		50FFAC381D8AE04100CDF215 /* LevelTwoQuestions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTwoQuestions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */,
-				50FD70931D6175360090CDAD /* textFiled.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -364,7 +361,6 @@
 				50EEF2721D8ED87A00B8F0E1 /* LevelTwoQuestionList.swift in Sources */,
 				503DD7411D98B6B300E06E43 /* PositionHandler.swift in Sources */,
 				50E94B141D87D58400C01945 /* ResultPage3.swift in Sources */,
-				50FD70941D6175360090CDAD /* textFiled.swift in Sources */,
 				50D741041D60D38600EF36E4 /* Position.swift in Sources */,
 				50E94AE91D867F9100C01945 /* ResultPage.swift in Sources */,
 				50E31D161D6BEE5B002F10E0 /* LevelOneQuestionList.swift in Sources */,

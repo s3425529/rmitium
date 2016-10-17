@@ -21,6 +21,7 @@ class MedalInfo:SKNode{
         super.init()
         self.myView = myView
         
+        // Laying out the medal info overlay explaining the brackets for each medal
         if modeName == "stand" {
             medalItem.append(medalStru(image: "Medal5-Rust", text: "> 1 minute"))
             medalItem.append(medalStru(image: "Medal4-Bronze", text: "40 seconds - 1 minute"))
@@ -35,7 +36,7 @@ class MedalInfo:SKNode{
             medalItem.append(medalStru(image: "Medal2-Gold", text: "120 - 149 seconds"))
             medalItem.append(medalStru(image: "Medal1-Diamond", text: ">= 150 seconds"))
         }
-        if modeName == "beat" {
+        if modeName == "extreme" {
             medalItem.append(medalStru(image: "Medal5-Rust", text: "< 59 seconds"))
             medalItem.append(medalStru(image: "Medal4-Bronze", text: "60 - 89 seconds"))
             medalItem.append(medalStru(image: "Medal3-Silver", text: "90 -119 seconds"))

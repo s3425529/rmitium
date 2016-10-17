@@ -42,7 +42,7 @@ extension Settings {
     @NSManaged var levelTwo: NSNumber?
     @NSManaged var levelThree: NSNumber?
     @NSManaged var levelTwoTrial: NSNumber?
-    @NSManaged var levelTwoBeat: NSNumber?
+    @NSManaged var levelTwoExtreme: NSNumber?
     @NSManaged var levelOneScore: NSNumber?
     @NSManaged var levelThreeScore: NSNumber?
 }

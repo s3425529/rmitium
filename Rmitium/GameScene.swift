@@ -40,7 +40,7 @@ class GameScene: SKScene {
         image.zPosition = 0
         addChild(image)
         
-        // Setting button
+        // Settings button
         let setting = SKSpriteNode(imageNamed: "settings")
         setting.name = UtilitiesPortal.settingButtonName
         setting.zPosition = 0.1
@@ -140,6 +140,7 @@ class GameScene: SKScene {
         addChild(infoOverlay!)
     }
     
+    // User lifts the finger off the button
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if isFirstTouch {
             let location = touches.first!.locationInNode(self)
@@ -246,6 +247,7 @@ class GameScene: SKScene {
         isFirstTouch = true
     }
     
+    // User first touches a button
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         // Info click out
         if state == UtilitiesPortal.stateInfo {
@@ -272,7 +274,7 @@ class GameScene: SKScene {
             return
         }
         
-        // Setting selected
+        // Settings selected
         if node.name == UtilitiesPortal.settingButtonName {
             if DataHandler.getSettings().getEffect {
                 audioPlayer.play()

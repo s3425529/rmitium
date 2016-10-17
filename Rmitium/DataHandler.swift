@@ -30,7 +30,7 @@ class DataHandler {
             entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwo")
             entity.setValue(UtilitiesPortal.firstTime, forKey: "levelThree")
             entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoTrial")
-            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoBeat")
+            entity.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoExtreme")
             entity.setValue(UtilitiesPortal.defaultScore, forKey: "levelOneScore")
             entity.setValue(UtilitiesPortal.defaultScore, forKey: "levelThreeScore")
             do {
@@ -56,7 +56,7 @@ class DataHandler {
             object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwo")
             object.setValue(UtilitiesPortal.firstTime, forKey: "levelThree")
             object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoTrial")
-            object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoBeat")
+            object.setValue(UtilitiesPortal.firstTime, forKey: "levelTwoExtreme")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelOneScore")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThreeScore")
             try settings.save()
@@ -78,7 +78,7 @@ class DataHandler {
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwo")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThree")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwoTrial")
-            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwoBeat")
+            object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwoExtreme")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelOneScore")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThreeScore")
             try settings.save()
@@ -105,7 +105,7 @@ class DataHandler {
             print("Lvl 3 Percent: \(result.first!.levelThreeScore)")
             print("Lvl 2 Standard: \(result.first!.levelTwo)")
             print("Lvl 2 Trial: \(result.first!.levelTwoTrial)")
-            print("Lvl 2 Extreme: \(result.first!.levelTwoBeat)")
+            print("Lvl 2 Extreme: \(result.first!.levelTwoExtreme)")
             return result.first!
         }
         catch {
@@ -117,7 +117,7 @@ class DataHandler {
         return localSetting
     }
     
-    // Level One
+    // Level 1
     static func getLevelOneScore() -> NSNumber {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -140,7 +140,7 @@ class DataHandler {
         }
     }
     
-    // Save level one first info layout
+    // Save Level 1 first info layout
     static func saveLevelOneFirstTime() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -154,7 +154,7 @@ class DataHandler {
         }
     }
     
-    // Save level one result info layout
+    // Save Level 1 result info layout
     static func saveLevelOneFirstResult() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -192,7 +192,7 @@ class DataHandler {
         }
     }
     
-    // Level Two
+    // Level 2
     static func getLevelTwoScore() -> NSNumber {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -204,7 +204,7 @@ class DataHandler {
         }
     }
     
-    // Save level 2 info layout
+    // Save Level 2 info layout
     static func saveLevelTwoFirstTime(mode: String) {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -222,8 +222,8 @@ class DataHandler {
                 }
             }
             if mode == UtilitiesPortal.modeLabelTexts[2] {
-                if object.levelTwoBeat == UtilitiesPortal.firstTime {
-                    object.setValue(UtilitiesPortal.firstResult, forKey: "levelTwoBeat")
+                if object.levelTwoExtreme == UtilitiesPortal.firstTime {
+                    object.setValue(UtilitiesPortal.firstResult, forKey: "levelTwoExtreme")
                 }
             }
             try settings.save()
@@ -249,7 +249,7 @@ class DataHandler {
         }
     }
     
-    //level2  Trial
+    // Level 2 - Time Trial
     static func getLevelTwoTrialScore() -> NSNumber {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -278,28 +278,28 @@ class DataHandler {
         }
     }
 
-    //level2 beat
+    // Level 2 - Extreme
     
-    static func getLevelTwoBeatScore() -> NSNumber {
+    static func getLevelTwoExtremeScore() -> NSNumber {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
-            return result.first!.levelTwoBeat!
+            return result.first!.levelTwoExtreme!
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
         }
     }
     
-    static func saveLevelTwoBeatScore() {
+    static func saveLevelTwoExtremeScore() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
-            let x = object.levelTwoBeat as! Int
+            let x = object.levelTwoExtreme as! Int
             print("Extreme: old: \(x), current: \(UtilitiesPortal.score)")
             if x < UtilitiesPortal.score {
-                object.setValue(UtilitiesPortal.score, forKey: "levelTwoBeat")
+                object.setValue(UtilitiesPortal.score, forKey: "levelTwoExtreme")
                 try settings.save()
             }
             
@@ -509,8 +509,8 @@ class DataHandler {
                     }
                 }
                 // Level 2 Extreme
-                else if mode == UtilitiesPortal.modeBeat {
-                    score = Double((result.first?.levelTwoBeat)!)
+                else if mode == UtilitiesPortal.modeExtreme {
+                    score = Double((result.first?.levelTwoExtreme)!)
                     if score >= 150 {
                         return "Medal1-Diamond"
                     }
