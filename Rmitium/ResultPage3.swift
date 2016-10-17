@@ -71,7 +71,7 @@ class ResultPage3: ResultPage {
         let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         scoreNode.text = "\(UtilitiesPortal.score)"
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
-        scoreNode.fontSize = UtilitiesPortal.screenHeight*0.08
+        scoreNode.fontSize = UtilitiesPortal.screenHeight*0.07
         addChild(scoreNode)
         
         let p1 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*1.2)

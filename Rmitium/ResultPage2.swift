@@ -136,7 +136,7 @@ class ResultPage2: ResultPage {
         scoreNode.text = labelText
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
         
-        scoreNode.fontSize = UtilitiesPortal.screenHeight*0.05
+        scoreNode.fontSize = UtilitiesPortal.screenHeight*0.04
         addChild(scoreNode)
         
         // creat title node

@@ -75,7 +75,7 @@ class ResultPage: SKScene {
         scoreNode.text = "\(UtilitiesPortal.score)"
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
         
-        scoreNode.fontSize = UtilitiesPortal.screenHeight*0.08
+        scoreNode.fontSize = UtilitiesPortal.screenHeight*0.07
         addChild(scoreNode)
         
         //creat title message
