@@ -52,40 +52,40 @@ class medalClass {
             medalName = "Medal2-Gold"
             words = ["Well done!"]
             if firstTime < 0 {
-                words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%!")
+                words.append("Your chemistry prowess is gold standard. You got \(Int(scorePercent))%!")
             }
             else {
-                words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
+                words.append("Your chemistry prowess is gold standard. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
             }
         }
         if percent >= 0.7 && percent < 0.9 {
             medalName = "Medal3-Silver"
             words = ["Great work!"]
             if firstTime < 0 {
-                words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%!")
+                words.append("With that sterling effort you got \(Int(scorePercent))%!")
             }
             else {
-                words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
+                words.append("With that sterling effort you got \(Int(scorePercent))%. Your best was \(Int(score))%!")
             }
         }
         if percent >= 0.5 && percent < 0.7 {
             medalName = "Medal4-Bronze"
             words = ["Nice try!"]
             if firstTime < 0 {
-                words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%!")
+                words.append("You joined tin and copper with \(Int(scorePercent))%!")
             }
             else {
-                words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
+                words.append("You joined tin and copper with \(Int(scorePercent))%. Your best was \(Int(score))%!")
             }
         }
         if percent < 0.5 {
             medalName = "Medal5-Rust"
             words = ["Good effort!"]
             if firstTime < 0 {
-                words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%!")
+                words.append("But your chemistry is a little rusty. You got \(Int(scorePercent))%!")
             }
             else {
-                words.append("Your knowledge is obviously crystal clear. You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
+                words.append("But your chemistry is a little rusty.  You got \(Int(scorePercent))%. Your best was \(Int(score))%!")
             }
         }
         if scorePercent > score && firstTime > 0 {
