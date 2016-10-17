@@ -10,7 +10,6 @@ import AVFoundation
 import SpriteKit
 
 class LevelScene: SKScene {
-    //var answers: [CustomSKSpriteNode] = []
     var questions: [CustomSKSpriteNode] = []
     var answeredQuestions: [CustomSKSpriteNode] = []
     var positions = [Position]()
@@ -58,15 +57,17 @@ class LevelScene: SKScene {
     
     func touchesBeganSuper(touches: Set<UITouch>, withEvent event: UIEvent?) -> Bool {
         let touch = touches.first
-        
+        // Home dialog
         if state == UtilitiesPortal.stateHome {
             let location = touch!.locationInNode(self)
             let nodes = self.nodesAtPoint(location)
             for node in nodes {
+                // Yes button
                 if node.name == UtilitiesPortal.yesButtonName {
                     backHomePage()
                     return true
                 }
+                // No button
                 else if node.name == UtilitiesPortal.noButtonName {
                     homeDialogue.hidden = true
                     homeView.hidden = true
@@ -78,6 +79,7 @@ class LevelScene: SKScene {
             return false
         }
         
+        // Click out info overlay
         if state == UtilitiesPortal.stateInfo {
             infoOverlay.hidden = true
             state = previousState
@@ -85,6 +87,7 @@ class LevelScene: SKScene {
             return true
         }
         
+        // Click out info result overlay
         if state == UtilitiesPortal.stateInfoResult {
             infoOverlayResult.hidden = true
             state = previousState
@@ -92,6 +95,7 @@ class LevelScene: SKScene {
             return true
         }
         
+        // Click out fact state to next level
         if state == UtilitiesPortal.stateFact {
             setupScene()
             return true
@@ -193,6 +197,7 @@ class LevelScene: SKScene {
     ///////////////////////////////////
     
     func setupItems() {
+        // Level name
         let levelLabel = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
         levelLabel.zPosition = 0.1
         levelLabel.text = String(self.userData!.valueForKey("levelName")!)

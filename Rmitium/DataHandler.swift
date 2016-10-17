@@ -19,6 +19,7 @@ class DataHandler {
     static var settings = DataController().managedObjectContext
     static var localSetting: Settings = DataHandler.getSettings()
     
+    // First time create database
     static func initSettings() {
         if checkDataIsEmpty() {
             let entity = NSEntityDescription.insertNewObjectForEntityForName("Settings", inManagedObjectContext: settings) as! Settings
@@ -42,6 +43,7 @@ class DataHandler {
         }
     }
     
+    // Reset all database
     static func resetSettings() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -65,6 +67,7 @@ class DataHandler {
         }
     }
     
+    // Reset all scores
     static func resetScores() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -91,6 +94,7 @@ class DataHandler {
         }
     }
     
+    // Get the local settings
     static func getSettings() -> Settings {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -136,6 +140,7 @@ class DataHandler {
         }
     }
     
+    // Save level one first info layout
     static func saveLevelOneFirstTime() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -149,6 +154,7 @@ class DataHandler {
         }
     }
     
+    // Save level one result info layout
     static func saveLevelOneFirstResult() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -198,6 +204,7 @@ class DataHandler {
         }
     }
     
+    // Save level 2 info layout
     static func saveLevelTwoFirstTime(mode: String) {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -326,6 +333,7 @@ class DataHandler {
         }
     }
     
+    // Save level 3 first info layout
     static func saveLevelThreeFirstTime() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -339,6 +347,7 @@ class DataHandler {
         }
     }
     
+    // Save level three result info layout
     static func saveLevelThreeFirstResult() {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -376,6 +385,7 @@ class DataHandler {
         }
     }
     
+    // Check if the database is empty (for when installing the app)
     static func checkDataIsEmpty() -> Bool {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
@@ -388,6 +398,7 @@ class DataHandler {
         }
     }
     
+    // Update settings based on user references
     static func updateSettings(values: [Bool]) {
         if values.count != 3 {
             print("Settings fails with count: \(values.count)")
@@ -439,6 +450,7 @@ class DataHandler {
         }
     }
     
+    // Get the medal images for each level
     static func getMedal(level: Int, mode: Int) -> String {
         let setting = NSFetchRequest(entityName: "Settings")
         var score = 0.0
@@ -451,6 +463,7 @@ class DataHandler {
                 score = result.first!.levelThreeScore! as Double
             }
             else {
+                // Level 2 Standard
                 if mode == UtilitiesPortal.modeStandard {
                     score = Double((result.first?.levelTwo)!)
                     if score < 20  && score >= 0 {
@@ -473,6 +486,7 @@ class DataHandler {
                     }
                     
                 }
+                // Level 2 Trial
                 else if mode == UtilitiesPortal.modeTrial {
                     score = Double((result.first?.levelTwoTrial)!)
                     if score >= 150 {
@@ -494,6 +508,7 @@ class DataHandler {
                         return ""
                     }
                 }
+                // Level 2 Extreme
                 else if mode == UtilitiesPortal.modeBeat {
                     score = Double((result.first?.levelTwoBeat)!)
                     if score >= 150 {
@@ -516,7 +531,7 @@ class DataHandler {
                     }
                 }
             }
-            
+            // Level 1 or 3
             if score >= 1 {
                 return "Medal1-Diamond"
             }

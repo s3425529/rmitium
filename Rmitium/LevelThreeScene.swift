@@ -470,10 +470,12 @@ class LevelThreeScene: LevelScene {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        // Return if there is no dragged label
         if(chosenAnswer == nil) {
             return
         }
         
+        // Change the postions based on dragged label
         for x in 0...questions.count-1 {
             if CGRectContainsPoint(questions[x].frame, chosenAnswer.position) {
                 answeredQuestions[x].hidden = false
@@ -486,6 +488,7 @@ class LevelThreeScene: LevelScene {
         chosenAnswer.removeFromParent()
         self.chosenAnswer = nil
         
+        // Check if all answers are filled then enable submit button
         if checkResult() {
             tick.texture = SKTexture(image: UIImage(named: "submit-blue")!)
         }
@@ -555,8 +558,10 @@ class LevelThreeScene: LevelScene {
             
             // Tick button selected
             if node.name == UtilitiesPortal.tickButtonName {
+                // Display result
                 if state == UtilitiesPortal.stateAnswer && checkResult() {
                     displayResult()
+                    // Display first time info overlay result
                     if DataHandler.getLevelThreeScore() == UtilitiesPortal.firstResult {
                         infoOverlayResult.hidden = false
                         previousState = UtilitiesPortal.stateResult
@@ -566,6 +571,7 @@ class LevelThreeScene: LevelScene {
                     return
                 }
                 
+                // Hide fact overlay
                 if state == UtilitiesPortal.stateResult || state == UtilitiesPortal.stateReview {
                     previousState = state
                     state = UtilitiesPortal.stateFact
@@ -575,6 +581,7 @@ class LevelThreeScene: LevelScene {
                 return
             }
             
+            // Go to next scene after fact state
             if state == UtilitiesPortal.stateFact {
                 setupScene()
                 return
@@ -582,6 +589,7 @@ class LevelThreeScene: LevelScene {
             
             // Show button selected
             if node.name == UtilitiesPortal.showButtonName {
+                // Display result image
                 if state == UtilitiesPortal.stateResult {
                     displayAnswers(true)
                     resultImage = SKSpriteNode(imageNamed: lvlThreeQuestion.imageSol)
@@ -590,6 +598,8 @@ class LevelThreeScene: LevelScene {
                     let current = CGPoint(x:UtilitiesPortal.borderSize + UtilitiesPortal.imageWidth/2,
                                           y:UtilitiesPortal.screenHeight/2 )
                     resultImage.position = PositionHandler.convertTargetPointLevelThree(current)
+                    
+                    // Resize to keep normal ratio
                     let currentSize = resultImage.size
                     let x = UtilitiesPortal.imageWidth/currentSize.width
                     let y = UtilitiesPortal.imageHeight/currentSize.height
@@ -599,12 +609,11 @@ class LevelThreeScene: LevelScene {
                     else {
                         resultImage.setScale(y)
                     }
-                    //resultImage.size = CGSize(width: UtilitiesPortal.imageWidth, height: UtilitiesPortal.imageHeight)
                     addChild(resultImage)
                     state = UtilitiesPortal.stateReview
                     return
                 }
-                    
+                // Hide result image
                 else if state == UtilitiesPortal.stateReview {
                     displayAnswers(false)
                     resultImage.removeFromParent()
@@ -636,6 +645,7 @@ class LevelThreeScene: LevelScene {
     }
     
     func checkResult() -> Bool {
+        // Check if all questions are answered
         if questions.count != 0 {
             for x in 0...questions.count-1 {
                 if answeredQuestions[x].value == UtilitiesPortal.emptyString {
@@ -648,6 +658,7 @@ class LevelThreeScene: LevelScene {
     }
     
     func displayResult() {
+        // Change color of result labels
         if state == UtilitiesPortal.stateAnswer {
             for x in 0...lvlThreeQuestion.solutions.count-1 {
                 if answeredQuestions[x].value != UtilitiesPortal.emptyString {
@@ -662,15 +673,14 @@ class LevelThreeScene: LevelScene {
             }
         }
         factLabel.hidden = false
+        // Change score text and tick button to next button
         score.text = "\(UtilitiesPortal.scoreText) \(UtilitiesPortal.score)"
-        
         tick.texture = SKTexture(image: UIImage(named: "next")!)
-        
         show.hidden = false
-        
         state = UtilitiesPortal.stateResult
     }
     
+    // Display or hide all answered questions
     func displayAnswers(value: Bool) {
         if value {
             for x in 0...questions.count-1 {
