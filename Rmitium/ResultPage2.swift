@@ -253,6 +253,9 @@ class ResultPage2: ResultPage {
         
         
         if node.name == UtilitiesPortal.infoButonName {
+            myView.removeAllChildren()
+            myView.removeFromParent()
+            stateInfo = false
             infoTable(modeName)
             stateInfo = true
         }
