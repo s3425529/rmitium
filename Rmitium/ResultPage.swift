@@ -274,20 +274,20 @@ class ResultPage: SKScene {
     
     func addNewRecordLabel(){
         let newRecord = SKLabelNode()
-        newRecordBox = SKSpriteNode()
+        newRecordBox = SKSpriteNode(imageNamed: "new record")
         newRecordBox.size = CGSize(width: UtilitiesPortal.screenWidth/3, height: newRecord.fontSize*1.5)
         newRecordBox.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 3)
         newRecordBox.zPosition = 0.2
-        newRecordBox.color = SKColor.redColor()
+        //newRecordBox.color = SKColor.redColor()
         newRecordBox.alpha = 0.8
         newRecordBox.hidden = true
-        newRecord.verticalAlignmentMode = .Center
+        /*newRecord.verticalAlignmentMode = .Center
         newRecord.horizontalAlignmentMode = .Center
         newRecord.text = "NEW RECORD!"
         newRecord.fontSize = UtilitiesPortal.navLabelSize
         newRecord.fontName = UtilitiesPortal.navLabelFont
         newRecord.fontColor = SKColor.whiteColor()
-        newRecordBox.addChild(newRecord)
+        newRecordBox.addChild(newRecord)*/
         addChild(newRecordBox)
     }
     
