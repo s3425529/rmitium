@@ -15,7 +15,6 @@ class LevelOneScene: LevelScene {
     var listOfQuestions:[LevelOneQuestion] = []
     var chosenAnswer: CustomSKSpriteNode!
     var resultImage: SKSpriteNode!
-    //var timerClass:TimeControl!
     var isFirstTouch: Bool = false
     
     override func didMoveToView(view: SKView) {
@@ -66,16 +65,6 @@ class LevelOneScene: LevelScene {
         molecule.fontSize = UtilitiesPortal.factSize
         molecule.zPosition = 0.1
         molecule.fontColor = SKColor.whiteColor()
-        /*
-        if DataHandler.getSettings().getRightHand {
-            molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-            molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.01, UtilitiesPortal.screenHeight * 0.8)
-        }
-        else {
-            molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
-            molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.99, UtilitiesPortal.screenHeight * 0.8)
-        }
-         */
         molecule.position = CGPoint(x:UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.borderSize/4)
         self.addChild(molecule)
     }
@@ -463,22 +452,23 @@ class LevelOneScene: LevelScene {
         
         chosenAnswer.position = touch!.locationInNode(self)
         
-        print("+++++++++++++++++++++++++")
+        /*print("+++++++++++++++++++++++++")
         
         let xPostion = chosenAnswer.position.x
         let yPostion = chosenAnswer.position.y
         let x = xPostion / UtilitiesPortal.screenWidth
         let y = yPostion / UtilitiesPortal.screenHeight
         print("x=\(x)")
-        print("y=\(y)")
+        print("y=\(y)")*/
         
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        // Return if there is no dragged label
         if(chosenAnswer == nil) {
             return
         }
-        
+        // Change chosen tiles to the dragged label
         for x in 0...questions.count-1 {
             if CGRectContainsPoint(questions[x].frame, chosenAnswer.position) {
                 answeredQuestions[x].hidden = false
@@ -491,6 +481,7 @@ class LevelOneScene: LevelScene {
         chosenAnswer.removeFromParent()
         self.chosenAnswer = nil
         
+        // Check if all answers are filled then enable submit button
         if checkResult() {
             tick.texture = SKTexture(image: UIImage(named: "submit-blue")!)
         }
@@ -598,7 +589,6 @@ class LevelOneScene: LevelScene {
             }
             
             // Show button selected
-            
             if node.name == UtilitiesPortal.showButtonName {
                 if state == UtilitiesPortal.stateResult {
                     displayAnswers(true)
@@ -636,6 +626,7 @@ class LevelOneScene: LevelScene {
         }
     }
     
+    // Check if all questions are filled
     func checkResult() -> Bool {
         if questions.count != 0 {
             for x in 0...questions.count-1 {
@@ -648,6 +639,7 @@ class LevelOneScene: LevelScene {
         return false
     }
     
+    // Display result
     func displayResult() {
         if state == UtilitiesPortal.stateAnswer {
             for x in 0...lvlOneQuestion.solutions.count-1 {
@@ -671,6 +663,7 @@ class LevelOneScene: LevelScene {
         state = UtilitiesPortal.stateResult
     }
     
+    // Display all answer labels
     func displayAnswers(value: Bool) {
         if value {
             for x in 0...questions.count-1 {
@@ -685,43 +678,6 @@ class LevelOneScene: LevelScene {
             }
         }
     }
-    
-    /*
-    func initRecord(){
-        listOfQuestions = LevelOneQuestion.getQuestions()
-        for item in 0..<listOfQuestions.count{
-            UtilitiesPortal.record.append(item)
-        }
-    
-    }
-*/
-    //MARK------- Timer
-    /*func setupTimer(){
-    
-        timerClass = TimeControl(limitTime: 180)
-        timerClass.startTimer()
-        
-            timeNsNode = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "getTime:", userInfo: nil, repeats: true)
-        
-    }
-    
-    @objc func getTime(timer:NSTimer){
-        timeNode.text = "Time:\(timerClass.timeLabel)"
-        if timerClass.timeLabel <= 5 && timerClass.timeLabel > 0{
-            timeNode.fontColor = SKColor.redColor()
-            let zoom = SKAction.scaleTo(2, duration: 0.5)
-            let fade = SKAction.fadeAlphaTo(0.1, duration: 0.5)
-            let zoom1 = SKAction.scaleTo(1, duration: 0.1)
-            let fade1 = SKAction.fadeAlphaTo(1, duration: 0.1)
-            let action = SKAction.sequence([zoom,fade,fade1,zoom1])
-            timeNode.runAction(action)
-        }
-        
-        if timerClass.timeLabel <= 0{
-            timeNode.text = "Time Out!"
-            timeOut()
-        }
-    }*/
     
     func alertMessage() {
     

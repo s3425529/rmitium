@@ -29,6 +29,8 @@ class ResultPage2: ResultPage {
     var stateInfo = false
     var modeName:String!
     override func didMoveToView(view: SKView) {
+        
+        //get medal image and messages according current socre
         Dic = medalClass()
         switch String(self.userData!.valueForKey("gameMode")!) {
         case UtilitiesPortal.modeLabelTexts[0]:
@@ -74,6 +76,7 @@ class ResultPage2: ResultPage {
         setupCustomerButton()
         newRecordBox.hidden = !medalDic.newRecord
         
+        // save the score
         switch String(self.userData!.valueForKey("gameMode")!) {
         case UtilitiesPortal.modeLabelTexts[0]:
             DataHandler.saveLevelTwoScore()
@@ -90,9 +93,13 @@ class ResultPage2: ResultPage {
     }
     
     override func setupMedal() {
+        
+        // get the image and messages from medalClass
         let medalName = medalDic.medalName
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
+        
+        //creat medal image node
         let medalNode = SKSpriteNode(imageNamed: medalName)
         let mins = UtilitiesPortal.score/60
         let sec = UtilitiesPortal.score%60
@@ -103,6 +110,7 @@ class ResultPage2: ResultPage {
         medalNode.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
         medalNode.zPosition = 0.1
         
+        //make the medal ratation
         let action = SKAction.rotateToAngle(CGFloat(M_PI/2), duration: 5)
         let action1 = SKAction.rotateToAngle(CGFloat(-M_PI/2), duration: 5)
         let sequen = SKAction.sequence([action,action1])
@@ -110,8 +118,9 @@ class ResultPage2: ResultPage {
         addChild(medalNode)
         medalNode.runAction(repeatAction)
         
+        //creat node to display the current time of score
         let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
-    
+        // if minute is zero, it will not display.
         if mins == 0 {
             labelText = "\(sec)sec"
         }
@@ -127,9 +136,10 @@ class ResultPage2: ResultPage {
         scoreNode.text = labelText
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
         
-        scoreNode.fontSize = UtilitiesPortal.screenHeight*0.05
+        scoreNode.fontSize = UtilitiesPortal.screenHeight*0.04
         addChild(scoreNode)
         
+        // creat title node
         let p1 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*1.2)
         text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
         text.alignment = .Center
@@ -137,6 +147,7 @@ class ResultPage2: ResultPage {
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
         
+        //creat message node
         let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*0.55)
         text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
         text1.alignment = .Center
@@ -167,7 +178,7 @@ class ResultPage2: ResultPage {
                                 y: UtilitiesPortal.screenHeight * 0.4)
         redo.name = "redo"
         
-        next = CustomButton(defaultButtonImage: "nextbutton", activeButtonImage: "nextbutton1", buttonAction: nextAction, scale: 0.2)
+        next = CustomButton(defaultButtonImage: "finishbutton", activeButtonImage: "finishbutton1", buttonAction: nextAction, scale: 0.2)
         next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
                                 y: UtilitiesPortal.screenHeight * 0.2)
         next.name = "next"
@@ -191,6 +202,7 @@ class ResultPage2: ResultPage {
         
     }*/
     
+    // retry level 2
     override func redoAction() {
         print("redo")
         UtilitiesPortal.score = 0
@@ -208,6 +220,7 @@ class ResultPage2: ResultPage {
         controller.presentViewController(activityVC, animated: true, completion: nil)
     }*/
     
+    // to go to level2 sence
     func backLevel2() {
         cleanScene()
         self.removeAllActions()
@@ -231,6 +244,7 @@ class ResultPage2: ResultPage {
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
         
+        //if medal info view is open, it will be close with a click
         if stateInfo == true{
             myView.removeAllChildren()
             myView.removeFromParent()
@@ -239,6 +253,9 @@ class ResultPage2: ResultPage {
         
         
         if node.name == UtilitiesPortal.infoButonName {
+            myView.removeAllChildren()
+            myView.removeFromParent()
+            stateInfo = false
             infoTable(modeName)
             stateInfo = true
         }

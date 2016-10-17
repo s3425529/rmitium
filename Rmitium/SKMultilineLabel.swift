@@ -25,7 +25,6 @@ class SKMultilineLabel: SKNode {
     var rect:SKShapeNode?
     var labels:[SKLabelNode] = []
     var lineCount = 0
-    
     init(text:String, labelWidth:CGFloat, pos:CGPoint, fontName:String="ChalkboardSE-Regular",fontSize:CGFloat=10,fontColor:SKColor=SKColor.blackColor(),leading:Int=10, alignment:SKLabelHorizontalAlignmentMode = .Center, shouldShowBorder:Bool = false)
     {
         self.text = text
@@ -91,7 +90,8 @@ class SKMultilineLabel: SKNode {
                     lineStringBeforeAddingWord = lineString
                     lineString = "\(lineString) \(words[wordCount])"
                     label.text = lineString
-                    lineLength = label.frame.size.width
+                    let labelSize = label.frame.size.width
+                    lineLength = labelSize
                 }
             }
             if lineLength > 0 {

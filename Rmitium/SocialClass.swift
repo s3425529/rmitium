@@ -12,6 +12,8 @@ import CoreData
 class SocialClass {
     var context = DataController().managedObjectContext
     var facebook, twitter:Bool!
+    
+    //initial the facebook and twitter
     func initClass() {
         if checkDataIsEmpty() == true {
             let entity = NSEntityDescription.insertNewObjectForEntityForName("Social", inManagedObjectContext: context)
@@ -27,6 +29,7 @@ class SocialClass {
         }
     }
     
+    //read the record
     func getRecord() {
         let request = NSFetchRequest(entityName: "Social")
         do {
@@ -45,6 +48,8 @@ class SocialClass {
             print("Error!")
         }
     }
+    
+    //set facebook or twitter with true after the first time of accessing
     func setValue(keyString: String) {
         delCoreData()
         let entity = NSEntityDescription.insertNewObjectForEntityForName("Social", inManagedObjectContext: context)
@@ -77,6 +82,8 @@ class SocialClass {
             fatalError("Failure reading from coredata: \(error)")
         }
     }
+    
+    //clean the core data
     func delCoreData() {
         let setting = NSFetchRequest(entityName: "Social")
         do {

@@ -24,9 +24,7 @@ class SettingScene: SKScene {
         UtilitiesPortal.score = 0
         state = UtilitiesPortal.stateAnswer
         
-        // Reset the setting every time use enter the setting scene for testing purpose
-        //DataHandler.initSettings()
-        
+        // Get settings in database
         model = DataHandler.getSettings()
         values.append(model.getSound)
         values.append(model.getEffect)
@@ -70,11 +68,13 @@ class SettingScene: SKScene {
             levelLabel.fontSize = UtilitiesPortal.levelLabelSize
             levelLabel.position = CGPointMake(UtilitiesPortal.screenWidth*0.27,
                                               UtilitiesPortal.screenHeight*(0.68-CGFloat(count)*0.15))
+            // Position for reset score
             if count == 3 {
                 levelLabel.position.x = UtilitiesPortal.screenWidth/2.45
             }
             self.addChild(levelLabel)
             
+            // On/Off Image for other settings
             let levelButton = SKSpriteNode(imageNamed: "offbutton")
             if count == 0 && model.getSound {
                 levelButton.texture = SKTexture(image: UIImage(named: "onbutton")!)
@@ -91,6 +91,8 @@ class SettingScene: SKScene {
             levelButton.position = CGPointMake(UtilitiesPortal.screenWidth*0.68,
                                                UtilitiesPortal.screenHeight*(0.70-CGFloat(count)*0.15))
             levelButton.size = CGSize(width: 305/3,height: 143/3)
+            
+            // Border for reset score
             if count == 3 {
                 levelButton.name = UtilitiesPortal.settingLabelButtons[count]
                 levelButton.texture = SKTexture(image: UIImage(named: "alertbox")!)
@@ -99,7 +101,6 @@ class SettingScene: SKScene {
             }
             self.addChild(levelButton)
             settings.append(levelButton)
-            print("settings: \(settings.count)")
         }
     }
     
@@ -110,6 +111,8 @@ class SettingScene: SKScene {
         
         let location = touches.first!.locationInNode(self)
         let node = self.nodeAtPoint(location)
+        
+        // Home selected
         if node.name == UtilitiesPortal.homeButtonName {
             // Save settings
             DataHandler.updateSettings(values)
@@ -123,18 +126,17 @@ class SettingScene: SKScene {
             self.scene!.view?.presentScene(secondScene, transition: transition)
         }
         
-        print("width: \(UtilitiesPortal.screenWidth)")
-        print("height: \(UtilitiesPortal.screenHeight)")
-        
-        // Sound
+        // Settings
         for count in 0..<UtilitiesPortal.settingLabelNames.count {
             if (node.name == UtilitiesPortal.settingLabelNames[count] ||
-                node.name == UtilitiesPortal.settingLabelButtons[count]) {
+                            node.name == UtilitiesPortal.settingLabelButtons[count]) {
+                // Reset score
                 if count == UtilitiesPortal.settingLabelNames.count-1 {
                     DataHandler.resetScores()
                     settings[count].texture = SKTexture(image: UIImage(named: "alertbox2")!)
                     return
                 }
+                // Left hand mode
                 else if count == UtilitiesPortal.settingLabelNames.count-2 {
                     if values[count] {
                         values[count] = false
@@ -145,6 +147,7 @@ class SettingScene: SKScene {
                         settings[count].texture = SKTexture(image: UIImage(named: "offbutton")!)
                     }
                 }
+                // Sound
                 else if values[count] {
                     values[count] = false
                     settings[count].texture = SKTexture(image: UIImage(named: "offbutton")!)
