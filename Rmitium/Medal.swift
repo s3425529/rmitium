@@ -92,7 +92,7 @@ class medalClass {
             }
         }
         // Checking if the user has a new record
-        if scorePercent > score && firstTime > 0 {
+        if scorePercent > score || firstTime < 0 {
             newRecord = true
         }
         else {
@@ -220,7 +220,7 @@ class medalClass {
             }
             
             // Checking if the user has a new record
-            if UtilitiesPortal.score < score && firstTime > 0{
+            if UtilitiesPortal.score < score || firstTime < 0{
                 newRecord = true
             }
             else {
@@ -293,7 +293,7 @@ class medalClass {
             }
 
             // Checking if the user has a new record
-            if UtilitiesPortal.score > score && firstTime > 0 {
+            if UtilitiesPortal.score > score || firstTime < 0 {
                 newRecord = true
             }
             else {
@@ -365,7 +365,7 @@ class medalClass {
             }
 
             // Checking if the user has a new record
-            if UtilitiesPortal.score > score && firstTime > 0{
+            if UtilitiesPortal.score > score || firstTime < 0 {
                 newRecord = true
             }
             else {

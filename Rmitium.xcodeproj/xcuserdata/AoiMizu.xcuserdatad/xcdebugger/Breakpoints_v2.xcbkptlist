@@ -189,7 +189,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "464"
             endingLineNumber = "464"
-            landmarkName = "touchesBegan(touches:withEvent:)"
+            landmarkName = "compareTiles(a:b:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
