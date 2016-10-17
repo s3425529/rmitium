@@ -11,20 +11,8 @@ class LevelOneModel {
     static var listOfQuestions: [LevelOneQuestion] = []
     static var index: Int = 0
     
-    /*private struct Static{
-     static var instance: LevelThreeModel?
-     }
-     
-     class var sharedInstance: LevelThreeModel
-     {
-     if !(Static.instance != nil)
-     {
-     Static.instance = LevelThreeModel()
-     }
-     return Static.instance!
-     }*/
-    
     static func reset() {
+        // Get a new list of level 1 questions
         listOfQuestions = LevelOneQuestionList.getQuestionsList()
         index = 0
     }
@@ -32,11 +20,10 @@ class LevelOneModel {
     static var currentQuestion:LevelOneQuestion {
         get {
             let current = index
-            if index == listOfQuestions.count {
-            
+            if index == listOfQuestions.count { // Reset at the end of the list
                 reset()
             }
-            else {
+            else { // Traverse through the list
                 index = index + 1
             }
             return listOfQuestions[current]

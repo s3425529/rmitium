@@ -452,7 +452,7 @@ class LevelOneScene: LevelScene {
         if chosenAnswer == nil {
             return
         }
-        
+        // Move the drag label to the touch location
         chosenAnswer.position = touch!.locationInNode(self)
         
         /*print("+++++++++++++++++++++++++")

@@ -19,7 +19,6 @@ class LevelThreeScene: LevelScene {
     var isFirstTouch: Bool!
     
     override func didMoveToView(view: SKView) {
-        //initRecord()
         cleanScene()
         setupScene()
     }
@@ -67,16 +66,6 @@ class LevelThreeScene: LevelScene {
         molecule.fontSize = UtilitiesPortal.factSize
         molecule.zPosition = 0.1
         molecule.fontColor = SKColor.whiteColor()
-        /*
-         if DataHandler.getSettings().getRightHand {
-         molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-         molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.01, UtilitiesPortal.screenHeight * 0.8)
-         }
-         else {
-         molecule.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
-         molecule.position = CGPointMake(UtilitiesPortal.screenWidth * 0.99, UtilitiesPortal.screenHeight * 0.8)
-         }
-         */
         molecule.position = CGPoint(x:UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.borderSize/4)
         self.addChild(molecule)
     }
@@ -112,11 +101,6 @@ class LevelThreeScene: LevelScene {
             answer.value = UtilitiesPortal.levelThreeAnswers[count]
             answer.zPosition = 0.3
             answer.alpha = 0.9
-            /*answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.20,
-                                 height: UtilitiesPortal.screenHeight*0.15)
-            let current = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
-                                  y:UtilitiesPortal.screenHeight*(0.75-0.18*CGFloat(count)))*/
-            
             answer.size = CGSize(width: UtilitiesPortal.screenWidth*0.15,
                                  height: UtilitiesPortal.screenHeight*0.1)
             let current = CGPoint(x:UtilitiesPortal.screenWidth*0.85,
@@ -217,6 +201,7 @@ class LevelThreeScene: LevelScene {
         addChild(factOverlay)
         addChild(factView)
     }
+    
     // Info layout - arrows and text images while the user is completing a question
     override func setupInfoResult() {
         let arrow01 = SKSpriteNode(imageNamed: UtilitiesPortal.infoArrowNames[0])
@@ -462,18 +447,17 @@ class LevelThreeScene: LevelScene {
         if chosenAnswer == nil {
             return
         }
-        
+        // Move the drag label to the touch location
         chosenAnswer.position = touch!.locationInNode(self)
         
-        print("+++++++++++++++++++++++++")
+        /*print("+++++++++++++++++++++++++")
         
         let xPostion = chosenAnswer.position.x
         let yPostion = chosenAnswer.position.y
         let x = xPostion / UtilitiesPortal.screenWidth
         let y = yPostion / UtilitiesPortal.screenHeight
         print("x=\(x)")
-        print("y=\(y)")
-        
+        print("y=\(y)")*/
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -522,6 +506,7 @@ class LevelThreeScene: LevelScene {
                             audioPlayer.play()
                         }
                         
+                        // Create drag label based on selected label
                         chosenAnswer = CustomSKSpriteNode(imageNamed: answers[x].name!)
                         chosenAnswer.value = answers[x].name!
                         chosenAnswer.zPosition = 0.4
@@ -539,11 +524,13 @@ class LevelThreeScene: LevelScene {
                 // Targets node selected
                 for x in 0...questions.count-1 {
                     if CGRectContainsPoint(questions[x].frame, point) {
+                        // Empty the target location if it has answer
                         if answeredQuestions[x].hidden {
                             return
                         }
                         answeredQuestions[x].hidden = true
                         
+                        // Create a drag label based on the the selected target node
                         chosenAnswer = CustomSKSpriteNode(imageNamed: answeredQuestions[x].value)
                         chosenAnswer.value = answeredQuestions[x].value
                         chosenAnswer.zPosition = 0.4
