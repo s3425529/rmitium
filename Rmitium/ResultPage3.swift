@@ -48,19 +48,22 @@ class ResultPage3: ResultPage {
     
     // Create medal node
     override func setupMedal() {
-        //medalNode.texture = SKTexture(imageNamed: "Medal5-Rust")
+        //call the medalClass  to get the relevant medal image and messages.
         let medalDic = medalClass().assignMedal(UtilitiesPortal.levelThree)
         let medalName = medalDic.medalName
-        newRecordBox.hidden = !medalDic.newRecord
         let information1 = medalDic.information[0]
         let information2 = medalDic.information[1]
+        
+        //create medalNode
         let medalNode = SKSpriteNode(imageNamed: medalName)
+        newRecordLabel.hidden = !medalDic.newRecord
         medalNode.color = SKColor.blueColor()
         medalNode.name = "medal"
         medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
         medalNode.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
         medalNode.zPosition = 0.1
         
+        //make medal image to rotate
         let action = SKAction.rotateToAngle(CGFloat(M_PI/2), duration: 5)
         let action1 = SKAction.rotateToAngle(CGFloat(-M_PI/2), duration: 5)
         let sequen = SKAction.sequence([action,action1])
@@ -68,19 +71,24 @@ class ResultPage3: ResultPage {
         addChild(medalNode)
         medalNode.runAction(repeatAction)
         
+        
+        // create scoreNode to display the current score
         let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         scoreNode.text = "\(UtilitiesPortal.score)"
         scoreNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2.1)
+        
         scoreNode.fontSize = UtilitiesPortal.screenHeight*0.07
         addChild(scoreNode)
         
-        let p1 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*1.2)
+        //create title message
+        let p1 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 1.2)
         text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
         text.alignment = .Center
         text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
         
+        //create encourage message node
         let p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 0.50)
         text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
         text1.alignment = .Center

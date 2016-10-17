@@ -346,11 +346,6 @@ class LevelTwoScene: LevelScene {
         addChild(timeOutMessage)
     }
     
-    override func backHomePage() {
-        timeOut()
-        super.backHomePage()
-    }
-    
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /*let touch = touches.first
         if chosenAnswer == nil {
@@ -387,7 +382,10 @@ class LevelTwoScene: LevelScene {
         // Home button selected
         let location = touch!.locationInNode(self)
         let node = self.nodeAtPoint(location)
-        
+        //
+        if node.name == UtilitiesPortal.homeButtonName {
+            timeOut()
+        }
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
             previousState = state
@@ -397,7 +395,7 @@ class LevelTwoScene: LevelScene {
         }
         
         if node.name == UtilitiesPortal.timeOutHomeName {
-            super.backHomePage()
+            backHomePage()
         }
         
         if node.name == UtilitiesPortal.timeOutRetryName {

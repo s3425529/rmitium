@@ -74,7 +74,7 @@ class ResultPage2: ResultPage {
         setupItems()
         setupMedal()
         setupCustomerButton()
-        newRecordBox.hidden = !medalDic.newRecord
+        newRecordLabel.hidden = !medalDic.newRecord
         
         // Save the score
         switch String(self.userData!.valueForKey("gameMode")!) {
@@ -161,46 +161,6 @@ class ResultPage2: ResultPage {
         levelLabel.text = "Level 2: \(self.userData!.valueForKey("gameMode")!)"
     }
     
-    /*func setupCustomerButton() {
-        facebook = CustomButton(defaultButtonImage: "facebookbutton", activeButtonImage: "facebookbutton1", buttonAction: facebookAction,scale: 0.2)
-        facebook.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-                                    y: UtilitiesPortal.screenHeight * 0.8)
-        facebook.name = "facebook"
-        facebook.frame.width
-        
-        twitter = CustomButton(defaultButtonImage: "twitterbutton", activeButtonImage: "twitterbutton1", buttonAction: twitterAction,scale: 0.2)
-        twitter.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-                                   y: UtilitiesPortal.screenHeight * 0.6)
-        twitter.name = "twitter"
-        
-        redo = CustomButton(defaultButtonImage: "retrybutton", activeButtonImage: "retrybutton1", buttonAction: redoAction,scale: 0.2)
-        redo.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-                                y: UtilitiesPortal.screenHeight * 0.4)
-        redo.name = "redo"
-        
-        next = CustomButton(defaultButtonImage: "finishbutton", activeButtonImage: "finishbutton1", buttonAction: nextAction, scale: 0.2)
-        next.position = CGPoint(x:UtilitiesPortal.screenWidth - UtilitiesPortal.borderSize*3,
-                                y: UtilitiesPortal.screenHeight * 0.2)
-        next.name = "next"
-        //next.setScale(scale1)
-        
-        addChild(facebook)
-        addChild(twitter)
-        addChild(redo)
-        addChild(next)
-
-    }
-    func facebookAction() {
-        print("facebook")
-        if socialData.facebook == true{
-            
-            activeFacebook()
-        }
-        else {
-            facebookAlertMessage()
-        }
-        
-    }*/
     
     // Retry level 2
     override func redoAction() {

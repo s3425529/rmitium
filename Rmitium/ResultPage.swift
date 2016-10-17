@@ -15,7 +15,7 @@ class ResultPage: SKScene {
     var i = 0
     var levelLabel: SKLabelNode!
     var homeDialogue: SKShapeNode!
-    var homeView, newRecordBox :SKSpriteNode!
+    var homeView, newRecordLabel :SKSpriteNode!
     var text,text1: SKMultilineLabel!
     var socialData:SocialClass!
     var audioPlayer = AVAudioPlayer()
@@ -55,7 +55,7 @@ class ResultPage: SKScene {
         
         // Create medalNode
         let medalNode = SKSpriteNode(imageNamed: medalName)
-        newRecordBox.hidden = !medalDic.newRecord
+        newRecordLabel.hidden = !medalDic.newRecord
         medalNode.color = SKColor.blueColor()
         medalNode.name = "medal"
         medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
@@ -293,22 +293,12 @@ class ResultPage: SKScene {
     
     // Create home dialogue
     func addNewRecordLabel(){
-        let newRecord = SKLabelNode()
-        newRecordBox = SKSpriteNode(imageNamed: "new record")
-        newRecordBox.size = CGSize(width: UtilitiesPortal.screenWidth/3, height: newRecord.fontSize*1.5)
-        newRecordBox.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 3)
-        newRecordBox.zPosition = 0.2
-        //newRecordBox.color = SKColor.redColor()
-        newRecordBox.alpha = 0.8
-        newRecordBox.hidden = true
-        /*newRecord.verticalAlignmentMode = .Center
-        newRecord.horizontalAlignmentMode = .Center
-        newRecord.text = "NEW RECORD!"
-        newRecord.fontSize = UtilitiesPortal.navLabelSize
-        newRecord.fontName = UtilitiesPortal.navLabelFont
-        newRecord.fontColor = SKColor.whiteColor()
-        newRecordBox.addChild(newRecord)*/
-        addChild(newRecordBox)
+        newRecordLabel = SKSpriteNode(imageNamed: "new record")
+        newRecordLabel.size = CGSize(width: UtilitiesPortal.screenWidth/10, height: UtilitiesPortal.screenHeight/12)
+        newRecordLabel.position = CGPoint(x: UtilitiesPortal.screenWidth / 2, y: UtilitiesPortal.screenHeight * 0.75)
+        newRecordLabel.zPosition = 0.2
+        newRecordLabel.hidden = true
+        addChild(newRecordLabel)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
