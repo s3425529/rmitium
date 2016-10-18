@@ -142,7 +142,7 @@ class UtilitiesPortal {
     static func setBgm(){
         let soundSetting = DataHandler.getSettings().getSound
         if soundSetting {
-            if (SKTAudio.sharedInstance().backgroundMusicPlayer == nil){
+            if (SKTAudio.sharedInstance().backgroundMusicPlayer == nil) {
                 SKTAudio.sharedInstance().playBackgroundMusic("bgm.mp3")
             }            
             else {

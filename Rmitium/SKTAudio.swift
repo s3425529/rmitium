@@ -44,6 +44,7 @@ public class SKTAudio {
         var error: NSError? = nil
         do {
             backgroundMusicPlayer = try AVAudioPlayer(contentsOfURL: url!)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
         } catch let error1 as NSError {
             error = error1
             backgroundMusicPlayer = nil
@@ -83,6 +84,7 @@ public class SKTAudio {
         var error: NSError? = nil
         do {
             soundEffectPlayer = try AVAudioPlayer(contentsOfURL: url!)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient)
         } catch let error1 as NSError {
             error = error1
             soundEffectPlayer = nil
