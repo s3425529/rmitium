@@ -240,7 +240,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) Your best was \(bestTime)!")
+                    words.append("\(message) You beat the clock in \(bestTime)!")
                 }
 
             }
@@ -252,7 +252,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) Your best was \(bestTime)!")
+                    words.append("\(message) You beat the clock in \(bestTime)!")
                 }
 
             }
@@ -264,7 +264,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) Your best was \(bestTime)!")
+                    words.append("\(message) You beat the clock in \(bestTime)!")
                 }
             }
             if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
@@ -275,7 +275,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) Your best was \(bestTime)!")
+                    words.append("\(message) You beat the clock in \(bestTime)!")
                 }
 
             }
@@ -287,7 +287,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) Your best was \(bestTime)!")
+                    words.append("\(message) You beat the clock in \(bestTime)!")
                 }
 
             }
@@ -311,7 +311,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) Your best was \(bestTime)!")
+                    words.append("\(message) You beat the clock in \(bestTime)!")
                 }
 
             }
@@ -323,7 +323,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) Your best was \(bestTime)!")
+                    words.append("\(message) You beat the clock in \(bestTime)!")
                 }
 
             }
@@ -335,7 +335,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) Your best was \(bestTime)!")
+                    words.append("\(message) You beat the clock in \(bestTime)!")
                 }
 
             }
@@ -347,7 +347,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) Your best was \(bestTime)!")
+                    words.append("\(message) You beat the clock in \(bestTime)!")
                 }
 
             }
@@ -359,7 +359,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) Your best was \(bestTime)!")
+                    words.append("\(message) You beat the clock in \(bestTime)!")
                 }
 
             }
