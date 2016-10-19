@@ -222,6 +222,7 @@ class ResultPage2: ResultPage {
             myView.removeAllChildren()
             myView.removeFromParent()
             stateInfo = false
+            return
         }
         
         
@@ -231,6 +232,7 @@ class ResultPage2: ResultPage {
             stateInfo = false
             infoTable(modeName)
             stateInfo = true
+            return
         }
 
     }
