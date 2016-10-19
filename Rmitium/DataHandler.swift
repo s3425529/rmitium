@@ -268,7 +268,7 @@ class DataHandler {
             let object = result.first!
             let x = object.levelTwoTrial as! Int
             if  x < UtilitiesPortal.score {
-                object.setValue(UtilitiesPortal.score - UtilitiesPortal.level2TrialTime, forKey: "levelTwoTrial")
+                object.setValue(UtilitiesPortal.score, forKey: "levelTwoTrial")
                 try settings.save()
             }
             
@@ -299,8 +299,7 @@ class DataHandler {
             let x = object.levelTwoExtreme as! Int
             print("Extreme: old: \(x), current: \(UtilitiesPortal.score)")
             if x < UtilitiesPortal.score {
-                //set real time for Extreme
-                object.setValue(UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score, forKey: "levelTwoExtreme")
+                object.setValue(UtilitiesPortal.score, forKey: "levelTwoExtreme")
                 try settings.save()
             }
             
@@ -466,7 +465,6 @@ class DataHandler {
             else {
                 // Level 2 Standard
                 if mode == UtilitiesPortal.modeStandard {
-                    // If this is the first time, retun null medal
                     score = Double((result.first?.levelTwo)!)
                     if score < 20  && score >= 0 {
                         return "Medal1-Diamond"
@@ -490,12 +488,8 @@ class DataHandler {
                 }
                 // Level 2 Trial
                 else if mode == UtilitiesPortal.modeTrial {
-                    // If this is the first time, retun null medal
-                    let firstTime = Double((result.first?.levelTwoTrial)!)
-                    if firstTime < 0 {
-                        return ""
-                    }
-                    score = Double((result.first?.levelTwoTrial)!) + Double(UtilitiesPortal.level2TrialTime)
+                    //score = Double((result.first?.levelTwoTrial)!) + Double(UtilitiesPortal.level2TrialTime)
+                    score = Double((result.first?.levelTwoTrial)!)
                     if score >= 150 {
                         return "Medal1-Diamond"
                     }
@@ -517,11 +511,8 @@ class DataHandler {
                 }
                 // Level 2 Extreme
                 else if mode == UtilitiesPortal.modeExtreme {
-                    let firstTime = Double((result.first?.levelTwoExtreme)!)
-                    if firstTime < 0 {
-                        return ""
-                    }
-                    score = 300 - Double((result.first?.levelTwoExtreme)!)
+                    //score = 300 - Double((result.first?.levelTwoExtreme)!)
+                    score = Double((result.first?.levelTwoExtreme)!)
                     if score >= 150 {
                         return "Medal1-Diamond"
                     }

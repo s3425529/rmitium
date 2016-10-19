@@ -349,7 +349,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "468"
             endingLineNumber = "468"
-            landmarkName = "getMedal(_:mode:)"
+            landmarkName = "getMedal(level:mode:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
