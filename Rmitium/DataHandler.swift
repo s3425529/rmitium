@@ -466,6 +466,7 @@ class DataHandler {
             else {
                 // Level 2 Standard
                 if mode == UtilitiesPortal.modeStandard {
+                    // If this is the first time, retun null medal
                     score = Double((result.first?.levelTwo)!)
                     if score < 20  && score >= 0 {
                         return "Medal1-Diamond"
@@ -489,6 +490,11 @@ class DataHandler {
                 }
                 // Level 2 Trial
                 else if mode == UtilitiesPortal.modeTrial {
+                    // If this is the first time, retun null medal
+                    let firstTime = Double((result.first?.levelTwoTrial)!)
+                    if firstTime < 0 {
+                        return ""
+                    }
                     score = Double((result.first?.levelTwoTrial)!) + Double(UtilitiesPortal.level2TrialTime)
                     if score >= 150 {
                         return "Medal1-Diamond"
@@ -511,6 +517,10 @@ class DataHandler {
                 }
                 // Level 2 Extreme
                 else if mode == UtilitiesPortal.modeExtreme {
+                    let firstTime = Double((result.first?.levelTwoExtreme)!)
+                    if firstTime < 0 {
+                        return ""
+                    }
                     score = 300 - Double((result.first?.levelTwoExtreme)!)
                     if score >= 150 {
                         return "Medal1-Diamond"

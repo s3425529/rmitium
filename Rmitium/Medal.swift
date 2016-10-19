@@ -92,7 +92,7 @@ class medalClass {
             }
         }
         // Checking if the user has a new record
-        if scorePercent > score || firstTime < 0 {
+        if scorePercent > score  && firstTime >= 0 {
             newRecord = true
         }
         else {
@@ -139,13 +139,13 @@ class medalClass {
         
         // Format the output of time
         if min == 0 {
-            message = "You took \(sec) seconds."
+            message = "You beat the clock in \(sec) seconds."
         }
         else if min == 1 {
-            message = "You took \(min) minute \(sec) seconds."
+            message = "You beat the clock in \(min) minute \(sec) seconds."
         }
         else if min > 1 {
-            message = "You took \(min) minutes \(sec) seconds."
+            message = "You beat the clock in \(min) minutes \(sec) seconds."
         }
         
         if scoreSec < 10 {
@@ -225,7 +225,7 @@ class medalClass {
             }
             
             // Checking if the user has a new record
-            if UtilitiesPortal.score < score || firstTime < 0{
+            if UtilitiesPortal.score < score && firstTime >= 0 {
                 newRecord = true
             }
             else {
@@ -238,13 +238,13 @@ class medalClass {
         if mode == "trial" {
             
             if min == 0 {
-                message = "You got \(sec) seconds."
+                message = "You beat the clock in \(sec) seconds."
             }
             else if min == 1 {
-                message = "You got \(min) minute \(sec) seconds."
+                message = "You beat the clock in \(min) minute \(sec) seconds."
             }
             else if min > 1 {
-                message = "You got \(min) minutes \(sec) seconds."
+                message = "You beat the clock in \(min) minutes \(sec) seconds."
             }
             
             if scoreSec < 10 {
@@ -268,7 +268,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) You beat the clock in \(bestTime)!")
+                    words.append("\(message) Your best was \(bestTime)!")
                 }
 
             }
@@ -280,7 +280,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) You beat the clock in \(bestTime)!")
+                    words.append("\(message) Your best was \(bestTime)!")
                 }
 
             }
@@ -292,7 +292,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) You beat the clock in \(bestTime)!")
+                    words.append("\(message) Your best was \(bestTime)!")
                 }
             }
             if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
@@ -303,7 +303,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) You beat the clock in \(bestTime)!")
+                    words.append("\(message) Your best was \(bestTime)!")
                 }
 
             }
@@ -315,13 +315,13 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) You beat the clock in \(bestTime)!")
+                    words.append("\(message) Your best was \(bestTime)!")
                 }
 
             }
 
             // Checking if the user has a new record
-            if (UtilitiesPortal.score - UtilitiesPortal.level2TrialTime) > score || firstTime < 0 {
+            if (UtilitiesPortal.score - UtilitiesPortal.level2TrialTime) > score && firstTime >= 0 {
                 newRecord = true
             }
             else {
@@ -339,7 +339,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) You beat the clock in \(bestTime)!")
+                    words.append("\(message) Your best was \(bestTime)!")
                 }
 
             }
@@ -351,7 +351,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) You beat the clock in \(bestTime)!")
+                    words.append("\(message) Your best was \(bestTime)!")
                 }
 
             }
@@ -363,7 +363,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) You beat the clock in \(bestTime)!")
+                    words.append("\(message) Your best was \(bestTime)!")
                 }
 
             }
@@ -375,7 +375,7 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) You beat the clock in \(bestTime)!")
+                    words.append("\(message) Your best was \(bestTime)!")
                 }
 
             }
@@ -387,13 +387,13 @@ class medalClass {
                     words.append(message)
                 }
                 else {
-                    words.append("\(message) You beat the clock in \(bestTime)!")
+                    words.append("\(message) Your best was \(bestTime)!")
                 }
 
             }
 
             // Checking if the user has a new record
-            if (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score) < score || firstTime < 0 {
+            if (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score) < score && firstTime >= 0 {
                 newRecord = true
             }
             else {
