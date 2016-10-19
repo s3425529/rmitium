@@ -268,7 +268,7 @@ class DataHandler {
             let object = result.first!
             let x = object.levelTwoTrial as! Int
             if  x < UtilitiesPortal.score {
-                object.setValue(UtilitiesPortal.score, forKey: "levelTwoTrial")
+                object.setValue(UtilitiesPortal.score - UtilitiesPortal.level2TrialTime, forKey: "levelTwoTrial")
                 try settings.save()
             }
             
@@ -299,7 +299,8 @@ class DataHandler {
             let x = object.levelTwoExtreme as! Int
             print("Extreme: old: \(x), current: \(UtilitiesPortal.score)")
             if x < UtilitiesPortal.score {
-                object.setValue(UtilitiesPortal.score, forKey: "levelTwoExtreme")
+                //set real time for Extreme
+                object.setValue(UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score, forKey: "levelTwoExtreme")
                 try settings.save()
             }
             
@@ -488,7 +489,7 @@ class DataHandler {
                 }
                 // Level 2 Trial
                 else if mode == UtilitiesPortal.modeTrial {
-                    score = Double((result.first?.levelTwoTrial)!)
+                    score = Double((result.first?.levelTwoTrial)!) + Double(UtilitiesPortal.level2TrialTime)
                     if score >= 150 {
                         return "Medal1-Diamond"
                     }
@@ -510,7 +511,7 @@ class DataHandler {
                 }
                 // Level 2 Extreme
                 else if mode == UtilitiesPortal.modeExtreme {
-                    score = Double((result.first?.levelTwoExtreme)!)
+                    score = 300 - Double((result.first?.levelTwoExtreme)!)
                     if score >= 150 {
                         return "Medal1-Diamond"
                     }

@@ -138,6 +138,10 @@ class UtilitiesPortal {
     static var totalQuestions = 0
     static var effect = "sfx"
     
+    //set the limit time of extreme of level2
+    static var level2ExtremeTime = 300
+    //set the starting time of trail of level2
+    static var level2TrialTime = 15
     //static var record = [Int]()
     static func setBgm(){
         let soundSetting = DataHandler.getSettings().getSound

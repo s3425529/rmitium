@@ -106,8 +106,8 @@ class medalClass {
         var score = 0 // Current Record
         var message:String!
         var bestTime:String!
-        let min = UtilitiesPortal.score/60
-        let sec = UtilitiesPortal.score%60
+        var min = UtilitiesPortal.score/60
+        var sec = UtilitiesPortal.score%60
         var firstTime = -2
         
         // Checking whether is the first time playing Level 2
@@ -120,11 +120,16 @@ class medalClass {
         if mode == "trial" {
             score = DataHandler.getLevelTwoTrialScore() as Int
             firstTime = DataHandler.getLevelTwoTrialScore() as Int
+            min = (UtilitiesPortal.score - UtilitiesPortal.level2TrialTime)/60
+            sec = (UtilitiesPortal.score - UtilitiesPortal.level2TrialTime)%60
         }
         // Extreme
         if mode == "extreme" {
             score = DataHandler.getLevelTwoExtremeScore() as Int
             firstTime = DataHandler.getLevelTwoExtremeScore() as Int
+            min = (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score)/60
+            sec = (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score)%60
+            
         }
         
         // Converting the score to seconds/minutes
@@ -232,6 +237,29 @@ class medalClass {
         
         if mode == "trial" {
             
+            if min == 0 {
+                message = "You got \(sec) seconds."
+            }
+            else if min == 1 {
+                message = "You got \(min) minute \(sec) seconds."
+            }
+            else if min > 1 {
+                message = "You got \(min) minutes \(sec) seconds."
+            }
+            
+            if scoreSec < 10 {
+                if scoreSec == -1 {
+                    bestTime = "\(scoreMin):00"
+                }
+                else {
+                    bestTime = "\(scoreMin):0\(scoreSec)"
+                }
+            }
+            else {
+                bestTime = "\(scoreMin):\(scoreSec)"
+            }
+
+            
             if UtilitiesPortal.score >= 150 {
                 medalName = "Medal1-Diamond"
                 words = ["Congratulations!"]
@@ -293,7 +321,7 @@ class medalClass {
             }
 
             // Checking if the user has a new record
-            if UtilitiesPortal.score > score || firstTime < 0 {
+            if (UtilitiesPortal.score - UtilitiesPortal.level2TrialTime) > score || firstTime < 0 {
                 newRecord = true
             }
             else {
@@ -365,7 +393,7 @@ class medalClass {
             }
 
             // Checking if the user has a new record
-            if UtilitiesPortal.score > score || firstTime < 0 {
+            if (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score) < score || firstTime < 0 {
                 newRecord = true
             }
             else {
