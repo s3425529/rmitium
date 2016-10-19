@@ -110,7 +110,7 @@ class medalClass {
         var sec = UtilitiesPortal.score%60
         var firstTime = -2
         
-        // Checking whether is the first time playing Level 2
+        // Checking whether is the first time playing Level 2, and getting the saved score
         // Standard
         if mode == "stand" {
             score = DataHandler.getLevelTwoScore() as Int
@@ -137,34 +137,38 @@ class medalClass {
         let scoreSec = score%60
         let result = UtilitiesPortal.score
         
-        // Format the output of time
-        if min == 0 {
-            message = "You beat the clock with \(sec) seconds remaining."
-        }
-        else if min == 1 {
-            message = "You beat the clock with \(min) minute \(sec) seconds remaining."
-        }
-        else if min > 1 {
-            message = "You beat the clock with \(min) minutes \(sec) seconds remaining."
-        }
-        
-        if scoreSec < 10 {
-            if scoreSec == -1 {
-                bestTime = "\(scoreMin):00"
-            }
-            else {
-                bestTime = "\(scoreMin):0\(scoreSec)"
-            }
-        }
-        else {
-            bestTime = "\(scoreMin):\(scoreSec)"
-        }
+
         
         print("first: \(firstTime), score: \(UtilitiesPortal.score))")
         
         // Standard
         
         if mode == "stand" {
+            
+            // Format the output of time
+            if min == 0 {
+                message = "You took \(sec) seconds."
+            }
+            else if min == 1 {
+                message = "You took \(min) minute \(sec) seconds."
+            }
+            else if min > 1 {
+                message = "You took \(min) minutes \(sec) seconds."
+            }
+            
+            // Format the best score
+            if scoreSec < 10 {
+                if scoreSec == -1 {
+                    bestTime = "\(scoreMin):00"
+                }
+                else {
+                    bestTime = "\(scoreMin):0\(scoreSec)"
+                }
+            }
+            else {
+                bestTime = "\(scoreMin):\(scoreSec)"
+            }
+            
             if UtilitiesPortal.score < 20 {
                 medalName = "Medal1-Diamond"
                 words = ["Congratulations!"]
@@ -333,6 +337,29 @@ class medalClass {
         // Extreme
         
         if mode == "extreme" {
+            
+            if min == 0 {
+                message = "You beat the clock with \(sec) seconds remaining."
+            }
+            else if min == 1 {
+                message = "You beat the clock with \(min) minute \(sec) seconds remaining."
+            }
+            else if min > 1 {
+                message = "You beat the clock with \(min) minutes \(sec) seconds remaining."
+            }
+            
+            if scoreSec < 10 {
+                if scoreSec == -1 {
+                    bestTime = "\(scoreMin):00"
+                }
+                else {
+                    bestTime = "\(scoreMin):0\(scoreSec)"
+                }
+            }
+            else {
+                bestTime = "\(scoreMin):\(scoreSec)"
+            }
+            
             if UtilitiesPortal.score >= 150 {
                 medalName = "Medal1-Diamond"
                 words = ["Congratulations!"]
