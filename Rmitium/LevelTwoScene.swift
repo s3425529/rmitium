@@ -292,7 +292,7 @@ class LevelTwoScene: LevelScene {
         let retryBtn = SKSpriteNode()
         let backHomebtn = SKSpriteNode()
         let title = SKLabelNode(text:"Time Out!")
-        let message = SKLabelNode(text: "Wanna try again?")
+        let message = SKLabelNode(text: "Try again?")
         let backgroundNode = SKSpriteNode()
         
         homeDialogue.hidden = true

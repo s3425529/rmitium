@@ -139,13 +139,13 @@ class medalClass {
         
         // Format the output of time
         if min == 0 {
-            message = "You beat the clock in \(sec) seconds."
+            message = "You beat the clock with \(sec) seconds remaining."
         }
         else if min == 1 {
-            message = "You beat the clock in \(min) minute \(sec) seconds."
+            message = "You beat the clock with \(min) minute \(sec) seconds remaining."
         }
         else if min > 1 {
-            message = "You beat the clock in \(min) minutes \(sec) seconds."
+            message = "You beat the clock with \(min) minutes \(sec) seconds remaining."
         }
         
         if scoreSec < 10 {
@@ -238,13 +238,13 @@ class medalClass {
         if mode == "trial" {
             
             if min == 0 {
-                message = "You beat the clock in \(sec) seconds."
+                message = "You beat the clock with \(sec) seconds remaining."
             }
             else if min == 1 {
-                message = "You beat the clock in \(min) minute \(sec) seconds."
+                message = "You beat the clock with \(min) minute \(sec) seconds remaining."
             }
             else if min > 1 {
-                message = "You beat the clock in \(min) minutes \(sec) seconds."
+                message = "You beat the clock with \(min) minutes \(sec) seconds remaining."
             }
             
             if scoreSec < 10 {
