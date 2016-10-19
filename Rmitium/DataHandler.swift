@@ -268,7 +268,7 @@ class DataHandler {
             let object = result.first!
             let x = object.levelTwoTrial as! Int
             if  x < UtilitiesPortal.score {
-                object.setValue(UtilitiesPortal.score, forKey: "levelTwoTrial")
+                object.setValue(UtilitiesPortal.score - UtilitiesPortal.level2TrialTime, forKey: "levelTwoTrial")
                 try settings.save()
             }
             
@@ -489,7 +489,7 @@ class DataHandler {
                 }
                 // Level 2 Trial
                 else if mode == UtilitiesPortal.modeTrial {
-                    score = Double((result.first?.levelTwoTrial)!)
+                    score = Double((result.first?.levelTwoTrial)!) + Double(UtilitiesPortal.level2TrialTime)
                     if score >= 150 {
                         return "Medal1-Diamond"
                     }
