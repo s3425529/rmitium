@@ -106,8 +106,8 @@ class medalClass {
         var score = 0 // Current Record
         var message:String!
         var bestTime:String!
-        let min = UtilitiesPortal.score/60
-        let sec = UtilitiesPortal.score%60
+        var min = UtilitiesPortal.score/60
+        var sec = UtilitiesPortal.score%60
         var firstTime = -2
         
         // Checking whether is the first time playing Level 2
@@ -125,6 +125,13 @@ class medalClass {
         if mode == "extreme" {
             score = DataHandler.getLevelTwoExtremeScore() as Int
             firstTime = DataHandler.getLevelTwoExtremeScore() as Int
+            if UtilitiesPortal.score > 300{
+                print("Time error")
+            }else{
+                min = (300 - UtilitiesPortal.score)/60
+                sec = (300 - UtilitiesPortal.score)%60
+            }
+            
         }
         
         // Converting the score to seconds/minutes
@@ -365,7 +372,7 @@ class medalClass {
             }
 
             // Checking if the user has a new record
-            if UtilitiesPortal.score > score || firstTime < 0 {
+            if (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score) < score || firstTime < 0 {
                 newRecord = true
             }
             else {

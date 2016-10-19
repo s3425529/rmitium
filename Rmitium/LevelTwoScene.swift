@@ -595,7 +595,7 @@ class LevelTwoScene: LevelScene {
     // Extreme mode timer
     func beatTimer() {
         // timer is set to start from 300 seconds
-        LIMITTIME = 300
+        LIMITTIME = UtilitiesPortal.level2ExtremeTime
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
         
         //if it is first time playing the game, to pause the timer

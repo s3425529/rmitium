@@ -101,9 +101,14 @@ class ResultPage2: ResultPage {
         
         // Create medal image node
         let medalNode = SKSpriteNode(imageNamed: medalName)
-        let mins = UtilitiesPortal.score/60
-        let sec = UtilitiesPortal.score%60
+        var mins = UtilitiesPortal.score/60
+        var sec = UtilitiesPortal.score%60
         var labelText:String!
+        let mode:String = userData!.valueForKey("gameMode") as! String
+        if mode == UtilitiesPortal.modeLabelTexts[2]{
+            mins = (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score)/60
+            sec = (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score)%60
+        }
         medalNode.color = SKColor.blueColor()
         medalNode.name = "medal"
         medalNode.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
