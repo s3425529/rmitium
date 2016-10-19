@@ -104,10 +104,10 @@ class ResultPage2: ResultPage {
         var mins = UtilitiesPortal.score/60
         var sec = UtilitiesPortal.score%60
         var labelText:String!
-        let mode:String = userData!.valueForKey("gameMode") as! String
+        //let mode:String = userData!.valueForKey("gameMode") as! String
         
         //get the extreme current time
-        if mode == UtilitiesPortal.modeLabelTexts[2]{
+        /*if mode == UtilitiesPortal.modeLabelTexts[2]{
             mins = (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score)/60
             sec = (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score)%60
         }
@@ -115,7 +115,7 @@ class ResultPage2: ResultPage {
         if mode == UtilitiesPortal.modeLabelTexts[1]{
             mins = (UtilitiesPortal.score - UtilitiesPortal.level2TrialTime)/60
             sec = (UtilitiesPortal.score - UtilitiesPortal.level2TrialTime)%60
-        }
+        }*/
         
         medalNode.color = SKColor.blueColor()
         medalNode.name = "medal"
