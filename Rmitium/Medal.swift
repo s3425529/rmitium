@@ -120,15 +120,15 @@ class medalClass {
         if mode == "trial" {
             score = DataHandler.getLevelTwoTrialScore() as Int
             firstTime = DataHandler.getLevelTwoTrialScore() as Int
-            min = (UtilitiesPortal.score - UtilitiesPortal.level2TrialTime)/60
-            sec = (UtilitiesPortal.score - UtilitiesPortal.level2TrialTime)%60
+            min = UtilitiesPortal.score/60
+            sec = UtilitiesPortal.score%60
         }
         // Extreme
         if mode == "extreme" {
             score = DataHandler.getLevelTwoExtremeScore() as Int
             firstTime = DataHandler.getLevelTwoExtremeScore() as Int
-            min = (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score)/60
-            sec = (UtilitiesPortal.level2ExtremeTime - UtilitiesPortal.score)%60
+            min = UtilitiesPortal.score/60
+            sec = UtilitiesPortal.score%60
             
         }
         
