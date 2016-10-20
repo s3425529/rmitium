@@ -306,7 +306,7 @@ class LevelTwoScene: LevelScene {
         backgroundNode.position = CGPoint(x: UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.screenHeight/2)
         backgroundNode.zPosition = 0.8
         
-        title.position = CGPoint(x: 0, y: 0 + message.fontSize*3.5)
+        title.position = CGPoint(x: 0, y: 0 + message.fontSize*1.5)
         title.zPosition = 0.9
         title.fontName = UtilitiesPortal.navLabelFont
         title.fontSize = UtilitiesPortal.factSize

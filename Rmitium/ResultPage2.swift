@@ -101,8 +101,8 @@ class ResultPage2: ResultPage {
         
         // Create medal image node
         let medalNode = SKSpriteNode(imageNamed: medalName)
-        var mins = UtilitiesPortal.score/60
-        var sec = UtilitiesPortal.score%60
+        let mins = UtilitiesPortal.score/60
+        let sec = UtilitiesPortal.score%60
         var labelText:String!
         //let mode:String = userData!.valueForKey("gameMode") as! String
         
