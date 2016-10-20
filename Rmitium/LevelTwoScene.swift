@@ -18,6 +18,7 @@ class LevelTwoScene: LevelScene {
     var timerClass:TimeControl!
     var LIMITTIME :Int!
     var plus = false
+    var plusNum = 0
     var timerStop = false
     override func didMoveToView(view: SKView) {
         //This is the template for implementing setting
@@ -439,6 +440,7 @@ class LevelTwoScene: LevelScene {
                             answers[chosenAnswer].hidden = true
                             answers[x].hidden = true
                             plus = true
+                            plusNum += 1
                         }
                             
                         // Tiles not match, change the first one back to normal
@@ -547,7 +549,7 @@ class LevelTwoScene: LevelScene {
     
     // Time Trial mode timer
     func trialTimer() {
-        LIMITTIME = 15
+        LIMITTIME = UtilitiesPortal.level2TrialTime
         timerClass = TimeControl(limitTime: LIMITTIME, tag: false)
         
         //if it is first time playing the game, to pause the timer
@@ -564,7 +566,8 @@ class LevelTwoScene: LevelScene {
     @objc func getTime2(timer:NSTimer) {
         if plus == true{
             if timerClass.remainSecond != 0{
-                timerClass.remainSecond = timerClass.remainSecond + 6
+                timerClass.remainSecond = timerClass.remainSecond + 6*plusNum
+                plusNum = 0
             }
             
             LIMITTIME = timerClass.remainSecond
