@@ -5,6 +5,7 @@
 //  Created by Max on 17/09/2016.
 //  Copyright © 2016 RMIT. All rights reserved.
 //
+//  Medal Controller to display medal with its messages
 
 
 import Foundation

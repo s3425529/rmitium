@@ -5,6 +5,7 @@
 //  Created by Max on 2/10/2016.
 //  Copyright © 2016 RMIT. All rights reserved.
 //
+//  Custom SpriteNode with defined range of medal image and related information
 
 import Foundation
 import SpriteKit
@@ -13,7 +14,8 @@ struct medalStru {
     var image:String!
     var text:String!
 }
-class MedalInfo:SKNode{
+
+class MedalInfo:SKNode {
     var medalItem = [medalStru]()
     
     var myView:SKShapeNode!
@@ -57,7 +59,6 @@ class MedalInfo:SKNode{
     }
     
     func setupItem() {
-        
         // add border
         myView.path = UIBezierPath(roundedRect: CGRect(x: -UtilitiesPortal.screenWidth/2 + UtilitiesPortal.screenWidth*0.1, y: -UtilitiesPortal.screenHeight/2 + UtilitiesPortal.screenHeight*0.1, width: UtilitiesPortal.screenWidth*0.8 , height: UtilitiesPortal.screenHeight*0.8), cornerRadius: 10).CGPath
         myView.fillColor = SKColor.blackColor()

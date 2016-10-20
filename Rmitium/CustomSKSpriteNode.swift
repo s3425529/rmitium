@@ -5,12 +5,12 @@
 //  Created by Aoi Mizu on 8/19/16.
 //  Copyright © 2016 RMIT. All rights reserved.
 //
+//  Custom SpriteNode with an user defined string to store custom value
 
 import Foundation
 import SpriteKit
 
 class CustomSKSpriteNode: SKSpriteNode {
-    // Custom SpriteNode with an user defined string to store custom value
     var value: String
     
     override init(texture: SKTexture!, color: SKColor, size: CGSize) {
