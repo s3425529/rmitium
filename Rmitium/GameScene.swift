@@ -114,7 +114,7 @@ class GameScene: SKScene {
             setupInfo()
         }
         setupLevelTwoModes()
-        UtilitiesPortal.setBgm()
+        UtilitiesPortal.setBgm(UtilitiesPortal.levelOther)
     }
     
     // Info layout

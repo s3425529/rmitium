@@ -5,6 +5,7 @@
 //  Created by Aoi Mizu on 8/19/16.
 //  Copyright © 2016 RMIT. All rights reserved.
 //
+//  Custom SpriteKit Label with multiple lines
 
 import SpriteKit
 

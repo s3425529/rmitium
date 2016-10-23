@@ -5,6 +5,7 @@
 //  Created by Aoi Mizu on 9/14/16.
 //  Copyright © 2016 RMIT. All rights reserved.
 //
+//  Setting Model to store database
 
 import Foundation
 import CoreData

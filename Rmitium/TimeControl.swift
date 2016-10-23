@@ -5,6 +5,7 @@
 //  Created by Max on 9/09/2016.
 //  Copyright © 2016 RMIT. All rights reserved.
 //
+//  Custom Controller for time limit
 
 import Foundation
 import SpriteKit
@@ -83,7 +84,7 @@ class TimeControl {
     }
     
     // Pause the timer
-    func pause(isTrue: Bool ){
+    func pause(isTrue: Bool ) {
         if isTrue {
             pauseTime = remainSecond
             stopTimer()
