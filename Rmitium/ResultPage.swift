@@ -216,7 +216,7 @@ class ResultPage: SKScene {
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
             let facebookController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-            facebookController.setInitialText("My score is\(UtilitiesPortal.score)")
+            facebookController.setInitialText(socialMessage())
            // facebookController.addImage(UIImage(named: "next"))
             controller.presentViewController(facebookController, animated: true, completion: nil)
         }
@@ -244,16 +244,21 @@ class ResultPage: SKScene {
         print("twitter")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
-            let facebookController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            facebookController.setInitialText("My score is \(UtilitiesPortal.score)")
+            let twitterController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            twitterController.setInitialText(socialMessage())
             //facebookController.addImage(UIImage(named: "next"))
-            controller.presentViewController(facebookController, animated: true, completion: nil)
+            controller.presentViewController(twitterController, animated: true, completion: nil)
         }
         else {
             let alert = UIAlertController(title: "Twitter Unavailable", message: "Be sure to go to Settings > Twitter to set up your account", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             controller.presentViewController(alert, animated: true, completion: nil)
         }
+    }
+    
+    // A convinient function to set up social media message
+    func socialMessage() -> String {
+        return "I got \(UtilitiesPortal.score) in Level 1 of Chirality!"
     }
     
     // Retry level 1

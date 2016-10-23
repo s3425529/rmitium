@@ -131,20 +131,13 @@ class ResultPage3: ResultPage {
         addChild(text1)
     }
     
+    override func socialMessage() -> String {
+        return "I got \(UtilitiesPortal.score) in Level 3 of Chirality!"
+    }
+    
     override func redoAction() {
         backLevel3()
     }
-    
-    // Share the score to any social media!
-    /*func displayShareSheet(shareContent:String) {
-        
-        let myShare = "My best is \(shareContent)"
-        let controller = self.view?.window?.rootViewController as! GameViewController
-        
-        let activityVC: UIActivityViewController = UIActivityViewController(activityItems: [myShare], applicationActivities: nil)
-        
-        controller.presentViewController(activityVC, animated: true, completion: nil)
-    }*/
     
     // Back to the home page
     func backLevel3() {

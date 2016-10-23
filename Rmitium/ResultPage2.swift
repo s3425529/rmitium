@@ -216,6 +216,24 @@ class ResultPage2: ResultPage {
         levelLabel.text = "Level 2: \(self.userData!.valueForKey("gameMode")!)"
     }
     
+    override func socialMessage() -> String {
+        let mins = UtilitiesPortal.score/60
+        let sec = UtilitiesPortal.score%60
+        var score: String
+        if mins == 0 {
+            score = "\(sec)sec"
+        }
+        else {
+            if sec < 10 {
+                score = "\(mins):0\(sec)"
+            }
+            else {
+                score = "\(mins):\(sec)"
+            }
+            
+        }
+        return "I finished Chirality Level 2: \(self.userData!.valueForKey("gameMode")!) in \(score)"
+    }
     
     // Retry level 2
     override func redoAction() {
