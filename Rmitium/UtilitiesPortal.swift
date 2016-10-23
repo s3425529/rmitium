@@ -35,6 +35,7 @@ class UtilitiesPortal {
     static let levelOne = 1
     static let levelTwo = 2
     static let levelThree = 3
+    static let levelOther = 4
     
     // List of home screen buttons and medals that appear next to them
     static let levelLabelNames = ["lvl01", "lvl02", "lvl03", "setting"]
@@ -93,13 +94,6 @@ class UtilitiesPortal {
     static let factOverlayName = "factOvl"
     static let factMultiLine = "factMultiLine"
     static let settingViewButtonName = "settingView"
-   
-    
-    // static let buttonLevelWidth: CGFloat = 1153
-    // static let buttonLevelHeight: CGFloat  = 317
-    
-    // Testing labels
-    // static let alphabet = ["A", "B", "C", "D", "E", "F", "G"] //HIJKLMNOPQRSTUVXYZ"
     
     // Info overlay arrows and text images
     static let infoArrowNames = ["arrow1", "arrow2", "arrow3", "arrow4", "arrow5", "arrow6", "arrow7", "arrow8"]
@@ -144,12 +138,15 @@ class UtilitiesPortal {
     //set the starting time of trail of level2
     static var level2TrialTime = 15
     //static var record = [Int]()
-    static func setBgm(){
+    static func setBgm(level: Int) {
         let soundSetting = DataHandler.getSettings().getSound
         if soundSetting {
             if (SKTAudio.sharedInstance().backgroundMusicPlayer == nil) {
-                SKTAudio.sharedInstance().playBackgroundMusic("bgm.mp3")
-            }            
+                SKTAudio.sharedInstance().playBackgroundMusic(level)
+            }
+            else if !SKTAudio.sharedInstance().continueMusic(level) {
+                SKTAudio.sharedInstance().playBackgroundMusic(level)
+            }
             else {
                 SKTAudio.sharedInstance().resumeBackgroundMusic()
             }

@@ -98,6 +98,7 @@ class LevelTwoScene: LevelScene {
         setupItems()
         setupDragLabel()
         setupInfo()
+        UtilitiesPortal.setBgm(UtilitiesPortal.levelTwo)
     }
     
     override func setupItems() {

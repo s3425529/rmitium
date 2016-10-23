@@ -56,6 +56,7 @@ class LevelOneScene: LevelScene {
         setupFactLabel()
         setupInfo()
         setupInfoResult()
+        UtilitiesPortal.setBgm(UtilitiesPortal.levelOne)
     }
     
     // Molecule name label
