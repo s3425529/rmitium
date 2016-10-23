@@ -16,7 +16,8 @@ class ResultPage: SKScene {
     var levelLabel: SKLabelNode!
     var homeDialogue: SKShapeNode!
     var homeView, newRecordLabel :SKSpriteNode!
-    var text,text1: SKMultilineLabel!
+    //var text: SKLabelNode!
+    var text, text1: SKMultilineLabel!
     var socialData:SocialClass!
     var audioPlayer = AVAudioPlayer()
     var myTable:UITableView!
@@ -46,7 +47,6 @@ class ResultPage: SKScene {
     
     // Create medal node
     func setupMedal() {
-        
         // Call the medalClass to get the relevant medal image and messages
         let medalDic = medalClass().assignMedal(UtilitiesPortal.levelOne)
         let medalName = medalDic.medalName
@@ -70,6 +70,33 @@ class ResultPage: SKScene {
         addChild(medalNode)
         medalNode.runAction(repeatAction)
         
+        // Sparkles for diamond medal only
+        if medalName == "Medal1-Diamond" {
+            let sparkles1 = SKSpriteNode(imageNamed: "sparkles1")
+            sparkles1.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
+            sparkles1.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
+            sparkles1.zPosition = 0.2
+            
+            let action1_1 = SKAction.fadeOutWithDuration(0.6)
+            let action1_2 = SKAction.fadeInWithDuration(0.6)
+            let sequence1 = SKAction.sequence([action1_1, action1_2])
+            let repeatAction1 = SKAction.repeatActionForever(sequence1)
+            sparkles1.runAction(repeatAction1)
+
+            let sparkles2 = SKSpriteNode(imageNamed: "sparkles2")
+            sparkles2.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
+            sparkles2.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
+            sparkles2.zPosition = 0.2
+            
+            let action2_1 = SKAction.fadeInWithDuration(0.6)
+            let action2_2 = SKAction.fadeOutWithDuration(0.6)
+            let sequence2 = SKAction.sequence([action2_1, action2_2])
+            let repeatAction2 = SKAction.repeatActionForever(sequence2)
+            sparkles2.runAction(repeatAction2)
+            
+            addChild(sparkles1)
+            addChild(sparkles2)
+        }
         
         // Create scoreNode to display the current score
         let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
@@ -86,6 +113,13 @@ class ResultPage: SKScene {
         text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
+        /*text = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
+        text.text = information1
+        text.fontSize = UtilitiesPortal.factSize
+        text.zPosition = 0.1
+        text.fontColor = SKColor.whiteColor()
+        text.position = CGPoint(x:UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.borderSize/4)
+        addChild(text)*/
         
         // Create encourage message node
         let p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 0.50)
@@ -272,7 +306,6 @@ class ResultPage: SKScene {
         //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
         secondScene.scaleMode = SKSceneScaleMode.AspectFill
         self.scene!.view?.presentScene(secondScene, transition: transition)
-        
     }
     
     // to go to Level 2 standard sense
@@ -292,7 +325,7 @@ class ResultPage: SKScene {
     }
     
     // Create home dialogue
-    func addNewRecordLabel(){
+    func addNewRecordLabel() {
         newRecordLabel = SKSpriteNode(imageNamed: "new record")
         newRecordLabel.size = CGSize(width: UtilitiesPortal.screenWidth/10, height: UtilitiesPortal.screenHeight/12)
         newRecordLabel.position = CGPoint(x: UtilitiesPortal.screenWidth / 2, y: UtilitiesPortal.screenHeight * 0.75)
@@ -302,7 +335,6 @@ class ResultPage: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        
         if DataHandler.getSettings().getEffect {
             audioPlayer.play()
         }
@@ -359,7 +391,7 @@ class ResultPage: SKScene {
     }
     
      // Create info overlay table
-    func infoTable(){
+    func infoTable() {
         myView = SKShapeNode()
         let x = MedalInfo(myView: myView, modeName: "level")
         x.setupItem()

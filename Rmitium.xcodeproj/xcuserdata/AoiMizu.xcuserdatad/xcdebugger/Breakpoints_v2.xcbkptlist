@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rmitium/LevelOneScene.swift"
-            timestampString = "498918578.9604"
+            timestampString = "498932236.594849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "setupFactLabel()"
             landmarkType = "7">
          </BreakpointContent>
@@ -380,6 +380,22 @@
             startingLineNumber = "58"
             endingLineNumber = "58"
             landmarkName = "touchesBeganSuper(touches:withEvent:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Rmitium/ResultPage2.swift"
+            timestampString = "498933938.731485"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "setupMedal()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

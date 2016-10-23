@@ -183,7 +183,6 @@ class LevelOneScene: LevelScene {
                                            pos: CGPoint(x: 0, y: UtilitiesPortal.screenHeight/8),fontName: UtilitiesPortal.navLabelFont,
                                            fontSize: UtilitiesPortal.navLabelSize,
                                            leading: Int(UtilitiesPortal.navLabelSize))
-        
         factOverlayText.name = UtilitiesPortal.factMultiLine
         //factOverlayText.alignment = .Left
         factOverlayText.zPosition = 1

@@ -131,6 +131,34 @@ class ResultPage2: ResultPage {
         addChild(medalNode)
         medalNode.runAction(repeatAction)
         
+        // Sparkles for diamond medal only
+        if medalName == "Medal1-Diamond" {
+            let sparkles1 = SKSpriteNode(imageNamed: "sparkles1")
+            sparkles1.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
+            sparkles1.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
+            sparkles1.zPosition = 0.2
+            
+            let action1_1 = SKAction.fadeOutWithDuration(0.6)
+            let action1_2 = SKAction.fadeInWithDuration(0.6)
+            let sequence1 = SKAction.sequence([action1_1, action1_2])
+            let repeatAction1 = SKAction.repeatActionForever(sequence1)
+            sparkles1.runAction(repeatAction1)
+            
+            let sparkles2 = SKSpriteNode(imageNamed: "sparkles2")
+            sparkles2.position = CGPoint(x: UtilitiesPortal.screenWidth / 3, y: UtilitiesPortal.screenHeight / 2)
+            sparkles2.size = CGSize(width: UtilitiesPortal.screenWidth/3*1.1, height: UtilitiesPortal.screenWidth / 3)
+            sparkles2.zPosition = 0.2
+            
+            let action2_1 = SKAction.fadeInWithDuration(0.6)
+            let action2_2 = SKAction.fadeOutWithDuration(0.6)
+            let sequence2 = SKAction.sequence([action2_1, action2_2])
+            let repeatAction2 = SKAction.repeatActionForever(sequence2)
+            sparkles2.runAction(repeatAction2)
+            
+            addChild(sparkles1)
+            addChild(sparkles2)
+        }
+        
         // Create node to display the current time of score
         let scoreNode = SKLabelNode(fontNamed:UtilitiesPortal.navLabelFont)
         // if minute is zero, it will not display.
@@ -159,13 +187,27 @@ class ResultPage2: ResultPage {
         text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
+        /*text = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
+        text.text = information1
+        text.fontSize = UtilitiesPortal.factSize
+        text.zPosition = 0.1
+        text.fontColor = SKColor.whiteColor()
+        text.position = CGPoint(x:UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.borderSize/4)
+        addChild(text)*/
         
         //creat message node
         let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*0.55)
-        text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
+        text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2/*, shouldShowBorder: true*/)
         text1.alignment = .Center
         text1.leading =  Int(UtilitiesPortal.screenHeight*0.1)
         text1.fontSize = UtilitiesPortal.screenHeight*0.05
+        
+        /*var height = text1.labelHeight
+        print("Propotion: \(height)")
+        print("Propotion: \(height/UtilitiesPortal.screenHeight)")
+        p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: height)
+        text1.pos = p2*/
+        
         addChild(text1)
     }
     
