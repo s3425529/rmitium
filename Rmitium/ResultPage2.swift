@@ -181,19 +181,12 @@ class ResultPage2: ResultPage {
         addChild(scoreNode)
         
         // Create title node
-        let p1 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*1.2)
+        let p1 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*0.92)
         text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
         text.alignment = .Center
         text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
-        /*text = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
-        text.text = information1
-        text.fontSize = UtilitiesPortal.factSize
-        text.zPosition = 0.1
-        text.fontColor = SKColor.whiteColor()
-        text.position = CGPoint(x:UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.borderSize/4)
-        addChild(text)*/
         
         //creat message node
         var p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*0.55)
