@@ -467,19 +467,24 @@ class DataHandler {
                 // Level 2 Standard
                 if mode == UtilitiesPortal.modeStandard {
                     score = Double((result.first?.levelTwo)!)
+<<<<<<< HEAD
                     if score < 20  && score >= 0 {
                         return "Medal1-Diamondsparkles"
+=======
+                    if score <= 70  && score >= 0 {
+                        return "Medal1-Diamond"
+>>>>>>> dd18af73b2e732a70cbe58dc2ee78813f2962902
                     }
-                    else if score < 30 && score >= 20 {
+                    else if score <= 120 && score > 70 {
                         return "Medal2-Gold"
                     }
-                    else if score < 40 && score >= 30 {
+                    else if score <= 180 && score > 120 {
                         return "Medal3-Silver"
                     }
-                    else if score < 60 && score >= 40 {
+                    else if score <= 240 && score > 180 {
                         return "Medal4-Bronze"
                     }
-                    else if score >= 60 {
+                    else if score > 240 {
                         return "Medal5-Rust"
                     }
                     else {
