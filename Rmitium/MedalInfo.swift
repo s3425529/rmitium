@@ -25,32 +25,32 @@ class MedalInfo:SKNode {
         
         // Laying out the medal info overlay explaining the brackets for each medal
         if modeName == "stand" {
-            medalItem.append(medalStru(image: "Medal5-Rust", text: "> 1 minute"))
-            medalItem.append(medalStru(image: "Medal4-Bronze", text: "40 seconds - 1 minute"))
-            medalItem.append(medalStru(image: "Medal3-Silver", text: "30 - 39 seconds"))
-            medalItem.append(medalStru(image: "Medal2-Gold", text: "20 - 29 seconds"))
-            medalItem.append(medalStru(image: "Medal1-Diamond", text: "< 20 seconds"))
+            medalItem.append(medalStru(image: "Medal5-Rust", text: "> 4 minutes"))
+            medalItem.append(medalStru(image: "Medal4-Bronze", text: "4 minutes - 3 minutes"))
+            medalItem.append(medalStru(image: "Medal3-Silver", text: "3 minutes - 2 minutes"))
+            medalItem.append(medalStru(image: "Medal2-Gold", text: "2 minutes - 70 seconds"))
+            medalItem.append(medalStru(image: "Medal1-Diamondsparkles", text: "<= 70 seconds"))
         }
         if modeName == "trial" {
-            medalItem.append(medalStru(image: "Medal5-Rust", text: "< 59 seconds"))
-            medalItem.append(medalStru(image: "Medal4-Bronze", text: "60 - 89 seconds"))
-            medalItem.append(medalStru(image: "Medal3-Silver", text: "90 -119 seconds"))
-            medalItem.append(medalStru(image: "Medal2-Gold", text: "120 - 149 seconds"))
-            medalItem.append(medalStru(image: "Medal1-Diamond", text: ">= 150 seconds"))
+            medalItem.append(medalStru(image: "Medal5-Rust", text: "<= 70 seconds"))
+            medalItem.append(medalStru(image: "Medal4-Bronze", text: "70 seconds - 2 minutes"))
+            medalItem.append(medalStru(image: "Medal3-Silver", text: "2 minutes - 3 minutes"))
+            medalItem.append(medalStru(image: "Medal2-Gold", text: "3 minutes - 4 minutes"))
+            medalItem.append(medalStru(image: "Medal1-Diamondsparkles", text: "> 4 minutes"))
         }
         if modeName == "extreme" {
-            medalItem.append(medalStru(image: "Medal5-Rust", text: "< 59 seconds"))
-            medalItem.append(medalStru(image: "Medal4-Bronze", text: "60 - 89 seconds"))
-            medalItem.append(medalStru(image: "Medal3-Silver", text: "90 -119 seconds"))
-            medalItem.append(medalStru(image: "Medal2-Gold", text: "120 - 149 seconds"))
-            medalItem.append(medalStru(image: "Medal1-Diamond", text: ">= 150 seconds"))
+            medalItem.append(medalStru(image: "Medal5-Rust", text: "<= 70 seconds"))
+            medalItem.append(medalStru(image: "Medal4-Bronze", text: "70 seconds - 2 minutes"))
+            medalItem.append(medalStru(image: "Medal3-Silver", text: "2 minutes - 3 minutes"))
+            medalItem.append(medalStru(image: "Medal2-Gold", text: "3 minutes - 4 minutes"))
+            medalItem.append(medalStru(image: "Medal1-Diamondsparkles", text: "> 4 minutes"))
         }
         if modeName == "level" {
             medalItem.append(medalStru(image: "Medal5-Rust", text: "< 50%"))
             medalItem.append(medalStru(image: "Medal4-Bronze", text: "50-69%"))
             medalItem.append(medalStru(image: "Medal3-Silver", text: "70-89%"))
             medalItem.append(medalStru(image: "Medal2-Gold", text: "90-99%"))
-            medalItem.append(medalStru(image: "Medal1-Diamond", text: "100%"))
+            medalItem.append(medalStru(image: "Medal1-Diamondsparkles", text: "100%"))
         }
     }
     
@@ -74,7 +74,7 @@ class MedalInfo:SKNode {
             imageNode.position = CGPoint(x: myView.position.x - myView.frame.width, y: (myView.position.y - myView.frame.height)*1.05 + size.height * CGFloat(i))
             imageNode.zPosition = 0.9
             
-            let p = CGPoint(x:  myView.position.x - myView.frame.width/2 , y: (myView.position.y - myView.frame.height) + size.height * CGFloat(i+1))
+            let p = CGPoint(x:  myView.position.x - myView.frame.width/2 , y: (myView.position.y - myView.frame.height)*0.95 + size.height * CGFloat(i))
             
             let textNode = SKMultilineLabel(text: medalItem[i].text, labelWidth: myView.frame.width - size.width*3, pos: p)
             textNode.zPosition = 0.9

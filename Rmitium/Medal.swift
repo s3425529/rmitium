@@ -265,7 +265,7 @@ class medalClass {
             }
 
             
-            if UtilitiesPortal.score >= 150 {
+            if UtilitiesPortal.score > 240 {
                 medalName = "Medal1-Diamond"
                 words = ["Congratulations!"]
                 
@@ -277,7 +277,7 @@ class medalClass {
                 }
 
             }
-            if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
+            if UtilitiesPortal.score > 180 && UtilitiesPortal.score <= 240 {
                 medalName = "Medal2-Gold"
                 words = ["Well done!"]
                 
@@ -289,7 +289,7 @@ class medalClass {
                 }
 
             }
-            if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
+            if UtilitiesPortal.score > 120 && UtilitiesPortal.score <= 180 {
                 medalName = "Medal3-Silver"
                 words = ["Great work!"]
                 
@@ -300,7 +300,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime)!")
                 }
             }
-            if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
+            if UtilitiesPortal.score > 70 && UtilitiesPortal.score <= 120 {
                 medalName = "Medal4-Bronze"
                 words = ["Nice try!"]
                 
@@ -312,7 +312,7 @@ class medalClass {
                 }
 
             }
-            if result < 60 {
+            if result <= 70 {
                 medalName = "Medal5-Rust"
                 words = ["Good effort!"]
                 
@@ -361,7 +361,7 @@ class medalClass {
                 bestTime = "\(scoreMin):\(scoreSec)"
             }
             
-            if UtilitiesPortal.score >= 150 {
+            if UtilitiesPortal.score > 240 {
                 medalName = "Medal1-Diamond"
                 words = ["Congratulations!"]
                 if firstTime < 0 {
@@ -372,7 +372,7 @@ class medalClass {
                 }
 
             }
-            if UtilitiesPortal.score >= 120 && UtilitiesPortal.score < 150 {
+            if UtilitiesPortal.score > 180 && UtilitiesPortal.score <= 240 {
                 medalName = "Medal2-Gold"
                 words = ["Well done!"]
                 
@@ -384,7 +384,7 @@ class medalClass {
                 }
 
             }
-            if UtilitiesPortal.score >= 90 && UtilitiesPortal.score < 120 {
+            if UtilitiesPortal.score > 120 && UtilitiesPortal.score <= 180 {
                 medalName = "Medal3-Silver"
                 words = ["Great work!"]
                 
@@ -396,7 +396,7 @@ class medalClass {
                 }
 
             }
-            if UtilitiesPortal.score >= 60 && UtilitiesPortal.score < 90 {
+            if UtilitiesPortal.score > 70 && UtilitiesPortal.score <= 120 {
                 medalName = "Medal4-Bronze"
                 words = ["Nice try!"]
               
@@ -408,7 +408,7 @@ class medalClass {
                 }
 
             }
-            if result < 60 {
+            if result <= 70 {
                 medalName = "Medal5-Rust"
                 words = ["Good effort!"]
                 

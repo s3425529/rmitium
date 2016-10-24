@@ -491,19 +491,19 @@ class DataHandler {
                 else if mode == UtilitiesPortal.modeTrial {
                     //score = Double((result.first?.levelTwoTrial)!) + Double(UtilitiesPortal.level2TrialTime)
                     score = Double((result.first?.levelTwoTrial)!)
-                    if score >= 150 {
+                    if score > 240 {
                         return "Medal1-Diamondsparkles"
                     }
-                    if score >= 120 && score < 150 {
+                    if score > 180 && score <= 240 {
                         return "Medal2-Gold"
                     }
-                    if score >= 90 && score < 120 {
+                    if score > 120 && score <= 180 {
                         return "Medal3-Silver"
                     }
-                    if score >= 60 && score < 90 {
+                    if score > 70 && score <= 120 {
                         return "Medal4-Bronze"
                     }
-                    if score < 60 && score >= 0 {
+                    if score <= 70 && score >= 0 {
                         return "Medal5-Rust"
                     }
                     else {
@@ -514,19 +514,19 @@ class DataHandler {
                 else if mode == UtilitiesPortal.modeExtreme {
                     //score = 300 - Double((result.first?.levelTwoExtreme)!)
                     score = Double((result.first?.levelTwoExtreme)!)
-                    if score >= 150 {
+                    if score > 240 {
                         return "Medal1-Diamondsparkles"
                     }
-                    if score >= 120 && score < 150 {
+                    if score > 180 && score <= 240 {
                         return "Medal2-Gold"
                     }
-                    if score >= 90 && score < 120 {
+                    if score > 120 && score <= 180 {
                         return "Medal3-Silver"
                     }
-                    if score >= 60 && score < 90 {
+                    if score > 70 && score <= 120 {
                         return "Medal4-Bronze"
                     }
-                    if score < 60 && score >= 0 {
+                    if score <= 70 && score >= 0 {
                         return "Medal5-Rust"
                     }
                     else {
