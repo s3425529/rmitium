@@ -137,7 +137,7 @@ class UtilitiesPortal {
     static var level2ExtremeTime = 300
     //set the starting time and added time for each matched pair of trial of level2
     static var level2TrialTime = 10
-    static var addedTime = 3
+    static var addedTime = 4
     //static var record = [Int]()
     static func setBgm(level: Int) {
         let soundSetting = DataHandler.getSettings().getSound

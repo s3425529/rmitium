@@ -200,8 +200,7 @@ class ResultPage: SKScene {
     // If not, the Facebook dialog box will display
     func facebookAction() {
         print("facebook")
-        if socialData.facebook == true{
-            
+        if socialData.facebook == true {
             activeFacebook()
         }
         else {
@@ -212,7 +211,6 @@ class ResultPage: SKScene {
     
     // Display Facebook
     func activeFacebook() {
-        print("facebook")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
             let facebookController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
@@ -230,8 +228,7 @@ class ResultPage: SKScene {
     // If Twitter is used at the fist time, the permissions alert message will display.
     // If not, the twitter dialog box will display
     func twitterAction() {
-        print("twitter")
-        if socialData.twitter == true{
+        if socialData.twitter == true {
             activeTwitter()
         }
         else {
@@ -241,7 +238,6 @@ class ResultPage: SKScene {
     
     // Display Twitter
     func activeTwitter() {
-        print("twitter")
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
             let twitterController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
