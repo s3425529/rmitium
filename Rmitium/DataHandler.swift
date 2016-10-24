@@ -468,7 +468,7 @@ class DataHandler {
                 if mode == UtilitiesPortal.modeStandard {
                     score = Double((result.first?.levelTwo)!)
                     if score < 20  && score >= 0 {
-                        return "Medal1-Diamond"
+                        return "Medal1-Diamondsparkles"
                     }
                     else if score < 30 && score >= 20 {
                         return "Medal2-Gold"
@@ -492,7 +492,7 @@ class DataHandler {
                     //score = Double((result.first?.levelTwoTrial)!) + Double(UtilitiesPortal.level2TrialTime)
                     score = Double((result.first?.levelTwoTrial)!)
                     if score >= 150 {
-                        return "Medal1-Diamond"
+                        return "Medal1-Diamondsparkles"
                     }
                     if score >= 120 && score < 150 {
                         return "Medal2-Gold"
@@ -515,7 +515,7 @@ class DataHandler {
                     //score = 300 - Double((result.first?.levelTwoExtreme)!)
                     score = Double((result.first?.levelTwoExtreme)!)
                     if score >= 150 {
-                        return "Medal1-Diamond"
+                        return "Medal1-Diamondsparkles"
                     }
                     if score >= 120 && score < 150 {
                         return "Medal2-Gold"
@@ -536,7 +536,7 @@ class DataHandler {
             }
             // Level 1 or 3
             if score >= 1 {
-                return "Medal1-Diamond"
+                return "Medal1-Diamondsparkles"
             }
             else if score >= 0.9 && score < 1 {
                 return "Medal2-Gold"

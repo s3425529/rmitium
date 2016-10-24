@@ -329,10 +329,21 @@ class ResultPage: SKScene {
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
     
-    // Create home dialogue
+    // New record label for when a user beats their previous high score
     func addNewRecordLabel() {
         newRecordLabel = SKSpriteNode(imageNamed: "new record")
-        newRecordLabel.size = CGSize(width: UtilitiesPortal.screenWidth/10, height: UtilitiesPortal.screenHeight/12)
+        
+        let currentSize = newRecordLabel.size
+        let x = UtilitiesPortal.screenWidth/4/currentSize.width
+        let y = UtilitiesPortal.screenHeight/4/currentSize.height
+        if x < y {
+            newRecordLabel.setScale(x)
+        }
+        else {
+            newRecordLabel.setScale(y)
+        }
+        
+      //  newRecordLabel.size = CGSize(width: UtilitiesPortal.screenWidth/10, height: UtilitiesPortal.screenHeight/12)
         newRecordLabel.position = CGPoint(x: UtilitiesPortal.screenWidth / 2, y: UtilitiesPortal.screenHeight * 0.75)
         newRecordLabel.zPosition = 0.2
         newRecordLabel.hidden = true
