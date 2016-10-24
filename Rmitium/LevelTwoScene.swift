@@ -527,7 +527,7 @@ class LevelTwoScene: LevelScene {
         timerClass = TimeControl(limitTime: LIMITTIME, tag: true)
         
         //if it is first time playing the game, to pause the timer
-        if timerStop == true{
+        if timerStop == true {
             timerClass.startTimer()
             timerClass.pause(true)
             
@@ -565,9 +565,9 @@ class LevelTwoScene: LevelScene {
     }
     
     @objc func getTime2(timer:NSTimer) {
-        if plus == true{
-            if timerClass.remainSecond != 0{
-                timerClass.remainSecond = timerClass.remainSecond + 6*plusNum
+        if plus == true {
+            if timerClass.remainSecond != 0 {
+                timerClass.remainSecond = timerClass.remainSecond + UtilitiesPortal.addedTime*plusNum
                 plusNum = 0
             }
             
