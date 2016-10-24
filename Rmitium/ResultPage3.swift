@@ -132,7 +132,8 @@ class ResultPage3: ResultPage {
     }
     
     override func socialMessage() -> String {
-        return "I got \(UtilitiesPortal.score) in Level 3 of Chirality!"
+        let score = round(Double(DataHandler.getLevelThreePercentage()) * 100) / 1
+        return "I got \(score)% in Level 3 of Chirality!"
     }
     
     override func redoAction() {

@@ -213,6 +213,7 @@ class ResultPage: SKScene {
     // Display Facebook
     func activeFacebook() {
         print("facebook")
+        print(socialMessage())
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
             let facebookController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
@@ -242,6 +243,7 @@ class ResultPage: SKScene {
     // Display Twitter
     func activeTwitter() {
         print("twitter")
+        print(socialMessage())
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
             let twitterController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
@@ -258,7 +260,8 @@ class ResultPage: SKScene {
     
     // A convinient function to set up social media message
     func socialMessage() -> String {
-        return "I got \(UtilitiesPortal.score) in Level 1 of Chirality!"
+        let score = round(Double(DataHandler.getLevelOnePercentage()) * 100) / 1
+        return "I got \(score)% in Level 1 of Chirality!"
     }
     
     // Retry level 1

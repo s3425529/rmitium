@@ -119,9 +119,9 @@ class GameScene: SKScene {
     
     // Info layout
     func setupInfo() {
-        let infoOverlayText = SKMultilineLabel(text: "Info layout", labelWidth:UtilitiesPortal.screenWidth,
-                                               pos: CGPoint(x: 0, y: 0),fontName: UtilitiesPortal.navLabelFont,
-                                               fontSize: UtilitiesPortal.navLabelSize,
+        let infoOverlayText = SKMultilineLabel(text: "Chirality is a short game that aims to teach, and is focussed on topics covered in organic chemistry. Topics covered include: identifying organic functional groups, classification of 1°, 2°, and 3° organic groups and types of intermolecular forces. There are 3 levels and 5 possible medals you can be rewarded with for each (depending on your score). The name comes from Chemistry. Chiral molecules are asymmetric and can’t be superimposed (just like your hands that you use to play the game). The name symbolises that the app is also asymmetric, in that it is educational and fun as it is not only a learning tool but it is also a game; and both are required for the app to work.", labelWidth:UtilitiesPortal.screenWidth,
+                                               pos: CGPoint(x: 0, y: UtilitiesPortal.screenHeight/4),fontName: UtilitiesPortal.navLabelFont,
+                                               fontSize: UtilitiesPortal.navLabelSize/2,
                                                leading: Int(UtilitiesPortal.navLabelSize))
         infoOverlayText.name = UtilitiesPortal.factMultiLine
         infoOverlayText.zPosition = 1
@@ -266,7 +266,7 @@ class GameScene: SKScene {
             if DataHandler.getSettings().getEffect {
                 audioPlayer.play()
             }
-            DataHandler.resetSettings()
+            //DataHandler.resetSettings()
             previousState = state
             state = UtilitiesPortal.stateInfo
             infoOverlay!.hidden = false
