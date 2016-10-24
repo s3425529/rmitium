@@ -181,33 +181,26 @@ class ResultPage2: ResultPage {
         addChild(scoreNode)
         
         // Create title node
-        let p1 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*1.2)
+        let p1 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*0.92)
         text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
         text.alignment = .Center
         text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
-        /*text = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
-        text.text = information1
-        text.fontSize = UtilitiesPortal.factSize
-        text.zPosition = 0.1
-        text.fontColor = SKColor.whiteColor()
-        text.position = CGPoint(x:UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.borderSize/4)
-        addChild(text)*/
         
         //creat message node
-        let p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*0.55)
-        text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2/*, shouldShowBorder: true*/)
+        var p2 = CGPoint(x: UtilitiesPortal.screenWidth*0.33, y: UtilitiesPortal.screenHeight*0.55)
+        text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
         text1.alignment = .Center
         text1.leading =  Int(UtilitiesPortal.screenHeight*0.1)
         text1.fontSize = UtilitiesPortal.screenHeight*0.05
         
-        /*var height = text1.labelHeight
-        print("Propotion: \(height)")
-        print("Propotion: \(height/UtilitiesPortal.screenHeight)")
-        p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: height)
-        text1.pos = p2*/
-        
+        let lines = text1.lineCount
+        p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: text1.labelHeight + UtilitiesPortal.borderSize/2)
+        if lines == 1 {
+            p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: text1.labelHeight + UtilitiesPortal.borderSize/2 + UtilitiesPortal.screenHeight*0.08)
+        }
+        text1.pos = p2
         addChild(text1)
     }
     

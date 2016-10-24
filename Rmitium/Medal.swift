@@ -170,7 +170,7 @@ class medalClass {
                 bestTime = "\(scoreMin):\(scoreSec)"
             }
             
-            if UtilitiesPortal.score < 20 {
+            if UtilitiesPortal.score <= 70 {
                 medalName = "Medal1-Diamond"
                 words = ["Congratulations!"]
                 
@@ -181,7 +181,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime)!")
                 }
             }
-            if UtilitiesPortal.score < 30 && UtilitiesPortal.score >= 20 {
+            if UtilitiesPortal.score <= 120 && UtilitiesPortal.score > 70 {
                 medalName = "Medal2-Gold"
                 words = ["Well done!"]
                 
@@ -192,7 +192,7 @@ class medalClass {
                     words.append("\(message) Your best was \(bestTime)!")
                 }
             }
-            if UtilitiesPortal.score < 40 && UtilitiesPortal.score >= 30 {
+            if UtilitiesPortal.score <= 180 && UtilitiesPortal.score > 120 {
                 medalName = "Medal3-Silver"
                 words = ["Great work!"]
                 
@@ -204,7 +204,7 @@ class medalClass {
                 }
 
             }
-            if UtilitiesPortal.score < 60 && UtilitiesPortal.score >= 40 {
+            if UtilitiesPortal.score <= 240 && UtilitiesPortal.score > 180 {
                 medalName = "Medal4-Bronze"
                 words = ["Nice try!"]
                 
@@ -216,7 +216,7 @@ class medalClass {
                 }
 
             }
-            if UtilitiesPortal.score >= 60 {
+            if UtilitiesPortal.score > 240 {
                 medalName = "Medal5-Rust"
                 words = ["Good effort!"]
                 

@@ -107,26 +107,26 @@ class ResultPage: SKScene {
         addChild(scoreNode)
         
         // Create title message e.g. 'Congratulations!' or 'Well done!'
-        let p1 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 1.2)
+        let p1 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 0.92)
         text = SKMultilineLabel(text: information1, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p1)
         text.alignment = .Center
         text.leading =  Int(UtilitiesPortal.screenHeight*0.1)
         text.fontSize = UtilitiesPortal.screenHeight*0.05
         addChild(text)
-        /*text = SKLabelNode(fontNamed: UtilitiesPortal.navLabelFont)
-        text.text = information1
-        text.fontSize = UtilitiesPortal.factSize
-        text.zPosition = 0.1
-        text.fontColor = SKColor.whiteColor()
-        text.position = CGPoint(x:UtilitiesPortal.screenWidth/2, y: UtilitiesPortal.borderSize/4)
-        addChild(text)*/
         
         // Create encourage message node
-        let p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 0.50)
+        var p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: UtilitiesPortal.screenHeight * 0.50)
         text1 = SKMultilineLabel(text: information2, labelWidth: UtilitiesPortal.screenWidth*0.6, pos: p2)
         text1.alignment = .Center
         text1.leading =  Int(UtilitiesPortal.screenHeight*0.08)
         text1.fontSize = UtilitiesPortal.screenHeight*0.045
+        
+        let lines = text1.lineCount
+        p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: text1.labelHeight + UtilitiesPortal.borderSize/2)
+        if lines == 1 {
+            p2 = CGPoint(x: UtilitiesPortal.screenWidth * 0.33, y: text1.labelHeight + UtilitiesPortal.borderSize/2 + UtilitiesPortal.screenHeight*0.08)
+        }
+        text1.pos = p2
         addChild(text1)
     }
     
@@ -200,8 +200,7 @@ class ResultPage: SKScene {
     // If not, the Facebook dialog box will display
     func facebookAction() {
         print("facebook")
-        if socialData.facebook == true{
-            
+        if socialData.facebook == true {
             activeFacebook()
         }
         else {
@@ -231,8 +230,7 @@ class ResultPage: SKScene {
     // If Twitter is used at the fist time, the permissions alert message will display.
     // If not, the twitter dialog box will display
     func twitterAction() {
-        print("twitter")
-        if socialData.twitter == true{
+        if socialData.twitter == true {
             activeTwitter()
         }
         else {
@@ -332,10 +330,21 @@ class ResultPage: SKScene {
         self.scene!.view?.presentScene(secondScene, transition: transition)
     }
     
-    // Create home dialogue
+    // New record label for when a user beats their previous high score
     func addNewRecordLabel() {
         newRecordLabel = SKSpriteNode(imageNamed: "new record")
-        newRecordLabel.size = CGSize(width: UtilitiesPortal.screenWidth/10, height: UtilitiesPortal.screenHeight/12)
+        
+        let currentSize = newRecordLabel.size
+        let x = UtilitiesPortal.screenWidth/4/currentSize.width
+        let y = UtilitiesPortal.screenHeight/4/currentSize.height
+        if x < y {
+            newRecordLabel.setScale(x)
+        }
+        else {
+            newRecordLabel.setScale(y)
+        }
+        
+      //  newRecordLabel.size = CGSize(width: UtilitiesPortal.screenWidth/10, height: UtilitiesPortal.screenHeight/12)
         newRecordLabel.position = CGPoint(x: UtilitiesPortal.screenWidth / 2, y: UtilitiesPortal.screenHeight * 0.75)
         newRecordLabel.zPosition = 0.2
         newRecordLabel.hidden = true

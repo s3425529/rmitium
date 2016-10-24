@@ -2,6 +2,17 @@
   "images" : [
     {
       "idiom" : "iphone",
+      "size" : "20x20",
+      "scale" : "2x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "iphone",
+      "filename" : "Type4-new-60.png",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "iphone",
       "size" : "29x29",
       "scale" : "1x"
     },
@@ -11,13 +22,15 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "iphone",
       "size" : "29x29",
+      "idiom" : "iphone",
+      "filename" : "Type4-new-87.png",
       "scale" : "3x"
     },
     {
-      "idiom" : "iphone",
       "size" : "40x40",
+      "idiom" : "iphone",
+      "filename" : "Type4-new-80.png",
       "scale" : "2x"
     },
     {
@@ -27,13 +40,15 @@
       "scale" : "3x"
     },
     {
-      "idiom" : "iphone",
       "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "Type4-new-57.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "iphone",
       "size" : "57x57",
+      "idiom" : "iphone",
+      "filename" : "Type4-new-114.png",
       "scale" : "2x"
     },
     {
@@ -49,21 +64,32 @@
       "scale" : "3x"
     },
     {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "Type4-new-20.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "20x20",
+      "scale" : "2x"
+    },
+    {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "29pt.png",
+      "filename" : "Type4-new-29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "Icon-Spotlight-iPad@2x-1.png",
+      "filename" : "Type4-new-58.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "40pt.png",
+      "filename" : "Type4-new-40.png",
       "scale" : "1x"
     },
     {
@@ -73,46 +99,62 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "Type4-new-50.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "Type4-new-100.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "Type4-new-72.png",
       "scale" : "1x"
     },
     {
       "idiom" : "ipad",
-      "size" : "50x50",
+      "size" : "72x72",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "76pt.png",
+      "filename" : "Type4-new-76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "76pt@2x.png",
+      "filename" : "Type4-new-152.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "87.5pt@2x.png",
+      "filename" : "Type4-new-167.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "car",
       "size" : "60x60",
+      "idiom" : "car",
+      "filename" : "Type4-new-120.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "car",
       "size" : "60x60",
+      "idiom" : "car",
+      "filename" : "Type4-new-180.png",
       "scale" : "3x"
     },
     {
       "size" : "24x24",
       "idiom" : "watch",
+      "filename" : "Type4-new-48.png",
       "scale" : "2x",
       "role" : "notificationCenter",
       "subtype" : "38mm"
@@ -160,23 +202,58 @@
       "subtype" : "42mm"
     },
     {
-      "idiom" : "iphone",
-      "size" : "20x20",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "iphone",
-      "size" : "20x20",
-      "scale" : "3x"
-    },
-    {
-      "idiom" : "ipad",
-      "size" : "20x20",
+      "size" : "16x16",
+      "idiom" : "mac",
+      "filename" : "Type4-new-16.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
-      "size" : "20x20",
+      "size" : "16x16",
+      "idiom" : "mac",
+      "filename" : "Type4-new-32.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "32x32",
+      "scale" : "1x"
+    },
+    {
+      "size" : "32x32",
+      "idiom" : "mac",
+      "filename" : "Type4-new-64.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "128x128",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "128x128",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "256x256",
+      "scale" : "1x"
+    },
+    {
+      "size" : "256x256",
+      "idiom" : "mac",
+      "filename" : "Type4-new-512.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "mac",
+      "size" : "512x512",
+      "scale" : "1x"
+    },
+    {
+      "size" : "512x512",
+      "idiom" : "mac",
+      "filename" : "Type4-new-1024.png",
       "scale" : "2x"
     },
     {
@@ -259,6 +336,58 @@
       "unassigned" : true,
       "role" : "companionSettings",
       "scale" : "3x"
+    },
+    {
+      "filename" : "Type4-new-12.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-18.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-19.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-22.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-24.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-25.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-30.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-35.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-36.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-44.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-66.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-75.png",
+      "unassigned" : true
+    },
+    {
+      "filename" : "Type4-new-96.png",
+      "unassigned" : true
     }
   ],
   "info" : {
