@@ -38,6 +38,16 @@ class InfoScene: SKScene {
         
         UtilitiesPortal.setBgm(UtilitiesPortal.levelOther)
         
+        // Home button
+        let home = SKSpriteNode(imageNamed: "home")
+        home.name = UtilitiesPortal.homeButtonName
+        home.zPosition = 0.1
+        home.alpha = 1
+        home.size = CGSize(width: UtilitiesPortal.navImgSize, height: UtilitiesPortal.navImgSize)
+        home.position = CGPoint(x:UtilitiesPortal.borderSize/2,
+                                y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
+        addChild(home)
+        
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(InfoScene.move(_:)))
         self.view?.addGestureRecognizer(panRecognizer)
     }
@@ -65,24 +75,23 @@ class InfoScene: SKScene {
     
     // User lifts the finger off the button
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if isFirstTouch {
-            isFirstTouch = false
-        }
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if isFirstTouch {
-            let touch = touches.first
-            let location = (touch?.locationInNode(self))!
-            //cam.position = CGPoint(x: current.x, y: current.y + location.y - current.y)
-        }
     }
     
     // User first touches a button
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if !isFirstTouch {
-            //current = cam.position
-            isFirstTouch = true
+        let location = touches.first!.locationInNode(self)
+        let node = self.nodeAtPoint(location)
+        
+        if node.name == UtilitiesPortal.homeButtonName {
+            cleanScene()
+            let secondScene = GameScene(size: self.size)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
+            //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
         }
     }
     
