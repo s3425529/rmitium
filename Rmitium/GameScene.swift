@@ -156,7 +156,7 @@ class GameScene: SKScene {
                 secondScene.userData = NSMutableDictionary()
                 secondScene.userData!.setValue(UtilitiesPortal.levelLabelTexts[0], forKey: "levelName")
                 //let secondScene = ResultPage(size: self.size)
-                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+                let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
                 //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
                 secondScene.scaleMode = SKSceneScaleMode.AspectFill
                 self.scene!.view?.presentScene(secondScene, transition: transition)
@@ -263,14 +263,21 @@ class GameScene: SKScene {
         
         // Info selected
         if node.name == UtilitiesPortal.infoButonName {
-            if DataHandler.getSettings().getEffect {
+            /*if DataHandler.getSettings().getEffect {
                 audioPlayer.play()
             }
             //DataHandler.resetSettings()
             previousState = state
             state = UtilitiesPortal.stateInfo
             infoOverlay!.hidden = false
-            isFirstTouch = false
+            isFirstTouch = false*/
+            
+        
+            cleanScene()
+            let secondScene = InfoScene(size: self.size)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
+            secondScene.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene!.view?.presentScene(secondScene, transition: transition)
             return
         }
         
@@ -281,7 +288,7 @@ class GameScene: SKScene {
             }
             cleanScene()
             let secondScene = SettingScene(size: self.size)
-            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.3)
+            let transition = SKTransition.fadeWithColor(UIColor.blackColor(), duration: 0.1)
             //let transition = SKTransition.moveInWithDirection(.Down, duration: 1)
             secondScene.scaleMode = SKSceneScaleMode.AspectFill
             self.scene!.view?.presentScene(secondScene, transition: transition)

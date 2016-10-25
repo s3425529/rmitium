@@ -312,11 +312,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rmitium/GameScene.swift"
-            timestampString = "498310309.321725"
+            timestampString = "499098630.431919"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
             landmarkName = "setupLevelTwoModes()"
             landmarkType = "7">
          </BreakpointContent>
