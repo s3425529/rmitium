@@ -199,7 +199,6 @@ class ResultPage: SKScene {
     // If Facebook is used at the fist time, the permissions alert message will display.
     // If not, the Facebook dialog box will display
     func facebookAction() {
-        print("facebook")
         if socialData.facebook == true {
             activeFacebook()
         }
@@ -211,8 +210,6 @@ class ResultPage: SKScene {
     
     // Display Facebook
     func activeFacebook() {
-        print("facebook")
-        print(socialMessage())
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
             let facebookController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
@@ -240,8 +237,6 @@ class ResultPage: SKScene {
     
     // Display Twitter
     func activeTwitter() {
-        print("twitter")
-        print(socialMessage())
         let controller = self.view?.window?.rootViewController as! GameViewController
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
             let twitterController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
@@ -264,8 +259,6 @@ class ResultPage: SKScene {
     
     // Retry level 1
     func redoAction() {
-        print("redo")
-        print(UtilitiesPortal.totalQuestions)
         backLevel1()
         return
     }
@@ -369,7 +362,6 @@ class ResultPage: SKScene {
             state = false
         }
         if node.name == UtilitiesPortal.homeButtonName {
-            print("Home!")
             backHomePage()
         }
         if node.name == UtilitiesPortal.infoButonName{

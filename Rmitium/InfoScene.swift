@@ -58,14 +58,15 @@ class InfoScene: SKScene {
         }
         else {
             let stop = sender.locationInView(self.view)
-            if first.position.y-current.y+stop.y < UtilitiesPortal.screenHeight-first.size.height {
+            let distance = -(stop.y - current.y)/2
+            if first.position.y+distance < UtilitiesPortal.screenHeight-first.size.height {
                 return
             }
-            else if first.position.y-current.y+stop.y > 0 {
+            else if first.position.y+distance > 0 {
                 return
             }
 
-            first.position = CGPointMake(first.position.x, first.position.y + stop.y - current.y)
+            first.position = CGPointMake(first.position.x, first.position.y + distance)
             
             if sender.state == UIGestureRecognizerState.Ended {
                 current = CGPoint(x: 0, y: 0)
