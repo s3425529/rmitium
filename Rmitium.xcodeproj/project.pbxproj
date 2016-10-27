@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2081643E1DC1C655007C5721 /* CustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2081643D1DC1C655007C5721 /* CustomScrollView.swift */; };
 		5000EABD1D66C6E000F3A21F /* SKMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5000EABC1D66C6E000F3A21F /* SKMultilineLabel.swift */; };
 		500198DB1D75B3640005FCA7 /* SettingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500198DA1D75B3640005FCA7 /* SettingScene.swift */; };
 		5006ADF91DA5059C001ADA71 /* LevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5006ADF81DA5059C001ADA71 /* LevelScene.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2081643D1DC1C655007C5721 /* CustomScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomScrollView.swift; sourceTree = "<group>"; };
 		5000EABC1D66C6E000F3A21F /* SKMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKMultilineLabel.swift; sourceTree = "<group>"; };
 		500198DA1D75B3640005FCA7 /* SettingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingScene.swift; sourceTree = "<group>"; };
 		5006ADF81DA5059C001ADA71 /* LevelScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelScene.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				5029D3C11D8D8196007DC44F /* Medal.swift */,
 				5064B0901D9398C900A05CBA /* SKTAudio.swift */,
 				505102FA1DA00889007D8EA6 /* MedalInfo.swift */,
+				2081643D1DC1C655007C5721 /* CustomScrollView.swift */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				508BB5141D5864CF00556CE3 /* GameScene.swift in Sources */,
 				5064B0911D9398C900A05CBA /* SKTAudio.swift in Sources */,
 				50CCBC821D846A1400D78681 /* LevelTwoScene.swift in Sources */,
+				2081643E1DC1C655007C5721 /* CustomScrollView.swift in Sources */,
 				508BB5161D5864CF00556CE3 /* GameViewController.swift in Sources */,
 				509CEA111D884C3D002360E1 /* Settings+CoreDataProperties.swift in Sources */,
 				50FFAC391D8AE04100CDF215 /* LevelTwoQuestions.swift in Sources */,
@@ -499,7 +503,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Q4LWTK425Y;
 				INFOPLIST_FILE = Rmitium/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.student.s3527531.Rmitium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -517,7 +521,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Q4LWTK425Y;
 				INFOPLIST_FILE = Rmitium/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = au.edu.rmit.student.s3527531.Rmitium;
 				PRODUCT_NAME = "$(TARGET_NAME)";

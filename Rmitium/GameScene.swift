@@ -271,7 +271,6 @@ class GameScene: SKScene {
             state = UtilitiesPortal.stateInfo
             infoOverlay!.hidden = false
             isFirstTouch = false*/
-            
         
             cleanScene()
             let secondScene = InfoScene(size: self.size)
