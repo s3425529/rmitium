@@ -17,7 +17,7 @@ class InfoScene: SKScene {
     var cam: SKCameraNode!
     
     override func didMoveToView(view: SKView) {
-        first = SKSpriteNode(imageNamed: "background")
+        first = SKSpriteNode(imageNamed: "about2")
         first.anchorPoint = CGPointZero
         first.setScale(UtilitiesPortal.screenWidth/first.size.width)
         first.position = CGPointMake(0, UtilitiesPortal.screenHeight - first.size.height)
