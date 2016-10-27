@@ -36,14 +36,9 @@ class SocialClass {
         do {
             let results = try context.executeFetchRequest(request)
             for item in results as! [Social] {
-                print(item.facebook)
-                print(item.twitter)
-               
                 facebook = item.facebook
                 twitter = item.twitter
             }
-            
-            
         }
         catch {
             print("Error!")
@@ -76,7 +71,6 @@ class SocialClass {
         let setting = NSFetchRequest(entityName: "Social")
         do {
             let result = try context.executeFetchRequest(setting) as! [Social]
-            print("Database count: \(result.count)")
             return result.count == 0
         }
         catch {

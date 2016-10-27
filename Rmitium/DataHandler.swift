@@ -74,7 +74,6 @@ class DataHandler {
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
-            print("Scores: \(object.levelOne), \(object.levelTwo), \(object.levelThree)")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelOne")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelTwo")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThree")
@@ -83,12 +82,6 @@ class DataHandler {
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelOneScore")
             object.setValue(UtilitiesPortal.defaultScore, forKey: "levelThreeScore")
             try settings.save()
-            
-            
-            let result1 = try settings.executeFetchRequest(setting) as! [Settings]
-            let object1 = result1.first!
-            print("Reset to: \(object1.levelOne), \(object1.levelTwo), \(object1.levelThree)")
-            //localSetting = result1.first!
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
@@ -100,13 +93,13 @@ class DataHandler {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
-            print("Lvl 1 Score: \(result.first!.levelOne)")
+            /*print("Lvl 1 Score: \(result.first!.levelOne)")
             print("Lvl 1 Percent: \(result.first!.levelOneScore)")
             print("Lvl 3 Score: \(result.first!.levelThree)")
             print("Lvl 3 Percent: \(result.first!.levelThreeScore)")
             print("Lvl 2 Standard: \(result.first!.levelTwo)")
             print("Lvl 2 Trial: \(result.first!.levelTwoTrial)")
-            print("Lvl 2 Extreme: \(result.first!.levelTwoExtreme)")
+            print("Lvl 2 Extreme: \(result.first!.levelTwoExtreme)")*/
             return result.first!
         }
         catch {
@@ -298,7 +291,6 @@ class DataHandler {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
             let object = result.first!
             let x = object.levelTwoExtreme as! Int
-            print("Extreme: old: \(x), current: \(UtilitiesPortal.score)")
             if x < UtilitiesPortal.score {
                 object.setValue(UtilitiesPortal.score, forKey: "levelTwoExtreme")
                 try settings.save()
@@ -391,7 +383,6 @@ class DataHandler {
         let setting = NSFetchRequest(entityName: "Settings")
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
-            print("Database count: \(result.count)")
             return result.count == 0
         }
         catch {
@@ -413,7 +404,6 @@ class DataHandler {
             object.setValue(values[1], forKey: "effect")
             object.setValue(values[2], forKey: "rightHand")
             try settings.save()
-            print("Trying to Save value: Sound(\(values[0])), Effect(\(values[1]), RightHand(\(values[2]))")
         }
         catch {
             fatalError("Failure reading from coredata: \(error)")
@@ -421,7 +411,6 @@ class DataHandler {
         
         do {
             let result = try settings.executeFetchRequest(setting) as! [Settings]
-            print("Load value: Sound(\(result.first!.getSound)), Effect(\(result.first!.getEffect), RightHand(\(result.first!.getRightHand))")
             localSetting = result.first!
         }
         catch {

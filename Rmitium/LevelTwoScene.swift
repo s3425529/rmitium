@@ -24,8 +24,6 @@ class LevelTwoScene: LevelScene {
         //This is the template for implementing setting
         switch String(self.userData!.valueForKey("gameMode")!) {
             case UtilitiesPortal.modeLabelTexts[0]:
-                //code goes here
-                print("Game mode: \(UtilitiesPortal.modeLabelTexts[0])")
                 //if it is first time of play the game, to set timerStop with true
                 if DataHandler.getLevelTwoScore() == UtilitiesPortal.firstTime {
                     timerStop = true
@@ -33,16 +31,12 @@ class LevelTwoScene: LevelScene {
                 setupTimer()
             break
             case UtilitiesPortal.modeLabelTexts[1]:
-                //code goes here
-                print("Game mode: \(UtilitiesPortal.modeLabelTexts[1])")
                 if DataHandler.getLevelTwoTrialScore() == UtilitiesPortal.firstTime {
                     timerStop = true
                 }
                 trialTimer()
             break
             case UtilitiesPortal.modeLabelTexts[2]:
-                //code goes here
-                print("Game mode: \(UtilitiesPortal.modeLabelTexts[2])")
                 if DataHandler.getLevelTwoExtremeScore() == UtilitiesPortal.firstTime {
                     timerStop = true
                 }

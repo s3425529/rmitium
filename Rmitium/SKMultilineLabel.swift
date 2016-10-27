@@ -66,7 +66,6 @@ class SKMultilineLabel: SKNode {
         
         while (!finalLine) {
             lineCount += 1
-            print("Line count: \(lineCount)")
             var lineLength = CGFloat(0)
             var lineString = ""
             var lineStringBeforeAddingWord = ""
@@ -93,7 +92,6 @@ class SKMultilineLabel: SKNode {
                     lineStringBeforeAddingWord = lineString
                     lineString = "\(lineString) \(words[wordCount])"
                     label.text = lineString
-                    print("Add line 1: -\(lineString)-")
                     let labelSize = label.frame.size.width
                     lineLength = labelSize
                 }
@@ -107,7 +105,6 @@ class SKMultilineLabel: SKNode {
                     lineString = lineStringBeforeAddingWord
                 }
                 label.text = lineString
-                print("Add line 2: -\(lineString)-")
                 var linePos = pos
                 if (alignment == .Left) {
                     linePos.x -= CGFloat(labelWidth / 2)
@@ -118,7 +115,6 @@ class SKMultilineLabel: SKNode {
                 label.position = CGPointMake( linePos.x , linePos.y )
                 self.addChild(label)
                 labels.append(label)
-                //println("was \(lineLength), now \(label.width)")
             }
             
         }

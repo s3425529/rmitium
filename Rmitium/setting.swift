@@ -152,22 +152,18 @@ class setting: SKScene {
         let node = self.nodeAtPoint(location!)
         
         if node.name == UtilitiesPortal.settingButtonName {
-            print("setting")
             backAction()
         }
         
         if node.name == nodes[0].name {
-            
             let fade = SKAction.fadeOutWithDuration(0.5)
             let zoom = SKAction.scaleTo(1.5, duration: 0.25)
             let remove = SKAction.removeFromParent()
             let actionSequence = SKAction.sequence([zoom,fade,remove])
             nodes[0].runAction(actionSequence)
             backHome()
-            print("item0")
         }
         if node.name == nodes[1].name {
-            
             let fade = SKAction.fadeOutWithDuration(0.5)
             let zoom = SKAction.scaleTo(1.5, duration: 0.25)
             let remove = SKAction.removeFromParent()
@@ -175,10 +171,8 @@ class setting: SKScene {
             
             nodes[1].runAction(actionSequence)
             backHome()
-            print("item1")
         }
         if node.name == nodes[2].name {
-            
             let fade = SKAction.fadeOutWithDuration(0.5)
             let zoom = SKAction.scaleTo(1.5, duration: 0.25)
             let remove = SKAction.removeFromParent()
@@ -186,10 +180,8 @@ class setting: SKScene {
             
             nodes[2].runAction(actionSequence)
             backHome()
-            print("item2")
         }
         if node.name == nodes[3].name {
-            
             let fade = SKAction.fadeOutWithDuration(0.5)
             let zoom = SKAction.scaleTo(1.5, duration: 0.25)
             let remove = SKAction.removeFromParent()
@@ -197,10 +189,8 @@ class setting: SKScene {
             
             nodes[3].runAction(actionSequence)
             backHome()
-            print("item3")
         }
         if node.name == nodes[4].name {
-            
             let fade = SKAction.fadeOutWithDuration(0.5)
             let zoom = SKAction.scaleTo(1.5, duration: 0.25)
             let remove = SKAction.removeFromParent()
@@ -208,10 +198,8 @@ class setting: SKScene {
             
             nodes[4].runAction(actionSequence)
             backHome()
-            print("item4")
         }
         if node.name == nodes[5].name {
-            
             let fade = SKAction.fadeOutWithDuration(0.5)
             let zoom = SKAction.scaleTo(1.5, duration: 0.5)
             let remove = SKAction.removeFromParent()
@@ -219,9 +207,6 @@ class setting: SKScene {
             
             nodes[5].runAction(actionSequence)
             backHome()
-            print("item5")
         }
-        
     }
-    
 }
