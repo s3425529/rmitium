@@ -6,6 +6,8 @@
 //  Copyright © 2016 RMIT. All rights reserved.
 //
 
+// Info overlay for the home screen which uses an image for the text
+
 import AudioToolbox
 import SpriteKit
 import AVFoundation
@@ -16,6 +18,8 @@ class InfoScene: SKScene {
     var current = CGPoint(x: 0, y: 0)
     var cam: SKCameraNode!
     
+    
+    // Adding the image to the scene
     override func didMoveToView(view: SKView) {
         first = SKSpriteNode(imageNamed: "about2")
         first.anchorPoint = CGPointZero
@@ -48,17 +52,19 @@ class InfoScene: SKScene {
                                 y:UtilitiesPortal.screenHeight - UtilitiesPortal.navImgSize/2)
         addChild(home)
         
+        // Recognising the scroll gesture
         let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(InfoScene.move(_:)))
         self.view?.addGestureRecognizer(panRecognizer)
     }
     
+    // Moves the image based on the scroll gesture
     func move(sender: UISwipeGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.Began {
             current = sender.locationInView(self.view)
         }
         else {
             let stop = sender.locationInView(self.view)
-            let distance = -(stop.y - current.y)/2
+            let distance = -(stop.y - current.y)/10
             if first.position.y+distance < UtilitiesPortal.screenHeight-first.size.height {
                 return
             }
