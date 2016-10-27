@@ -17,6 +17,7 @@ class InfoScene: SKScene {
     var isFirstTouch: Bool = false
     var current = CGPoint(x: 0, y: 0)
     var cam: SKCameraNode!
+    var panRecognizer: UIPanGestureRecognizer!
     
     
     // Adding the image to the scene
@@ -53,7 +54,7 @@ class InfoScene: SKScene {
         addChild(home)
         
         // Recognising the scroll gesture
-        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(InfoScene.move(_:)))
+        panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(InfoScene.move(_:)))
         self.view?.addGestureRecognizer(panRecognizer)
     }
     
@@ -140,6 +141,7 @@ class InfoScene: SKScene {
             s.removeAllChildren()
             s.removeFromParent()
         }
+        self.view?.removeGestureRecognizer(panRecognizer)
         print("Clean Info Scene")
     }
 }
