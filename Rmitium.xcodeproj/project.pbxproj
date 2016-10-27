@@ -17,6 +17,7 @@
 		504913F01D92BD4E0077DB74 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504913EF1D92BD4E0077DB74 /* Social.swift */; };
 		504913F21D92BD6E0077DB74 /* Social+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504913F11D92BD6E0077DB74 /* Social+CoreDataProperties.swift */; };
 		504913F41D92BE800077DB74 /* SocialClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504913F31D92BE800077DB74 /* SocialClass.swift */; };
+		504E53CF1DBF9FE60093D79E /* InfoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E53CE1DBF9FE60093D79E /* InfoScene.swift */; };
 		505102FB1DA00889007D8EA6 /* MedalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505102FA1DA00889007D8EA6 /* MedalInfo.swift */; };
 		50593BEE1D5B216B00DFE191 /* UtilitiesPortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */; };
 		5064B08F1D9248F500A05CBA /* bgm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5064B08E1D9248F500A05CBA /* bgm.mp3 */; };
@@ -67,6 +68,7 @@
 		504913EF1D92BD4E0077DB74 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
 		504913F11D92BD6E0077DB74 /* Social+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Social+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		504913F31D92BE800077DB74 /* SocialClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialClass.swift; sourceTree = "<group>"; };
+		504E53CE1DBF9FE60093D79E /* InfoScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoScene.swift; sourceTree = "<group>"; };
 		505102FA1DA00889007D8EA6 /* MedalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedalInfo.swift; sourceTree = "<group>"; };
 		50593BED1D5B216B00DFE191 /* UtilitiesPortal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilitiesPortal.swift; sourceTree = "<group>"; };
 		5064B08E1D9248F500A05CBA /* bgm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgm.mp3; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				500198DA1D75B3640005FCA7 /* SettingScene.swift */,
 				508BB5131D5864CF00556CE3 /* GameScene.swift */,
 				5006ADF81DA5059C001ADA71 /* LevelScene.swift */,
+				504E53CE1DBF9FE60093D79E /* InfoScene.swift */,
 				50E94AAC1D811C7D00C01945 /* setting.swift */,
 				508BB5151D5864CF00556CE3 /* GameViewController.swift */,
 				508BB5171D5864CF00556CE3 /* Main.storyboard */,
@@ -334,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				504E53CF1DBF9FE60093D79E /* InfoScene.swift in Sources */,
 				50E94AAD1D811C7D00C01945 /* setting.swift in Sources */,
 				509CEA0E1D884A91002360E1 /* SettingDataModel.xcdatamodeld in Sources */,
 				50E31D151D6BEE3D002F10E0 /* LevelOneModel.swift in Sources */,

@@ -34,22 +34,16 @@ class ResultPage2: ResultPage {
         Dic = medalClass()
         switch String(self.userData!.valueForKey("gameMode")!) {
         case UtilitiesPortal.modeLabelTexts[0]:
-            //DataHandler.saveLevelTwoScore()
-            print("Game mode: Standard!")
             medalDic = Dic.level2("stand")
             modeName = "stand"
             //infoTable("stand")
             break
         case UtilitiesPortal.modeLabelTexts[1]:
-            //DataHandler.saveLevelTwoTrialScore()
-            print("Game mode: Time Trial!")
             medalDic = Dic.level2("trial")
             modeName = "trial"
             //infoTable("trial")
             break
         case UtilitiesPortal.modeLabelTexts[2]:
-            //DataHandler.saveLevelTwoExtremeScore()
-            print("Game mode: Extreme!")
             medalDic = Dic.level2("extreme")
             modeName = "extreme"
             //infoTable("extreme")
@@ -230,7 +224,6 @@ class ResultPage2: ResultPage {
     
     // Retry level 2
     override func redoAction() {
-        print("redo")
         UtilitiesPortal.score = 0
         backLevel2()
         return

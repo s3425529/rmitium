@@ -138,10 +138,6 @@ class medalClass {
         let scoreSec = score%60
         let result = UtilitiesPortal.score
         
-
-        
-        print("first: \(firstTime), score: \(UtilitiesPortal.score))")
-        
         // Standard
         
         if mode == "stand" {
