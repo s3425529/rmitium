@@ -15,7 +15,7 @@ import AVFoundation
 class InfoScene: SKScene {
     var first, second: SKSpriteNode!
     var isFirstTouch: Bool = false
-    //var current = CGPoint(x: 0, y: 0)
+    var current: CGFloat = 0.0
     //var cam: SKCameraNode!
     //var panRecognizer: UIPanGestureRecognizer!
     var autoScroll = true
@@ -77,8 +77,8 @@ class InfoScene: SKScene {
     
     override func update(currentTime: CFTimeInterval) {
         if autoScroll {
-            let current = scrollView.contentOffset.y
-            if current < first.size.height {
+            current = scrollView.contentOffset.y
+            if current < first.size.height - UtilitiesPortal.screenHeight {
                 scrollView.contentOffset = CGPointMake(0, current + 1);
             }
         }
