@@ -3,7 +3,7 @@
 //  Rmitium
 //
 //  Created by Aoi Mizu on 8/10/16.
-//  Copyright © 2016 RMIT. All rights reserved.
+//  Copyright © 2016 Spencer and Jones. All rights reserved.
 //
 //  Custom Controller to read/write local settings and score
 

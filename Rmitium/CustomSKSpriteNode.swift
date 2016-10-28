@@ -3,7 +3,7 @@
 //  Rmitium
 //
 //  Created by Aoi Mizu on 8/19/16.
-//  Copyright © 2016 RMIT. All rights reserved.
+//  Copyright © 2016 Spencer and Jones. All rights reserved.
 //
 //  Custom SpriteNode with an user defined string to store custom value
 

@@ -3,7 +3,7 @@
 //  Rmitium
 //
 //  Created by Aoi Mizu on 10/26/16.
-//  Copyright © 2016 RMIT. All rights reserved.
+//  Copyright © 2016 Spencer and Jones. All rights reserved.
 //
 
 // Info overlay for the home screen which uses an image for the text
@@ -16,7 +16,7 @@ class InfoScene: SKScene {
     var first, second: SKSpriteNode!
     var isFirstTouch: Bool = false
     var current = CGPoint(x: 0, y: 0)
-    var cam: SKCameraNode!
+    //var cam: SKCameraNode!
     var panRecognizer: UIPanGestureRecognizer!
     
     

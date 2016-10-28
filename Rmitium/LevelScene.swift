@@ -3,7 +3,7 @@
 //  Rmitium
 //
 //  Created by Thinh Tran on 5/10/2016.
-//  Copyright © 2016 RMIT. All rights reserved.
+//  Copyright © 2016 Spencer and Jones. All rights reserved.
 //
 
 import AVFoundation

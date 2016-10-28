@@ -3,7 +3,7 @@
 //  Rmitium
 //
 //  Created by Aoi Mizu on 9/11/16.
-//  Copyright © 2016 RMIT. All rights reserved.
+//  Copyright © 2016 Spencer and Jones. All rights reserved.
 //
 
 import AVFoundation

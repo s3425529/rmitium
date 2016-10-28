@@ -3,7 +3,7 @@
 //  Rmitium
 //
 //  Created by Max on 2/10/2016.
-//  Copyright © 2016 RMIT. All rights reserved.
+//  Copyright © 2016 Spencer and Jones. All rights reserved.
 //
 //  Custom SpriteNode with defined range of medal image and related information
 

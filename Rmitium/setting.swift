@@ -3,7 +3,7 @@
 //  Rmitium
 //
 //  Created by Max on 7/09/2016.
-//  Copyright © 2016 RMIT. All rights reserved.
+//  Copyright © 2016 Spencer and Jones. All rights reserved.
 //
 
 import SpriteKit

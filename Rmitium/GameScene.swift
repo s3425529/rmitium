@@ -3,7 +3,7 @@
 //  Rmitium
 //
 //  Created by Thinh Tran on 8/08/2016.
-//  Copyright (c) 2016 RMIT. All rights reserved.
+//  Copyright © 2016 Spencer and Jones. All rights reserved.
 //
 
 import AudioToolbox
