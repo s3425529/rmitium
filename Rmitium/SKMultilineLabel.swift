@@ -1,11 +1,9 @@
 //
 //  SKMultilineLabel.swift
-//  Rmitium
 //
-//  Created by Aoi Mizu on 8/19/16.
-//  Copyright © 2016 Spencer and Jones. All rights reserved.
-//
-//  Custom SpriteKit Label with multiple lines
+//  Created by Craig on 10/04/2015.
+//  Copyright © 2015 Interactive Coconut. All rights reserved.
+// Custom SpriteKit Label with multiple lines
 
 import SpriteKit
 
