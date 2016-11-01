@@ -40,6 +40,7 @@ class LevelOneQuestionList {
         return randomQuestionIndex
     }
     
+    //Function outputting a specified number of questions
     static func select(numberOfQuestion: Int) ->[LevelOneQuestion]
     {
         if numberOfQuestion >= listOfQuestions.count {

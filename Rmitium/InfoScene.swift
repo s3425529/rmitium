@@ -15,16 +15,10 @@ import AVFoundation
 class InfoScene: SKScene {
     var first, second: SKSpriteNode!
     var isFirstTouch: Bool = false
-<<<<<<< HEAD
-    var current = CGPoint(x: 0, y: 0)
-    //var cam: SKCameraNode!
-    var panRecognizer: UIPanGestureRecognizer!
-=======
     var current: CGFloat = 0.0
     //var cam: SKCameraNode!
     //var panRecognizer: UIPanGestureRecognizer!
     var autoScroll = true
->>>>>>> f4cccc69395234fe7145d59c7fdd5c334958fc72
     
     weak var scrollView: CustomScrollView!
     let moveableNode = SKNode()

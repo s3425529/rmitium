@@ -6,6 +6,7 @@
 //  Copyright © 2016 Spencer and Jones. All rights reserved.
 //
 
+// Data dictionary for the question data. Each Switch case is an attribute.
 import Foundation
 
 enum LevelOneQuestion:Int{
@@ -33,9 +34,10 @@ enum LevelOneQuestion:Int{
             return nil
         }
     }
-    
+    // Assigning the order of questions
     case NilQuestion=0, QuestionOne=1, QuestionTwo, QuestionThree, QuestionFour, QuestionFive, QuestionSix, QuestionSeven,QuestionEight, QuestionNine
     
+    // Declare image file name for each question
     var imageName:String{
         get{
             
@@ -54,6 +56,8 @@ enum LevelOneQuestion:Int{
             }
         }
     }
+    
+    //Declare the molecule name for each question
     var itemName:String{
         
         get{
@@ -74,6 +78,7 @@ enum LevelOneQuestion:Int{
         }
     }
     
+    //Declaring the solution image file name (Please name the file with the following format: ("image name" followed by "solution")
     var imageSol:String
         {
         get
@@ -83,6 +88,7 @@ enum LevelOneQuestion:Int{
         
     }
     
+    //Arrays of solutions for each question in top-down, left-right order
     var solutions:[String]{
         get {
             switch self {
@@ -99,6 +105,8 @@ enum LevelOneQuestion:Int{
             }
         }
     }
+    
+    //Arrays of drop locations on iPad for the answers in top-down, left-right order.
     var positionsIpad:[Position]{
         get {
             switch self {
@@ -115,6 +123,8 @@ enum LevelOneQuestion:Int{
             }
         }
     }
+    
+    //Arrays of drop locations on iPhone for the answers in top-down, left-right order.
     var positions:[Position]{
         get {
             switch self {
@@ -132,6 +142,7 @@ enum LevelOneQuestion:Int{
         }
     }
     
+    //Arrays of fun facts for each question
     var facts:[String]{
         get {
             switch self{
@@ -150,6 +161,7 @@ enum LevelOneQuestion:Int{
         }
     }
     
+    //Function outputting all the questions
     static func getQuestions() ->[LevelOneQuestion]{
         return [QuestionOne, QuestionTwo, QuestionThree, QuestionFour, QuestionFive, QuestionSix,
         QuestionSeven, QuestionEight, QuestionNine, NilQuestion]
